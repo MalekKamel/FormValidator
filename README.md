@@ -1,6 +1,6 @@
 # android-form-validator
 
-A simple Android form validation.
+##### A simple Android form validation.
 You can validate form easily now using FormValidator.
 Validating EditText in android was a great headache. But FormValidator do the work for you.
 Just few lines of code!
