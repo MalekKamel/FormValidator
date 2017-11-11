@@ -19,6 +19,7 @@ dependencies {
 
 Usage:
 Example 1
+
 new FormValidator.with(btn_submit)
                 .add(
                         new NameValidator(et_name),
@@ -39,7 +40,9 @@ new FormValidator.with(btn_submit)
                 .subscribe(
                         data -> toast("Saved data successfully."),
                         Throwable::printStackTrace);
+
 Example 2
+
 new FormValidator.with(btn_submit, () -> toast("Fill required data."))
                 .add(
                         new NameValidator(et_name),
@@ -55,6 +58,7 @@ new FormValidator.with(btn_submit, () -> toast("Fill required data."))
                     toast("Saved data successfully.");
                 });
 Example 3
+
 formValidator.with(btn_submit, () -> toast("Fill required data."))
                 .add(
                         new NameValidator(et_name),
@@ -71,8 +75,9 @@ formValidator.with(btn_submit, () -> toast("Fill required data."))
                 .subscribe(
                         data -> toast("Saved data successfully."),
                         Throwable::printStackTrace);
- ------------
+
 See 'app' module for the full code.
 
 License
+
 Apache license 2.0
