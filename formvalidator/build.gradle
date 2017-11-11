@@ -1,0 +1,87 @@
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'android-form-validator'
+
+    publishedGroupId = 'com.sha.kamel'
+    libraryName = 'FBLike'
+    artifact = 'android-form-validator'
+
+    libraryDescription = 'A simple Android form validation.'
+
+    siteUrl = 'https://github.com/ShabanKamell/android-form-validator'
+    gitUrl = 'https://github.com/ShabanKamell/android-form-validator.git'
+
+    libraryVersion = '0.9.3'
+
+    developerId = 'shaban'
+    developerName = 'shaban kamel'
+    developerEmail = 'sh3ban.kamel@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.1"
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/MANIFEST.MF'
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    // annotationProcessor
+    android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    compile libraries.rxLifeCycle
+    compile libraries.rxandroid
+    compile libraries.rxjava
+    compile libraries.rxbinding
+    compile libraries.rxbinding_support_4
+    compile libraries.rxbinding_appcompat_7
+    compile libraries.rxbinding_design
+    compile libraries.rxbinding_recyclerview_7
+}

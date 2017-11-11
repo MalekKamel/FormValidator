@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">FormValidator</string>
+
+    <string name="phone_must_be_01">Must start with 01</string>
+    <string name="area_max_length_25">Minimum length = 25</string>
+    <string name="age_invalid">Invalid age.</string>
+    <string name="phone_must_be_11">Must be 11 digits</string>
+    <string name="name_min_length_4">Minimum length = 4</string>
+    <string name="name_max_length_100">Maximum length = 100</string>
+    <string name="name">Name</string>
+    <string name="age">Age</string>
+    <string name="mobile">Mobile</string>
+    <string name="area">Area</string>
+    <string name="submit">Submit</string>
+
+    <string name="e1">Example 1</string>
+    <string name="e2">Example 2</string>
+    <string name="e3">Example 3</string>
+
+
+</resources>
