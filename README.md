@@ -2,8 +2,9 @@
 
 ##### A simple Android form validation.
 Now you can validate form easily using FormValidator.
-Validating EditText in android was a great headache. But FormValidator do the work for you.
-Just few lines of code!. Create your validator by extending FormValidator.Validator
+Validating EditText in android was a great headache. 
+But FormValidator do the work for you.Just few lines of code!. 
+Create your validator by extending FormValidator.Validator
 then add it to FormValidator instance and all is done!
 
 # Installation
