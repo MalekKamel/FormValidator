@@ -9,17 +9,19 @@ then add it to FormValidator instance and all is done!
 
 # Installation
 
+```gradle
 repositories {
     jcenter() // If not already there
 }
-
 dependencies {
     compile 'com.sha.kamel:android-form-validator:0.1.0'
 }
+```
 
 Usage:
-Example 1
+###### Example 1
 
+```java
 new FormValidator.with(btn_submit)
                 .add(
                         new NameValidator(et_name),
@@ -39,9 +41,11 @@ new FormValidator.with(btn_submit)
                 .subscribe(
                         data -> toast("Saved data successfully."),
                         Throwable::printStackTrace);
+```
 
-Example 2
+###### Example 2
 
+```java 
 new FormValidator.with(btn_submit, () -> toast("Fill required data."))
                 .add(
                         new NameValidator(et_name),
@@ -56,8 +60,11 @@ new FormValidator.with(btn_submit, () -> toast("Fill required data."))
                 .subscribe(data -> {
                     toast("Saved data successfully.");
                 });
-Example 3
+```
 
+###### Example 3
+
+```java
 formValidator.with(btn_submit, () -> toast("Fill required data."))
                 .add(
                         new NameValidator(et_name),
@@ -74,9 +81,10 @@ formValidator.with(btn_submit, () -> toast("Fill required data."))
                 .subscribe(
                         data -> toast("Saved data successfully."),
                         Throwable::printStackTrace);
+```
 
-See 'app' module for the full code.
+### See 'app' module for the full code.
 
 # License
 
-Apache license 2.0
+## Apache license 2.0
