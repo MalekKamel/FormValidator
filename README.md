@@ -7,7 +7,7 @@ Just few lines of code!
 create your validator by extending FormValidator.Validator
 then add it to FormValidator instance and all is done!
 
-Installation
+# Installation
 
 repositories {
     jcenter() // If not already there
@@ -32,7 +32,6 @@ new FormValidator.with(btn_submit)
                         .setMobile(validator.from(et_name))
                         .setArea(validator.from(et_name)))
                 .doIfInvalid(() -> toast("Fill required data."))
-                
                 .asObservable()
                 .doOnNext(data -> toast("Saving Client info"))
 //               .flatMap(data -> {}) --> save in database
@@ -78,6 +77,6 @@ formValidator.with(btn_submit, () -> toast("Fill required data."))
 
 See 'app' module for the full code.
 
-License
+# License
 
 Apache license 2.0
