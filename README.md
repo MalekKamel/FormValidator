@@ -12,9 +12,6 @@ then add it to `FormValidator` instance and all is done!
 # Installation
 
 ```gradle
-repositories {
-    jcenter() // If not already there
-}
 dependencies {
     compile 'com.sha.kamel:android-form-validator:0.1.0'
 }
