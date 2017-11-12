@@ -1,7 +1,5 @@
 # android-form-validator
 
-<a href='https://bintray.com/shabankamel/android-form-validator/android-form-validator?source=watch' alt='Get automatic notifications about new "android-form-validator" versions'><img src='https://www.bintray.com/docs/images/bintray_badge_color.png'></a>
-
 [ ![Download](https://api.bintray.com/packages/shabankamel/android-form-validator/android-form-validator/images/download.svg) ](https://bintray.com/shabankamel/android-form-validator/android-form-validator/_latestVersion)
 
 ##### A simple Android form validation.
