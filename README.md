@@ -1,6 +1,6 @@
 # android-form-validator
 
-[ ![Download](https://api.bintray.com/packages/shabankamel/android-form-validator/android-form-validator/images/download.svg) ](https://bintray.com/shabankamel/android-form-validator/android-form-validator/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/shabankamel/android/form-validator/images/download.svg) ](https://bintray.com/shabankamel/android/form-validator/_latestVersion)
 
 ##### A simple Android form validation.
 Now you can validate form easily using FormValidator.
