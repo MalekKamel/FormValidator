@@ -22,7 +22,7 @@ dependencies {
 }
 ```
 
-Usage:
+# Usage:
 ###### Example 1
 
 ```java
