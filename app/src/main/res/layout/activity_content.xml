@@ -77,8 +77,28 @@
         android:layout_height="5dp" />
 
     <Button
+        android:id="@+id/btn_clear"
+        android:text="@string/clear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <Button
         android:id="@+id/btn_submit"
         android:text="@string/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <Button
+        android:id="@+id/btn_back"
+        android:text="@string/back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

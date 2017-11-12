@@ -3,11 +3,13 @@ package com.sha.kamel.sample;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sha.kamel.formvalidator.FormValidator;
+import com.sha.kamel.sample.ui.ConfirmDialogFragment;
 import com.sha.kamel.sample.validator.AgeValidator;
 import com.sha.kamel.sample.validator.AreaValidator;
 import com.sha.kamel.sample.validator.MobileValidator;
@@ -15,6 +17,7 @@ import com.sha.kamel.sample.validator.NameValidator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class BaseExampleActivity extends AppCompatActivity {
 
@@ -46,5 +49,30 @@ public class BaseExampleActivity extends AppCompatActivity {
     protected void toast(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
+
+    @OnClick({R.id.btn_clear, R.id.btn_back})
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.btn_clear:
+                formValidator.clearAll();
+                break;
+
+           case R.id.btn_back:
+               // You can also use 'ormValidator.isAnyHasText()'
+               if (formValidator.isAnyValid()){
+                   ConfirmDialogFragment.newInstance(
+                           getString(R.string.data_will_be_removed),
+                           isConfirmed ->{
+                               if (isConfirmed)
+                                   onBackPressed();
+                           }).show(this);
+               }
+               else onBackPressed();
+
+               break;
+        }
+    }
+
 }
 

@@ -15,7 +15,7 @@ public class Example2Activity extends BaseExampleActivity {
 
         formValidator.with(btn_submit, () -> toast("Fill required data."))
                 .add(
-                        new NameValidator(et_name),
+                        new NameValidator(et_name).initialValue("Shaban Kamel"),
                         new AgeValidator(et_age),
                         new MobileValidator(et_mobile),
                         new AreaValidator(et_area))
@@ -24,9 +24,7 @@ public class Example2Activity extends BaseExampleActivity {
                         .setAge(texts[1])
                         .setMobile(texts[2])
                         .setArea(texts[3]))
-                .subscribe(data -> {
-                    toast("Saved data successfully.");
-                });
+                .subscribe(data -> toast("Saved data successfully."));
     }
 
 }

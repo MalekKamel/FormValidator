@@ -123,6 +123,7 @@ public class FormValidator<T> {
                 beans.put(bean.getEt(), bean);
                 texts.put(bean.getEt(), bean.text());
             });
+            validator.emitInitialValue();
         }
     }
 
@@ -137,12 +138,18 @@ public class FormValidator<T> {
 
         if (mapperVa == null && mapper == null)
             throw new RuntimeException("Must call 'map' or 'mapData' before 'asObservable");
-
     }
 
     public boolean isAnyValid(){
         for (ValidationBean bean : new ArrayList<>(beans.values())){
             if (bean.isValid()) return true;
+        }
+        return false;
+    }
+
+    public boolean isAnyHasText(){
+        for (ValidationBean bean : new ArrayList<>(beans.values())){
+            if (!bean.getEt().getText().toString().isEmpty()) return true;
         }
         return false;
     }
@@ -168,4 +175,9 @@ public class FormValidator<T> {
         return TextUtils.isEmpty(emptyMessage) ? null : emptyMessage;
     }
 
+    public void clearAll(){
+        for (ValidationBean bean : new ArrayList<>(beans.values())){
+            bean.getEt().setText("");
+        }
+    }
 }

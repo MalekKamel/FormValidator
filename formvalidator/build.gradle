@@ -1,19 +1,19 @@
 apply plugin: 'com.android.library'
 
 ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'android-form-validator'
+    bintrayRepo = 'android'
+    bintrayName = 'form-validator'
 
     publishedGroupId = 'com.sha.kamel'
-    libraryName = 'FBLike'
-    artifact = 'android-form-validator'
+    libraryName = 'FormValidator'
+    artifact = 'form-validator'
 
     libraryDescription = 'A simple Android form validation.'
 
     siteUrl = 'https://github.com/ShabanKamell/android-form-validator'
     gitUrl = 'https://github.com/ShabanKamell/android-form-validator.git'
 
-    libraryVersion = '0.9.3'
+    libraryVersion = '0.2.0'
 
     developerId = 'shaban'
     developerName = 'shaban kamel'
@@ -85,3 +85,6 @@ dependencies {
     compile libraries.rxbinding_design
     compile libraries.rxbinding_recyclerview_7
 }
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

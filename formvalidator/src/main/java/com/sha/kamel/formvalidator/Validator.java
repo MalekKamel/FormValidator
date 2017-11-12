@@ -20,18 +20,24 @@ public abstract class Validator {
 
     protected abstract boolean validate(String s);
 
+    private String initialValue;
+
     public Validator(EditText et) {
         this.et = et;
     }
 
     public final Observable<ValidationBean> start(String emptyMessage){
         return RxTextView.textChanges(et)
-                .skip(1)
+                .skip(et.getText().toString().isEmpty() ? 1 : 0) // Check is necessary to enable initial value
                 .debounce(200, TimeUnit.MILLISECONDS)
                 .map(CharSequence::toString)
                 .observeOn(AndroidSchedulers.mainThread())
-                .filter(s -> !isEmpty(s, emptyMessage)) // If empty, stop. We don't want to add others until this succeed
-                .map(isValid -> validate(et.getText().toString()))
+                .map(s -> !isEmpty(s, emptyMessage)) // If empty, stop. We don't want to add others until this succeed
+                .map(isValid -> {
+                    if (isValid) // If empty, stop. We don't want to add others until this succeed.
+                        return validate(et.getText().toString());
+                    return isValid;
+                })
                 .map(isValid -> new ValidationBean(et, isValid));
     }
 
@@ -40,6 +46,19 @@ public abstract class Validator {
         if (isEmpty)
             et.setError(emptyMessage);
         return isEmpty;
+    }
+
+
+    void emitInitialValue() {
+        if (!TextUtils.isEmpty(initialValue)){
+            et.setText(initialValue);
+        }
+    }
+
+    public Validator initialValue(String value){
+        et.setText(value);
+        this.initialValue = value;
+        return this;
     }
 
 
