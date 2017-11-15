@@ -9,9 +9,11 @@ import android.widget.EditText;
 public class ValidationBean {
     private EditText et;
     private boolean isValid;
-    public ValidationBean(EditText et, boolean isValid) {
+    private Validator validator;
+    public ValidationBean(EditText et, boolean isValid, Validator validator) {
         this.et = et;
         this.isValid = isValid;
+        this.validator = validator;
     }
 
     public EditText getEt() {
@@ -35,4 +37,9 @@ public class ValidationBean {
     public String text(){
         return et.getText().toString();
     }
+
+    public Validator validator() {
+        return validator;
+    }
+
 }

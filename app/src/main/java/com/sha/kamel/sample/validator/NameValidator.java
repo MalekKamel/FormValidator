@@ -20,11 +20,11 @@ public class NameValidator extends Validator{
     protected boolean validate(String text) {
         int length = text.length();
         if (length < 4) {
-            et.setError(MyApp.getContext().getString(R.string.name_min_length_4));
+            error(MyApp.getContext().getString(R.string.name_min_length_4));
             return false;
         }
         if (length > 100) {
-            et.setError(MyApp.getContext().getString(R.string.name_max_length_100));
+            error(MyApp.getContext().getString(R.string.name_max_length_100));
             return false;
         }
         return true;

@@ -6,5 +6,5 @@ package com.sha.kamel.formvalidator;
 
 public interface FormValidatorMapper<T> {
 
-    T call(FormValidator<T> validator);
+    T call(ValidationManager<T> validator);
 }

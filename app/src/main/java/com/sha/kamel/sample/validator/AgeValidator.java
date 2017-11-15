@@ -19,7 +19,7 @@ public class AgeValidator extends Validator{
     @Override
     protected boolean validate(String text) {
         if (text.length() != 2){
-            et.setError(MyApp.getContext().getString(R.string.age_invalid));
+            error(MyApp.getContext().getString(R.string.age_invalid));
             return false;
         }
         return true;

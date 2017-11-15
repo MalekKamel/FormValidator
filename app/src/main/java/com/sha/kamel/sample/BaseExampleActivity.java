@@ -2,18 +2,15 @@ package com.sha.kamel.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sha.kamel.formvalidator.FormValidator;
+import com.sha.kamel.formvalidator.ValidationManager;
+import com.sha.kamel.formvalidator.ValidatorBuilder;
 import com.sha.kamel.sample.ui.ConfirmDialogFragment;
-import com.sha.kamel.sample.validator.AgeValidator;
-import com.sha.kamel.sample.validator.AreaValidator;
-import com.sha.kamel.sample.validator.MobileValidator;
-import com.sha.kamel.sample.validator.NameValidator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,7 +33,7 @@ public class BaseExampleActivity extends AppCompatActivity {
     @BindView(R.id.btn_submit)
     Button btn_submit;
 
-    protected FormValidator<ClientInfo> formValidator;
+    protected ValidationManager<ClientInfo> formValidator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,5 +71,10 @@ public class BaseExampleActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        formValidator.dispose();
+    }
 }
 

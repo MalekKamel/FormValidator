@@ -1,17 +1,14 @@
 package com.sha.kamel.formvalidator;
 
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
 import com.jakewharton.rxbinding2.view.RxView;
 import com.sha.kamel.formvalidator.util.Callback;
+import com.sha.kamel.formvalidator.util.EditTextUtil;
 import com.sha.kamel.formvalidator.util.Func;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
@@ -20,32 +17,25 @@ import io.reactivex.subjects.PublishSubject;
  * Created by Sha on 10/24/17.
  */
 
-public class FormValidator<T> {
+public final class FormValidator<T> extends ValidationManager<T>{
 
-    private List<Validator> validators = new ArrayList<>();
-    private Map<EditText, ValidationBean> beans = new HashMap<>();
-    private Map<EditText, String> texts = new HashMap<>();
-
-    private Observable<Object> source;
-    private Func invalidCallback;
-    private String emptyMessage = "Required";
-    private FormValidatorMapperVa<T> mapperVa;
-    private FormValidatorMapper<T> mapper;
-
+    @Override
     public FormValidator<T> with(View sourceView){
         with(sourceView, null);
         return this;
     }
 
+    @Override
     public FormValidator<T> with(View sourceView, Func invalidCallback){
         if (sourceView == null)
             throw  new RuntimeException("View can't be null.");
 
         this.source = RxView.clicks(sourceView);
-        this.invalidCallback = invalidCallback;
+        options.invalidCallback = invalidCallback;
         return this;
     }
 
+    @Override
     public FormValidator<T> add(Validator... validators){
         for (Validator validator : validators){
             add(validator);
@@ -53,31 +43,30 @@ public class FormValidator<T> {
         return this;
     }
 
+    @Override
     public FormValidator<T> add(Validator validator){
         validators.add(validator);
-        beans.put(validator.et, new ValidationBean(validator.et, false));
+        beans.put(validator.et, new ValidationBean(validator.et, false, validator));
         texts.put(validator.et, "");
         return this;
     }
 
+    @Override
     public FormValidator<T> mapData(FormValidatorMapperVa<T> mapper){
         this.mapperVa = mapper;
         return this;
     }
 
+    @Override
     public FormValidator<T> map(FormValidatorMapper<T> mapper){
         this.mapper = mapper;
         return this;
     }
 
-    public FormValidator<T> doIfInvalid(Func invalidCallback){
-        this.invalidCallback = invalidCallback;
-        return this;
-    }
-
+    @Override
     public Observable<T> asObservable(){
         PublishSubject<T> ps = PublishSubject.create();
-        source.subscribe(o -> {
+        sourceDisposable = source.subscribe(o -> {
                     if (isAllValid()){
                         T data = getMapperData();
                         ps.onNext(data);
@@ -88,23 +77,7 @@ public class FormValidator<T> {
         return ps;
     }
 
-    private T getMapperData() {
-        String[] texts = new String[validators.size()];
-        for (int i = 0 ; i < texts.length ; i++){
-            Validator validator = validators.get(i);
-            texts[i] = validator.et.getText().toString();
-        }
-        T data = null;
-        if (mapper != null)
-            data = mapper.call(this);
-        else if (mapperVa != null)
-            data = mapperVa.call(texts);
-
-        if (data == null)
-            throw  new RuntimeException("'map' can't return null.");
-        return data;
-    }
-
+    @Override
     public void subscribe(Callback<T> callback){
         source.subscribe(o -> {
             if (isAllValid()){
@@ -115,31 +88,7 @@ public class FormValidator<T> {
         start();
     }
 
-    private void start(){
-        throwExceptionsIfFound();
-
-        for (Validator validator : validators){
-            validator.start(getEmptyMessage()).subscribe(bean -> {
-                beans.put(bean.getEt(), bean);
-                texts.put(bean.getEt(), bean.text());
-            });
-            validator.emitInitialValue();
-        }
-    }
-
-    public FormValidator<T> emptyMessage(String emptyMessage){
-        this.emptyMessage = emptyMessage;
-        return this;
-    }
-
-    private void throwExceptionsIfFound() {
-        if (validators.isEmpty())
-            throw new RuntimeException("You must add validators, call 'add(Validator)' method.");
-
-        if (mapperVa == null && mapper == null)
-            throw new RuntimeException("Must call 'map' or 'mapData' before 'asObservable");
-    }
-
+    @Override
     public boolean isAnyValid(){
         for (ValidationBean bean : new ArrayList<>(beans.values())){
             if (bean.isValid()) return true;
@@ -147,6 +96,7 @@ public class FormValidator<T> {
         return false;
     }
 
+    @Override
     public boolean isAnyHasText(){
         for (ValidationBean bean : new ArrayList<>(beans.values())){
             if (!bean.getEt().getText().toString().isEmpty()) return true;
@@ -154,27 +104,29 @@ public class FormValidator<T> {
         return false;
     }
 
+    @Override
     public boolean isAllValid(){
         boolean isValid = true;
         for (ValidationBean bean : new ArrayList<>(beans.values())){
             if (!bean.isValid()){
-                if (bean.getEt().getText().toString().isEmpty())
-                    bean.getEt().setError(getEmptyMessage());
+                // if didn't validate on change, we must validate here to
+                // sow the error.
+                if (!options.shouldValidateOnChange)
+                    bean.getEt().setError(bean.validator().getError());
+
                 isValid = false;
             }
         }
-        if (!isValid) invalidCallback.call();
+        if (!isValid  && options.invalidCallback != null) options.invalidCallback.call();
         return isValid;
     }
 
+    @Override
     public String from(EditText et){
         return texts.get(et);
     }
 
-    private String getEmptyMessage(){
-        return TextUtils.isEmpty(emptyMessage) ? null : emptyMessage;
-    }
-
+    @Override
     public void clearAll(){
         for (ValidationBean bean : new ArrayList<>(beans.values())){
             bean.getEt().setText("");

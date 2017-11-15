@@ -20,7 +20,7 @@ public class AreaValidator extends Validator{
     protected boolean validate(String text) {
         boolean isValid = text.length() <= 25;
         if (!isValid)
-            et.setError(MyApp.getContext().getString(R.string.area_max_length_25));
+            error(MyApp.getContext().getString(R.string.area_max_length_25));
         return isValid;
     }
 }

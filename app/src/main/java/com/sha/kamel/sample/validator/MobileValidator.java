@@ -23,12 +23,12 @@ public class MobileValidator extends Validator{
         boolean is01 = text.startsWith("01");
 
         if (!is01){
-            et.setError(MyApp.getContext().getString(R.string.phone_must_be_01));
+            error(MyApp.getContext().getString(R.string.phone_must_be_01));
             return false;
         }
 
         if (!is11){
-            et.setError(MyApp.getContext().getString(R.string.phone_must_be_11));
+            error(MyApp.getContext().getString(R.string.phone_must_be_11));
             return false;
         }
 
