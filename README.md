@@ -13,7 +13,7 @@ then add it to `FormValidator` instance and all is done!
 
 ```gradle
 dependencies {
-    compile 'com.sha.kamel:android-form-validator:0.1.0@aar'
+    compile 'com.sha.kamel:formvalidator:0.1.0@aar'
 }
 ```
 
