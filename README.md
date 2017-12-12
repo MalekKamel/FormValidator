@@ -12,6 +12,13 @@ then add it to `FormValidator` instance and all is done!
 # Installation
 
 ```gradle
+repositories {
+        jcenter()
+        maven { url 'https://maven.google.com' }
+        maven {
+            url  "https://dl.bintray.com/shabankamel/android"
+        }
+    }
 dependencies {
     compile 'com.sha.kamel:formvalidator:0.2.0@aar'
 }
