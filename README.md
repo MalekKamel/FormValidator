@@ -13,8 +13,6 @@ then add it to `FormValidator` instance and all is done!
 
 ```gradle
 repositories {
-        jcenter()
-        maven { url 'https://maven.google.com' }
         maven {
             url  "https://dl.bintray.com/shabankamel/android"
         }
