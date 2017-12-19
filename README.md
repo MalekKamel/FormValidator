@@ -64,8 +64,9 @@ formValidator.with(btn_submit, () -> toast("Fill required data."))
                 .subscribe(data -> toast("Saved data successfully."));
 ```
 
-###### Example 3
 
+
+###### Example 3
 ```java
 formValidator.with(btn_submit, () -> toast("Fill required data."))
                 .add(
@@ -83,6 +84,33 @@ formValidator.with(btn_submit, () -> toast("Fill required data."))
                 .subscribe(
                         data -> toast("Saved data successfully."),
                         Throwable::printStackTrace);
+                        
+```
+###### Example 4
+```java
+  formValidator =
+                new ValidatorBuilder<ClientInfo>()
+                        .doIfInvalid(() -> toast("Form is invalid."))
+                        .emptyMessage("Field is empty.")
+                        .skipInitialValidation(true)
+                        .build();
+
+        formValidator.with(btn_submit, () -> toast("Fill required data."))
+                .add(
+                        new NameValidator(et_name),
+                        new AgeValidator(et_age),
+                        new MobileValidator(et_mobile),
+                        new AreaValidator(et_area))
+                .map(validator -> new ClientInfo().setArea(validator.from(et_area)))
+                .validateOnChange()
+                .asObservable()
+                .doOnNext(data -> Log.d(getClass().getSimpleName(), "Saving Client info"))
+//               .flatMap(data -> {}) --> save in database
+//               .flatMap(data -> {}) --> send to server
+                .subscribe(
+                        data -> toast("Saved data successfully."),
+                        Throwable::printStackTrace);
+    }
 ```
 
 ### See 'app' module for the full code.
