@@ -1,6 +1,6 @@
 # android-form-validator
 
-[ ![Download](https://api.bintray.com/packages/shabankamel/android/form-validator/images/download.svg) ](https://bintray.com/shabankamel/android/form-validator/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/shabankamel/android/formvalidator/images/download.svg) ](https://bintray.com/shabankamel/android/formvalidator/_latestVersion)
 
 ##### A simple Android form validation.
 Now you can validate form easily using FormValidator.
@@ -12,8 +12,13 @@ then add it to `FormValidator` instance and all is done!
 # Installation
 
 ```gradle
+repositories {
+        maven {
+            url  "https://dl.bintray.com/shabankamel/android"
+        }
+    }
 dependencies {
-    compile 'com.sha.kamel:android-form-validator:0.1.0'
+    compile 'com.sha.kamel:formvalidator:0.3.0@aar'
 }
 ```
 
