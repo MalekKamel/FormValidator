@@ -88,13 +88,6 @@ formValidator.with(btn_submit, () -> toast("Fill required data."))
 ```
 ###### Example 4
 ```java
-  formValidator =
-                new ValidatorBuilder<ClientInfo>()
-                        .doIfInvalid(() -> toast("Form is invalid."))
-                        .emptyMessage("Field is empty.")
-                        .skipInitialValidation(true)
-                        .build();
-
         formValidator.with(btn_submit, () -> toast("Fill required data."))
                 .add(
                         new NameValidator(et_name),
