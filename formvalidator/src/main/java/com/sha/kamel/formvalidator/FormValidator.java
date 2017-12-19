@@ -5,7 +5,6 @@ import android.widget.EditText;
 
 import com.jakewharton.rxbinding2.view.RxView;
 import com.sha.kamel.formvalidator.util.Callback;
-import com.sha.kamel.formvalidator.util.EditTextUtil;
 import com.sha.kamel.formvalidator.util.Func;
 
 import java.util.ArrayList;
@@ -46,7 +45,7 @@ public final class FormValidator<T> extends ValidationManager<T>{
     @Override
     public FormValidator<T> add(Validator validator){
         validators.add(validator);
-        beans.put(validator.et, new ValidationBean(validator.et, false, validator));
+        beans.put(validator.et, new ValidationBean(validator.et, validator.til, false, validator));
         texts.put(validator.et, "");
         return this;
     }
@@ -109,10 +108,17 @@ public final class FormValidator<T> extends ValidationManager<T>{
         boolean isValid = true;
         for (ValidationBean bean : new ArrayList<>(beans.values())){
             if (!bean.isValid()){
+
+                bean.validator().notifyEmpty();
+                bean.validator().setErrorDisplayedOnSubmit(true);
+
                 // if didn't validate on change, we must validate here to
-                // sow the error.
-                if (!options.shouldValidateOnChange)
-                    bean.getEt().setError(bean.validator().getError());
+                // show the error.
+                if (!options.shouldValidateOnChange){
+                    bean.setError(bean.validator().getError());
+                }
+
+
 
                 isValid = false;
             }

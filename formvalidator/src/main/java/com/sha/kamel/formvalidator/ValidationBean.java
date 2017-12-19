@@ -1,5 +1,6 @@
 package com.sha.kamel.formvalidator;
 
+import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
 
 /**
@@ -10,10 +11,13 @@ public class ValidationBean {
     private EditText et;
     private boolean isValid;
     private Validator validator;
-    public ValidationBean(EditText et, boolean isValid, Validator validator) {
+    private TextInputLayout til;
+
+    public ValidationBean(EditText et, TextInputLayout til,  boolean isValid, Validator validator) {
         this.et = et;
         this.isValid = isValid;
         this.validator = validator;
+        this.til = til;
     }
 
     public EditText getEt() {
@@ -42,4 +46,14 @@ public class ValidationBean {
         return validator;
     }
 
+    public void setError(String error) {
+        if (til == null)
+            et.setError(error);
+        else
+            til.setError(error);
+    }
+
+    public TextInputLayout getTil() {
+        return til;
+    }
 }

@@ -3,7 +3,6 @@ package com.sha.kamel.sample;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.sha.kamel.formvalidator.ValidationManager;
 import com.sha.kamel.formvalidator.ValidatorBuilder;
 import com.sha.kamel.sample.validator.AgeValidator;
 import com.sha.kamel.sample.validator.AreaValidator;
