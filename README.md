@@ -1,4 +1,4 @@
-# android-form-validator
+# RxFormValidator
 
 [ ![Download](https://api.bintray.com/packages/shabankamel/android/formvalidator/images/download.svg) ](https://bintray.com/shabankamel/android/formvalidator/_latestVersion)
 
