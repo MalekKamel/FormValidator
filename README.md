@@ -113,10 +113,6 @@ dependencies {
 You can create any number of your custom validators. Just extend abstract Validator and implement
 your logic.
 ## Example:
-
-
-### See 'app' module for the full code.
-
 ```java
 public class MobileValidator extends Validator{
 
@@ -134,6 +130,10 @@ public class MobileValidator extends Validator{
     }
 }
 ```
+
+
+### See 'app' module for the full code.
+
 # License
 
 ## Apache license 2.0
