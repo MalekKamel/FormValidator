@@ -109,8 +109,31 @@ dependencies {
     }
 ```
 
+### Create your own validator
+You can create any number of your custom validators. Just extend abstract Validator and implement
+your logic.
+## Example:
+
+
 ### See 'app' module for the full code.
 
+```java
+public class MobileValidator extends Validator{
+
+    public MobileValidator(EditText et) {
+        super(et);
+    }
+
+    @Override
+    protected boolean validate(String text) {
+        if (text.length() != 11){
+            errorMessage = "Mobile number must be 11 digits.";
+            return false;
+        }
+        return true;
+    }
+}
+```
 # License
 
 ## Apache license 2.0
