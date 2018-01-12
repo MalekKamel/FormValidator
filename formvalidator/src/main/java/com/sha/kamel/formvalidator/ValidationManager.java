@@ -1,6 +1,5 @@
 package com.sha.kamel.formvalidator;
 
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
@@ -14,6 +13,7 @@ import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.subjects.PublishSubject;
 
 /**
  * Created by Sha on 11/13/17.
@@ -25,6 +25,8 @@ public abstract class ValidationManager<T> {
     protected Map<EditText, ValidationBean> beans = new HashMap<>();
     protected Map<EditText, String> texts = new HashMap<>();
     protected Observable<Object> source;
+    protected PublishSubject<Object> validateOnEventPs;
+    protected ValidationEvent validationEvent;
     protected FormValidatorMapperVa<T> mapperVa;
     protected FormValidatorMapper<T> mapper;
     protected Disposable sourceDisposable;
@@ -34,7 +36,7 @@ public abstract class ValidationManager<T> {
     protected ValidationOptions options = new ValidationOptions();
 
     public abstract FormValidator<T> with(View sourceView);
-
+    public abstract ValidationEvent validationEvent();
     public abstract ValidationManager<T> with(View sourceView, Func invalidCallback);
     public abstract ValidationManager<T> add(Validator... validators);
     public abstract ValidationManager<T> add(Validator validator);

@@ -21,6 +21,13 @@ import io.reactivex.subjects.PublishSubject;
 public final class FormValidator<T> extends ValidationManager<T>{
 
     @Override
+    public ValidationEvent validationEvent(){
+        validateOnEventPs = PublishSubject.create();
+        this.validationEvent = () -> validateOnEventPs.onNext("");
+        return validationEvent;
+    }
+
+    @Override
     public FormValidator<T> with(View sourceView){
         with(sourceView, null);
         return this;
@@ -69,10 +76,13 @@ public final class FormValidator<T> extends ValidationManager<T>{
 
     @Override
     public Observable<T> asObservable(){
+
+
         PublishSubject<T> ps = PublishSubject.create();
-        sourceDisposable = source.subscribe(o -> {
-            boolean isPasswordValid = isPasswordsValid();
+
+        sourceDisposable = getSourceObservable().subscribe(o -> {
                     if (isAllValid()){
+                        boolean isPasswordValid = isPasswordsValid();
                         if (isPasswordValid){
                             T data = getMapperData();
                             ps.onNext(data);
@@ -82,6 +92,15 @@ public final class FormValidator<T> extends ValidationManager<T>{
         );
         start();
         return ps;
+    }
+
+    private Observable<Object> getSourceObservable(){
+        if (source != null && validateOnEventPs != null)
+            throw new RuntimeException("You must use either 'with(View)' or 'validationEvent(ValidationEvent)'.");
+
+        if (source == null && validateOnEventPs == null)
+            throw new RuntimeException("You must use 'with(View)' or 'validationEvent(ValidationEvent)'.");
+        return source != null ? source : validateOnEventPs;
     }
 
     private boolean isPasswordsValid() {
@@ -118,7 +137,7 @@ public final class FormValidator<T> extends ValidationManager<T>{
 
     @Override
     public void subscribe(Callback<T> callback){
-        source.subscribe(o -> {
+        getSourceObservable().subscribe(o -> {
             if (isAllValid()){
                 T data = getMapperData();
                 callback.call(data);
