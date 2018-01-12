@@ -30,10 +30,10 @@ dependencies {
 ```java
   formValidator.with(btn_submit)
                 .add(
-                        new RangeValidator(et_name, 4, 100),
-                        new FixedLengthValidator(et_age, 2),
+                        new RangeValidator(et_name, 4, 100), // Predefined validator
+                        new FixedLengthValidator(et_age, 2), // Predefined validator
                         new MobileValidator(et_mobile),
-                        new RangeValidator(et_area, 3, 25))
+                        new RangeValidator(et_area, 3, 25)) // Predefined validator
                 .map(validator -> new ClientInfo()
                         .setName(validator.from(et_name))
                         .setAge(validator.from(et_name))
