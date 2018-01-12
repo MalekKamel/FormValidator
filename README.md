@@ -28,12 +28,12 @@ dependencies {
 ###### Example 1
 
 ```java
-new FormValidator.with(btn_submit)
+  formValidator.with(btn_submit)
                 .add(
-                        new NameValidator(et_name),
-                        new AgeValidator(et_age),
+                        new RangeValidator(et_name, 4, 100),
+                        new FixedLengthValidator(et_age, 2),
                         new MobileValidator(et_mobile),
-                        new AreaValidator(et_area))
+                        new RangeValidator(et_area, 3, 25))
                 .map(validator -> new ClientInfo()
                         .setName(validator.from(et_name))
                         .setAge(validator.from(et_name))
@@ -52,12 +52,12 @@ new FormValidator.with(btn_submit)
 ###### Example 2
 
 ```java 
-formValidator.with(btn_submit, () -> toast("Fill required data."))
+  formValidator.with(btn_submit, () -> toast("Fill required data."))
                 .add(
-                        new NameValidator(et_name).initialValue("Shaban Kamel"),
-                        new AgeValidator(et_age),
+                        new RangeValidator(et_name, 4, 100).initialValue("Shaban Kamel"),
+                        new FixedLengthValidator(et_age, 2),
                         new MobileValidator(et_mobile),
-                        new AreaValidator(et_area))
+                        new RangeValidator(et_area, 3, 25))
                 .mapData(texts -> new ClientInfo()
                         .setName(texts[0])
                         .setAge(texts[1])
@@ -70,12 +70,12 @@ formValidator.with(btn_submit, () -> toast("Fill required data."))
 
 ###### Example 3
 ```java
-formValidator.with(btn_submit, () -> toast("Fill required data."))
+        formValidator.with(btn_submit, () -> toast("Fill required data."))
                 .add(
-                        new NameValidator(et_name),
-                        new AgeValidator(et_age),
+                        new RangeValidator(et_name, 4, 100),
+                        new FixedLengthValidator(et_age, 2),
                         new MobileValidator(et_mobile),
-                        new AreaValidator(et_area))
+                        new RangeValidator(et_area, 3, 25))
                 .map(validator -> new ClientInfo().setArea(validator.from(et_area)))
                 .doIfInvalid(() -> toast("Form is invalid."))
                 .emptyMessage("Field is empty.")
@@ -86,16 +86,17 @@ formValidator.with(btn_submit, () -> toast("Fill required data."))
                 .subscribe(
                         data -> toast("Saved data successfully."),
                         Throwable::printStackTrace);
+
                         
 ```
 ###### Example 4
 ```java
-        formValidator.with(btn_submit, () -> toast("Fill required data."))
+           formValidator.with(btn_submit, () -> toast("Fill required data."))
                 .add(
-                        new NameValidator(et_name),
-                        new AgeValidator(et_age),
+                        new RangeValidator(et_name, 4, 100),
+                        new FixedLengthValidator(et_age, 2),
                         new MobileValidator(et_mobile),
-                        new AreaValidator(et_area))
+                        new RangeValidator(et_area, 3, 25))
                 .map(validator -> new ClientInfo().setArea(validator.from(et_area)))
                 .validateOnChange()
                 .asObservable()
