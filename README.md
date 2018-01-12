@@ -112,7 +112,6 @@ dependencies {
 ### Create your own validator
 You can create any number of your custom validators. Just extend abstract Validator and implement
 your logic.
-## Example:
 ```java
 public class MobileValidator extends Validator{
 
