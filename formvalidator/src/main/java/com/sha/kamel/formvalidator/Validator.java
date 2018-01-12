@@ -3,7 +3,6 @@ package com.sha.kamel.formvalidator;
 
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.EditText;
 
 import com.jakewharton.rxbinding2.widget.RxTextView;
@@ -22,12 +21,12 @@ public abstract class Validator {
     TextInputLayout til;
 
     protected EditText et;
-    private String error;
+    protected String errorMessage;
 
     protected abstract boolean validate(String s);
 
     private String initialValue;
-    private ValidationOptions options;
+    protected ValidationOptions options;
 
     private Callback<Boolean> isEmptyListener;
     private boolean isErrorDisplayedOnSubmit;
@@ -66,10 +65,15 @@ public abstract class Validator {
                 })
                 .doOnNext(s -> clearError())
                 .map(s -> !isEmpty(s)) // If empty, stop. We don't want to add others until this succeed
-                .map(isValid -> {
-                    if (isValid) // If empty, stop. We don't want to add others until this succeed.
-                        return validate(et.getText().toString());
-                    return isValid;
+                .map(isNotEmpty -> {
+                    if (isNotEmpty){
+                        boolean isValid = validate(et.getText().toString());
+                        if (!isValid){
+                            error();
+                            return false;
+                        }
+                    }
+                    return isNotEmpty;
                 })
                 .map(isValid -> new ValidationBean(et, til, isValid, this));
     }
@@ -80,8 +84,10 @@ public abstract class Validator {
 
     private boolean isEmpty(String s) {
         boolean isEmpty = s.trim().isEmpty();
-        if (isEmpty)
-            error(options.emptyMessage());
+        if (isEmpty){
+            errorMessage = options.emptyMessage();
+            error();
+        }
         return isEmpty;
     }
 
@@ -123,24 +129,29 @@ public abstract class Validator {
         return this;
     }
 
-    public void notifyEmpty(){
+    void notifyEmpty(){
         if (isEmptyListener != null)
             isEmptyListener.call(et.getText().toString().isEmpty());
     }
 
-    protected void error(String error){
-        this.error = error;
+    private void error(){
         if (options.shouldValidateOnChange){
-            if (til == null)
-                et.setError(error);
-            else
-                til.setError(error);
+            if (til == null) et.setError(errorMessage);
+            else til.setError(errorMessage);
         }
     }
 
-    public String getError() {
-        return TextUtils.isEmpty(error) ? options.emptyMessage() : error;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
+    public EditText getEt() {
+        return et;
+    }
+
+    public Validator errorMessage(String msg){
+        errorMessage = msg;
+        return this;
+    }
 
 }

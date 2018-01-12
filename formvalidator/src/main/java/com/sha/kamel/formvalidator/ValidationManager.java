@@ -28,6 +28,7 @@ public abstract class ValidationManager<T> {
     protected FormValidatorMapperVa<T> mapperVa;
     protected FormValidatorMapper<T> mapper;
     protected Disposable sourceDisposable;
+    protected List<Validator> passwordValidators = new ArrayList<>();
     private List<Disposable> etDisposableList = new ArrayList<>();
 
     protected ValidationOptions options = new ValidationOptions();
@@ -54,6 +55,11 @@ public abstract class ValidationManager<T> {
 
     public ValidationManager<T> emptyMessage(String emptyMessage){
         options.emptyMessage = emptyMessage;
+        return this;
+    }
+
+    public ValidationManager<T> passwordsNotIdenticalMessage(String message){
+        options.passwordsNotIdenticalMessage = message;
         return this;
     }
 

@@ -4,10 +4,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.sha.kamel.formvalidator.ValidatorBuilder;
-import com.sha.kamel.sample.validator.AgeValidator;
-import com.sha.kamel.sample.validator.AreaValidator;
+import com.sha.kamel.formvalidator.validator.FixedLengthValidator;
+import com.sha.kamel.formvalidator.validator.RangeValidator;
 import com.sha.kamel.sample.validator.MobileValidator;
-import com.sha.kamel.sample.validator.NameValidator;
 
 public class Example4Activity extends BaseExampleActivity {
 
@@ -24,10 +23,10 @@ public class Example4Activity extends BaseExampleActivity {
 
         formValidator.with(btn_submit, () -> toast("Fill required data."))
                 .add(
-                        new NameValidator(et_name),
-                        new AgeValidator(et_age),
+                        new RangeValidator(et_name, 4, 100),
+                        new FixedLengthValidator(et_age, 2),
                         new MobileValidator(et_mobile),
-                        new AreaValidator(et_area))
+                        new RangeValidator(et_area, 3, 25))
                 .map(validator -> new ClientInfo().setArea(validator.from(et_area)))
                 .validateOnChange()
                 .asObservable()

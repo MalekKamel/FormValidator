@@ -8,7 +8,7 @@ import com.sha.kamel.formvalidator.util.Func;
  * Created by Sha on 11/14/17.
  */
 
-public class ValidationOptions {
+public class DefaultErrors {
     public String emptyMessage = "Required";
     public String passwordsNotIdenticalMessage = "Passwords aren't identical.";
     public boolean shouldSkipInitialValidation;

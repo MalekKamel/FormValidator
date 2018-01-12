@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FormValidator</string>
+    <string name="app_name">RxFormValidator</string>
 
     <string name="phone_must_be_01">Must start with 01</string>
     <string name="area_max_length_25">Minimum length = 25</string>

@@ -6,8 +6,10 @@ import android.widget.EditText;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.sha.kamel.formvalidator.util.Callback;
 import com.sha.kamel.formvalidator.util.Func;
+import com.sha.kamel.formvalidator.validator.PasswordIdentical;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
@@ -44,6 +46,9 @@ public final class FormValidator<T> extends ValidationManager<T>{
 
     @Override
     public FormValidator<T> add(Validator validator){
+        if (validator instanceof PasswordIdentical)
+            passwordValidators.add(validator);
+
         validators.add(validator);
         beans.put(validator.et, new ValidationBean(validator.et, validator.til, false, validator));
         texts.put(validator.et, "");
@@ -66,14 +71,49 @@ public final class FormValidator<T> extends ValidationManager<T>{
     public Observable<T> asObservable(){
         PublishSubject<T> ps = PublishSubject.create();
         sourceDisposable = source.subscribe(o -> {
+            boolean isPasswordValid = isPasswordsValid();
                     if (isAllValid()){
-                        T data = getMapperData();
-                        ps.onNext(data);
+                        if (isPasswordValid){
+                            T data = getMapperData();
+                            ps.onNext(data);
+                        }
                     }
                 }
         );
         start();
         return ps;
+    }
+
+    private boolean isPasswordsValid() {
+        if (passwordValidators.size() < 1)
+            return true; // no passwords to compare
+
+        boolean isIdentical = isPasswordsIdentical();
+
+        for (Validator validator : passwordValidators){
+            validator.getEt().setError(isIdentical ? null : options.passwordsNotIdenticalMessage);
+        }
+
+        return isIdentical;
+    }
+
+    private boolean isPasswordsIdentical() {
+        List<String> passwords = getPasswords();
+
+        String password = passwords.get(0);
+        for (String pass : passwords){
+            if (!password.equals(pass))
+                return false;
+        }
+        return true;
+    }
+
+    private List<String> getPasswords() {
+        List<String> passwords = new ArrayList<>();
+        for (Validator validator : passwordValidators){
+            passwords.add(validator.getEt().getText().toString());
+        }
+        return passwords;
     }
 
     @Override
@@ -115,10 +155,8 @@ public final class FormValidator<T> extends ValidationManager<T>{
                 // if didn't validate on change, we must validate here to
                 // show the error.
                 if (!options.shouldValidateOnChange){
-                    bean.setError(bean.validator().getError());
+                    bean.setError(bean.validator().getErrorMessage());
                 }
-
-
 
                 isValid = false;
             }
