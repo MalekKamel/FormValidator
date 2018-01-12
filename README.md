@@ -42,8 +42,8 @@ dependencies {
                 .doIfInvalid(() -> toast("Fill required data."))
                 .asObservable()
                 .doOnNext(data -> toast("Saving Client info"))
-//               .flatMap(data -> {}) --> save in database
-//               .flatMap(data -> {}) --> send to server
+                //.flatMap(data -> {}) --> save in database
+                //.flatMap(data -> {}) --> send to server
                 .subscribe(
                         data -> toast("Saved data successfully."),
                         Throwable::printStackTrace);
@@ -101,8 +101,8 @@ dependencies {
                 .validateOnChange()
                 .asObservable()
                 .doOnNext(data -> Log.d(getClass().getSimpleName(), "Saving Client info"))
-//               .flatMap(data -> {}) --> save in database
-//               .flatMap(data -> {}) --> send to server
+                //.flatMap(data -> {}) --> save in database
+                //.flatMap(data -> {}) --> send to server
                 .subscribe(
                         data -> toast("Saved data successfully."),
                         Throwable::printStackTrace);
