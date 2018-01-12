@@ -108,6 +108,14 @@ dependencies {
                         Throwable::printStackTrace);
     }
 ```
+###### Example 4
+If you don't want to use a view to fire validation, you can create an event:
+```java
+        validationEvent = formValidator.validationEvent(); // Create an event
+  public void onClick(View v) {
+        validationEvent.validate(); // call 'validate()' to start validation
+    }
+```
 
 ### Create your own validator
 You can create any number of your custom validators. Just extend abstract Validator and implement
