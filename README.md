@@ -111,7 +111,7 @@ dependencies {
 ###### Example 4
 If you don't want to use a view to fire validation, you can create an event:
 ```java
-        validationEvent = formValidator.validationEvent(); // Create an event
+  validationEvent = formValidator.validationEvent(); // Create an event
   public void onClick(View v) {
         validationEvent.validate(); // call 'validate()' to start validation
     }
