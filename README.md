@@ -20,7 +20,7 @@ repositories {
         }
     }
 dependencies {
-    compile 'com.sha.kamel:formvalidator:2.2.2@aar'
+    compile 'com.sha.kamel:formvalidator:2.2.3@aar'
 }
 ```
 
