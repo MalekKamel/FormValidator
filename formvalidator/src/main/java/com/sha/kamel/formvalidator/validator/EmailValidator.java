@@ -25,7 +25,7 @@ public class EmailValidator extends Validator {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(text);
         boolean  isValid = matcher.find();
         if (!isValid)
-            errorMessage = TextUtils.isEmpty(errorMessage) ? "Email is invalid." : errorMessage;
+            errorMessage = "Email is invalid.";
         return isValid;
     }
 

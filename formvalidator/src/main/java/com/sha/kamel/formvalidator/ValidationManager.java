@@ -4,7 +4,9 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.sha.kamel.formvalidator.util.Callback;
+import com.sha.kamel.formvalidator.util.ConditionCallback;
 import com.sha.kamel.formvalidator.util.Func;
+import com.sha.kamel.formvalidator.util.IsValidCallback;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,6 +45,7 @@ public abstract class ValidationManager<T> {
     public abstract ValidationManager<T> mapData(FormValidatorMapperVa<T> mapper);
     public abstract ValidationManager<T> map(FormValidatorMapper<T> mapper);
     public abstract Observable<T> asObservable();
+    public abstract Observable<T> test();
     public abstract void subscribe(Callback<T> callback);
     public abstract boolean isAnyValid();
     public abstract boolean isAnyHasText();
@@ -67,6 +70,57 @@ public abstract class ValidationManager<T> {
 
     public ValidationManager<T> doIfInvalid(Func invalidCallback){
         options.invalidCallback = invalidCallback;
+        return this;
+    }
+
+    public ValidationManager<T> also(
+            IsValidCallback validate,
+            Callback<Boolean> validationCallback
+    ){
+        options.also.add(validate);
+        options.alsoInvalidCallbacks.add(validationCallback);
+        return this;
+    }
+
+//    public ValidationManager<T> alsoIf(
+//            ConditionCallback condition,
+//            Validator validator,
+//            Callback<String> errorMessage
+//    ){
+//        options.alsoIfValidAtorConditions.add(condition);
+//        options.alsoIfValidators.add(validator);
+//        options.alsoIfValidatorErrorMessages.add(errorMessage);
+//        return this;
+//    }
+
+//    public ValidationManager<T> also(
+//            EditText et,
+//            Callback<String> errorMessage
+//    ){
+//        options.alsoEts.add(et);
+//        options.alsoEtErrorMessages.add(errorMessage);
+//        return this;
+//    }
+//
+//    public ValidationManager<T> alsoIf(
+//            ConditionCallback condition,
+//            EditText et,
+//            Callback<String> errorMessage
+//    ){
+//        options.alsoIfEtConditions.add(condition);
+//        options.alsoIfEts.add(et);
+//        options.alsoIfEtErrorMessages.add(errorMessage);
+//        return this;
+//    }
+//
+    public ValidationManager<T> alsoIf(
+            ConditionCallback conditionCallback,
+            IsValidCallback validate,
+            Callback<Boolean> validationCallback
+    ){
+        options.alsoIfConditions.add(conditionCallback);
+        options.alsoIf.add(validate);
+        options.alsoIfInvalidCallbacks.add(validationCallback);
         return this;
     }
 

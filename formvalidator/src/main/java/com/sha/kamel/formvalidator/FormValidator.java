@@ -6,19 +6,21 @@ import android.widget.EditText;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.sha.kamel.formvalidator.util.Callback;
 import com.sha.kamel.formvalidator.util.Func;
+import com.sha.kamel.formvalidator.util.IsValidCallback;
 import com.sha.kamel.formvalidator.validator.PasswordIdentical;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.observers.TestObserver;
 import io.reactivex.subjects.PublishSubject;
 
 /**
  * Created by Sha on 10/24/17.
  */
 
-public final class FormValidator<T> extends ValidationManager<T>{
+public class FormValidator<T> extends ValidationManager<T>{
 
     @Override
     public ValidationEvent validationEvent(){
@@ -76,11 +78,9 @@ public final class FormValidator<T> extends ValidationManager<T>{
 
     @Override
     public Observable<T> asObservable(){
-
-
         PublishSubject<T> ps = PublishSubject.create();
 
-        sourceDisposable = getSourceObservable().subscribe(o -> {
+        sourceDisposable = getSourceObservable().subscribe(__ -> {
                     if (isAllValid()){
                         boolean isPasswordValid = isPasswordsValid();
                         if (isPasswordValid){
@@ -94,12 +94,20 @@ public final class FormValidator<T> extends ValidationManager<T>{
         return ps;
     }
 
+    @Override
+    public Observable<T> test(){
+        for (Validator validator : validators){
+            texts.put(validator.et, validator.et.getText().toString());
+        }
+        return Observable.just(getMapperData());
+    }
+
     private Observable<Object> getSourceObservable(){
         if (source != null && validateOnEventPs != null)
-            throw new RuntimeException("You must use either 'with(View)' or 'validationEvent(ValidationEvent)'.");
+            throw new IllegalStateException("You must use either 'with(View)' or 'validationEvent(ValidationEvent)'.");
 
         if (source == null && validateOnEventPs == null)
-            throw new RuntimeException("You must use 'with(View)' or 'validationEvent(ValidationEvent)'.");
+            throw new IllegalStateException("You must use 'with(View)' or 'validationEvent(ValidationEvent)'.");
         return source != null ? source : validateOnEventPs;
     }
 
@@ -180,6 +188,44 @@ public final class FormValidator<T> extends ValidationManager<T>{
                 isValid = false;
             }
         }
+
+        // also
+        if (!options.also.isEmpty()){
+            for (int i = 0 ; i < options.also.size() ; i++){
+                    IsValidCallback callback = options.also.get(i);
+                    boolean valid = callback.call();
+                    options.alsoInvalidCallbacks.get(i).call(valid);
+                    isValid = valid;
+            }
+        }
+
+         if (!options.alsoIfConditions.isEmpty()){
+            for (int i = 0 ; i < options.alsoIfConditions.size() ; i++){
+                if (options.alsoIfConditions.get(i).call()){
+                    IsValidCallback callback = options.alsoIf.get(i);
+                    boolean valid = callback.call();
+                    options.alsoIfInvalidCallbacks.get(i).call(valid);
+                    isValid = valid;
+                }
+            }
+        }
+
+        // alsoEt
+//        if (!options.alsoEts.isEmpty()){
+//            for (int i = 0 ; i < options.alsoEts.size() ; i++){
+//                if (options.alsoEtConditions.get(i).call()){
+//                    EditText et = options.alsoEts.get(i);
+//                    boolean valid = callback.call();
+//                    options.alsoInvalidCallbacks.get(i).call(valid);
+//                    isValid = valid;
+//                }
+//            }
+//        }
+
+        // alsoIf
+
+        // alsoIfEt
+
         if (!isValid  && options.invalidCallback != null) options.invalidCallback.call();
         return isValid;
     }

@@ -2,7 +2,6 @@ package com.sha.kamel.formvalidator;
 
 
 import android.support.design.widget.TextInputLayout;
-import android.text.TextUtils;
 import android.widget.EditText;
 
 import com.jakewharton.rxbinding2.widget.RxTextView;
@@ -47,6 +46,7 @@ public abstract class Validator {
 
         return RxTextView.textChanges(et)
                 .subscribeOn(AndroidSchedulers.mainThread())
+                .doOnNext(__ -> et.setError(null))
                 .skip(options.shouldValidateOnChange ? 1 : 0)
                 .debounce(200, TimeUnit.MILLISECONDS)
                 .map(CharSequence::toString)
@@ -92,15 +92,14 @@ public abstract class Validator {
     }
 
     void emitInitialValue() {
-        if (!TextUtils.isEmpty(initialValue)){
-            et.setText(initialValue);
-        }
+        if (initialValue == null || initialValue.equals("")) return;
+        et.setText(initialValue);
     }
 
     public Validator initialValue(String value){
-        if (!TextUtils.isEmpty(initialValue)){
-            et.setText(initialValue);
-        }
+        if (initialValue == null || initialValue.equals("")) return this;
+        et.setText(initialValue);
+
         this.initialValue = value;
         return this;
     }

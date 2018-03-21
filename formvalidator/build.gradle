@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/ShabanKamell/android-form-validator'
     gitUrl = 'https://github.com/ShabanKamell/android-form-validator.git'
 
-    libraryVersion = '1.0.2'
+    libraryVersion = '2.4.3'
 
     developerId = 'shaban'
     developerName = 'shaban kamel'
@@ -26,8 +26,6 @@ ext {
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.1"
-
 
     defaultConfig {
         minSdkVersion 15
