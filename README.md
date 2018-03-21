@@ -20,7 +20,7 @@ repositories {
         }
     }
 dependencies {
-    compile 'com.sha.kamel:formvalidator:1.0.2@aar'
+    compile 'com.sha.kamel:formvalidator:2.4.3@aar'
 }
 ```
 
@@ -106,6 +106,14 @@ dependencies {
                 .subscribe(
                         data -> toast("Saved data successfully."),
                         Throwable::printStackTrace);
+    }
+```
+###### Example 4
+If you don't want to use a view to fire validation, you can create an event:
+```java
+  validationEvent = formValidator.validationEvent(); // Create an event
+  public void onClick(View v) {
+        validationEvent.validate(); // call 'validate()' to start validation
     }
 ```
 
