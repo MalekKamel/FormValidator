@@ -220,7 +220,7 @@ formValidator.clearAll()
 ```
 
 ### What if i want to listen to text changes in each EditTixt to implement my logic?
-It's very straight forward. Just use `Validator#onChange(String text)`.
+It's very straight forward. Just use `Validator#onChange(Callback<String>)`.
 ```java
 new FixedLengthValidator(et_age, 2)
                 .onChange(text -> {
