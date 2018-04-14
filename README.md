@@ -11,6 +11,9 @@ But `FormValidator` do the work for you. Just few lines of code!.
 Create your validator by extending `FormValidator.Validator`
 then add it to `FormValidator` instance and all is done!
 
+Common validators are made for you like: `EmailValidator`, `PassordIdenticalValidator`, `RequiredValidatore`
+, `RangeValidator` and more.
+
 # Installation
 
 ```gradle
