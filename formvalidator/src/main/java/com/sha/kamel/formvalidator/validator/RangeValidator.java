@@ -12,8 +12,8 @@ public class RangeValidator extends Validator {
 
     private int min, max;
     private String
-            minError = "Characters can't be lower than ",
-            maxError = "Characters can't be greater than ";
+            minError = "Characters can't be lower than",
+            maxError = "Characters can't be greater than";
 
     public RangeValidator(EditText et, int min, int max) {
         super(et);
@@ -26,12 +26,12 @@ public class RangeValidator extends Validator {
         int length = text.length();
 
         if (length < min) {
-            errorMessage = minError + min;
+            errorMessage = minError + " " + min;
             return false;
         }
 
         if (length > max) {
-            errorMessage = maxError + max;
+            errorMessage = maxError + " " + max;
             return false;
         }
 

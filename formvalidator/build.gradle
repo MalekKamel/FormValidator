@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 
+// ./gradlew bintrayUpload
+
 ext {
     bintrayRepo = 'android'
     bintrayName = 'formvalidator'
@@ -13,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/ShabanKamell/android-form-validator'
     gitUrl = 'https://github.com/ShabanKamell/android-form-validator.git'
 
-    libraryVersion = '2.4.3'
+    libraryVersion = '2.6.4'
 
     developerId = 'shaban'
     developerName = 'shaban kamel'

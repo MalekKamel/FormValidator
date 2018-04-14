@@ -5,6 +5,7 @@ import android.widget.EditText;
 
 import com.jakewharton.rxbinding2.view.RxView;
 import com.sha.kamel.formvalidator.util.Callback;
+import com.sha.kamel.formvalidator.util.Condition;
 import com.sha.kamel.formvalidator.util.Func;
 import com.sha.kamel.formvalidator.util.IsValidCallback;
 import com.sha.kamel.formvalidator.validator.PasswordIdentical;
@@ -55,6 +56,8 @@ public class FormValidator<T> extends ValidationManager<T>{
 
     @Override
     public FormValidator<T> add(Validator validator){
+        isAddedValidators = true;
+
         if (validator instanceof PasswordIdentical)
             passwordValidators.add(validator);
 
@@ -174,6 +177,13 @@ public class FormValidator<T> extends ValidationManager<T>{
     public boolean isAllValid(){
         boolean isValid = true;
         for (ValidationBean bean : new ArrayList<>(beans.values())){
+
+            if (bean.validator() instanceof Conditional){
+               Condition condition = ((Conditional)bean.validator()).condition();
+                if (condition == null) throw new IllegalStateException("Conditional validator must have not NULL condition.");
+                if (!condition.call(bean.text())) continue;
+            }
+
             if (!bean.isValid()){
 
                 bean.validator().notifyEmpty();
@@ -195,7 +205,7 @@ public class FormValidator<T> extends ValidationManager<T>{
                     IsValidCallback callback = options.also.get(i);
                     boolean valid = callback.call();
                     options.alsoInvalidCallbacks.get(i).call(valid);
-                    isValid = valid;
+                    if (!valid) isValid = false;
             }
         }
 
@@ -205,7 +215,7 @@ public class FormValidator<T> extends ValidationManager<T>{
                     IsValidCallback callback = options.alsoIf.get(i);
                     boolean valid = callback.call();
                     options.alsoIfInvalidCallbacks.get(i).call(valid);
-                    isValid = valid;
+                    if (!valid) isValid = false;
                 }
             }
         }

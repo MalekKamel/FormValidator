@@ -52,6 +52,7 @@ public abstract class ValidationManager<T> {
     public abstract boolean isAllValid();
     public abstract String from(EditText et);
     public abstract void clearAll();
+    protected boolean isAddedValidators;
 
     public ValidationManager<T> skipInitialValidation(boolean shouldSkip) {
         this.options.shouldSkipInitialValidation = shouldSkip;
