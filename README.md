@@ -121,7 +121,7 @@ If you don't want to use a view to fire validation, you can create an event:
 ```
 
 ### Can I Create my own validator?
-Yes of course, you can create any number of your custom validators. Just extend abstract Validator and implement
+Yes of course, you can create any number of your custom validators. Just extend abstract `Validator` and implement
 your logic in `validate(String text)` method.
 ```java
 public class MobileValidator extends Validator{
