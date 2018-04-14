@@ -204,6 +204,21 @@ formValidator.alsoIf(() -> isUnder15(), // This validation will trigger only if 
 ```
 In this case, `cb_under15` will be validated only if the age is under 15.
 
+
+### Can i check if any EditText has a text?
+Yes, it's very easy.
+```java
+// Imagine it's called on back pressed
+if (formValidator.isAnyHasText())
+    toast("Data will be removed!");
+```
+
+### Can i delete texts in all EditText fields?
+Yes, it's very easy.
+```java
+formValidator.clearAll()
+```
+
 ### See 'app' module for the full code.
 
 # License
