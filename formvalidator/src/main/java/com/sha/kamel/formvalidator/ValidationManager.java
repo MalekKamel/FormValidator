@@ -49,7 +49,7 @@ public abstract class ValidationManager<T> {
     public abstract void subscribe(Callback<T> callback);
     public abstract boolean isAnyValid();
     public abstract boolean isAnyHasText();
-    public abstract boolean isAllValid();
+    protected abstract boolean isAllValid();
     public abstract String from(EditText et);
     public abstract void clearAll();
     protected boolean isAddedValidators;

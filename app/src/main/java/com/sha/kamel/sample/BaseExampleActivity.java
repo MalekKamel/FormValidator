@@ -35,10 +35,14 @@ public class BaseExampleActivity extends AppCompatActivity {
 
     protected ValidationManager<ClientInfo> formValidator;
 
+    protected int resourceLayout(){
+        return R.layout.activity_content;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_content);
+        setContentView(resourceLayout());
         ButterKnife.bind(this);
         formValidator = new FormValidator<>();
     }
@@ -56,7 +60,7 @@ public class BaseExampleActivity extends AppCompatActivity {
                 break;
 
            case R.id.btn_back:
-               // You can also use 'ormValidator.isAnyHasText()'
+               // You can also use 'formValidator.isAnyHasText()'
                if (formValidator.isAnyValid()){
                    ConfirmDialogFragment.newInstance(
                            getString(R.string.data_will_be_removed),

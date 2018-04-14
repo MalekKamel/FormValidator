@@ -174,8 +174,8 @@ public class FormValidator<T> extends ValidationManager<T>{
     }
 
     @Override
-    public boolean isAllValid(){
-        boolean isValid = true;
+    protected boolean isAllValid(){
+        boolean isAllValid = true;
         for (ValidationBean bean : new ArrayList<>(beans.values())){
 
             if (bean.validator() instanceof Conditional){
@@ -195,7 +195,7 @@ public class FormValidator<T> extends ValidationManager<T>{
                     bean.setError(bean.validator().getErrorMessage());
                 }
 
-                isValid = false;
+                isAllValid = false;
             }
         }
 
@@ -205,39 +205,24 @@ public class FormValidator<T> extends ValidationManager<T>{
                     IsValidCallback callback = options.also.get(i);
                     boolean valid = callback.call();
                     options.alsoInvalidCallbacks.get(i).call(valid);
-                    if (!valid) isValid = false;
+                    if (!valid) isAllValid = false;
             }
         }
 
-         if (!options.alsoIfConditions.isEmpty()){
+        // also if
+        if (!options.alsoIfConditions.isEmpty()){
             for (int i = 0 ; i < options.alsoIfConditions.size() ; i++){
                 if (options.alsoIfConditions.get(i).call()){
                     IsValidCallback callback = options.alsoIf.get(i);
                     boolean valid = callback.call();
                     options.alsoIfInvalidCallbacks.get(i).call(valid);
-                    if (!valid) isValid = false;
+                    if (!valid) isAllValid = false;
                 }
             }
         }
 
-        // alsoEt
-//        if (!options.alsoEts.isEmpty()){
-//            for (int i = 0 ; i < options.alsoEts.size() ; i++){
-//                if (options.alsoEtConditions.get(i).call()){
-//                    EditText et = options.alsoEts.get(i);
-//                    boolean valid = callback.call();
-//                    options.alsoInvalidCallbacks.get(i).call(valid);
-//                    isValid = valid;
-//                }
-//            }
-//        }
-
-        // alsoIf
-
-        // alsoIfEt
-
-        if (!isValid  && options.invalidCallback != null) options.invalidCallback.call();
-        return isValid;
+        if (!isAllValid  && options.invalidCallback != null) options.invalidCallback.call();
+        return isAllValid;
     }
 
     @Override

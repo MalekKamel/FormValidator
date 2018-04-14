@@ -29,8 +29,8 @@ public abstract class Validator {
 
     private Callback<Boolean> isEmptyListener;
     private boolean isErrorDisplayedOnSubmit;
-
     private Callback<Boolean> isErrorDisplayedOnSubmitCallback;
+    private Callback<String> onChange;
 
     public Validator(EditText et) {
         this.et = et;
@@ -51,6 +51,9 @@ public abstract class Validator {
                 .debounce(200, TimeUnit.MILLISECONDS)
                 .map(CharSequence::toString)
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(s -> {
+                    if (onChange != null) onChange.call(s);
+                })
                 .doOnNext(s -> {
                     if (isErrorDisplayedOnSubmit){
                         isErrorDisplayedOnSubmit = false;
@@ -150,6 +153,11 @@ public abstract class Validator {
 
     public Validator errorMessage(String msg){
         errorMessage = msg;
+        return this;
+    }
+
+    public Validator onChange(Callback<String> callback){
+        this.onChange = callback;
         return this;
     }
 

@@ -22,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
             R.id.btn_e2,
             R.id.btn_e3,
             R.id.btn_e4,
-            R.id.btn_e5
+            R.id.btn_e5,
+            R.id.btn_e6,
+            R.id.btn_e7
     })
     public void onClick(View v) {
         Class clazz = null;
@@ -46,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.btn_e5:
                 clazz = Example5Activity.class;
+                break;
+
+            case R.id.btn_e6:
+                clazz = Example6Activity.class;
+                break;
+
+          case R.id.btn_e7:
+                clazz = Example7Activity.class;
                 break;
         }
 
