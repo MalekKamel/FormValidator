@@ -194,7 +194,7 @@ in this case, `checkbox` will be validated. If it's not checked, the result of v
 a `Toast` will be displayed with text "You must accept terms and conditions!".
 
 ### What if i want to validate a condition only if another condition is met?
-You can use `alsoIf`
+You can use `alsoIf`.
 ```java
 formValidator.alsoIf(() -> isUnder15(), // This validation will trigger only if isUnder15 == true.
                 () -> cb_under15.isChecked(),  // This is the condition to validate
