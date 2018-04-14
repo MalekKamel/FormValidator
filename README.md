@@ -183,7 +183,7 @@ public class MyConditionalValidator extends Validator implements Conditional {
 ```
 
 ### What if i have a checkbox or any condition i want to validate also?
-You can use `also` to validate any contion you want
+You can use `also` to validate any condition you want.
 ```java
   formValidator.also(() -> checkBox.isChecked(), // This is the condition to validate
                 isValid ->{ // Will be called to let you take an action according to validation state.
