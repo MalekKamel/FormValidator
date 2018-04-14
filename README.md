@@ -190,7 +190,7 @@ You can use `also` to validate any condition you want.
                     if (!isValid) toast("You must accept terms and conditions!");
                 });
 ```
-in this case, `checkbox` will be validated, if it's not checked, the result of validation will be false and 
+in this case, `checkbox` will be validated. If it's not checked, the result of validation will be false and 
 a `Toast` will be displayed with text "You must accept terms and conditions!".
 
 ### What if i want to validate a condition only if another condition is met?
