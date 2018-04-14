@@ -219,6 +219,19 @@ Yes, it's very easy.
 formValidator.clearAll()
 ```
 
+### What if i want to listen to text changes in each EditTixt to implement my logic?
+It's very straight forward. Just use `Validator#onChange(String text)`.
+```java
+new FixedLengthValidator(et_age, 2)
+                .onChange(text -> {
+                    if (!text.isEmpty() && Integer.valueOf(text) < 15)
+                        cb_under15.setVisibility(View.VISIBLE);
+                    else
+                        cb_under15.setVisibility(View.GONE);
+                })
+```
+
+
 ### See 'app' module for the full code.
 
 # License
