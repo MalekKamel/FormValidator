@@ -17,11 +17,6 @@ Common validators are made for you like: `EmailValidator`, `PasswordIdenticalVal
 # Installation
 
 ```gradle
-repositories {
-        maven {
-            url  "https://dl.bintray.com/shabankamel/android"
-        }
-    }
 dependencies {
     implementation 'com.sha.kamel:formvalidator:2.7.4@aar'
 }
