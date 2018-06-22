@@ -11,7 +11,7 @@ But `FormValidator` do the work for you. Just few lines of code!.
 Create your validator by extending `FormValidator.Validator`
 then add it to `FormValidator` instance and all is done!
 
-Common validators are made for you like: `EmailValidator`, `PassordIdenticalValidator`, `RequiredValidator`
+Common validators are made for you like: `EmailValidator`, `PasswordIdenticalValidator`, `RequiredValidator`
 , `RangeValidator` and more.
 
 # Installation
