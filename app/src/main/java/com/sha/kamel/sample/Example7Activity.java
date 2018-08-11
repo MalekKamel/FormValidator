@@ -17,8 +17,6 @@ import butterknife.OnClick;
 
 public class Example7Activity extends BaseExampleActivity {
 
-    private ValidationEvent validationEvent;
-
     @BindView(R.id.checkBox)
     CheckBox checkBox;
 
@@ -35,7 +33,6 @@ public class Example7Activity extends BaseExampleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        validationEvent = formValidator.validationEvent();
 
         formValidator
                 .add(
@@ -46,10 +43,10 @@ public class Example7Activity extends BaseExampleActivity {
                         new RangeValidator(et_area, 3, 25)
                 )
                 .map(validator -> new ClientInfo()
-                        .setName(validator.from(et_name))
-                        .setAge(validator.from(et_name))
-                        .setMobile(validator.from(et_name))
-                        .setArea(validator.from(et_name)))
+                        .setName(validator.textOf(et_name))
+                        .setAge(validator.textOf(et_name))
+                        .setMobile(validator.textOf(et_name))
+                        .setArea(validator.textOf(et_name)))
                 .doIfInvalid(() -> toast("Fill required data."))
                 .asObservable()
                 .doOnNext(data -> toast("Saving Client info"))
@@ -68,7 +65,7 @@ public class Example7Activity extends BaseExampleActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.btn_submit:
-                validationEvent.validate();
+                formValidator.startValidation();
                 break;
 
             case R.id.checkBox:

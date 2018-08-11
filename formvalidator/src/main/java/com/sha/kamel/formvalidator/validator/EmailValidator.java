@@ -1,7 +1,6 @@
 package com.sha.kamel.formvalidator.validator;
 
-import android.text.TextUtils;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.sha.kamel.formvalidator.Validator;
 
@@ -13,11 +12,17 @@ import java.util.regex.Pattern;
  */
 
 public class EmailValidator extends Validator {
+    /**
+     * Regex to validate e-mail.
+     */
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-    public EmailValidator(EditText et) {
-        super(et);
+    /**
+     * @param tv {@link TextView} that will be validated
+     */
+    public EmailValidator(TextView tv) {
+        super(tv);
     }
 
     @Override

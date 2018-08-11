@@ -1,10 +1,10 @@
 package com.sha.kamel.sample.validator;
 
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.sha.kamel.formvalidator.Validator;
-import com.sha.kamel.sample.util.MyApp;
 import com.sha.kamel.sample.R;
+import com.sha.kamel.sample.util.MyApp;
 
 /**
  * Created by Sha on 11/8/17.
@@ -12,8 +12,8 @@ import com.sha.kamel.sample.R;
 
 public class MobileValidator extends Validator{
 
-    public MobileValidator(EditText et) {
-        super(et);
+    public MobileValidator(TextView tv) {
+        super(tv);
     }
 
     @Override

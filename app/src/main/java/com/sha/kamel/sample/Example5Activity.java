@@ -12,12 +12,9 @@ import butterknife.OnClick;
 
 public class Example5Activity extends BaseExampleActivity {
 
-    ValidationEvent validationEvent;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        validationEvent = formValidator.validationEvent();
 
         formValidator
                 .add(
@@ -26,10 +23,10 @@ public class Example5Activity extends BaseExampleActivity {
                         new MobileValidator(et_mobile),
                         new RangeValidator(et_area, 3, 25))
                 .map(validator -> new ClientInfo()
-                        .setName(validator.from(et_name))
-                        .setAge(validator.from(et_name))
-                        .setMobile(validator.from(et_name))
-                        .setArea(validator.from(et_name)))
+                        .setName(validator.textOf(et_name))
+                        .setAge(validator.textOf(et_name))
+                        .setMobile(validator.textOf(et_name))
+                        .setArea(validator.textOf(et_name)))
                 .doIfInvalid(() -> toast("Fill required data."))
                 .asObservable()
                 .doOnNext(data -> toast("Saving Client info"))
@@ -43,7 +40,7 @@ public class Example5Activity extends BaseExampleActivity {
     @OnClick(R.id.btn_submit)
     public void onClick(View v) {
         super.onClick(v);
-        validationEvent.validate();
+        formValidator.startValidation();
     }
 
 }

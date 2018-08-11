@@ -1,6 +1,6 @@
 package com.sha.kamel.formvalidator.validator;
 
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.sha.kamel.formvalidator.Validator;
 
@@ -12,8 +12,12 @@ public class FixedLengthValidator extends Validator {
 
     private int length;
 
-    public FixedLengthValidator(EditText et, int length) {
-        super(et);
+    /**
+     * @param tv {@link TextView} that will be validated
+     * @param length the fixed length
+     */
+    public FixedLengthValidator(TextView tv, int length) {
+        super(tv);
         this.length = length;
     }
 

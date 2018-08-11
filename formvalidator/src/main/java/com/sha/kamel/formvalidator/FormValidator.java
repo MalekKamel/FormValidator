@@ -1,20 +1,17 @@
 package com.sha.kamel.formvalidator;
 
 import android.view.View;
-import android.widget.EditText;
+import android.widget.TextView;
 
-import com.jakewharton.rxbinding2.view.RxView;
-import com.sha.kamel.formvalidator.util.Callback;
+import com.annimon.stream.Stream;
+import com.annimon.stream.function.Consumer;
 import com.sha.kamel.formvalidator.util.Condition;
-import com.sha.kamel.formvalidator.util.Func;
-import com.sha.kamel.formvalidator.util.IsValidCallback;
 import com.sha.kamel.formvalidator.validator.PasswordIdentical;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.observers.TestObserver;
 import io.reactivex.subjects.PublishSubject;
 
 /**
@@ -23,37 +20,59 @@ import io.reactivex.subjects.PublishSubject;
 
 public class FormValidator<T> extends ValidationManager<T>{
 
-    @Override
-    public ValidationEvent validationEvent(){
-        validateOnEventPs = PublishSubject.create();
-        this.validationEvent = () -> validateOnEventPs.onNext("");
-        return validationEvent;
-    }
 
+    /**
+     * Call if you want to start validation
+     * */
     @Override
-    public FormValidator<T> with(View sourceView){
-        with(sourceView, null);
-        return this;
-    }
+    public ValidationManager startValidation() {
+        if (isAllValid()){
+            boolean isPasswordValid = isPasswordValid();
+            if (isPasswordValid){
+                T data = getMapperData();
 
-    @Override
-    public FormValidator<T> with(View sourceView, Func invalidCallback){
-        if (sourceView == null)
-            throw  new RuntimeException("View can't be null.");
+                if (toObservable != null) toObservable.onNext(data);
 
-        this.source = RxView.clicks(sourceView);
-        options.invalidCallback = invalidCallback;
-        return this;
-    }
-
-    @Override
-    public FormValidator<T> add(Validator... validators){
-        for (Validator validator : validators){
-            add(validator);
+                if (subscribeCallback != null) subscribeCallback.accept(data);
+            }
         }
         return this;
     }
 
+
+    /**
+     * Add views to start validation when
+     * clicking
+     * */
+    @Override
+    public FormValidator<T> with(View... sourceViews){
+        if (sourceViews == null || sourceViews.length == 0)
+            throw  new IllegalStateException("View can't be null.");
+
+        Stream.of(sourceViews)
+                .forEach(sourceView -> sourceView.setOnClickListener(v -> startValidation()));
+
+        return this;
+    }
+
+    /**
+     * Add one or more {@link Validator} to validate a TextView
+     *
+     * @param validators instances of {@link Validator}
+     * @return this
+     * */
+    @Override
+    public FormValidator<T> add(Validator... validators){
+        Stream.of(validators).forEach(this::add);
+        return this;
+    }
+
+    /**
+     * Add a {@link Validator} to validate a TextView
+     *
+     * @param validator instance of {@link Validator}
+     * @return this
+     * */
     @Override
     public FormValidator<T> add(Validator validator){
         isAddedValidators = true;
@@ -62,66 +81,107 @@ public class FormValidator<T> extends ValidationManager<T>{
             passwordValidators.add(validator);
 
         validators.add(validator);
-        beans.put(validator.et, new ValidationBean(validator.et, validator.til, false, validator));
-        texts.put(validator.et, "");
+        beans.put(validator.tv, new ValidationBean(validator.tv, validator.til, false, validator));
+        texts.put(validator.tv, "");
         return this;
     }
 
+    /**
+     * Call this method to map data by the index of
+     * each validator you added sequentially.
+     *
+     * ex:
+     * formValidator.add(
+     *                         new RangeValidator(et_name, 4, 100).initialValue("Shaban Kamel"),
+     *                         new FixedLengthValidator(et_age, 2),
+     *                         new MobileValidator(et_mobile),
+     *                         new RangeValidator(et_area, 3, 25))
+     * .mapIndexed(texts -> new ClientInfo()
+     *                         .setName(texts[0])
+     *                         .setAge(texts[1])
+     *                         .setMobile(texts[2])
+     *                         .setArea(texts[3]))
+     *
+     * Notice that the data will be retrieved according to the order
+     * of validators you added in add method.
+     * */
+    /**
+     *
+     * @param mapper a function receiving list of strings according to the order
+     *               of validators
+     * @return this
+     */
     @Override
-    public FormValidator<T> mapData(FormValidatorMapperVa<T> mapper){
+    public FormValidator<T> mapIndexed(FormValidatorMapperVa<T> mapper){
         this.mapperVa = mapper;
         return this;
     }
 
+    /**
+     * Call this method if you want to map the dat yourself
+     * The library will pass you an instance of {@link FormValidator}
+     * That you can use to get text of each validator easily
+     *
+     * ex:
+     *     formValidator.map(validator -> new ClientInfo()
+     *                         .setName(validator.textOf(et_name))
+     *                         .setAge(validator.textOf(et_age))
+     *                         .setMobile(validator.textOf(et_mobile))
+     *                         .setArea(validator.textOf(et_area)))
+     * @param mapper a function receiving an instance of {@link FormValidator}
+     * @return this
+     */
     @Override
     public FormValidator<T> map(FormValidatorMapper<T> mapper){
         this.mapper = mapper;
         return this;
     }
 
+    /**
+     * Call this method to return {@link Observable}
+     * to receive data after successful validation
+     * @return this
+     */
     @Override
     public Observable<T> asObservable(){
-        PublishSubject<T> ps = PublishSubject.create();
-
-        sourceDisposable = getSourceObservable().subscribe(__ -> {
-                    if (isAllValid()){
-                        boolean isPasswordValid = isPasswordsValid();
-                        if (isPasswordValid){
-                            T data = getMapperData();
-                            ps.onNext(data);
-                        }
-                    }
-                }
-        );
-        start();
-        return ps;
+        toObservable = PublishSubject.create();
+        prepareValidators();
+        return toObservable;
     }
 
+    /***
+     * Call this method to subscribe to {@link FormValidator}
+     * to receive data after successful validation
+     * @param callback a function that will receive data after successful
+     *                 validation only.
+     */
+    @Override
+    public void subscribe(Consumer<T> callback){
+        subscribeCallback = callback;
+        prepareValidators();
+    }
+
+    /**
+     * Call this method if you want to test {@link FormValidator}
+     * data
+     * @return {@link Observable} with data
+     */
     @Override
     public Observable<T> test(){
         for (Validator validator : validators){
-            texts.put(validator.et, validator.et.getText().toString());
+            texts.put(validator.tv, validator.tv.getText().toString());
         }
         return Observable.just(getMapperData());
     }
 
-    private Observable<Object> getSourceObservable(){
-        if (source != null && validateOnEventPs != null)
-            throw new IllegalStateException("You must use either 'with(View)' or 'validationEvent(ValidationEvent)'.");
-
-        if (source == null && validateOnEventPs == null)
-            throw new IllegalStateException("You must use 'with(View)' or 'validationEvent(ValidationEvent)'.");
-        return source != null ? source : validateOnEventPs;
-    }
-
-    private boolean isPasswordsValid() {
-        if (passwordValidators.size() < 1)
+    private boolean isPasswordValid() {
+        if (passwordValidators.isEmpty() || passwordValidators.size() < 2)
             return true; // no passwords to compare
 
         boolean isIdentical = isPasswordsIdentical();
 
         for (Validator validator : passwordValidators){
-            validator.getEt().setError(isIdentical ? null : options.passwordsNotIdenticalMessage);
+            validator.getTv().setError(isIdentical ? null :validator.getErrorMessage());
         }
 
         return isIdentical;
@@ -141,99 +201,116 @@ public class FormValidator<T> extends ValidationManager<T>{
     private List<String> getPasswords() {
         List<String> passwords = new ArrayList<>();
         for (Validator validator : passwordValidators){
-            passwords.add(validator.getEt().getText().toString());
+            passwords.add(validator.getTv().getText().toString());
         }
         return passwords;
     }
 
-    @Override
-    public void subscribe(Callback<T> callback){
-        getSourceObservable().subscribe(o -> {
-            if (isAllValid()){
-                T data = getMapperData();
-                callback.call(data);
-            }
-        });
-        start();
-    }
-
+    /**
+     * Call this method to check if any field is valid.
+     * @return true if any valid.
+     */
     @Override
     public boolean isAnyValid(){
-        for (ValidationBean bean : new ArrayList<>(beans.values())){
-            if (bean.isValid()) return true;
-        }
-        return false;
+       return Stream.of(beans.values())
+                .anyMatch(ValidationBean::isValid);
     }
-
+    /**
+     * Call this method to check if any field has text.
+     * @return true if any has text.
+     */
     @Override
     public boolean isAnyHasText(){
-        for (ValidationBean bean : new ArrayList<>(beans.values())){
-            if (!bean.getEt().getText().toString().isEmpty()) return true;
-        }
-        return false;
+       return Stream.of(beans.values())
+                .anyMatch(bean -> !bean.getTv().getText().toString().isEmpty());
     }
 
+    private boolean isAllValid = true;
     @Override
     protected boolean isAllValid(){
-        boolean isAllValid = true;
-        for (ValidationBean bean : new ArrayList<>(beans.values())){
+        isAllValid = true;
 
-            if (bean.validator() instanceof Conditional){
-               Condition condition = ((Conditional)bean.validator()).condition();
-                if (condition == null) throw new IllegalStateException("Conditional validator must have not NULL condition.");
-                if (!condition.call(bean.text())) continue;
-            }
+        // validators
+        validateValidators();
 
-            if (!bean.isValid()){
+        // validate
+        validateAlsoCallback();
 
-                bean.validator().notifyEmpty();
-                bean.validator().setErrorDisplayedOnSubmit(true);
+        // validate if
+        validateAlsoIfCallback();
 
-                // if didn't validate on change, we must validate here to
-                // show the error.
-                if (!options.shouldValidateOnChange){
-                    bean.setError(bean.validator().getErrorMessage());
-                }
-
-                isAllValid = false;
-            }
-        }
-
-        // also
-        if (!options.also.isEmpty()){
-            for (int i = 0 ; i < options.also.size() ; i++){
-                    IsValidCallback callback = options.also.get(i);
-                    boolean valid = callback.call();
-                    options.alsoInvalidCallbacks.get(i).call(valid);
-                    if (!valid) isAllValid = false;
-            }
-        }
-
-        // also if
-        if (!options.alsoIfConditions.isEmpty()){
-            for (int i = 0 ; i < options.alsoIfConditions.size() ; i++){
-                if (options.alsoIfConditions.get(i).call()){
-                    IsValidCallback callback = options.alsoIf.get(i);
-                    boolean valid = callback.call();
-                    options.alsoIfInvalidCallbacks.get(i).call(valid);
-                    if (!valid) isAllValid = false;
-                }
-            }
-        }
-
-        if (!isAllValid  && options.invalidCallback != null) options.invalidCallback.call();
+        if (!isAllValid  && options.invalidCallback != null) options.invalidCallback.run();
         return isAllValid;
     }
 
-    @Override
-    public String from(EditText et){
-        return texts.get(et);
+    private void validateValidators() {
+        Stream.of(beans.values())
+                .filter(bean -> {
+                    if (bean.validator() instanceof Conditional){
+                        Condition condition = ((Conditional)bean.validator()).condition();
+                        if (condition == null) throw new IllegalStateException("Conditional validator must not have NULL condition.");
+                        return condition.call(bean.text());
+                    }
+                    return true;
+                })
+                .forEach(bean -> {
+                    boolean isValid = bean.isValid();
+                    if (!isValid){
+
+                        bean.validator().notifyEmpty();
+                        bean.validator().setErrorDisplayedOnSubmit(true);
+
+                        // if didn't validate on change, we must validate here to
+                        // show the error.
+                        if (!options.shouldValidateOnChange)
+                            bean.setError(bean.validator().getErrorMessage());
+
+                        isAllValid = false;
+                    }
+                });
     }
 
-    @Override
-    public void clearAll(){
-        for (ValidationBean bean : new ArrayList<>(beans.values())){
-            bean.getEt().setText("");
+    private void validateAlsoCallback() {
+        if (!options.also.isEmpty()){
+            Stream.of(options.also)
+                    .forEachIndexed((i, callback) -> {
+                        boolean valid = callback.getAsBoolean();
+                        options.alsoInvalidCallbacks.get(i).accept(valid);
+                        if (!valid) isAllValid = false;
+                    });
         }
+    }
+
+    private void validateAlsoIfCallback() {
+        if (!options.alsoIfConditions.isEmpty()){
+            Stream.of(options.alsoIfConditions)
+                    .forEachIndexed((i, callback) -> {
+                        boolean valid = callback.getAsBoolean();
+                        options.alsoIfInvalidCallbacks.get(i).accept(valid);
+                        if (!valid) isAllValid = false;
+                    });
+        }
+    }
+
+    /**
+     * Call this method to get text of specific {@link TextView}
+     * @param tv {@link TextView}
+     * @return text of {@link TextView}
+     */
+    @Override
+    public String textOf(TextView tv){
+        return texts.get(tv);
+    }
+
+    /**
+     * Call this method to clear all fields
+     * @return this
+     */
+    @Override
+    public FormValidator<T> clearAll(){
+        Stream.of(beans.values())
+                .forEach(bean -> bean.getTv().setText(""));
+
+        return this;
     }
 }

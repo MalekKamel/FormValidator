@@ -1,31 +1,31 @@
 package com.sha.kamel.formvalidator;
 
 import android.support.design.widget.TextInputLayout;
-import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by Sha on 11/8/17.
  */
 
 public class ValidationBean {
-    private EditText et;
+    private TextView tv;
     private boolean isValid;
     private Validator validator;
     private TextInputLayout til;
 
-    public ValidationBean(EditText et, TextInputLayout til,  boolean isValid, Validator validator) {
-        this.et = et;
+    public ValidationBean(TextView tv, TextInputLayout til, boolean isValid, Validator validator) {
+        this.tv = tv;
         this.isValid = isValid;
         this.validator = validator;
         this.til = til;
     }
 
-    public EditText getEt() {
-        return et;
+    public TextView getTv() {
+        return tv;
     }
 
-    public ValidationBean setEt(EditText et) {
-        this.et = et;
+    public ValidationBean setTv(TextView tv) {
+        this.tv = tv;
         return this;
     }
 
@@ -39,7 +39,7 @@ public class ValidationBean {
     }
 
     public String text(){
-        return et.getText().toString();
+        return tv.getText().toString();
     }
 
     public Validator validator() {
@@ -48,7 +48,7 @@ public class ValidationBean {
 
     public void setError(String error) {
         if (til == null)
-            et.setError(error);
+            tv.setError(error);
         else
             til.setError(error);
     }

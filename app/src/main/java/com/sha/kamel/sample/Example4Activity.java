@@ -18,16 +18,16 @@ public class Example4Activity extends BaseExampleActivity {
                 new ValidatorBuilder<ClientInfo>()
                         .doIfInvalid(() -> toast("Form is invalid."))
                         .emptyMessage("Field is empty.")
-                        .skipInitialValidation(true)
                         .build();
 
-        formValidator.with(btn_submit, () -> toast("Fill required data."))
+        formValidator.with(btn_submit)
+                .doIfInvalid(() -> toast("Fill required data."))
                 .add(
                         new RangeValidator(et_name, 4, 100),
                         new FixedLengthValidator(et_age, 2),
                         new MobileValidator(et_mobile),
                         new RangeValidator(et_area, 3, 25))
-                .map(validator -> new ClientInfo().setArea(validator.from(et_area)))
+                .map(validator -> new ClientInfo().setArea(validator.textOf(et_area)))
                 .validateOnChange()
                 .asObservable()
                 .doOnNext(data -> Log.d(getClass().getSimpleName(), "Saving Client info"))

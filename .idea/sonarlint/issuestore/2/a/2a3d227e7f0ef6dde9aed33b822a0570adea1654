@@ -1,0 +1,10 @@
+
+rsquid:UselessImportCheck"IRemove this unused import 'com.sha.kamel.formvalidator.ValidatorBuilder'.(¦·âÈ8ÿÜ«­¬,
+osquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(Š˜Êàøÿÿÿÿ8ÿÜ«­¬,
+tsquid:S00116"RRename this field "et_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó„Áêùÿÿÿÿ8ÿÜ«­¬,
+tsquid:S00116"RRename this field "et_area" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅýÛ¨ýÿÿÿÿ8ÿÜ«­¬,
+ssquid:S00116"QRename this field "et_age" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²ÂÞÄÿÿÿÿÿ8ÿÜ«­¬,
+lsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(×“¾ñùÿÿÿÿ8ÿÜ«­¬,
+vsquid:S00116"TRename this field "et_mobile" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïöÆöþÿÿÿÿ8ÿÜ«­¬,
+wsquid:S00116"URename this field "btn_submit" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç¥ˆýÿÿÿÿ8ÿÜ«­¬,
+Z"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(×“¾ñùÿÿÿÿ8ÿÜ«­¬,

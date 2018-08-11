@@ -1,6 +1,6 @@
 package com.sha.kamel.formvalidator.validator;
 
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.sha.kamel.formvalidator.Validator;
 
@@ -15,8 +15,13 @@ public class RangeValidator extends Validator {
             minError = "Characters can't be lower than",
             maxError = "Characters can't be greater than";
 
-    public RangeValidator(EditText et, int min, int max) {
-        super(et);
+    /**
+     * @param tv {@link TextView} that will be validated
+     * @param min the minimum length
+     * @param max the maximum length
+     */
+    public RangeValidator(TextView tv, int min, int max) {
+        super(tv);
         this.min = min;
         this.max = max;
     }
@@ -38,11 +43,21 @@ public class RangeValidator extends Validator {
         return true;
     }
 
+    /**
+     * Call this method to provide a message for minimum error
+     * @param msg message
+     * @return this
+     */
     public RangeValidator minErrorMessage(String msg){
         minError = msg;
         return this;
     }
 
+    /**
+     * Call this method to provide a message for maximum error
+     * @param msg message
+     * @return this
+     */
     public RangeValidator maxErrorMessage(String msg){
         maxError = msg;
         return this;

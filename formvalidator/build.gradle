@@ -15,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/ShabanKamell/android-form-validator'
     gitUrl = 'https://github.com/ShabanKamell/android-form-validator.git'
 
-    libraryVersion = '2.6.4'
+    libraryVersion = '3.0.0'
 
     developerId = 'shaban'
     developerName = 'shaban kamel'
@@ -27,16 +27,15 @@ ext {
 }
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion versions.compileSdk
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 27
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -76,14 +75,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    compile libraries.rxLifeCycle
-    compile libraries.rxandroid
-    compile libraries.rxjava
-    compile libraries.rxbinding
-    compile libraries.rxbinding_support_4
-    compile libraries.rxbinding_appcompat_7
-    compile libraries.rxbinding_design
-    compile libraries.rxbinding_recyclerview_7
+    implementation deps.rx.android
+    implementation deps.rx.java
+    implementation deps.support.design
+    implementation deps.java8_reactive_streams
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'

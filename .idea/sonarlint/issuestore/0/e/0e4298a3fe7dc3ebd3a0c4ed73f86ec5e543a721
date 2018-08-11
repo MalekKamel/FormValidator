@@ -1,0 +1,7 @@
+
+lsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(Χ“Ύρωÿÿÿÿ8κΏ¬¬,
+usquid:S00116"SRename this field "et_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ιΗ Τϊÿÿÿÿ8κΏ¬¬,
+Z"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(Χ“Ύρωÿÿÿÿ8κΏ¬¬,
+Vsquid:S1161":Add the "@Override" annotation above this method signature(ώ½½‹8κΏ¬¬,
+qsquid:S00116"TRename this field "til_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ψρ8κΏ¬¬,
+osquid:MaximumInheritanceDepth"<This class has 8 parents which is greater than 5 authorized.(Òμόÿÿÿÿ8κΏ¬¬,

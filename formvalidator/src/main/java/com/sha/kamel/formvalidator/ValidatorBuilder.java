@@ -1,6 +1,6 @@
 package com.sha.kamel.formvalidator;
 
-import com.sha.kamel.formvalidator.util.Func;
+import com.sha.kamel.formvalidator.util.Procedure;
 
 /**
  * Created by Sha on 11/13/17.
@@ -11,11 +11,11 @@ public class ValidatorBuilder<T> {
     ValidationOptions options = new ValidationOptions();
 
     public ValidatorBuilder<T> emptyMessage(String emptyMessage){
-        options.emptyMessage = emptyMessage;
+        options.messageIfEmpty = emptyMessage;
         return this;
     }
 
-    public ValidatorBuilder<T> doIfInvalid(Func invalidCallback){
+    public ValidatorBuilder<T> doIfInvalid(Procedure invalidCallback){
         options.invalidCallback = invalidCallback;
         return this;
     }
@@ -29,8 +29,4 @@ public class ValidatorBuilder<T> {
         return new FormValidator<T>().setOptions(options);
     }
 
-    public ValidatorBuilder<T> skipInitialValidation(boolean shouldSkip) {
-        options.shouldSkipInitialValidation = shouldSkip;
-        return this;
-    }
 }

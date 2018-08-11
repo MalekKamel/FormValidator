@@ -1,0 +1,6 @@
+
+Zsquid:S1155">Use isEmpty() to check whether the collection is empty or not.(­®³8íªÂ­¬,
+ssquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šÅß¢ÿÿÿÿÿ8íªÂ­¬,
+nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(Õ¯æ·8íªÂ­¬,
+isquid:UselessImportCheck"@Remove this unused import 'io.reactivex.observers.TestObserver'.(¼Ô¶8íªÂ­¬,
+bsquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(·â«*8íªÂ­¬,

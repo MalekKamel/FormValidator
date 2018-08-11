@@ -1,9 +1,9 @@
 package com.sha.kamel.formvalidator.validator;
 
-import android.widget.EditText;
+
+import android.widget.TextView;
 
 import com.sha.kamel.formvalidator.Conditional;
-import com.sha.kamel.formvalidator.Validator;
 import com.sha.kamel.formvalidator.util.Condition;
 
 /**
@@ -14,11 +14,21 @@ public class ConditionalFixedLengthValidator extends FixedLengthValidator implem
 
     private Condition condition;
 
-    public ConditionalFixedLengthValidator(EditText et, int length, Condition condition) {
-        super(et, length);
+    /**
+     * @param tv {@link TextView} that will be validated
+     * @param length the fixed length
+     * @param condition if this functions returned true, the filed will be
+     *                  validated
+     */
+    public ConditionalFixedLengthValidator(TextView tv, int length, Condition condition) {
+        super(tv, length);
         this.condition = condition;
     }
 
+    /**
+     * Function used internally to get the condition
+     * @return condition
+     */
     @Override
     public Condition condition() {
         return condition;

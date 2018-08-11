@@ -1,6 +1,6 @@
 package com.sha.kamel.formvalidator.validator;
 
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.sha.kamel.formvalidator.Conditional;
 import com.sha.kamel.formvalidator.util.Condition;
@@ -13,11 +13,22 @@ public class ConditionalRangeValidator extends RangeValidator implements Conditi
 
     private Condition condition;
 
-    public ConditionalRangeValidator(EditText et, int min, int max, Condition condition) {
-        super(et, min, max);
+    /**
+     * @param tv {@link TextView} that will be validated
+     * @param min the minimum length
+     * @param max the maximum length
+     * @param condition if this functions returned true, the filed will be
+     *                  validated
+     */
+    public ConditionalRangeValidator(TextView tv, int min, int max, Condition condition) {
+        super(tv, min, max);
         this.condition = condition;
     }
 
+    /**
+     * Function used internally to get the condition
+     * @return condition
+     */
     @Override
     public Condition condition() {
         return condition;

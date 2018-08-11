@@ -1,0 +1,48 @@
+ext.versions = [
+        code              : 1,
+        name              : '0.0.1',
+
+        minSdk            : 15,
+        targetSdk         : 28,
+        compileSdk        : 28,
+
+        rxLifeCycle       : "2.2.0",
+        rxandroid         : "2.0.1",
+        rxjava            : "2.1.3",
+        rxbinding: "2.0.0",
+        butterknife       : "8.5.1",
+        constraintlayout  : "2.0.0-alpha2",
+        supportLibs       : '27.1.1',
+        java8_reactive_streams: "1.2.0"
+]
+
+ext.deps = [
+        support : [
+                recyclerView: "com.android.support:recyclerview-v7:$versions.supportLibs",
+                appCompat   : "com.android.support:appcompat-v7:$versions.supportLibs",
+                compat      : "com.android.support:support-compat:$versions.supportLibs",
+                design      : "com.android.support:design:$versions.supportLibs",
+                preference  : "com.android.support:preference-v7:$versions.supportLibs",
+                percent     : "com.android.support:percent:$versions.supportLibs",
+                gridlayout  : "com.android.support:gridlayout-v7:$versions.supportLibs",
+                cardView           : "com.android.support:cardview-v7:$versions.supportLibs",
+        ],
+        rx : [
+                lifeCycle        : "com.trello.rxlifecycle2:rxlifecycle-android:${versions.rxLifeCycle}",
+                android          : "io.reactivex.rxjava2:rxandroid:${versions.rxandroid}",
+                java             : "io.reactivex.rxjava2:rxjava:${versions.rxjava}",
+                binding          : "com.jakewharton.rxbinding2:rxbinding:${versions.rxbinding}",
+                binding_support_4      : "com.jakewharton.rxbinding2:rxbinding-support-v4:${versions.rxbinding}",
+                binding_appcompat_7    : "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:${versions.rxbinding}",
+                binding_design         : "com.jakewharton.rxbinding2:rxbinding-design:${versions.rxbinding}",
+                binding_recyclerview_7 : "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:${versions.rxbinding}",
+        ],
+
+        butterknife : [
+                runtime : "com.jakewharton:butterknife:${versions.butterknife}",
+                compiler: "com.jakewharton:butterknife-compiler:${versions.butterknife}",
+        ],
+        constraintLayout   : "com.android.support.constraint:constraint-layout:${versions.constraintlayout}",
+        java8_reactive_streams   : "com.annimon:stream:${versions.java8_reactive_streams}"
+
+]

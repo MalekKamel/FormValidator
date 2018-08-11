@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.sha.kamel.formvalidator.util.Callback;
+import com.annimon.stream.function.BooleanConsumer;
 import com.sha.kamel.sample.R;
 
 import butterknife.BindView;
@@ -23,13 +23,13 @@ import butterknife.OnClick;
 
 public class ConfirmDialogFragment extends DialogFragment{
 
-    private Callback<Boolean> callback;
+    private BooleanConsumer callback;
     private String message;
 
     @BindView(R.id.tv_message)
     TextView tv_message;
 
-    public static ConfirmDialogFragment newInstance(String message, Callback<Boolean> callback) {
+    public static ConfirmDialogFragment newInstance(String message, BooleanConsumer callback) {
         ConfirmDialogFragment fragment = new ConfirmDialogFragment();
         fragment.setMessage(message);
         fragment.setCallback(callback);
@@ -56,19 +56,19 @@ public class ConfirmDialogFragment extends DialogFragment{
 
             case R.id.btn_confirm:
                 if (callback != null)
-                    callback.call(true);
+                    callback.accept(true);
                 dismiss();
                 break;
 
             case R.id.btn_close:
                 if (callback != null)
-                    callback.call(false);
+                    callback.accept(false);
                 dismiss();
                 break;
         }
     }
 
-    public void setCallback(Callback<Boolean> callback) {
+    public void setCallback(BooleanConsumer callback) {
         this.callback = callback;
     }
 

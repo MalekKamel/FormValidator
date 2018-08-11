@@ -126,8 +126,8 @@ your logic in `validate(String text)` method.
 ```java
 public class MobileValidator extends Validator{
 
-    public MobileValidator(EditText et) {
-        super(et);
+    public MobileValidator(EditText tv) {
+        super(tv);
     }
     
     @Override
@@ -165,8 +165,8 @@ public class MyConditionalValidator extends Validator implements Conditional {
 
     private Condition condition;
 
-    public MyConditionalValidator(EditText et, Condition condition) {
-        super(et);
+    public MyConditionalValidator(EditText tv, Condition condition) {
+        super(tv);
         this.condition = condition;
     }
 

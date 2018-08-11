@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import com.sha.kamel.formvalidator.FormValidator;
 import com.sha.kamel.formvalidator.ValidationManager;
-import com.sha.kamel.formvalidator.ValidatorBuilder;
 import com.sha.kamel.sample.ui.ConfirmDialogFragment;
 
 import butterknife.BindView;
@@ -60,7 +59,7 @@ public class BaseExampleActivity extends AppCompatActivity {
                 break;
 
            case R.id.btn_back:
-               // You can also use 'formValidator.isAnyHasText()'
+               // You can validate use 'formValidator.isAnyHasText()'
                if (formValidator.isAnyValid()){
                    ConfirmDialogFragment.newInstance(
                            getString(R.string.data_will_be_removed),

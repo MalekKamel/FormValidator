@@ -12,13 +12,14 @@ public class Example2Activity extends BaseExampleActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        formValidator.with(btn_submit, () -> toast("Fill required data."))
+        formValidator.with(btn_submit)
+                .doIfInvalid(() -> toast("Fill required data."))
                 .add(
                         new RangeValidator(et_name, 4, 100).initialValue("Shaban Kamel"),
                         new FixedLengthValidator(et_age, 2),
                         new MobileValidator(et_mobile),
                         new RangeValidator(et_area, 3, 25))
-                .mapData(texts -> new ClientInfo()
+                .mapIndexed(texts -> new ClientInfo()
                         .setName(texts[0])
                         .setAge(texts[1])
                         .setMobile(texts[2])
