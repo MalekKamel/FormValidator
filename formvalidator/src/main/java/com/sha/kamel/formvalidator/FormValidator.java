@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.annimon.stream.Stream;
-import com.annimon.stream.function.Consumer;
 import com.sha.kamel.formvalidator.util.Condition;
 import com.sha.kamel.formvalidator.validator.PasswordIdentical;
 
@@ -20,10 +19,12 @@ import io.reactivex.subjects.PublishSubject;
 
 public class FormValidator<T> extends ValidationManager<T>{
 
+    private boolean isAllValid = true;
 
     /**
-     * Call if you want to start validation
-     * */
+     * Call this method to start validation
+     * @return this
+     */
     @Override
     public ValidationManager startValidation() {
         if (isAllValid()){
@@ -31,9 +32,11 @@ public class FormValidator<T> extends ValidationManager<T>{
             if (isPasswordValid){
                 T data = getMapperData();
 
-                if (toObservable != null) toObservable.onNext(data);
+                if (toObservable != null && data != null) toObservable.onNext(data);
 
-                if (subscribeCallback != null) subscribeCallback.accept(data);
+                if (subscribeWithData != null && data != null) subscribeWithData.accept(data);
+
+                if (subscribe != null) subscribe.run();
             }
         }
         return this;
@@ -45,11 +48,11 @@ public class FormValidator<T> extends ValidationManager<T>{
      * clicking
      * */
     @Override
-    public FormValidator<T> with(View... sourceViews){
-        if (sourceViews == null || sourceViews.length == 0)
+    public FormValidator<T> with(View... views){
+        if (views == null || views.length == 0)
             throw  new IllegalStateException("View can't be null.");
 
-        Stream.of(sourceViews)
+        Stream.of(views)
                 .forEach(sourceView -> sourceView.setOnClickListener(v -> startValidation()));
 
         return this;
@@ -91,16 +94,19 @@ public class FormValidator<T> extends ValidationManager<T>{
      * each validator you added sequentially.
      *
      * ex:
-     * formValidator.add(
-     *                         new RangeValidator(et_name, 4, 100).initialValue("Shaban Kamel"),
-     *                         new FixedLengthValidator(et_age, 2),
-     *                         new MobileValidator(et_mobile),
-     *                         new RangeValidator(et_area, 3, 25))
-     * .mapIndexed(texts -> new ClientInfo()
-     *                         .setName(texts[0])
-     *                         .setAge(texts[1])
-     *                         .setMobile(texts[2])
-     *                         .setArea(texts[3]))
+     * {@code
+     *      formValidator.add(
+     *                               new RangeValidator(et_name, 4, 100).initialValue("Shaban Kamel"),
+     *                               new FixedLengthValidator(et_age, 2),
+     *                               new MobileValidator(et_mobile),
+     *                               new RangeValidator(et_area, 3, 25))
+     *       .mapIndexed(texts -> new ClientInfo()
+     *                               .setName(texts[0])
+     *                               .setAge(texts[1])
+     *                               .setMobile(texts[2])
+     *                               .setArea(texts[3]))
+     *
+     * }
      *
      * Notice that the data will be retrieved according to the order
      * of validators you added in add method.
@@ -123,11 +129,13 @@ public class FormValidator<T> extends ValidationManager<T>{
      * That you can use to get text of each validator easily
      *
      * ex:
+     * {@code
      *     formValidator.map(validator -> new ClientInfo()
      *                         .setName(validator.textOf(et_name))
      *                         .setAge(validator.textOf(et_age))
      *                         .setMobile(validator.textOf(et_mobile))
      *                         .setArea(validator.textOf(et_area)))
+     * }
      * @param mapper a function receiving an instance of {@link FormValidator}
      * @return this
      */
@@ -147,18 +155,6 @@ public class FormValidator<T> extends ValidationManager<T>{
         toObservable = PublishSubject.create();
         prepareValidators();
         return toObservable;
-    }
-
-    /***
-     * Call this method to subscribe to {@link FormValidator}
-     * to receive data after successful validation
-     * @param callback a function that will receive data after successful
-     *                 validation only.
-     */
-    @Override
-    public void subscribe(Consumer<T> callback){
-        subscribeCallback = callback;
-        prepareValidators();
     }
 
     /**
@@ -215,6 +211,7 @@ public class FormValidator<T> extends ValidationManager<T>{
        return Stream.of(beans.values())
                 .anyMatch(ValidationBean::isValid);
     }
+
     /**
      * Call this method to check if any field has text.
      * @return true if any has text.
@@ -225,7 +222,7 @@ public class FormValidator<T> extends ValidationManager<T>{
                 .anyMatch(bean -> !bean.getTv().getText().toString().isEmpty());
     }
 
-    private boolean isAllValid = true;
+
     @Override
     protected boolean isAllValid(){
         isAllValid = true;
@@ -258,7 +255,7 @@ public class FormValidator<T> extends ValidationManager<T>{
                     if (!isValid){
 
                         bean.validator().notifyEmpty();
-                        bean.validator().setErrorDisplayedOnSubmit(true);
+                        bean.validator().setErrorDisplayedOnValidation(true);
 
                         // if didn't validate on change, we must validate here to
                         // show the error.
@@ -271,22 +268,22 @@ public class FormValidator<T> extends ValidationManager<T>{
     }
 
     private void validateAlsoCallback() {
-        if (!options.also.isEmpty()){
-            Stream.of(options.also)
+        if (!options.validate.isEmpty()){
+            Stream.of(options.validate)
                     .forEachIndexed((i, callback) -> {
                         boolean valid = callback.getAsBoolean();
-                        options.alsoInvalidCallbacks.get(i).accept(valid);
+                        options.validateConditionValidation.get(i).accept(valid);
                         if (!valid) isAllValid = false;
                     });
         }
     }
 
     private void validateAlsoIfCallback() {
-        if (!options.alsoIfConditions.isEmpty()){
-            Stream.of(options.alsoIfConditions)
+        if (!options.validateIfConditions.isEmpty()){
+            Stream.of(options.validateIfConditions)
                     .forEachIndexed((i, callback) -> {
                         boolean valid = callback.getAsBoolean();
-                        options.alsoIfInvalidCallbacks.get(i).accept(valid);
+                        options.validateIfConditionValidation.get(i).accept(valid);
                         if (!valid) isAllValid = false;
                     });
         }

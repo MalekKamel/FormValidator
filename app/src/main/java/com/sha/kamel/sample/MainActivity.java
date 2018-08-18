@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
           case R.id.btn_e7:
                 clazz = Example7Activity.class;
                 break;
+          case R.id.btn_e8:
+                clazz = Example8Activity.class;
+                break;
         }
 
         if (clazz != null)

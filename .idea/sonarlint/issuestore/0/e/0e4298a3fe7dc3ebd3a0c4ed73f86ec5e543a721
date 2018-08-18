@@ -1,7 +1,8 @@
 
-lsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(×“¾ñùÿÿÿÿ8ê¿¬¬,
-usquid:S00116"SRename this field "et_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÇ Ôúÿÿÿÿ8ê¿¬¬,
-Z"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(×“¾ñùÿÿÿÿ8ê¿¬¬,
-Vsquid:S1161":Add the "@Override" annotation above this method signature(ş½½‹8ê¿¬¬,
-qsquid:S00116"TRename this field "til_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øœñ8ê¿¬¬,
-osquid:MaximumInheritanceDepth"<This class has 8 parents which is greater than 5 authorized.(ÒŒìüÿÿÿÿ8ê¿¬¬,
+ssquid:UselessImportCheck	"HRemove this unused import 'com.sha.kamel.formvalidator.ValidationEvent'.(›Š·É8ÿ÷¯ÒÒ,
+\"squid:SwitchLastCaseIsDefaultCheckB""Add a default case to this switch.(×“¾ñùÿÿÿÿ8ÿ÷¯ÒÒ,
+wsquid:S00116"SRename this field "et_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÇ Ôúÿÿÿÿ8ÿ÷¯ÒÒ,
+ssquid:S00116"TRename this field "til_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øœñ8ÿ÷¯ÒÒ,
+nsquid:S1301B"KReplace this "switch" statement by "if" statements to increase readability.(×“¾ñùÿÿÿÿ8ÿ÷¯ÒÒ,
+Xsquid:S1161":Add the "@Override" annotation above this method signature(ş½½‹8ÿ÷¯ÒÒ,
+qsquid:MaximumInheritanceDepth"<This class has 8 parents which is greater than 5 authorized.(ÒŒìüÿÿÿÿ8Öã¯ÒÒ,

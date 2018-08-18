@@ -68,6 +68,10 @@ android {
     android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
 }
 
+configurations {
+    javadocDeps
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
@@ -76,10 +80,84 @@ dependencies {
     })
 
     implementation deps.rx.android
+    javadocDeps deps.rx.android
+
     implementation deps.rx.java
+    javadocDeps deps.rx.java
+
     implementation deps.support.design
+    javadocDeps deps.support.design
+
     implementation deps.java8_reactive_streams
+    javadocDeps deps.java8_reactive_streams
+
+
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+
+task docs(type: Javadoc) {
+    failOnError false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+
+//task androidJavadocs(type: Javadoc, dependsOn: 'assembleRelease') {
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//    android.libraryVariants.all { variant ->
+//        if (variant.name == 'release') {
+//            owner.classpath += variant.javaCompile.classpath
+//        }
+//    }
+//    source = android.sourceSets.main.java.srcDirs
+//    exclude '**/R.html', '**/R.*.html', '**/index.html'
+//}
+
+//
+//afterEvaluate {
+//    javadoc.classpath += files(android.plugin.runtimeJarList)
+//}
+
+//task javadoc(type: Javadoc) {
+//    failOnError false
+//    source = android.sourceSets.main.java.sourceFiles
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//    classpath += configurations.compile
+//}
+
+// build a jar with javadoc
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+
+//artifacts {
+//    archives javadocJar
+//}
+
+//task javadoc(overwrite: true, type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator)) + configurations.compile
+//
+//    failOnError false
+//
+//
+//}
+
+task androidJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator)) + configurations.compile
+}
+
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    classifier = 'javadoc'
+    //basename = artifact_id
+    from androidJavadocs.destinationDir
+}
+
+javadoc {
+    classpath += configurations.javadocDeps
+    options.addStringOption("sourcepath", "")
+}

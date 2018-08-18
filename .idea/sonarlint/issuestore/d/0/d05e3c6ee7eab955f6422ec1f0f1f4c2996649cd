@@ -1,0 +1,7 @@
+
+qsquid:S2068"U'password' detected in this expression, review this potentially hardcoded credential.(ôƒĞ‚øÿÿÿÿ
+"squid:ClassVariableVisibilityCheck"[Make invalidCallback a static final constant or non-public and provide accessors if needed.(½¾Ûëøÿÿÿÿ
+•"squid:ClassVariableVisibilityCheck"bMake shouldValidateOnChange a static final constant or non-public and provide accessors if needed.(±ë‰‚úÿÿÿÿ
+…"squid:ClassVariableVisibilityCheck"XMake emptyMessage a static final constant or non-public and provide accessors if needed.(»´í4
+•"squid:ClassVariableVisibilityCheck"gMake shouldSkipInitialValidation a static final constant or non-public and provide accessors if needed.(ö«®
+›"squid:ClassVariableVisibilityCheck"hMake passwordsNotIdenticalMessage a static final constant or non-public and provide accessors if needed.(ôƒĞ‚øÿÿÿÿ
