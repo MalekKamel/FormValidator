@@ -137,7 +137,6 @@ If you don't want to use a view to fire validation, you can use FormValidator#st
                 .subscribe(
                         data -> toast("Saved data successfully."),
                         Throwable::printStackTrace);
-    }
 
     @OnClick(R.id.btn_submit)
     public void onClick(View v) {
