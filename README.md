@@ -167,7 +167,7 @@ your logic in `validate(String text)` method.
 ```java
 public class MobileValidator extends Validator{
 
-    public MobileValidator(EditText tv) {
+    public MobileValidator(TextView tv) {
         super(tv);
     }
     
@@ -206,7 +206,7 @@ public class MyConditionalValidator extends Validator implements Conditional {
 
     private Condition condition;
 
-    public MyConditionalValidator(EditText tv, Condition condition) {
+    public MyConditionalValidator(TextView tv, Condition condition) {
         super(tv);
         this.condition = condition;
     }
@@ -246,7 +246,7 @@ formValidator.validateIf(() -> isUnder15(), // This validation will trigger only
 In this case, `cb_under15` will be validated only if the age is under 15.
 
 
-### Can i check if any EditText has a text?
+### Can i check if any TextView has a text?
 Yes, it's very easy.
 ```java
 // Imagine it's called on back pressed
@@ -254,7 +254,7 @@ if (formValidator.isAnyHasText())
     toast("Data will be removed!");
 ```
 
-### Can i delete texts in all EditText fields?
+### Can i delete texts in all TextView fields?
 Yes, it's very easy.
 ```java
 formValidator.clearAll()
