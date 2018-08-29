@@ -1,8 +1,0 @@
-
-Qsquid:S1161":Add the "@Override" annotation above this method signature(ώ½½‹
-csquid:S2387"@"formValidator" is the name of a field in "BaseExampleActivity".(¶·ρώÿÿÿÿ8…‘¤χÒ,
-psquid:S00116"SRename this field "et_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ιΗ Τϊÿÿÿÿ
-esquid:MaximumInheritanceDepth"<This class has 8 parents which is greater than 5 authorized.(Ο’άε
-U"squid:SwitchLastCaseIsDefaultCheck9""Add a default case to this switch.(Χ“Ύρωÿÿÿÿ
-gsquid:S13019"KReplace this "switch" statement by "if" statements to increase readability.(Χ“Ύρωÿÿÿÿ
-lsquid:S00116"TRename this field "til_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ψρ

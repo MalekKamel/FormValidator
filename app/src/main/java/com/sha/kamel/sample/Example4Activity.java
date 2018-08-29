@@ -17,7 +17,7 @@ public class Example4Activity extends BaseExampleActivity {
         formValidator =
                 new ValidatorBuilder<ClientInfo>()
                         .doIfInvalid(() -> toast("Form is invalid."))
-                        .emptyMessage("Field is empty.")
+                        .messageIfEmpty("Field is empty.")
                         .build();
 
         formValidator.with(btn_submit)

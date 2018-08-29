@@ -23,11 +23,6 @@ public class ValidationOptions {
     public List<BooleanConsumer> validateConditionValidation = new ArrayList<>();
     public List<BooleanConsumer> validateIfConditionValidation = new ArrayList<>();
 
-    public List<BooleanConsumer> doOnNext = new ArrayList<>();
-    public List<BooleanConsumer> doOnNextWithData = new ArrayList<>();
-
-
-
     public boolean shouldValidateOnChange;
 
     public String getMessageIfEmpty(){

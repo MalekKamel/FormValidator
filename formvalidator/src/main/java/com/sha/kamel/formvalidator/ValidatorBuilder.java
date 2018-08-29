@@ -10,7 +10,7 @@ public class ValidatorBuilder<T> {
 
     ValidationOptions options = new ValidationOptions();
 
-    public ValidatorBuilder<T> emptyMessage(String emptyMessage){
+    public ValidatorBuilder<T> messageIfEmpty(String emptyMessage){
         options.messageIfEmpty = emptyMessage;
         return this;
     }

@@ -1,11 +1,0 @@
-
-?squid:S1068"(Remove this unused "name" private field.(Ë¥¼
-lsquid:S1450
-"URemove the "mobile" field and declare it as a local variable in the relevant methods.(Ë—Æ¿
-isquid:S1450	"RRemove the "age" field and declare it as a local variable in the relevant methods.(–Œó¯
-Asquid:S1068
-"*Remove this unused "mobile" private field.(Ë—Æ¿
-Dsquid:S1068"(Remove this unused "area" private field.(ı¨­Œùÿÿÿÿ
->squid:S1068	"'Remove this unused "age" private field.(–Œó¯
-jsquid:S1450"SRemove the "name" field and declare it as a local variable in the relevant methods.(Ë¥¼
-osquid:S1450"SRemove the "area" field and declare it as a local variable in the relevant methods.(ı¨­Œùÿÿÿÿ
