@@ -22,7 +22,7 @@ Common validators are made for you like: `EmailValidator`, `PasswordIdenticalVal
 
 ```gradle
 dependencies {
-    implementation 'com.sha.kamel:formvalidator:3.0.0@aar'
+    implementation 'com.sha.kamel:formvalidator:3.1.0@aar'
 }
 ```
 
