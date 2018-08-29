@@ -131,7 +131,7 @@ public class MobileValidator extends Validator{
 ```
 
 
-## What if i want to validate an TextView only in a certain condition ?
+## What if i want to validate a TextView only in a certain condition ?
 You can use `Condition`. if the condition evaluates to `true`, it'll be validated. Otherwise it won't be 
 validated.
 ```java
