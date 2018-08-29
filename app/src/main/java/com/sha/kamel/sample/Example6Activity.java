@@ -50,7 +50,7 @@ public class Example6Activity extends BaseExampleActivity {
                             if (!isValid) toast("You must accept terms and conditions!");
                         }
                 )
-                .validateIf(() -> isUnder15(),                // This validation will trigger only if isUnder15 == true.
+                .validateIf(this::isUnder15,                // This validation will trigger only if isUnder15 == true.
                         () -> cb_under15.isChecked(),     // This is the condition to validate
                         isValid -> {                      // Will be called to let you take an action according to validation state.
                             if (!isValid) toast("You must confirm content is adequate for you.");

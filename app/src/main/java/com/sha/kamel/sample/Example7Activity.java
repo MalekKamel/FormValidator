@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.sha.kamel.formvalidator.ValidationEvent;
 import com.sha.kamel.formvalidator.validator.ConditionalEmailValidator;
 import com.sha.kamel.formvalidator.validator.FixedLengthValidator;
 import com.sha.kamel.formvalidator.validator.RangeValidator;

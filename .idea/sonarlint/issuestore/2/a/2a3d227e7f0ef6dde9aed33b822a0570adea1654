@@ -1,9 +1,9 @@
 
-xsquid:S00116"TRename this field "et_mobile" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïöÆöşÿÿÿÿ8ÿÜ«­¬,
-\"squid:SwitchLastCaseIsDefaultCheck7""Add a default case to this switch.(×“¾ñùÿÿÿÿ8ÿÜ«­¬,
-nsquid:S13017"KReplace this "switch" statement by "if" statements to increase readability.(×“¾ñùÿÿÿÿ8ÿÜ«­¬,
-usquid:S00116"QRename this field "et_age" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²ÂŞÄÿÿÿÿÿ8ÿÜ«­¬,
-vsquid:S00116"RRename this field "et_area" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅıÛ¨ıÿÿÿÿ8ÿÜ«­¬,
-ysquid:S00116!"URename this field "btn_submit" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç¥ˆıÿÿÿÿ8ÿÜ«­¬,
-qsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(Š˜Êàøÿÿÿÿ8ÿÜ«­¬,
 vsquid:S00116"RRename this field "et_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó„Áêùÿÿÿÿ8ÿÜ«­¬,
+vsquid:S00116"RRename this field "et_area" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅıÛ¨ıÿÿÿÿ8ÿÜ«­¬,
+\"squid:SwitchLastCaseIsDefaultCheck7""Add a default case to this switch.(×“¾ñùÿÿÿÿ8ÿÜ«­¬,
+ysquid:S00116!"URename this field "btn_submit" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç¥ˆıÿÿÿÿ8ÿÜ«­¬,
+usquid:S00116"QRename this field "et_age" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²ÂŞÄÿÿÿÿÿ8ÿÜ«­¬,
+qsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(Š˜Êàøÿÿÿÿ8ÿÜ«­¬,
+xsquid:S00116"TRename this field "et_mobile" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïöÆöşÿÿÿÿ8ÿÜ«­¬,
+nsquid:S13017"KReplace this "switch" statement by "if" statements to increase readability.(×“¾ñùÿÿÿÿ8ÿÜ«­¬,

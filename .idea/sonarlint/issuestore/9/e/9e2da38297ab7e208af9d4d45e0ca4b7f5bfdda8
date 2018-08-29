@@ -1,5 +1,4 @@
 
-Xsquid:S1161":Add the "@Override" annotation above this method signature(ş½½‹8Ùê­ÒÒ,
 lsquid:MaximumInheritanceDepth"<This class has 8 parents which is greater than 5 authorized.(ÙÕŞå8Ùê­ÒÒ,
 ysquid:S00116"URename this field "cb_under15" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜Ÿ†‹úÿÿÿÿ8ò°è¬¬,
-Osquid:S16125",Replace this lambda with a method reference.(ÓÒ„”úÿÿÿÿ8ò°è¬¬,
+Xsquid:S1161":Add the "@Override" annotation above this method signature(ş½½‹8Ùê­ÒÒ,

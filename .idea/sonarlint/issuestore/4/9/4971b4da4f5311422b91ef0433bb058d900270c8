@@ -1,8 +1,8 @@
 
-lsquid:S00116"TRename this field "til_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øœñŽ
-esquid:MaximumInheritanceDepth"<This class has 8 parents which is greater than 5 authorized.(Ï’Üå
 Qsquid:S1161":Add the "@Override" annotation above this method signature(þ½½‹
-psquid:S00116"SRename this field "et_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÇ Ôúÿÿÿÿ
-U"squid:SwitchLastCaseIsDefaultCheck9""Add a default case to this switch.(×“¾ñùÿÿÿÿ
 csquid:S2387"@"formValidator" is the name of a field in "BaseExampleActivity".(¶·ñþÿÿÿÿ8…‘¤÷Ò,
+psquid:S00116"SRename this field "et_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÇ Ôúÿÿÿÿ
+esquid:MaximumInheritanceDepth"<This class has 8 parents which is greater than 5 authorized.(Ï’Üå
+U"squid:SwitchLastCaseIsDefaultCheck9""Add a default case to this switch.(×“¾ñùÿÿÿÿ
 gsquid:S13019"KReplace this "switch" statement by "if" statements to increase readability.(×“¾ñùÿÿÿÿ
+lsquid:S00116"TRename this field "til_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øœñŽ
