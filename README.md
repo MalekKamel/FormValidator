@@ -65,9 +65,7 @@ You can use mapIndexed to map data with the index of `add(Validator)` array.
 
 ###### messageIfEmpty
 ```java
-         formValidator..messageIfEmpty("Field is empty.");;
-
-                        
+         formValidator..messageIfEmpty("Field is empty.");;    
 ```
 ###### ValidatorBuilder
 ```java
