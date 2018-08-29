@@ -1,3 +1,4 @@
+
 # RxFormValidator
 
 ##### A simple Android form validation.
@@ -29,7 +30,7 @@ dependencies {
 ## Example
 
 ```java
-      formValidator.with(btn_submit)
+      formValidator.with(btn_submit) // When the button is clicked, validation will start
                 .add(
                         new RangeValidator(et_name, 4, 100),
                         new FixedLengthValidator(et_age, 2),
@@ -64,6 +65,7 @@ You can use mapIndexed to map data with the index of `add(Validator)` array.
 
 
 ## messageIfEmpty
+Use `messageIfEmpty(String)` to provide a message if any field is empty. The default message is: ** Required **
 ```java
          formValidator..messageIfEmpty("Field is empty.");;    
 ```
@@ -71,36 +73,41 @@ You can use mapIndexed to map data with the index of `add(Validator)` array.
 ```java
           formValidator = new ValidatorBuilder<ClientInfo>()
                         .doIfInvalid(() -> toast("Form is invalid."))
-                        .emptyMessage("Field is empty.")
+                        .messageIfEmpty("Field is empty.")
                         .build();
 ```
 
 ## validateOnChange
+You can use `validateOnChange()` to show/hide error while the user is typing. the default is: ** false **
 ```java
         formValidator.validateOnChange();  
 ```
 
-## Example 5
+## startValidation
 If you don't want to use a view to fire validation, you can use FormValidator#startValidation:
 ```java
        formValidator.startValidation();
 ```
 
 ## validate & validateIf
-You can validate other conditions other than TextView:
+You can validate other conditions other than TextView using `validate()` if you don't want to proceed if the condition is invalid. 
+
 ```
-    formValidator.validate(
-                        () -> checkBox.isChecked(),   // This is the condition to validate
-                        isValid ->{// Will be called to let you take an action according to validation state.
-                            if (!isValid) toast("You must accept terms and conditions!");
-                        }
-                )
-                .validateIf(() -> isUnder15(), // This validation will trigger only if isUnder15 == true.
-                        () -> cb_under15.isChecked(),// This is the condition to validate
-                        isValid -> { // Will be called to let you take an action according to validation state.
+ formValidator
+  .validate(() -> checkBox.isChecked(), // This is the condition to validate
+          isValid ->{// Will be called to let you take an action according to validation state.
+                     if (!isValid) toast("You must accept terms and conditions!");})
+```
+And use `validateIf()` if a condition must be validated only if another condition was valid.
+```               
+formValidator
+ .validateIf(() -> isUnder15(), // will be validated each time
+             () -> cb_under15.isChecked(), // will be tiggerred if the first condition is valid
+             isValid -> { // Will be called to let you take an action according to validation state.
                             if (!isValid) toast("You must confirm content is adequate for you.");
                         })
 ```
+in the preceding example, `cb_under15.isChecked()` will be validated only if `isUnder15() == true` . And you will receive the result of validation in `isValid -> {}`.
 
 ## Can I Create my own validator?
 Yes of course, you can create any number of your custom validators. Just extend abstract `Validator` and implement
