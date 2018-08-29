@@ -1,10 +1,9 @@
 # RxFormValidator
 
-[ ![Download](https://api.bintray.com/packages/shabankamel/android/formvalidator/images/download.svg) ](https://bintray.com/shabankamel/android/formvalidator/_latestVersion)
-
-[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Navigator-green.svg?style=flat )]( https://android-arsenal.com/details/1/6556 )
-
 ##### A simple Android form validation.
+
+![alt text](https://github.com/ShabanKamell/android-form-validator/blob/master/blob/master/raw/form_sample.png "Sample App")
+
 Now you can validate form easily using FormValidator.
 Validating `TextView` in android was a great headache. 
 But `FormValidator` does the work for you. Just few lines of code!. 
@@ -15,6 +14,10 @@ Common validators are made for you like: `EmailValidator`, `PasswordIdenticalVal
 , `RangeValidator` and more.
 
 # Installation
+
+[ ![Download](https://api.bintray.com/packages/shabankamel/android/formvalidator/images/download.svg) ](https://bintray.com/shabankamel/android/formvalidator/_latestVersion)
+
+[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Navigator-green.svg?style=flat )]( https://android-arsenal.com/details/1/6556 )
 
 ```gradle
 dependencies {
