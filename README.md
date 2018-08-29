@@ -26,7 +26,7 @@ dependencies {
 ```
 
 # Usage:
-###### Example 1
+## Example
 
 ```java
       formValidator.with(btn_submit)
@@ -51,7 +51,7 @@ dependencies {
     }
 ```
 
-###### mapIndexed
+## mapIndexed
 You can use mapIndexed to map data with the index of `add(Validator)` array.
 ```java 
    formValidator.mapIndexed(texts -> new ClientInfo()
@@ -63,11 +63,11 @@ You can use mapIndexed to map data with the index of `add(Validator)` array.
 
 
 
-###### messageIfEmpty
+## messageIfEmpty
 ```java
          formValidator..messageIfEmpty("Field is empty.");;    
 ```
-###### ValidatorBuilder
+## ValidatorBuilder
 ```java
           formValidator = new ValidatorBuilder<ClientInfo>()
                         .doIfInvalid(() -> toast("Form is invalid."))
@@ -75,18 +75,18 @@ You can use mapIndexed to map data with the index of `add(Validator)` array.
                         .build();
 ```
 
-###### validateOnChange
+## validateOnChange
 ```java
         formValidator.validateOnChange();  
 ```
 
-###### Example 5
+## Example 5
 If you don't want to use a view to fire validation, you can use FormValidator#startValidation:
 ```java
        formValidator.startValidation();
 ```
 
-###### validate & validateIf
+## validate & validateIf
 You can validate other conditions other than TextView:
 ```
     formValidator.validate(
@@ -102,7 +102,7 @@ You can validate other conditions other than TextView:
                         })
 ```
 
-### Can I Create my own validator?
+## Can I Create my own validator?
 Yes of course, you can create any number of your custom validators. Just extend abstract `Validator` and implement
 your logic in `validate(String text)` method.
 ```java
@@ -124,7 +124,7 @@ public class MobileValidator extends Validator{
 ```
 
 
-### What if i want to validate an TextView only in a certain condition ?
+## What if i want to validate an TextView only in a certain condition ?
 You can use `Condition`. if the condition evaluates to `true`, it'll be validated. Otherwise it won't be 
 validated.
 ```java
@@ -132,10 +132,10 @@ validated.
 ```
 In this case, `tv_email` will be validated only if `checkbox` is checked.
 
-##### Note 
+### Note 
  There are many ** conditional ** validators implemented for you. For example, ConditionalEmailValidator, ConditionalRequired, ConditionalMaxValidator...
  
-### Can i create my own conditional validator?
+## Can i create my own conditional validator?
 Yes of course, just let your validator implement `Conditional` interface
 
 ```java
@@ -144,7 +144,8 @@ public interface Conditional {
 }
 ```
 
-##### Example:
+## Example custom Validator
+
 ```java
 public class MyConditionalValidator extends Validator implements Conditional {
 
@@ -167,7 +168,7 @@ public class MyConditionalValidator extends Validator implements Conditional {
 }
 ```
 
-### What if i have a checkbox or any condition i want to validate also?
+## What if i have a checkbox or any condition i want to validate also?
 You can use `validate` to validate any condition you want.
 ```java
   formValidator.validate(() -> checkBox.isChecked(), // This is the condition to validate
@@ -178,7 +179,7 @@ You can use `validate` to validate any condition you want.
 in this case, `checkbox` will be validated. If it's not checked, the result of validation will be false and 
 a `Toast` will be displayed with text "You must accept terms and conditions!".
 
-### What if i want to validate a condition only if another condition is met?
+## What if i want to validate a condition only if another condition is met?
 You can use `validateIf`.
 ```java
 formValidator.validateIf(() -> isUnder15(), // This validation will trigger only if isUnder15 == true.
@@ -190,7 +191,7 @@ formValidator.validateIf(() -> isUnder15(), // This validation will trigger only
 In this case, `cb_under15` will be validated only if the age is under 15.
 
 
-### Can i check if any TextView has a text?
+## Can i check if any TextView has a text?
 Yes, it's very easy.
 ```java
 // Imagine it's called on back pressed
@@ -198,13 +199,13 @@ if (formValidator.isAnyHasText())
     toast("Data will be removed!");
 ```
 
-### Can i delete texts in all TextView fields?
+## Can i delete texts in all TextView fields?
 Yes, it's very easy.
 ```java
 formValidator.clearAll()
 ```
 
-### What if i want to listen to text changes in each TextView to implement my logic?
+## What if i want to listen to text changes in each TextView to implement my logic?
 It's very straight forward. Just use `Validator#onChange(Callback<String>)`.
 ```java
 new FixedLengthValidator(tv_age, 2)
