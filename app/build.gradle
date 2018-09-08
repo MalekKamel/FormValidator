@@ -44,10 +44,6 @@ dependencies {
     implementation deps.butterknife.runtime
     implementation deps.butterknife.compiler
 
-    implementation deps.rx.android
-    implementation deps.rx.java
-    implementation deps.java8_reactive_streams
-
     implementation project(':formvalidator')
 
 }

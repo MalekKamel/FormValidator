@@ -32,10 +32,8 @@ public class Example6Activity extends BaseExampleActivity {
                         new RangeValidator(et_name, 4, 100),
                         new FixedLengthValidator(et_age, 2)
                                 .onChange(text -> {
-                                    if (!text.isEmpty() && Integer.valueOf(text) < 15)
-                                        cb_under15.setVisibility(View.VISIBLE);
-                                    else
-                                        cb_under15.setVisibility(View.GONE);
+                                    boolean isUnder15 = !text.isEmpty() && Integer.valueOf(text) < 15;
+                                    cb_under15.setVisibility(isUnder15 ? View.VISIBLE : View.GONE);
                                 }),
                         new MobileValidator(et_mobile),
                         new RangeValidator(et_area, 3, 25))
@@ -45,14 +43,14 @@ public class Example6Activity extends BaseExampleActivity {
                         .setMobile(validator.textOf(et_name))
                         .setArea(validator.textOf(et_name)))
                 .validate(
-                        () -> checkBox.isChecked(),   // This is the condition to validate
-                        isValid ->{                   // Will be called to let you take an action according to validation state.
+                        () -> checkBox.isChecked(),
+                        isValid ->{
                             if (!isValid) toast("You must accept terms and conditions!");
                         }
                 )
-                .validateIf(this::isUnder15,                // This validation will trigger only if isUnder15 == true.
-                        () -> cb_under15.isChecked(),     // This is the condition to validate
-                        isValid -> {                      // Will be called to let you take an action according to validation state.
+                .validateIf(this::isUnder15,
+                        () -> cb_under15.isChecked(),
+                        isValid -> {
                             if (!isValid) toast("You must confirm content is adequate for you.");
                         })
                 .doIfInvalid(() -> toast("Fill required data."))

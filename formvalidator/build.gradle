@@ -15,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/ShabanKamell/android-form-validator'
     gitUrl = 'https://github.com/ShabanKamell/android-form-validator.git'
 
-    libraryVersion = '3.1.0'
+    libraryVersion = '3.1.1'
 
     developerId = 'shaban'
     developerName = 'shaban kamel'
@@ -79,16 +79,16 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    implementation deps.rx.android
+    api deps.rx.android
     javadocDeps deps.rx.android
 
-    implementation deps.rx.java
+    api deps.rx.java
     javadocDeps deps.rx.java
 
-    implementation deps.support.design
+    api deps.support.design
     javadocDeps deps.support.design
 
-    implementation deps.java8_reactive_streams
+    api deps.java8_reactive_streams
     javadocDeps deps.java8_reactive_streams
 
 

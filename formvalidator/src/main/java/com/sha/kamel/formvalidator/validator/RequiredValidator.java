@@ -26,7 +26,7 @@ public class RequiredValidator extends Validator {
 
     /**
      * Method used internally to get error message
-     * @return
+     * @return message
      */
     @Override
     public String getErrorMessage() {
