@@ -135,6 +135,7 @@ public class App extends Application {
 
 ## Custom Validators in Code
 To add a custom validator in code just implement Validator interface
+
 ```java
 public class SuffixValidator extends Validator {  
     private String suffix;  
@@ -149,7 +150,8 @@ public class SuffixValidator extends Validator {
     }  
 }
 ```
-** Usage**
+## Usage
+
 ```java
 formEditText.addValidator(new SuffixValidator(/* suffix*/"d", /* error*/"Must start with d."));
 ```
