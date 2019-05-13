@@ -47,12 +47,12 @@ Validation type can be set with `validationType` attribute like the previous exa
 
 | **Type** | **Description** | **Required attributes** |
 | ------------- | ------------- | ------------- |
-| **required**          | validates required fields   | _ |
-| **numeric**           | validates numeric only      | _ |
-| **alpha**             | validates alpha only        | _ |
-| **alphaNumeric**      | validates alpha numeric     | _ |
-| **email**             | validates email             | _ |
-| **creditCard**        | validates credit card <br> using [Luhn Algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm) | _ |
+| **required**           | validates required fields   | _ |
+| **numeric**            | validates numeric only      | _ |
+| **alpha**              | validates alpha only        | _ |
+| **alphaNumeric**       | validates alpha numeric     | _ |
+| **email**              | validates email             | _ |
+| **creditCard**         | validates credit card <br> using [Luhn Algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm) | _ |
 | **phone**              | validates phone            | _ |
 | **domainName**         | validates domain name      | _ |
 | **ipAddress**          | validates IP address       | _ |
@@ -67,10 +67,10 @@ Validation type can be set with `validationType` attribute like the previous exa
 ## Other Attributes
 
 | **Attribute** | **Description** |
---|--|--|--|--
-| **errorMessage**  | message if the fieldinvalid
-| **requiredErrorMessage**  | message if the field is empty
-| **customValidationType**  | a string for custom validation <br> (**see usage below**)
+| -- | -- |
+| **errorMessage**  | message if the fieldinvalid |
+| **requiredErrorMessage**  | message if the field is empty |
+| **customValidationType**  | a string for custom validation <br> (**see usage below**) |
 
 ## Custom Validators in XML
 FormValidator is very flexible. It's support any custom validator. 
