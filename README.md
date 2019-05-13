@@ -67,9 +67,9 @@ Validation type can be set with `validationType` attribute like the previous exa
 ## Other Attributes
 
 | **Attribute** | **Description** |
-| -- | -- |
-| **errorMessage**  | message if the fieldinvalid |
-| **requiredErrorMessage**  | message if the field is empty |
+| -----------------         | --------------------------------------------------------- |
+| **errorMessage**          | message if the fieldinvalid                               |
+| **requiredErrorMessage**  | message if the field is empty                             |
 | **customValidationType**  | a string for custom validation <br> (**see usage below**) |
 
 ## Custom Validators in XML
