@@ -50,7 +50,7 @@ Validation type can be set with `validationType` attribute like the previous exa
 | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  |
 
-| **Type** | **Description** | **Required attributes** 
+| **Type** | **Description** | **Required attributes** |
 
 |-------------|-------------|-------------|
 
