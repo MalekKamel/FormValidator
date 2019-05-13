@@ -199,3 +199,6 @@ if (autoCompleteTv.validate()) {
 ### License
 
  Apache license 2.0
+
+### Credit
+ [FrescoImageViewer](https://github.com/vekexasia/android-edittext-validator).
