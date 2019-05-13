@@ -47,23 +47,22 @@ Validation type can be set with `validationType` attribute like the previous exa
 
 | **Type** | **Description** | **Required attributes** |
 | ------------- | ------------- | ------------- |
-
-| **required**  | validates required fields | _ |
-| **numeric**  | validates numeric only  | _ |
-| **alpha**  | validates alpha only  | _|
-| **alphaNumeric**  | validates alpha numeric | _ |
-| **email**  | validates email | _ |
-| **creditCard**  | validates credit card <br> using [Luhn Algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm) | _ |
-| **phone**  | validates phone | _|
-| **domainName**  | validates domain name | _ |
-| **ipAddress**  | validates IP address  | _ |
-| **webUrl**  | validates web URL | _ |
-| **personName**  | validates person name | _ |
-| **personFullName**  | validates person full name | _ |
-| **regex**  | validates a REGEX  | - **regex** |
-| **numericRange**  | validates numeric range | - **minNumber** <br> - **maxNumber**|
+| **required**          | validates required fields   | _ |
+| **numeric**           | validates numeric only      | _ |
+| **alpha**             | validates alpha only        | _ |
+| **alphaNumeric**      | validates alpha numeric     | _ |
+| **email**             | validates email             | _ |
+| **creditCard**        | validates credit card <br> using [Luhn Algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm) | _ |
+| **phone**              | validates phone            | _ |
+| **domainName**         | validates domain name      | _ |
+| **ipAddress**          | validates IP address       | _ |
+| **webUrl**             | validates web URL          | _ |
+| **personName**         | validates person name      | _ |
+| **personFullName**     | validates person full name | _ |
+| **regex**              | validates a REGEX          | - **regex** |
+| **numericRange**       | validates numeric range    | - **minNumber** <br> - **maxNumber**|
 | **floatNumericRange**  | validates floating-point ranges | - **floatMinNumber** <br> - **floatMaxNumber**|
-| **date**  | validates date | - **dateFormat** |
+| **date**  | validates date                          | - **dateFormat** |
 
 
 
