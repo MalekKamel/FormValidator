@@ -181,6 +181,7 @@ findViewById(R.id.btnJustCheck).setOnClickListener(__ -> {
 });
 
 // OR
+
 new RxFormValidator(etAllowEmpty, etAlpha, etPhone)  
         .validateOnClick(findViewById(R.id.btnValidateOnClick))  
         .subscribe(isValid -> toast("Validate on Click result: " + isValid));
