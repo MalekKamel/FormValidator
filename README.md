@@ -46,7 +46,7 @@ Validation type can be set with `validationType` attribute like the previous exa
 **Note:** `required` is the default validation type. f you don't specify any  one
 
 | **Type** | **Description** | **Required attributes** 
--------------|-------------|-------------|-------------|-------------
+|-------------|-------------|-------------|-------------|-------------|
 | **required**  | validates required fields | _ |
 | **numeric**  | validates numeric only  | _ |
 | **alpha**  | validates alpha only  | _
