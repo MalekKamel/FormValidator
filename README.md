@@ -45,6 +45,11 @@ And validate the field in your code:
 Validation type can be set with `validationType` attribute like the previous example `app:validationType="phone"`
 **Note:** `required` is the default validation type. f you don't specify any  one
 
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
 | **Type** | **Description** | **Required attributes** 
 
 |-------------|-------------|-------------|-------------|-------------|
