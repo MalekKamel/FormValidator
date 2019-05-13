@@ -14,11 +14,11 @@ allprojects {
         maven { url "https://jitpack.io" }
     }
 }
-dependencies {
-	// ...
 
-	// ...
+dependencies {
+	        implementation 'com.github.ShabanKamell:FormValidator:1.0.0'
 }
+
 ```
 
 # Usage
@@ -186,8 +186,16 @@ new RxFormValidator(etAllowEmpty, etAlpha, etPhone)
         .subscribe(isValid -> toast("Validate on Click result: " + isValid));
 ```
 
+## AutoCompleteTextView
+You can use `FormAutoCompleteTextView` with complete validation support
+```java
+FormAutoCompleteTextView autoCompleteTv = findViewById(R.id.autoCompleteTv);  
+if (autoCompleteTv.validate()) {  
+    Toast.makeText(this, "Valid", Toast.LENGTH_LONG).show();  
+}
+```
 ### See 'app' module for the full code.
 
-# License
+### License
 
-## Apache license 2.0
+ Apache license 2.0

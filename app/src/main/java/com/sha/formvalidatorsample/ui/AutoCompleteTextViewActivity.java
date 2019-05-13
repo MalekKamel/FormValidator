@@ -24,8 +24,8 @@ public class AutoCompleteTextViewActivity extends Activity {
     }
 
     public void onClickValidate(View v) {
-        FormAutoCompleteTextView fdt = findViewById(R.id.et);
-        if (fdt.validate()) {
+        FormAutoCompleteTextView autoCompleteTv = findViewById(R.id.autoCompleteTv);
+        if (autoCompleteTv.validate()) {
             Toast.makeText(this, "Valid", Toast.LENGTH_LONG).show();
         }
     }
