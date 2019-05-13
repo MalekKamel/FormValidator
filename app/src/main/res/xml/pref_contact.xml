@@ -1,0 +1,52 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.sha.formvalidator.widget.FormEditTextPreference
+        android:capitalize="words"
+        android:ems="10"
+        android:hint="@string/full_name_hint"
+        android:inputType="textPersonName"
+        android:key="full_name"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/full_name"
+        app:required="true"
+        app:errorMessage="@string/invalid_full_name_message"
+        app:requiredErrorMessage="@string/required_full_name_message"
+        app:validationType="regex"
+        app:regex="(\\b.+?\\b ?){2,}"
+        />
+
+    <com.sha.formvalidator.widget.FormEditTextPreference
+        android:ems="10"
+        android:hint="@string/address_hint"
+        android:inputType="textPostalAddress|textMultiLine|textAutoComplete"
+        android:key="address"
+        android:selectAllOnFocus="true"
+        android:title="@string/address_label" />
+
+    <com.sha.formvalidator.widget.FormEditTextPreference
+        android:ems="10"
+        android:hint="@string/phone_number_hint"
+        android:inputType="phone"
+        android:key="phone_number"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:title="@string/phone_number_label"
+        app:required="true"
+        app:validationType="phone" />
+
+    <com.sha.formvalidator.widget.FormEditTextPreference
+        android:ems="10"
+        android:hint="@string/email_hint"
+        android:inputType="textEmailAddress"
+        android:key="email"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:title="@string/email_label"
+        app:required="false"
+        app:errorMessage="@string/invalid_email_message"
+        app:validationType="email" />
+
+</PreferenceScreen>

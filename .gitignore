@@ -3,7 +3,11 @@
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
+/.idea/caches/
+.idea/modules.xml
 .DS_Store
 /build
+/app/build
+/lib/build
 /captures
 .externalNativeBuild

@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sha.kamel.sample">
+          package="com.sha.formvalidatorsample">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".util.MyApp"
-        android:allowBackup="true"
+        android:name=".App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".ui.MainActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,14 +19,19 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Example1Activity"/>
-        <activity android:name=".Example2Activity"/>
-        <activity android:name=".Example3Activity"/>
-        <activity android:name=".Example4Activity"/>
-        <activity android:name=".Example5Activity"/>
-        <activity android:name=".Example6Activity"/>
-        <activity android:name=".Example7Activity"/>
-        <activity android:name=".Example8Activity"/>
+        <activity android:name=".ui.FieldsActivity" />
+        <activity android:name=".ui.FormActivity" />
+        <activity android:name=".ui.RxFormActivity" />
+        <activity android:name=".ui.FieldActivity" />
+        <activity android:name=".ui.EmailOrCreditCardActivity" />
+        <activity android:name=".ui.PrefixAndRangeValidatorActivity" />
+        <activity android:name=".ui.PasswordValidatorActivity" />
+        <activity android:name=".ui.AutoCompleteTextViewActivity" />
+
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:label="Preferences">
+        </activity>
 
     </application>
 

@@ -1,0 +1,10 @@
+<com.sha.formvalidator.widget.FormEditText xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/et"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="@string/hint_phone"
+    android:inputType="phone"
+    app:requiredErrorMessage="@string/custom_empty_error_phone"
+    app:errorMessage="@string/custom_test_error_phone"
+    app:validationType="phone" />

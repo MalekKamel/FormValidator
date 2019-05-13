@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="custom_validator_number_one" translatable="false">NumberOne</string>
+
+</resources>

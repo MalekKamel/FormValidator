@@ -1,32 +1,76 @@
 <resources>
-    <string name="app_name">RxFormValidator</string>
 
-    <string name="phone_must_be_01">Must start with 01</string>
-    <string name="area_max_length_25">Minimum length = 25</string>
-    <string name="age_invalid">Invalid age.</string>
-    <string name="phone_must_be_11">Must be 11 digits</string>
-    <string name="name_min_length_4">Minimum length = 4</string>
-    <string name="name_max_length_100">Maximum length = 100</string>
-    <string name="name">Name</string>
-    <string name="age">Age</string>
-    <string name="mobile">Mobile</string>
-    <string name="area">Area</string>
-    <string name="submit">Submit</string>
-    <string name="back">back</string>
-    <string name="clear">Clear</string>
-    <string name="email">Email</string>
+    <string name="app_name">Form Validator</string>
 
-    <string name="e1">Example 1</string>
-    <string name="e2">Example 2</string>
-    <string name="e3">Example 3</string>
-    <string name="e4">Example 4</string>
-    <string name="e5">Example 5</string>
-    <string name="e6">Example 6</string>
-    <string name="e7">Example 7</string>
-    <string name="e8">Example 8</string>
-    <string name="confirm">confirm</string>
-    <string name="data_will_be_removed">Data will be removed!</string>
-    <string name="close">Close</string>
+    <string name="action_options">Options</string>
+
+    <string name="validate_">Validate!</string>
+    <string name="description_numeric">The numeric field allows only numbers on it. The previous EditText was intentionally configured to accept any kind of input so that you can test the validation.</string>
+    <string name="description_alpha">The alpha field will check if the field contains only standard letters.</string>
+    <string name="description_person_name">This field will check for valid person name OR surname</string>
+    <string name="description_person_full_name">This field will check for valid person name AND surname</string>
+
+    <string name="hint_date"><![CDATA[2013-07-11 or 11:23]]></string>
+    <string name="description_date">This field will check date/datetime</string>
+
+    <string name="hint_date_custom"><![CDATA[2013-07-11]]></string>
+    <string name="description_date_custom">This field will check yyyy-MM-dd</string>
+
+    <string name="hint_email">me@andreabaccega.com</string>
+    <string name="description_email">The email field will only accept valid email input.\nNote that this will only perform a regular expression check</string>
+
+    <string name="hint_credit_card">444433332222111</string>
+    <string name="description_credit_card">The credit card field will only accept valid credit card numbers. The validation is performed through the Luhn Algorithm</string>
+
+    <string name="hint_phone">+41 01 12345678</string>
+    <string name="description_phone">The phone number will be validated using regex It will allow several formats.\n\t- +00 01 23456799\n\t- 0123456789</string>
+
+    <string name="hint_domain_name">google.com</string>
+    <string name="description_domain_name">Domain name check will be performed using regex.</string>
+
+    <string name="hint_ip_address">127.0.0.1</string>
+    <string name="description_ip_address">The ip address check will be performed using regex.</string>
+
+    <string name="hint_web_url">https://www.google.com/</string>
+    <string name="description_web_url">The check will be performed using regex only.</string>
+
+    <string name="hint_no_check">&#8230;</string>
+
+    <string name="description_phone_custom_messages">This is a regular phone check ( like the previous one ).\nThe only difference is that here we\'ve a custom message for the empty case and the invalid case. Try it out!</string>
+    <string name="custom_test_error_phone">Custom test error message!</string>
+    <string name="custom_empty_error_phone">Custom empty error message!</string>
+
+    <string name="description_allow_empty">This fields validates a phone when the user enters something. If the user doesn\'t enter any data the EditText will validate!</string>
+
+    <string name="hint_regex">aa</string>
+    <string name="custom_error_regex">This field only validates with 2 or more "a"</string>
+    <string name="description_regex">The field validates only if the field content matches the regex given in the xml. The current regex is: /^[a]{2,}$/\nNote that the regex is case sensitive so that the field won\'t validate if you enter "AA"</string>
+
+    <string name="error_programmatic">You should enter \'wow\' here</string>
+    <string name="description_programmatic">The current check is performed by a programmatically added validator. Check out the source code.</string>
+    <string name="programmatic_title">Programmatically added validator</string>
+    <string name="custom_validation_type_description">Validator in this field is defined as \n \n "app:customValidationType="@string/custom_validator_number_one" \n \nand the validator class is NumberOneCustomValidator.</string>
+
+    <string name="email_or_credit_title">Email OR Credit</string>
+    <string name="hint_email_or_credit">your email or credit card number</string>
+    <string name="description_email_or_credit">The previous field will validate only if it is not empty and one of the following is true:\n- it is a valid email address.\n- it is a valid credit card</string>
+
+    <string name="full_name">Full Name</string>
+    <string name="full_name_hint">eg Sha Ka</string>
+    <string name="address_label">Address</string>
+    <string name="address_hint">House number, Street, Suburb, Postcode</string>
+    <string name="phone_number_label">Phone number</string>
+    <string name="phone_number_hint">Your phone number</string>
+    <string name="email_hint">email@address.com</string>
+    <string name="email_label">Email</string>
+    <string name="invalid_phone_no_message">The entered phone number is invalid</string>
+    <string name="invalid_full_name_message">Full name is invalid (must be at least 2 space separated names)</string>
+    <string name="required_phone_no_message">A contact number is required</string>
+    <string name="required_full_name_message">A full name is required</string>
+    <string name="invalid_email_message">Provided e-mail address is invalid</string>
+    <string name="float_numeric_range">The numeric field allows only numbers.</string>
+    <string name="password_description">Password must match.</string>
+    <string name="passwords_match">Passwords Match</string>
 
 
 </resources>
