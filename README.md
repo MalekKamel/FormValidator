@@ -45,10 +45,27 @@ And validate the field in your code:
 Validation type can be set with `validationType` attribute like the previous example `app:validationType="phone"`
 **Note:** `required` is the default validation type. f you don't specify any  one
 
-| **required**  | validates required fields |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| **Type** | **Description** | **Required attributes** |
+| ------------- | ------------- | ------------- |
+
+| **required**  | validates required fields | _ |
+| **numeric**  | validates numeric only  | _ |
+| **alpha**  | validates alpha only  | _|
+| **alphaNumeric**  | validates alpha numeric | _ |
+| **email**  | validates email | _ |
+| **creditCard**  | validates credit card <br> using [Luhn Algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm) | _ |
+| **phone**  | validates phone | _|
+| **domainName**  | validates domain name | _ |
+| **ipAddress**  | validates IP address  | _ |
+| **webUrl**  | validates web URL | _ |
+| **personName**  | validates person name | _ |
+| **personFullName**  | validates person full name | _ |
+| **regex**  | validates a REGEX  | - **regex** |
+| **numericRange**  | validates numeric range | - **minNumber** <br> - **maxNumber**|
+| **floatNumericRange**  | validates floating-point ranges | - **floatMinNumber** <br> - **floatMaxNumber**|
+| **date**  | validates date | - **dateFormat** |
+
+
 
 | **Type** | **Description** | **Required attributes** |
 
