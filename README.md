@@ -1,5 +1,5 @@
 
-# Android Form EditText
+# Android FormValidator
 
 Powerful, simple and customizable EditText validator for Android.
 
