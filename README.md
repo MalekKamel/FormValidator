@@ -68,7 +68,7 @@ Validation type can be set with `validationType` attribute like the previous exa
 
 | **Attribute** | **Description** |
 | -----------------         | --------------------------------------------------------- |
-| **errorMessage**          | message if the fieldinvalid                               |
+| **errorMessage**          | message if the field is invalid                               |
 | **requiredErrorMessage**  | message if the field is empty                             |
 | **customValidationType**  | a string for custom validation <br> (**see usage below**) |
 
@@ -197,6 +197,7 @@ if (autoCompleteTv.validate()) {
 ```
 
 ## FormEditTextPreference
+You can use `FormEditTextPreference` for validating EditTextPreference
 ```java
     <com.sha.formvalidator.widget.FormEditTextPreference
         android:ems="10"
