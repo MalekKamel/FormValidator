@@ -195,6 +195,21 @@ if (autoCompleteTv.validate()) {
     Toast.makeText(this, "Valid", Toast.LENGTH_LONG).show();  
 }
 ```
+
+## FormEditTextPreference
+```java
+    <com.sha.formvalidator.widget.FormEditTextPreference
+        android:ems="10"
+        android:hint="@string/phone_number_hint"
+        android:inputType="phone"
+        android:key="phone_number"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:title="@string/phone_number_label"
+        app:required="true"
+        app:validationType="phone" />
+```
+
 ### See 'app' module for the full code.
 
 ### License
