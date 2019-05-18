@@ -3,6 +3,8 @@
 
 Powerful, simple and customizable EditText validator for Android.
 
+[![](https://jitpack.io/v/ShabanKamell/FormValidator.svg)](https://jitpack.io/#ShabanKamell/FormValidator)
+
 
 ## Install
 
