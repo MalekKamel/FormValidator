@@ -39,9 +39,9 @@ And validate the field in your code:
     FormEditText phoneField = findViewById(R.id.et);
     if (phoneField.validate()){
 	// phone is valid
-	} else {
-	// phone isn't valid
-	}
+    } else {
+    // phone isn't valid
+    }
 ```
 ## Validation Types
 Validation type can be set with `validationType` attribute like the previous example `app:validationType="phone"`
