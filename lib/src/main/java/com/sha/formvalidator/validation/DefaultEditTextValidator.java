@@ -9,12 +9,12 @@ import android.widget.EditText;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.sha.formvalidator.R;
-import com.sha.formvalidator.validator.composite.AndValidator;
-import com.sha.formvalidator.validator.composite.CompositeValidator;
-import com.sha.formvalidator.validator.Validator;
 import com.sha.formvalidator.model.Options;
 import com.sha.formvalidator.model.ValidationType;
 import com.sha.formvalidator.util.ImplicitValidatorFactory;
+import com.sha.formvalidator.validator.Validator;
+import com.sha.formvalidator.validator.composite.AndValidator;
+import com.sha.formvalidator.validator.composite.CompositeValidator;
 
 /**
  * Default implementation of an {@link EditTextValidator}

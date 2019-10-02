@@ -1,14 +1,15 @@
 package com.sha.formvalidator.widget;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-
-import androidx.appcompat.widget.AppCompatEditText;
 
 import com.sha.formvalidator.Validatable;
 import com.sha.formvalidator.validation.DefaultEditTextValidator;
 import com.sha.formvalidator.validation.EditTextValidator;
 import com.sha.formvalidator.validator.Validator;
+
+import androidx.appcompat.widget.AppCompatEditText;
 
 /**
  * EditText Extension to be used in order to create forms in android.
@@ -70,4 +71,12 @@ public class FormEditText extends AppCompatEditText
         return validator.validate();
     }
 
+    @Override
+    public Drawable getBackground() {
+        Drawable background = super.getBackground();
+        if (background != null) {
+            background.clearColorFilter();
+        }
+        return background;
+    }
 }
