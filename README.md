@@ -18,7 +18,7 @@ allprojects {
 }
 
 dependencies {
-	        implementation 'com.github.ShabanKamell:FormValidator:1.0.0'
+	        implementation 'com.github.ShabanKamell:FormValidator:1.0.1'
 }
 
 ```
