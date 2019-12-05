@@ -17,7 +17,7 @@ allprojects {
 }
 
 dependencies {
-	        implementation 'com.github.ShabanKamell:FormValidator:x.y.z'
+    implementation 'com.github.ShabanKamell:FormValidator:x.y.z'
 }
 
 ```
