@@ -1,5 +1,7 @@
+FormValidator for Android
+=============================
 
-# FormValidator for Android
+[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Navigator-green.svg?style=flat )]( https://android-arsenal.com/details/1/6556 )
 
 Powerful, simple and customizable EditText validator for Android.
 
