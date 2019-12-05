@@ -5,9 +5,6 @@ FormValidator for Android
 
 Powerful, simple and customizable EditText validator for Android.
 
-[![](https://jitpack.io/v/ShabanKamell/FormValidator.svg)](https://jitpack.io/#ShabanKamell/FormValidator)
-
-
 ## Install
 
 #### Gradle:
@@ -20,10 +17,11 @@ allprojects {
 }
 
 dependencies {
-	        implementation 'com.github.ShabanKamell:FormValidator:1.0.1'
+	        implementation 'com.github.ShabanKamell:FormValidator:x.y.z'
 }
 
 ```
+(Please replace x, y and z with the latest version numbers:  [![](https://jitpack.io/v/ShabanKamell/FormValidator.svg)](https://jitpack.io/#ShabanKamell/FormValidator))
 
 # Usage
 
