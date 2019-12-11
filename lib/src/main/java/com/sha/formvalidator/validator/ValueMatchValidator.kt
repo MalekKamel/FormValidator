@@ -10,10 +10,6 @@ class ValueMatchValidator(errorMessage: String, vararg ets: EditText) : Validato
     private val ets: List<EditText> = listOf(*ets)
 
     override fun isValid(et: EditText): Boolean {
-        val value = et.text.toString()
-        for (et in ets)
-            if (et.text.toString() != value)
-                return false
-        return true
+        return ets.all { it.text.toString() == et.text.toString() }
     }
 }
