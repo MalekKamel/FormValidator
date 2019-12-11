@@ -8,6 +8,8 @@ import android.widget.Toast
 import com.sha.formvalidator.FormValidator
 import com.sha.formvalidator.widget.FormEditText
 import com.sha.formvalidatorsample.R
+import kotlinx.android.synthetic.main.activity_form.*
+import kotlinx.android.synthetic.main.activity_form.view.*
 
 class FormActivity : Activity() {
     private lateinit var etAllowEmpty: FormEditText
@@ -34,6 +36,7 @@ class FormActivity : Activity() {
                     toast("Validate on Click result: $it")
                 }
 
+        btnValidateFormLayout.setOnClickListener { form.validate() }
     }
 
     private fun toast(text: String) {

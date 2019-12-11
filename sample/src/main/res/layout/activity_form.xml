@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     >
 
-    <LinearLayout
+    <com.sha.formvalidator.Form
+        android:id="@+id/form"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -96,6 +97,7 @@
             android:textAllCaps="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="30dp" />
@@ -108,6 +110,17 @@
             android:layout_height="wrap_content" />
 
 
-    </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <Button
+            android:id="@+id/btnValidateFormLayout"
+            android:text="Validate Form Layout"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.sha.formvalidator.Form>
 
 </ScrollView>

@@ -1430,6 +1430,7 @@ id btnFields
 id btnForm
 id btnJustCheck
 id btnRxForm
+id btnValidateFormLayout
 id btnValidateOnClick
 id buttonPanel
 id cancel_action
@@ -1494,6 +1495,7 @@ id fixed
 id fl
 id floatNumericRange
 id forever
+id form
 id ghost_view
 id group_divider
 id hideable

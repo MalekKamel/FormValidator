@@ -1,4 +1,4 @@
-#Wed Dec 11 22:50:05 EET 2019
+#Wed Dec 11 23:31:44 EET 2019
 base.0=/Users/mac/Desktop/android/projects/me/lib/FormValidator/sample/build/intermediates/dex/debug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
