@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h480dp-land-v13/values-h480dp-land-v13.xml",
+            "outputFile": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/sample/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h480dp-land-v13/values-h480dp-land-v13.xml",
             "map": [
                 {
-                    "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/bb69aecc8a2207dc26b4c0ba2e4ca3b5/res/values-h480dp-land-v13/values-h480dp-land-v13.xml",
+                    "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/650214c0d5ff5d4ed9b4d390c594827d/material-1.1.0-alpha10/res/values-h480dp-land-v13/values-h480dp-land-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

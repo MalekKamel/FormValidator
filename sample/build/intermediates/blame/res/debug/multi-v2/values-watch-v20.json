@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/sample/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/8beccf581921d7674aadfb9755ac000f/res/values-watch-v20/values-watch-v20.xml",
+                    "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/e0445ab16110155e43ba6b631e58c471/appcompat-1.1.0/res/values-watch-v20/values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",
