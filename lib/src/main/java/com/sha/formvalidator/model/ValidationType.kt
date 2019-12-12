@@ -1,9 +1,8 @@
 package com.sha.formvalidator.model
 
-import com.annimon.stream.Optional
 import com.annimon.stream.Stream
 
-enum class ValidationType private constructor(var value: Int) {
+enum class ValidationType constructor(var value: Int) {
     REGEX(0),
     NUMERIC(1),
     ALPHA(2),
@@ -26,10 +25,7 @@ enum class ValidationType private constructor(var value: Int) {
     companion object {
 
         fun fromValue(value: Int): ValidationType {
-            val opt = Stream.of(*values())
-                    .filter { item -> item.value == value }
-                    .findFirst()
-            return if (opt.isPresent) opt.get() else NOT_DETECTABLE
+           return values().firstOrNull { it.value == value } ?: NOT_DETECTABLE
         }
     }
 }

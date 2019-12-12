@@ -1,12 +1,9 @@
 package com.sha.formvalidator.validation
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.text.TextUtils
 import android.util.AttributeSet
-import android.view.ViewParent
 import android.widget.EditText
-
 import com.google.android.material.textfield.TextInputLayout
 import com.sha.formvalidator.R
 import com.sha.formvalidator.model.Options
@@ -21,9 +18,9 @@ import com.sha.formvalidator.validator.composite.CompositeValidator
  */
 class DefaultEditTextValidator : EditTextValidator {
     /**
-     * The custom validators setted using
+     * The custom validators set using
      */
-    protected lateinit var mValidator: CompositeValidator
+    private lateinit var mValidator: CompositeValidator
     lateinit var editText: EditText
 
     private val options = Options()

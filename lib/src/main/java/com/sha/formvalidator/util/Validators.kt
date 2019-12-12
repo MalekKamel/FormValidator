@@ -1,8 +1,7 @@
 package com.sha.formvalidator.util
 
 import com.sha.formvalidator.validator.CustomValidator
-
-import java.util.ArrayList
+import java.util.*
 
 object Validators {
 

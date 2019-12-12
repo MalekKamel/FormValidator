@@ -7,11 +7,9 @@ import android.preference.EditTextPreference
 import android.util.AttributeSet
 import android.view.KeyEvent
 import android.view.View
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.TextView.OnEditorActionListener
-
 import com.sha.formvalidator.validation.DefaultEditTextValidator
 import com.sha.formvalidator.validation.EditTextValidator
 

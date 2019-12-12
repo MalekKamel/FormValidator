@@ -3,28 +3,22 @@ package com.sha.formvalidator.widget
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-
+import androidx.appcompat.widget.AppCompatEditText
 import com.sha.formvalidator.Validatable
 import com.sha.formvalidator.validation.DefaultEditTextValidator
 import com.sha.formvalidator.validation.EditTextValidator
 import com.sha.formvalidator.validator.Validator
-
-import androidx.appcompat.widget.AppCompatEditText
 
 /**
  * EditText Extension to be used in order to create forms in android.
  *
  */
 class FormEditText : AppCompatEditText, Validatable {
-    var validator: EditTextValidator? = null
+    lateinit var validator: EditTextValidator
 
-    constructor(context: Context) : super(context) {
-        setupDefaultValidator(null, context)
-    }
+    constructor(context: Context) : super(context) { setupDefaultValidator(null, context) }
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        setupDefaultValidator(attrs, context)
-    }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setupDefaultValidator(attrs, context) }
 
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
         setupDefaultValidator(attrs, context)
@@ -47,7 +41,7 @@ class FormEditText : AppCompatEditText, Validatable {
      * @param validator object
      */
     fun addValidator(validator: Validator) {
-        this.validator!!.addValidator(validator)
+        this.validator.addValidator(validator)
     }
 
     /**
@@ -56,7 +50,7 @@ class FormEditText : AppCompatEditText, Validatable {
      * @return true if valid.
      */
     override fun validate(): Boolean {
-        return validator!!.validate()
+        return validator.validate()
     }
 
     override fun getBackground(): Drawable? {

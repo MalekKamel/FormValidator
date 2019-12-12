@@ -1,9 +1,8 @@
 package com.sha.formvalidator.util
 
 import android.widget.EditText
-
-import com.sha.formvalidator.validator.ValueMatchValidator
 import com.sha.formvalidator.validator.Validator
+import com.sha.formvalidator.validator.ValueMatchValidator
 import com.sha.formvalidator.validator.composite.AndValidator
 import com.sha.formvalidator.validator.composite.OrValidator
 

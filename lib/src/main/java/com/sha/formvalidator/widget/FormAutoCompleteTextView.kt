@@ -2,10 +2,7 @@ package com.sha.formvalidator.widget
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.EditText
-
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
-
 import com.sha.formvalidator.Validatable
 import com.sha.formvalidator.validation.DefaultEditTextValidator
 import com.sha.formvalidator.validation.EditTextValidator

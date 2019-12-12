@@ -1,9 +1,7 @@
 package com.sha.formvalidator.validator.composite
 
 import com.sha.formvalidator.validator.Validator
-
-import java.util.ArrayList
-import java.util.Arrays
+import java.util.*
 
 /**
  * Abstract class for a multivalidator.
