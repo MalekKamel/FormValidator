@@ -9,7 +9,6 @@ class App : Application() {
         super.onCreate()
         TextViewValidators.customValidators = listOf(
                 // use context.getString() in production
-                NumberOneCustomValidator("Value doesn't equal 1")
-        )
+                NumberOneCustomValidator("Value doesn't equal 1"))
     }
 }
