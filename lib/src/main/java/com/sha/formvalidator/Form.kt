@@ -10,9 +10,7 @@ import android.widget.LinearLayout
 open class Form: LinearLayout {
 
     constructor(context: Context) : super(context) { setup(null) }
-
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup(attrs) }
-
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) { setup(attrs) }
 
     private fun setup(attrs: AttributeSet?) {
