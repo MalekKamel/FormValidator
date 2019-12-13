@@ -19,11 +19,9 @@ class PrefixAndRangeValidatorActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_field)
-
         setupUi()
 
         //Interesting stuff starts here
-
         val fdt = findViewById<FormEditText>(R.id.et)
 
         fdt.addValidator(

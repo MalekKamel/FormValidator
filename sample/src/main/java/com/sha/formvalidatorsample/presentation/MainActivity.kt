@@ -18,8 +18,6 @@ class MainActivity : Activity() {
         findViewById<View>(R.id.btnRxForm).setOnClickListener { show(RxFormActivity::class.java) }
     }
 
-    private fun show(clazz: Class<*>) {
-        startActivity(Intent(this, clazz))
-    }
+    private fun show(clazz: Class<*>) = startActivity(Intent(this, clazz))
 
 }

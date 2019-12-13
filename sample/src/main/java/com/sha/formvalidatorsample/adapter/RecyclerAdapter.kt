@@ -27,18 +27,12 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.Vh>() {
                 .inflate(R.layout.item_example, parent, false))
     }
 
-    override fun onBindViewHolder(holder: Vh, position: Int) {
-        holder.onBind(items[position])
-    }
+    override fun onBindViewHolder(holder: Vh, position: Int) = holder.onBind(items[position])
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount() = items.size
 
     companion object {
-
         private val items = FieldInfo.items
     }
-
 
 }

@@ -40,13 +40,12 @@ class FieldsActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.prefs -> {
                 startActivity(Intent(this, SettingsActivity::class.java))
-                return true
+                true
             }
-
-            else -> return false
+            else -> false
         }
     }
 

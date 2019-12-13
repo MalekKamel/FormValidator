@@ -43,9 +43,9 @@ class FieldActivity : Activity() {
     }
 
     companion object {
-        private val EXTRA_LAYOUT_RES = "EXTRA_LAYOUT_RES"
-        private val EXTRA_LAYOUT_EXPL_STR_RES = "EXTRA_LAYOUT_EXPL_STR_RES"
-        private val EXTRA_TITLE = "EXTRA_TITLE"
+        private const val EXTRA_LAYOUT_RES = "EXTRA_LAYOUT_RES"
+        private const val EXTRA_LAYOUT_EXPL_STR_RES = "EXTRA_LAYOUT_EXPL_STR_RES"
+        private const val EXTRA_TITLE = "EXTRA_TITLE"
 
         fun buildIntent(
                 ctx: Context,

@@ -11,8 +11,6 @@ class NumberOneCustomValidator(errorMessage: String) : CustomValidator(errorMess
         return context.getString(R.string.custom_validator_number_one)
     }
 
-    override fun isValid(tv: TextView): Boolean {
-        return tv.text.toString() == "1"
-    }
+    override fun isValid(tv: TextView) = tv.text.toString() == "1"
 
 }

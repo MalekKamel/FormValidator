@@ -10,7 +10,7 @@ import java.util.Arrays
 
 internal object FieldInfo {
 
-    var items = Arrays.asList(
+    var items = listOf(
             FieldItem(
                     "Alpha With TextInputLayout",
                     R.layout.field_alpha_textinputlayout,

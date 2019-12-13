@@ -30,7 +30,7 @@ class SettingsActivity : PreferenceActivity() {
      * {@inheritDoc}
      */
     override fun onIsMultiPane(): Boolean {
-        return SettingsActivity.isXLargeTablet(this) && !SettingsActivity.isSimplePreferences(this)
+        return isXLargeTablet(this) && !isSimplePreferences(this)
     }
 
     /**
@@ -38,10 +38,8 @@ class SettingsActivity : PreferenceActivity() {
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private fun setupActionBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            // Show the Up button in the action bar.
-            actionBar!!.setDisplayHomeAsUpEnabled(true)
-        }
+        // Show the Up button in the action bar.
+        actionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
     /**
@@ -49,7 +47,7 @@ class SettingsActivity : PreferenceActivity() {
      * simplified, single-pane UI should be shown.
      */
     private fun setupSimplePreferencesScreen() {
-        if (!SettingsActivity.isSimplePreferences(this)) {
+        if (!isSimplePreferences(this)) {
             return
         }
 
@@ -62,10 +60,10 @@ class SettingsActivity : PreferenceActivity() {
         val fakeHeader = PreferenceCategory(this)
         addPreferencesFromResource(R.xml.pref_contact)
 
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(SettingsActivity.PREF_KEY_FULL_NAME))
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(SettingsActivity.PREF_KEY_ADDRESS))
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(SettingsActivity.PREF_KEY_PHONE_NUMBER))
-        SettingsActivity.bindPreferenceSummaryToValue(findPreference(SettingsActivity.PREF_KEY_EMAIL))
+        bindPreferenceSummaryToValue(findPreference(PREF_KEY_FULL_NAME))
+        bindPreferenceSummaryToValue(findPreference(PREF_KEY_ADDRESS))
+        bindPreferenceSummaryToValue(findPreference(PREF_KEY_PHONE_NUMBER))
+        bindPreferenceSummaryToValue(findPreference(PREF_KEY_EMAIL))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,10 +90,10 @@ class SettingsActivity : PreferenceActivity() {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            SettingsActivity.bindPreferenceSummaryToValue(findPreference(SettingsActivity.PREF_KEY_FULL_NAME))
-            SettingsActivity.bindPreferenceSummaryToValue(findPreference(SettingsActivity.PREF_KEY_ADDRESS))
-            SettingsActivity.bindPreferenceSummaryToValue(findPreference(SettingsActivity.PREF_KEY_PHONE_NUMBER))
-            SettingsActivity.bindPreferenceSummaryToValue(findPreference(SettingsActivity.PREF_KEY_EMAIL))
+            bindPreferenceSummaryToValue(findPreference(PREF_KEY_FULL_NAME))
+            bindPreferenceSummaryToValue(findPreference(PREF_KEY_ADDRESS))
+            bindPreferenceSummaryToValue(findPreference(PREF_KEY_PHONE_NUMBER))
+            bindPreferenceSummaryToValue(findPreference(PREF_KEY_EMAIL))
 
         }
     }
@@ -110,11 +108,11 @@ class SettingsActivity : PreferenceActivity() {
          */
         private fun bindPreferenceSummaryToValue(preference: Preference) {
             // Set the listener to watch for value changes.
-            preference.onPreferenceChangeListener = SettingsActivity.sBindPreferenceSummaryToValueListener
+            preference.onPreferenceChangeListener = sBindPreferenceSummaryToValueListener
 
             // Trigger the listener immediately with the preference's current value.
             val newValue = PreferenceManager.getDefaultSharedPreferences(preference.context).getString(preference.key, "")
-            SettingsActivity.sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, newValue)
+            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, newValue)
         }
 
         /**
@@ -124,8 +122,8 @@ class SettingsActivity : PreferenceActivity() {
          * shown.
          */
         private fun isSimplePreferences(context: Context): Boolean {
-            return (SettingsActivity.ALWAYS_SIMPLE_PREFS || Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB
-                    || !SettingsActivity.isXLargeTablet(context))
+            return (ALWAYS_SIMPLE_PREFS || Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB
+                    || !isXLargeTablet(context))
         }
 
         /**
