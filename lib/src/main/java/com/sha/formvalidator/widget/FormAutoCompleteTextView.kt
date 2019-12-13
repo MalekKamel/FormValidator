@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import com.sha.formvalidator.Validatable
-import com.sha.formvalidator.validation.DefaultEditTextValidator
-import com.sha.formvalidator.validation.EditTextValidator
+import com.sha.formvalidator.textview.DefaultEditTextValidator
+import com.sha.formvalidator.textview.EditTextValidator
 
 /**
  * AutoCompleteTextView Extension with validation.
@@ -44,7 +44,7 @@ open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable
      *
      * @param validator object
      */
-    fun addValidator(validator: com.sha.formvalidator.validator.Validator) {
+    fun addValidator(validator: com.sha.formvalidator.textview.validator.Validator) {
         this.validator.addValidator(validator)
     }
 

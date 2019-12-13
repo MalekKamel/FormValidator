@@ -8,9 +8,9 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 
-import com.sha.formvalidator.util.ValidatorFactory
-import com.sha.formvalidator.validator.CreditCardValidator
-import com.sha.formvalidator.validator.pattern.EmailValidator
+import com.sha.formvalidator.textview.ValidatorFactory
+import com.sha.formvalidator.textview.validator.CreditCardValidator
+import com.sha.formvalidator.textview.validator.pattern.EmailValidator
 import com.sha.formvalidator.widget.FormEditText
 import com.sha.formvalidatorsample.R
 
@@ -35,8 +35,8 @@ class EmailOrCreditCardActivity : Activity() {
         fdt.addValidator(
                 ValidatorFactory.anyValid(
                         "This is neither a creditcard or an email",
-                        CreditCardValidator(null!!), // we specify null as the message string cause the Or validator will use his own message
-                        EmailValidator(null!!) // same here for null
+                        CreditCardValidator(),
+                        EmailValidator()
                 )
         )
     }

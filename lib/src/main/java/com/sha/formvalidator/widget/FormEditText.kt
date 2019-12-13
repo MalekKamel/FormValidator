@@ -5,9 +5,9 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import com.sha.formvalidator.Validatable
-import com.sha.formvalidator.validation.DefaultEditTextValidator
-import com.sha.formvalidator.validation.EditTextValidator
-import com.sha.formvalidator.validator.Validator
+import com.sha.formvalidator.textview.DefaultEditTextValidator
+import com.sha.formvalidator.textview.EditTextValidator
+import com.sha.formvalidator.textview.validator.Validator
 
 /**
  * EditText Extension to be used in order to create forms in android.

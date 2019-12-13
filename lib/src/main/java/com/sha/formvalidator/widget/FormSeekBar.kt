@@ -8,7 +8,7 @@ import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.core.content.ContextCompat
 import com.sha.formvalidator.R
 import com.sha.formvalidator.Validatable
-import com.sha.formvalidator.validation.RequiredValidation
+import com.sha.formvalidator.model.RequiredValidation
 
 open class FormSeekBar: AppCompatSeekBar, Validatable {
     private var validation: RequiredValidation = RequiredValidation.REQUIRED

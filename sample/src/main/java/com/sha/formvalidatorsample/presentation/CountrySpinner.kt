@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.core.content.ContextCompat
 import com.sha.formvalidator.Validatable
-import com.sha.formvalidator.validation.RequiredValidation
+import com.sha.formvalidator.model.RequiredValidation
 import com.sha.formvalidatorsample.R
 
 /**

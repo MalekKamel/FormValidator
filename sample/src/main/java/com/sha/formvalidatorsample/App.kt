@@ -2,7 +2,7 @@ package com.sha.formvalidatorsample
 
 import android.app.Application
 
-import com.sha.formvalidator.util.Validators
+import com.sha.formvalidator.textview.Validators
 import com.sha.formvalidatorsample.validator.NumberOneCustomValidator
 
 import java.util.Arrays

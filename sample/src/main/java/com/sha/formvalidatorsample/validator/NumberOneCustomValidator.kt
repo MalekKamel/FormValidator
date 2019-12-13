@@ -3,7 +3,7 @@ package com.sha.formvalidatorsample.validator
 import android.content.Context
 import android.widget.EditText
 
-import com.sha.formvalidator.validator.CustomValidator
+import com.sha.formvalidator.textview.validator.CustomValidator
 import com.sha.formvalidatorsample.R
 
 class NumberOneCustomValidator(errorMessage: String) : CustomValidator(errorMessage) {

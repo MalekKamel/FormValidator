@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatCheckBox
 import com.sha.formvalidator.R
 import com.sha.formvalidator.Validatable
-import com.sha.formvalidator.validation.CheckedValidation
+import com.sha.formvalidator.model.CheckedValidation
 
 open class FormCheckBox: AppCompatCheckBox, Validatable {
     private var validation: CheckedValidation = CheckedValidation.CHECKED

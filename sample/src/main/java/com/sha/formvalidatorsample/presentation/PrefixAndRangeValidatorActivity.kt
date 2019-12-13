@@ -8,9 +8,9 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 
-import com.sha.formvalidator.util.ValidatorFactory
-import com.sha.formvalidator.validator.PrefixValidator
-import com.sha.formvalidator.validator.RangeValidator
+import com.sha.formvalidator.textview.ValidatorFactory
+import com.sha.formvalidator.textview.validator.PrefixValidator
+import com.sha.formvalidator.textview.validator.RangeValidator
 import com.sha.formvalidator.widget.FormEditText
 import com.sha.formvalidatorsample.R
 

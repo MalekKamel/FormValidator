@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatToggleButton
 import com.sha.formvalidator.R
 import com.sha.formvalidator.Validatable
-import com.sha.formvalidator.validation.OnOffValidation
+import com.sha.formvalidator.model.OnOffValidation
 
 open class FormToggleButton: AppCompatToggleButton, Validatable {
     private var validation: OnOffValidation = OnOffValidation.ON

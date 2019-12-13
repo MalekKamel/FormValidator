@@ -26,7 +26,7 @@ open class Form: LinearLayout {
             val child = viewGroup.getChildAt(i)
             // the view group may be Validatable, if it's the case, we shouldn't
             // loop over its children
-            if(child !is Validatable && child is ViewGroup){
+            if(child !is Validatable && child is ViewGroup) {
                 // loop recursively to get all children
                 children += formChildren(child)
                 continue

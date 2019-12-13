@@ -10,8 +10,8 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.TextView.OnEditorActionListener
-import com.sha.formvalidator.validation.DefaultEditTextValidator
-import com.sha.formvalidator.validation.EditTextValidator
+import com.sha.formvalidator.textview.DefaultEditTextValidator
+import com.sha.formvalidator.textview.EditTextValidator
 
 /**
  * A validating [EditTextPreference] validation is performed when the OK

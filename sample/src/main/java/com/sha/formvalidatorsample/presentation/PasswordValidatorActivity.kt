@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 
-import com.sha.formvalidator.util.ValidatorFactory
+import com.sha.formvalidator.textview.ValidatorFactory
 import com.sha.formvalidator.widget.FormEditText
 import com.sha.formvalidatorsample.R
 
