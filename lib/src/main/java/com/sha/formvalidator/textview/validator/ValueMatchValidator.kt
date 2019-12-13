@@ -10,7 +10,5 @@ import android.widget.TextView
 class ValueMatchValidator(errorMessage: String, vararg ets: EditText) : Validator(errorMessage) {
     private val ets: List<EditText> = listOf(*ets)
 
-    override fun isValid(tv: TextView): Boolean {
-        return ets.all { it.text.toString() == tv.text.toString() }
-    }
+    override fun isValid(tv: TextView): Boolean = ets.all { it.text.toString() == tv.text.toString() }
 }

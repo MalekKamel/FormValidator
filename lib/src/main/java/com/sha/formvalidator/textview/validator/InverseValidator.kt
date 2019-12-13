@@ -7,18 +7,11 @@ import android.widget.TextView
  *
  */
 class InverseValidator : Validator {
-    private var v: Validator? = null
+    private var v: Validator
 
-    constructor(validator: Validator) : super("") {
-        this.v = validator
-    }
+    constructor(validator: Validator) : super("") { this.v = validator }
+    constructor(errorMessage: String, validator: Validator) : super(errorMessage) { this.v = validator }
 
-    constructor(errorMessage: String, validator: Validator) : super(errorMessage) {
-        this.v = validator
-    }
-
-    override fun isValid(tv: TextView): Boolean {
-        return !v!!.isValid(tv)
-    }
+    override fun isValid(tv: TextView): Boolean = !v.isValid(tv)
 
 }

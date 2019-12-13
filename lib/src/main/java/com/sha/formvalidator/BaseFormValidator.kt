@@ -1,7 +1,6 @@
 package com.sha.formvalidator
 
 open class BaseFormValidator<T : Validatable> {
-
     private var fields: List<T> = emptyList()
     val isValid: Boolean
         get() {
@@ -10,14 +9,9 @@ open class BaseFormValidator<T : Validatable> {
             return isValid
         }
 
-    constructor(fields: List<T>) {
-        this.fields = fields
-    }
-
+    constructor(fields: List<T>) { this.fields = fields }
     @SafeVarargs
-    constructor(vararg fields: T) {
-        this.fields = fields.asList()
-    }
+    constructor(vararg fields: T) { this.fields = fields.asList() }
 
 
 }

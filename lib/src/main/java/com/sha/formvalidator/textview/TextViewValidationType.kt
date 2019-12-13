@@ -19,7 +19,6 @@ enum class TextViewValidationType constructor(var value: Int) {
     FLOAT_NUMERIC_RANGE(15),
     NOT_DETECTABLE(2000);
 
-
     companion object {
         fun fromValue(value: Int): TextViewValidationType {
            return values().firstOrNull { it.value == value } ?: NOT_DETECTABLE

@@ -16,7 +16,5 @@ abstract class Validator(var errorMessage: String = "") {
      */
     abstract fun isValid(tv: TextView): Boolean
 
-    fun hasErrorMessage(): Boolean {
-        return errorMessage.isNotEmpty()
-    }
+    fun hasErrorMessage(): Boolean = errorMessage.isNotEmpty()
 }

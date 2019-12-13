@@ -8,14 +8,11 @@ import io.reactivex.processors.PublishProcessor
 
 class RxFormValidator<T : Validatable> : BaseFormValidator<T> {
 
-    constructor(fields: List<T>) : super(fields) {}
-
+    constructor(fields: List<T>) : super(fields)
     @SafeVarargs
     constructor(vararg fields: T) : super(*fields)
 
-    fun validate(): Single<Boolean> {
-        return Single.just(isValid)
-    }
+    fun validate() = Single.just(isValid)
 
     fun validateOnClick(view: View): Flowable<Boolean> {
         val pp = PublishProcessor.create<Boolean>()

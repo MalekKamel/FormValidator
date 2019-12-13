@@ -43,8 +43,6 @@ open class Form: LinearLayout {
         view.setOnClickListener { validationCallback(validate()) }
     }
 
-    open fun rxValidate(): Single<Boolean> {
-       return RxFormValidator(formChildren(this)).validate()
-    }
+    open fun single(): Single<Boolean> = RxFormValidator(formChildren(this)).validate()
 
 }

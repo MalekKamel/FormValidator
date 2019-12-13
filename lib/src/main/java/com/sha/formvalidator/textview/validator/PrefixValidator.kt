@@ -8,7 +8,5 @@ import android.widget.TextView
  */
 class PrefixValidator(private val prefix: String, errorMessage: String) : Validator(errorMessage) {
 
-    override fun isValid(tv: TextView): Boolean {
-        return tv.text.toString().startsWith(prefix)
-    }
+    override fun isValid(tv: TextView): Boolean = tv.text.toString().startsWith(prefix)
 }

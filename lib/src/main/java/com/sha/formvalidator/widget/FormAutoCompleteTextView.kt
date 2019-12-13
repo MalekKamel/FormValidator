@@ -14,26 +14,18 @@ import com.sha.formvalidator.textview.TextViewValidator
 open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable {
 
     lateinit var validator: TextViewValidator
-
-    constructor(context: Context) : super(context) {
-        setupDefaultValidator(null, context)
-    }
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        setupDefaultValidator(attrs, context)
-    }
-
+    constructor(context: Context) : super(context) { setupDefaultValidator(null) }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setupDefaultValidator(attrs) }
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        setupDefaultValidator(attrs, context)
+        setupDefaultValidator(attrs)
     }
 
-    private fun setupDefaultValidator(attrs: AttributeSet?, context: Context) {
+    private fun setupDefaultValidator(attrs: AttributeSet?) {
         if (attrs == null) {
             //support dynamic new FormEditText(context)
             validator = DefTextViewValidator(this, context)
             return
         }
-
         validator = DefTextViewValidator(this, attrs, context)
     }
 

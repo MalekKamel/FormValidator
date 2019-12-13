@@ -8,7 +8,5 @@ import android.widget.TextView
  */
 class SuffixValidator(private val suffix: String, errorMessage: String) : Validator(errorMessage) {
 
-    override fun isValid(tv: TextView): Boolean {
-        return tv.text.toString().endsWith(suffix)
-    }
+    override fun isValid(tv: TextView): Boolean = tv.text.toString().endsWith(suffix)
 }

@@ -8,11 +8,8 @@ import android.widget.TextView
  */
 class RequiredValidator : Validator {
 
-    constructor() : super("") {}
+    constructor() : super("")
+    constructor(errorMessage: String) : super(errorMessage)
 
-    constructor(errorMessage: String) : super(errorMessage) {}
-
-    override fun isValid(tv: TextView): Boolean {
-        return tv.text.toString().trim { it <= ' ' }.isNotEmpty()
-    }
+    override fun isValid(tv: TextView): Boolean = tv.text.toString().trim { it <= ' ' }.isNotEmpty()
 }

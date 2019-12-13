@@ -21,7 +21,6 @@ object TextViewValidatorFactory {
                     customValidator(attrInfo, context) else
                     predefinedValidator(attrInfo, context)
             }
-
             else -> predefinedValidator(attrInfo, context)
         }
 
@@ -53,45 +52,28 @@ object TextViewValidatorFactory {
     private fun predefinedValidator(attrInfo: TextViewAttrInfo, context: Context): Validator {
         return when (attrInfo.validationType) {
             TextViewValidationType.NOT_EMPTY -> DummyValidator()
-
             TextViewValidationType.ALPHA -> AlphaValidator(context.getString(R.string.error_only_standard_letters_are_allowed))
-
             TextViewValidationType.ALPHA_NUMERIC -> AlphaNumericValidator(context.getString(R.string.error_this_field_cannot_contain_special_character))
-
             TextViewValidationType.NUMERIC -> NumericValidator(context.getString(R.string.error_only_numeric_digits_allowed))
+            TextViewValidationType.REGEX -> PatternValidator(attrInfo.errorMessage, attrInfo.regex)
+            TextViewValidationType.CREDIT_CARD -> CreditCardValidator(context.getString(R.string.error_credit_card_number_not_valid))
+            TextViewValidationType.EMAIL -> EmailValidator(context.getString(R.string.error_email_address_not_valid))
+            TextViewValidationType.PHONE -> PhoneValidator(context.getString(R.string.error_phone_not_valid))
+            TextViewValidationType.DOMAIN_NAME -> DomainValidator(context.getString(R.string.error_domain_not_valid))
+            TextViewValidationType.IP_ADDRESS -> IpAddressValidator(context.getString(R.string.error_ip_not_valid))
+            TextViewValidationType.WEB_URL -> WebUrlValidator(context.getString(R.string.error_url_not_valid))
+            TextViewValidationType.PERSON_NAME -> PersonNameValidator(context.getString(R.string.error_not_valid_person_name))
+            TextViewValidationType.PERSON_FULL_NAME -> PersonFullNameValidator(context.getString(R.string.error_not_valid_person_full_name))
+            TextViewValidationType.DATE -> DateValidator(context.getString(R.string.error_date_not_valid), attrInfo.dateFormat)
 
             TextViewValidationType.NUMERIC_RANGE -> NumericRangeValidator(
                     context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.minNumber, attrInfo.maxNumber),
                     attrInfo.minNumber.toLong(),
-                    attrInfo.maxNumber.toLong()
-            )
-
+                    attrInfo.maxNumber.toLong())
             TextViewValidationType.FLOAT_NUMERIC_RANGE -> FloatNumericRangeValidator(
                     context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.floatMinNumber, attrInfo.floatMaxNumber),
                     attrInfo.floatMinNumber.toDouble(),
-                    attrInfo.floatMaxNumber.toDouble()
-            )
-
-            TextViewValidationType.REGEX -> PatternValidator(attrInfo.errorMessage, attrInfo.regex)
-
-            TextViewValidationType.CREDIT_CARD -> CreditCardValidator(context.getString(R.string.error_credit_card_number_not_valid))
-
-            TextViewValidationType.EMAIL -> EmailValidator(context.getString(R.string.error_email_address_not_valid))
-
-            TextViewValidationType.PHONE -> PhoneValidator(context.getString(R.string.error_phone_not_valid))
-
-            TextViewValidationType.DOMAIN_NAME -> DomainValidator(context.getString(R.string.error_domain_not_valid))
-
-            TextViewValidationType.IP_ADDRESS -> IpAddressValidator(context.getString(R.string.error_ip_not_valid))
-
-            TextViewValidationType.WEB_URL -> WebUrlValidator(context.getString(R.string.error_url_not_valid))
-
-            TextViewValidationType.PERSON_NAME -> PersonNameValidator(context.getString(R.string.error_not_valid_person_name))
-
-            TextViewValidationType.PERSON_FULL_NAME -> PersonFullNameValidator(context.getString(R.string.error_not_valid_person_full_name))
-
-            TextViewValidationType.DATE -> DateValidator(context.getString(R.string.error_date_not_valid), attrInfo.dateFormat)
-
+                    attrInfo.floatMaxNumber.toDouble())
             else -> DummyValidator()
         }
     }

@@ -10,20 +10,17 @@ import android.widget.TextView
 class CreditCardValidator : Validator {
 
     constructor() : super("")
-
-    constructor(errorMessage: String = "") : super(errorMessage) {}
+    constructor(errorMessage: String = "") : super(errorMessage)
 
     override fun isValid(tv: TextView): Boolean {
-        try {
-            return validateCardNumber(tv.text.toString())
+        return try {
+            validateCardNumber(tv.text.toString())
         } catch (e: Exception) {
-            return false
+            false
         }
-
     }
 
     companion object {
-
         /**
          * Validates the credit card number using the Luhn algorithm
          *

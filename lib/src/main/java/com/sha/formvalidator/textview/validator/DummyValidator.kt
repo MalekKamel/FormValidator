@@ -7,8 +7,5 @@ import android.widget.TextView
  *
  */
 class DummyValidator : Validator("") {
-
-    override fun isValid(tv: TextView): Boolean {
-        return true
-    }
+    override fun isValid(tv: TextView): Boolean  = true
 }

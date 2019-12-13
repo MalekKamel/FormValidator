@@ -28,7 +28,6 @@ open class FormEditText : AppCompatEditText, Validatable {
             validator = DefTextViewValidator(this, context)
             return
         }
-
         validator = DefTextViewValidator(this, attrs, context)
     }
 
