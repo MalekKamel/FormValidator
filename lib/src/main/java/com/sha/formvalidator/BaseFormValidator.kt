@@ -3,7 +3,6 @@ package com.sha.formvalidator
 open class BaseFormValidator<T : Validatable> {
 
     private var fields: List<T> = emptyList()
-
     val isValid: Boolean
         get() {
             var isValid = true

@@ -23,94 +23,30 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="5dp" />
+            android:layout_height="15dp" />
 
-        <LinearLayout
+        <com.sha.formvalidator.widget.FormEditText
+            android:id="@+id/etPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:text="@string/description_allow_empty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <com.sha.formvalidator.widget.FormEditText
-                android:id="@+id/etAllowEmpty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_phone"
-                android:inputType="phone"
-                app:required="false"
-                app:validationType="phone"
-                android:layout_marginTop="20dp"
-                />
-
-        </LinearLayout>
+            android:hint="@string/required"
+            android:inputType="phone"
+            app:validationType="required"
+            />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="5dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:text="@string/description_alpha"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <com.sha.formvalidator.widget.FormEditText
-                android:id="@+id/etAlpha"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:validationType="alpha"
-                android:layout_marginTop="20dp"
-                />
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="5dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:text="@string/description_phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <com.sha.formvalidator.widget.FormEditText
-                android:id="@+id/etPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_phone"
-                android:inputType="phone"
-                app:validationType="phone"
-                android:layout_marginTop="20dp"
-                />
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="5dp" />
+            android:layout_height="15dp" />
 
         <com.sha.formvalidator.widget.FormCheckBox
             android:text="I accept terms &amp; conditions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:checkBoxValidation="unchecked"/>
+            app:checkBoxValidation="checked"/>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="5dp" />
+            android:layout_height="15dp" />
 
         <com.sha.formvalidator.widget.FormToggleButton
             android:layout_width="match_parent"
@@ -119,17 +55,18 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="5dp" />
+            android:layout_height="15dp" />
 
         <com.sha.formvalidator.widget.FormSwitch
             android:text="Switch"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
             app:switchValidation="on"/>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="5dp" />
+            android:layout_height="15dp" />
 
         <com.sha.formvalidator.widget.FormRatingBar
             android:layout_width="wrap_content"
@@ -142,7 +79,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="5dp" />
+            android:layout_height="15dp" />
 
         <com.sha.formvalidator.widget.FormSeekBar
             android:layout_width="match_parent"
@@ -151,33 +88,11 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="5dp" />
-
-        <Button
-            android:id="@+id/btnValidateOnClick"
-            android:text="Validate On Click"
-            android:textAllCaps="false"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="5dp" />
-
-        <Button
-            android:id="@+id/btnJustCheck"
-            android:text="Just Check"
-            android:textAllCaps="false"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="5dp" />
+            android:layout_height="15dp" />
 
         <Button
             android:id="@+id/btnValidateFormLayout"
-            android:text="Validate Form Layout"
+            android:text="Validate Form"
             android:textAllCaps="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
