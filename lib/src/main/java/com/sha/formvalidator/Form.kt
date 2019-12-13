@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import io.reactivex.Single
 
 open class Form: LinearLayout {
 
@@ -40,6 +41,10 @@ open class Form: LinearLayout {
 
     open fun validateOnClick(view: View, validationCallback: (Boolean) -> Unit) {
         view.setOnClickListener { validationCallback(validate()) }
+    }
+
+    open fun rxValidate(): Single<Boolean> {
+       return RxFormValidator(formChildren(this)).validate()
     }
 
 }
