@@ -1,7 +1,6 @@
 package com.sha.formvalidator.textview.validator.composite
 
-import android.widget.EditText
-
+import android.widget.TextView
 import com.sha.formvalidator.textview.validator.Validator
 
 /**
@@ -15,9 +14,9 @@ class AndValidator : CompositeValidator {
 
     constructor() : super("")
 
-    override fun isValid(et: EditText): Boolean {
+    override fun isValid(tv: TextView): Boolean {
         for (v in validators) {
-            if (!v.isValid(et)) {
+            if (!v.isValid(tv)) {
                 this.errorMessage = v.errorMessage
                 return false // Remember :) We're acting like an || operator.
             }

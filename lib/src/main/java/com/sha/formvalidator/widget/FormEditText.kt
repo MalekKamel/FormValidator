@@ -17,9 +17,7 @@ open class FormEditText : AppCompatEditText, Validatable {
     lateinit var validator: TextViewValidator
 
     constructor(context: Context) : super(context) { setupDefaultValidator(null, context) }
-
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setupDefaultValidator(attrs, context) }
-
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
         setupDefaultValidator(attrs, context)
     }

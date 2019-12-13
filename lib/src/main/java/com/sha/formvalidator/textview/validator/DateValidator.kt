@@ -2,7 +2,7 @@ package com.sha.formvalidator.textview.validator
 
 import android.annotation.SuppressLint
 import android.text.TextUtils
-import android.widget.EditText
+import android.widget.TextView
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -10,33 +10,27 @@ import java.util.*
 
 
 class DateValidator(errorMessage: String, _format: String) : Validator(errorMessage) {
-    private val formats: Array<String>
-
-    init {
-
-        formats = if (!TextUtils.isEmpty(_format))
-            _format.split(";".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
-        else
-            arrayOf("DefaultDate", "DefaultTime", "DefaultDateTime")
-    }
+    private val formats: Array<String> = if (!TextUtils.isEmpty(_format))
+        _format.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+    else
+        arrayOf("DefaultDate", "DefaultTime", "DefaultDateTime")
 
     @SuppressLint("SimpleDateFormat")
-    override fun isValid(et: EditText): Boolean {
-        if (TextUtils.isEmpty(et.text))
+    override fun isValid(tv: TextView): Boolean {
+        if (TextUtils.isEmpty(tv.text))
             return true
-        val value = et.text.toString()
+        val value = tv.text.toString()
 
         for (_format in formats) {
-            val format: DateFormat
 
-            when (_format) {
-                "DefaultDate" -> format = SimpleDateFormat.getDateInstance()
+            val format: DateFormat = when (_format) {
+                "DefaultDate" -> SimpleDateFormat.getDateInstance()
 
-                "DefaultTime" -> format = SimpleDateFormat.getTimeInstance()
+                "DefaultTime" -> SimpleDateFormat.getTimeInstance()
 
-                "DefaultDateTime" -> format = SimpleDateFormat.getDateTimeInstance()
+                "DefaultDateTime" -> SimpleDateFormat.getDateTimeInstance()
 
-                else -> format = SimpleDateFormat(_format)
+                else -> SimpleDateFormat(_format)
             }
 
             val date: Date?

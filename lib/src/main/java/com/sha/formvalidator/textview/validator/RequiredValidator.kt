@@ -1,6 +1,6 @@
 package com.sha.formvalidator.textview.validator
 
-import android.widget.EditText
+import android.widget.TextView
 
 /**
  * A simple validator that validates the field only if the field is not empty.
@@ -12,7 +12,7 @@ class RequiredValidator : Validator {
 
     constructor(errorMessage: String) : super(errorMessage) {}
 
-    override fun isValid(et: EditText): Boolean {
-        return et.text.toString().trim { it <= ' ' }.isNotEmpty()
+    override fun isValid(tv: TextView): Boolean {
+        return tv.text.toString().trim { it <= ' ' }.isNotEmpty()
     }
 }

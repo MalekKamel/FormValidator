@@ -1,7 +1,7 @@
 package com.sha.formvalidator.textview.validator
 
 import android.text.TextUtils
-import android.widget.EditText
+import android.widget.TextView
 
 /**
  * A validator that returns true only if the input field contains only numbers.
@@ -9,7 +9,7 @@ import android.widget.EditText
  */
 class NumericValidator(errorMessage: String) : Validator(errorMessage) {
 
-    override fun isValid(et: EditText): Boolean {
-        return TextUtils.isDigitsOnly(et.text)
+    override fun isValid(tv: TextView): Boolean {
+        return TextUtils.isDigitsOnly(tv.text)
     }
 }

@@ -1,6 +1,6 @@
 package com.sha.formvalidator.textview.validator
 
-import android.widget.EditText
+import android.widget.TextView
 
 /**
  * It's a validator that applies the "NOT" logical operator to the validator it wraps.
@@ -17,8 +17,8 @@ class InverseValidator : Validator {
         this.v = validator
     }
 
-    override fun isValid(et: EditText): Boolean {
-        return !v!!.isValid(et)
+    override fun isValid(tv: TextView): Boolean {
+        return !v!!.isValid(tv)
     }
 
 }

@@ -1,6 +1,6 @@
 package com.sha.formvalidator.textview.validator
 
-import android.widget.EditText
+import android.widget.TextView
 
 /**
  * This is a dummy validator. It just returns true on each input.
@@ -8,7 +8,7 @@ import android.widget.EditText
  */
 class DummyValidator : Validator("") {
 
-    override fun isValid(et: EditText): Boolean {
+    override fun isValid(tv: TextView): Boolean {
         return true
     }
 }

@@ -21,23 +21,6 @@ class DefTextViewValidator : TextViewValidator {
 
     private val attrInfo = TextViewAttrInfo()
 
-    val regex: String?
-        get() = attrInfo.regex
-
-    var errorMessage: String
-        get() = attrInfo.errorMessage
-        set(errorString) {
-            attrInfo.errorMessage = errorString
-            setupValidator(editText.context)
-        }
-
-    var validationType: TextViewValidationType?
-        get() = attrInfo.validationType
-        set(validationType) {
-            attrInfo.validationType = validationType
-            setupValidator(editText.context)
-        }
-
     override val isRequired: Boolean
         get() = attrInfo.required
 
@@ -112,9 +95,7 @@ class DefTextViewValidator : TextViewValidator {
 
     override fun validate(showError: Boolean): Boolean {
         val isValid = mValidator.isValid(editText)
-
         if (!isValid && showError) showError()
-
         return isValid
     }
 
@@ -136,18 +117,5 @@ class DefTextViewValidator : TextViewValidator {
 
     private fun textInputLayout(): TextInputLayout {
         return editText.parent.parent as TextInputLayout
-    }
-
-    // >>>>>>>>>> getters & setters
-
-    fun setRegex(regex: String, context: Context) {
-        attrInfo.validationType = TextViewValidationType.REGEX
-        attrInfo.regex = regex
-        setupValidator(context)
-    }
-
-    fun setRequired(required: Boolean, context: Context) {
-        attrInfo.required = required
-        setupValidator(context)
     }
 }

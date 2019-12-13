@@ -1,6 +1,6 @@
 package com.sha.formvalidator.textview.validator
 
-import android.widget.EditText
+import android.widget.TextView
 
 /**
  * A validator that returns true only if the input field contains only numbers
@@ -9,12 +9,12 @@ import android.widget.EditText
  */
 class NumericRangeValidator(errorMessage: String, private val min: Long, private val max: Long) : Validator(errorMessage) {
 
-    override fun isValid(et: EditText): Boolean {
-        try {
-            val value = java.lang.Long.parseLong(et.text.toString())
-            return value >= min && value <= max
+    override fun isValid(tv: TextView): Boolean {
+        return try {
+            val value = java.lang.Long.parseLong(tv.text.toString())
+            value in min..max
         } catch (e: NumberFormatException) {
-            return false
+            false
         }
 
     }

@@ -1,7 +1,6 @@
 package com.sha.formvalidator.textview.validator.pattern
 
-import android.widget.EditText
-
+import android.widget.TextView
 import com.sha.formvalidator.textview.validator.Validator
 
 import java.util.regex.Pattern
@@ -23,8 +22,8 @@ open class PatternValidator(_customErrorMessage: String, private val pattern: Pa
 
     constructor(errorMessage: String, regex: String) : this(errorMessage, Pattern.compile(regex)) {}
 
-    override fun isValid(et: EditText): Boolean {
-        return pattern.matcher(et.text).matches()
+    override fun isValid(tv: TextView): Boolean {
+        return pattern.matcher(tv.text).matches()
     }
 
 }

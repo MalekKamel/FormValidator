@@ -14,8 +14,7 @@ abstract class CompositeValidator : Validator {
     protected val validators: MutableList<Validator>
 
     constructor(message: String, vararg validators: Validator) : super(message) {
-        if (validators == null) throw NullPointerException("validators are null")
-        this.validators = ArrayList(Arrays.asList(*validators))
+        this.validators = ArrayList(listOf(*validators))
     }
 
     constructor(message: String) : super(message) {
