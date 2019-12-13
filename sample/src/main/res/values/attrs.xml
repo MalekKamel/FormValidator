@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CountrySpinner">
+        <attr name="countrySpinnerValidation">
+            <enum name="required" value="0" />
+            <enum name="notRequired" value="1" />
+        </attr>
+    </declare-styleable>
+
+</resources>

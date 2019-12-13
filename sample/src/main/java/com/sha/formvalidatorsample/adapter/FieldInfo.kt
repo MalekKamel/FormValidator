@@ -1,10 +1,10 @@
 package com.sha.formvalidatorsample.adapter
 
 import com.sha.formvalidatorsample.R
-import com.sha.formvalidatorsample.ui.AutoCompleteTextViewActivity
-import com.sha.formvalidatorsample.ui.EmailOrCreditCardActivity
-import com.sha.formvalidatorsample.ui.PasswordValidatorActivity
-import com.sha.formvalidatorsample.ui.PrefixAndRangeValidatorActivity
+import com.sha.formvalidatorsample.presentation.AutoCompleteTextViewActivity
+import com.sha.formvalidatorsample.presentation.EmailOrCreditCardActivity
+import com.sha.formvalidatorsample.presentation.PasswordValidatorActivity
+import com.sha.formvalidatorsample.presentation.PrefixAndRangeValidatorActivity
 
 import java.util.Arrays
 

@@ -3,7 +3,6 @@ package com.sha.formvalidator
 import android.view.View
 
 class FormValidator<T : Validatable> : BaseFormValidator<T> {
-
     val isValid: Boolean
         get() = isValidForm
 
@@ -15,6 +14,4 @@ class FormValidator<T : Validatable> : BaseFormValidator<T> {
     fun validateOnClick(view: View, listener: (Boolean) -> Unit) {
         view.setOnClickListener { listener(isValidForm) }
     }
-
-
 }

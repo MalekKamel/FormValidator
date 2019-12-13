@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 
-import com.sha.formvalidatorsample.ui.FieldActivity
+import com.sha.formvalidatorsample.presentation.FieldActivity
 
 class FieldItem {
     private lateinit var clazz: Class<out Activity>

@@ -8,24 +8,30 @@ import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.core.content.ContextCompat
 import com.sha.formvalidator.R
 import com.sha.formvalidator.Validatable
+import com.sha.formvalidator.validation.RequiredValidation
 
 open class FormSeekBar: AppCompatSeekBar, Validatable {
-    private lateinit var validation: RequiredValidation
+    private var validation: RequiredValidation = RequiredValidation.REQUIRED
     private var originalColor: Int = -1
 
-    constructor(context: Context) : super(context) { setup(null, context) }
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup(attrs, context) }
-
+    constructor(context: Context) : super(context) { setup(null) }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup(attrs) }
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        setup(attrs, context)
+        setup(attrs)
     }
 
-    private fun setup(attrs: AttributeSet?, context: Context) {
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.FormSeekBar)
-        validation = RequiredValidation.fromValue(typedArray.getInt(R.styleable.FormSeekBar_seekBarValidation, RequiredValidation.UNDEFINED.value))
-        typedArray.recycle()
+    private fun setup(attrs: AttributeSet?) {
         originalColor = (background as? ColorDrawable)?.color ?: Color.TRANSPARENT
+
+        // the view is added programmatically
+        if (attrs == null) return
+
+        context.obtainStyledAttributes(attrs, R.styleable.FormSeekBar).run {
+            val attr = getInt(R.styleable.FormSeekBar_seekBarValidation,
+                    RequiredValidation.REQUIRED.value)
+            recycle()
+            validation = RequiredValidation.fromValue(attr)
+        }
     }
 
     private fun isValid(): Boolean = progress > 0
@@ -42,14 +48,7 @@ open class FormSeekBar: AppCompatSeekBar, Validatable {
                 isValid
             }
 
-            RequiredValidation.NOT_REQUIRED -> {
-                setBackgroundColor(validationColor(true))
-                true
-            }
-
-            RequiredValidation.UNDEFINED -> {
-                true
-            }
+            RequiredValidation.NOT_REQUIRED -> { true }
         }
     }
 }

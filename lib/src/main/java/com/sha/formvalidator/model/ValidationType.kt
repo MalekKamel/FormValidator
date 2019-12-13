@@ -1,7 +1,5 @@
 package com.sha.formvalidator.model
 
-import com.annimon.stream.Stream
-
 enum class ValidationType constructor(var value: Int) {
     REGEX(0),
     NUMERIC(1),

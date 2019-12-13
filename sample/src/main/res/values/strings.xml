@@ -73,6 +73,7 @@
     <string name="passwords_match">Passwords Match</string>
 
     <string-array name="country_array">
+        <item>Select Country</item>
         <item>Malaysia</item>
         <item>United States</item>
         <item>Indonesia</item>

@@ -22,14 +22,8 @@ open class FormEditTextPreference : EditTextPreference {
 
     var validator: EditTextValidator? = null
 
-    constructor(context: Context) : super(context) {
-        setupDefaultValidator(null, context)
-    }
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        setupDefaultValidator(attrs, context)
-    }
-
+    constructor(context: Context) : super(context) { setupDefaultValidator(null, context) }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setupDefaultValidator(attrs, context) }
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
         setupDefaultValidator(attrs, context)
     }
@@ -56,15 +50,13 @@ open class FormEditTextPreference : EditTextPreference {
         // been created for an error message)
         var padding = Integer.MIN_VALUE
         try {
-            padding = (editText.parent as LinearLayout)
-                    .paddingBottom
+            padding = (editText.parent as LinearLayout).paddingBottom
         } catch (e: Exception) {
             // some exception thrown. Unable to do increase space for error
             // message
         }
 
         val originalBottomPadding = padding
-
         val b = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
 
         // attach our validating on click listener
@@ -98,9 +90,7 @@ open class FormEditTextPreference : EditTextPreference {
 
         if (validator!!.validate()) {
             // Dismiss once everything is OK.
-
             dialog.dismiss()
-
             onClick(dialog, AlertDialog.BUTTON_POSITIVE)
 
             // reset padding - for when dialog is used again
@@ -108,15 +98,14 @@ open class FormEditTextPreference : EditTextPreference {
                 val parentLayout = editText
                         .parent as LinearLayout
 
-                if (originalBottomPadding == parentLayout
-                                .paddingBottom) {
-                    parentLayout.setPadding(parentLayout.paddingLeft,
+                if (originalBottomPadding == parentLayout.paddingBottom) {
+                    parentLayout.setPadding(
+                            parentLayout.paddingLeft,
                             parentLayout.paddingTop,
                             parentLayout.paddingRight,
                             originalBottomPadding)
                 }
             }
-
             return
         }
 
@@ -126,13 +115,11 @@ open class FormEditTextPreference : EditTextPreference {
                     .parent as LinearLayout
 
             if (originalBottomPadding == parentLayout.paddingBottom) {
-                parentLayout
-                        .setPadding(
+                parentLayout.setPadding(
                                 parentLayout.paddingLeft,
                                 parentLayout.paddingTop,
                                 parentLayout.paddingRight,
-                                (parentLayout.paddingBottom + editText
-                                        .height * 1.05).toInt())
+                                (parentLayout.paddingBottom + editText.height * 1.05).toInt())
             }
         }
 
