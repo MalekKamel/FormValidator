@@ -7,25 +7,19 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 
 
-class Form: LinearLayout {
+open class Form: LinearLayout {
 
-    constructor(context: Context) : super(context) {
-        setup(null, context)
-    }
+    constructor(context: Context) : super(context) { setup(null) }
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        setup(attrs, context)
-    }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup(attrs) }
 
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        setup(attrs, context)
-    }
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) { setup(attrs) }
 
-    private fun setup(attrs: AttributeSet?, context: Context) {
+    private fun setup(attrs: AttributeSet?) {
 
     }
 
-    private fun formChildren(viewGroup: ViewGroup): List<Validatable> {
+    open fun formChildren(viewGroup: ViewGroup): List<Validatable> {
         val children: MutableList<Validatable> = mutableListOf()
 
         for (i in 0 until viewGroup.childCount) {
@@ -43,13 +37,13 @@ class Form: LinearLayout {
         return children
     }
 
-    fun validate(): Boolean {
+    open fun validate(): Boolean {
         var isValid = true
         formChildren(this).forEach { isValid = it.validate() && isValid }
         return isValid
     }
 
-    fun validateOnClick(view: View, validationCallback: (Boolean) -> Unit) {
+   open fun validateOnClick(view: View, validationCallback: (Boolean) -> Unit) {
         view.setOnClickListener { validationCallback(validate()) }
     }
 
