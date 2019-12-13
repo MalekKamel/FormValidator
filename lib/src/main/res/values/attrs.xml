@@ -39,57 +39,36 @@
 
     <declare-styleable name="FormCheckBox">
         <attr name="checkBoxValidation">
-            <enum name="required" value="true" />
-            <enum name="notRequired" value="false" />
-        </attr>
-    </declare-styleable>
-
-    <declare-styleable name="FormDatePicker">
-        <attr name="datePickerValidation">
-            <enum name="required" value="true" />
-            <enum name="notRequired" value="false" />
-        </attr>
-    </declare-styleable>
-
-    <declare-styleable name="FormRatingBar">
-        <attr name="ratingBarValidation">
-            <enum name="required" value="true" />
-            <enum name="notRequired" value="false" />
-        </attr>
-    </declare-styleable>
-
-    <declare-styleable name="FormSeekBar">
-        <attr name="seekBarValidation">
-            <enum name="required" value="true" />
-            <enum name="notRequired" value="false" />
-        </attr>
-    </declare-styleable>
-
-    <declare-styleable name="FormSpinner">
-        <attr name="spinnerValidation">
-            <enum name="required" value="true" />
-            <enum name="notRequired" value="false" />
+            <enum name="checked" value="0" />
+            <enum name="unchecked" value="1" />
         </attr>
     </declare-styleable>
 
     <declare-styleable name="FormSwitch">
         <attr name="switchValidation">
-            <enum name="required" value="true" />
-            <enum name="notRequired" value="false" />
-        </attr>
-    </declare-styleable>
-
-    <declare-styleable name="FormTimePicker">
-        <attr name="timePickerValidation">
-            <enum name="required" value="true" />
-            <enum name="notRequired" value="false" />
+            <enum name="on" value="0" />
+            <enum name="off" value="1" />
         </attr>
     </declare-styleable>
 
     <declare-styleable name="FormToggleButton">
         <attr name="toggleButtonValidation">
-            <enum name="required" value="true" />
-            <enum name="notRequired" value="false" />
+            <enum name="on" value="0" />
+            <enum name="off" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="FormRatingBar">
+        <attr name="ratingBarValidation">
+            <enum name="required" value="0" />
+            <enum name="notRequired" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="FormSeekBar">
+        <attr name="seekBarValidation">
+            <enum name="required" value="0" />
+            <enum name="notRequired" value="1" />
         </attr>
     </declare-styleable>
 

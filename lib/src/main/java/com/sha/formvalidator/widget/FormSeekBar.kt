@@ -1,12 +1,17 @@
 package com.sha.formvalidator.widget
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.core.content.ContextCompat
 import com.sha.formvalidator.R
 import com.sha.formvalidator.Validatable
 
-class FormSeekBar: AppCompatSeekBar, Validatable {
+open class FormSeekBar: AppCompatSeekBar, Validatable {
+    private lateinit var validation: RequiredValidation
+    private var originalColor: Int = -1
 
     constructor(context: Context) : super(context) { setup(null, context) }
 
@@ -18,12 +23,33 @@ class FormSeekBar: AppCompatSeekBar, Validatable {
 
     private fun setup(attrs: AttributeSet?, context: Context) {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.FormSeekBar)
-
+        validation = RequiredValidation.fromValue(typedArray.getInt(R.styleable.FormSeekBar_seekBarValidation, RequiredValidation.UNDEFINED.value))
         typedArray.recycle()
+        originalColor = (background as? ColorDrawable)?.color ?: Color.TRANSPARENT
+    }
+
+    private fun isValid(): Boolean = progress > 0
+
+    private fun validationColor(isValid: Boolean): Int {
+        return if(isValid) originalColor else ContextCompat.getColor(context, R.color.red_light)
     }
 
     override fun validate(): Boolean {
-        return true
-    }
+        return when(validation) {
+            RequiredValidation.REQUIRED -> {
+                val isValid = isValid()
+                setBackgroundColor(validationColor(isValid))
+                isValid
+            }
 
+            RequiredValidation.NOT_REQUIRED -> {
+                setBackgroundColor(validationColor(true))
+                true
+            }
+
+            RequiredValidation.UNDEFINED -> {
+                true
+            }
+        }
+    }
 }

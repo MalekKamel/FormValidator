@@ -72,5 +72,15 @@
     <string name="password_description">Password must match.</string>
     <string name="passwords_match">Passwords Match</string>
 
+    <string-array name="country_array">
+        <item>Malaysia</item>
+        <item>United States</item>
+        <item>Indonesia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>New Zealand</item>
+        <item>India</item>
+    </string-array>
 
 </resources>

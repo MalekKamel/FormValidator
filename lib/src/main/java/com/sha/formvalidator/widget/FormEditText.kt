@@ -13,7 +13,7 @@ import com.sha.formvalidator.validator.Validator
  * EditText Extension to be used in order to create forms in android.
  *
  */
-class FormEditText : AppCompatEditText, Validatable {
+open class FormEditText : AppCompatEditText, Validatable {
     lateinit var validator: EditTextValidator
 
     constructor(context: Context) : super(context) { setupDefaultValidator(null, context) }

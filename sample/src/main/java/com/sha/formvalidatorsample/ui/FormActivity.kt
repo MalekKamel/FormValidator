@@ -4,30 +4,24 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-
 import com.sha.formvalidator.FormValidator
-import com.sha.formvalidator.widget.FormEditText
 import com.sha.formvalidatorsample.R
 import kotlinx.android.synthetic.main.activity_form.*
-import kotlinx.android.synthetic.main.activity_form.view.*
 
 class FormActivity : Activity() {
-    private lateinit var etAllowEmpty: FormEditText
-    private lateinit var etAlpha: FormEditText
-    private lateinit var etPhone: FormEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_form)
-        setupViews()
         validateOnClick()
         justCheck()
+        validateOnClickUsingFormLayout()
     }
 
-    private fun setupViews() {
-        etAllowEmpty = findViewById(R.id.etAllowEmpty)
-        etAlpha = findViewById(R.id.etAlpha)
-        etPhone = findViewById(R.id.etPhone)
+    private fun validateOnClickUsingFormLayout() {
+        form.validateOnClick(btnValidateFormLayout) {
+            toast("Validate Form layout result: $it")
+        }
     }
 
     private fun validateOnClick() {
@@ -35,8 +29,6 @@ class FormActivity : Activity() {
                 .validateOnClick(findViewById<View>(R.id.btnValidateOnClick)) {
                     toast("Validate on Click result: $it")
                 }
-
-        btnValidateFormLayout.setOnClickListener { form.validate() }
     }
 
     private fun toast(text: String) {

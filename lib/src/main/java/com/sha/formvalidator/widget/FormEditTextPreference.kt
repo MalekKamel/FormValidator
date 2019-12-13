@@ -18,7 +18,7 @@ import com.sha.formvalidator.validation.EditTextValidator
  * or AlertDialog.BUTTON_POSITIVE button is clicked. When invalid an error
  * message is displayed and the EditTextPreference is not dismissed
  */
-class FormEditTextPreference : EditTextPreference {
+open class FormEditTextPreference : EditTextPreference {
 
     var validator: EditTextValidator? = null
 

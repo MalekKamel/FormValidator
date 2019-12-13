@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -11,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="40dp"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         >
 
         <LinearLayout
@@ -39,7 +39,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="5dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,7 +63,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="5dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -89,7 +89,58 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="5dp" />
+
+        <com.sha.formvalidator.widget.FormCheckBox
+            android:text="I accept terms &amp; conditions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:checkBoxValidation="unchecked"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
+        <com.sha.formvalidator.widget.FormToggleButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:toggleButtonValidation="on"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
+        <com.sha.formvalidator.widget.FormSwitch
+            android:text="Switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:switchValidation="on"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
+        <com.sha.formvalidator.widget.FormRatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            style="?android:attr/ratingBarStyle"
+            android:stepSize="1"
+            app:ratingBarValidation="required"
+            android:layout_gravity="center"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
+        <com.sha.formvalidator.widget.FormSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:seekBarValidation="required"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
 
         <Button
             android:id="@+id/btnValidateOnClick"
@@ -100,7 +151,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="5dp" />
 
         <Button
             android:id="@+id/btnJustCheck"
@@ -109,10 +160,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="5dp" />
 
         <Button
             android:id="@+id/btnValidateFormLayout"
@@ -121,10 +171,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.sha.formvalidator.widget.FormCheckBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:checkBoxValidation="required"/>
 
     </com.sha.formvalidator.Form>
 

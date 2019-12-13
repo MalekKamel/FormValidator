@@ -6,10 +6,9 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatCheckBox
 import com.sha.formvalidator.R
 import com.sha.formvalidator.Validatable
-import java.lang.IllegalArgumentException
 
-class FormCheckBox: AppCompatCheckBox, Validatable {
-    private lateinit var validation: RequiredValidation
+open class FormCheckBox: AppCompatCheckBox, Validatable {
+    private lateinit var validation: CheckedValidation
     private var originalColor: Int = -1
 
     constructor(context: Context) : super(context) { setup(null, context) }
@@ -22,26 +21,26 @@ class FormCheckBox: AppCompatCheckBox, Validatable {
 
     private fun setup(attrs: AttributeSet?, context: Context) {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.FormCheckBox)
-        validation = RequiredValidation.fromValue(typedArray.getString(R.styleable.FormCheckBox_checkBoxValidation))
+        validation = CheckedValidation.fromValue(typedArray.getInt(R.styleable.FormCheckBox_checkBoxValidation, CheckedValidation.UNDEFINED.value))
         typedArray.recycle()
-
         originalColor = currentTextColor
     }
 
     override fun validate(): Boolean {
         return when(validation) {
-            RequiredValidation.REQUIRED -> {
+            CheckedValidation.CHECKED -> {
                 setTextColor(if(isChecked) originalColor else Color.RED)
                 isChecked
             }
 
-            RequiredValidation.NOT_REQUIRED -> {
-                setTextColor(originalColor)
-                true
+            CheckedValidation.UNCHECKED -> {
+                setTextColor(if(isChecked) Color.RED  else originalColor)
+                !isChecked
             }
 
-            RequiredValidation.NOT_DETECTABLE -> {
-                throw IllegalArgumentException("Unknown validation!")
+            CheckedValidation.UNDEFINED -> {
+                setTextColor(originalColor)
+                true
             }
         }
     }

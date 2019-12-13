@@ -11,7 +11,7 @@ import com.sha.formvalidator.validation.EditTextValidator
  * AutoCompleteTextView Extension with validation.
  *
  */
-class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable {
+open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable {
 
     lateinit var validator: EditTextValidator
 

@@ -2,6 +2,8 @@ package com.sha.formvalidator
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.MotionEvent
+import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 
@@ -40,11 +42,14 @@ class Form: LinearLayout {
         return children
     }
 
-    fun isValid(): Boolean {
+    fun validate(): Boolean {
         var isValid = true
         formChildren(this).forEach { isValid = it.validate() && isValid }
         return isValid
     }
 
-    fun validate() = isValid()
+    fun validateOnClick(view: View, validationCallback: (Boolean) -> Unit) {
+        view.setOnClickListener { validationCallback(validate()) }
+    }
+
 }
