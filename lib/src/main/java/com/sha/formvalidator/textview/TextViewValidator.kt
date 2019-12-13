@@ -7,7 +7,7 @@ import com.sha.formvalidator.textview.validator.Validator
 /**
  * Interface for encapsulating validation of an EditText control
  */
-interface EditTextValidator {
+interface TextViewValidator {
 
     val isRequired: Boolean
     /**
@@ -26,20 +26,11 @@ interface EditTextValidator {
     /**
      * Calling *validate()* will cause the EditText to go through
      * customValidators and call [.Validator.isValid]
-     * Same as [.validate] with first parameter true
-     *
-     * @return true if the validity passes false otherwise.
-     */
-    fun validate(): Boolean
-
-    /**
-     * Calling *validate()* will cause the EditText to go through
-     * customValidators and call [.Validator.isValid]
      *
      * @param showError determines if this call should show the UI error.
      * @return true if the validity passes false otherwise.
      */
-    fun validate(showError: Boolean): Boolean
+    fun validate(showError: Boolean = true): Boolean
 
     fun showError()
 

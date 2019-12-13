@@ -1,7 +1,6 @@
 package com.sha.formvalidator.textview
 
 import android.content.Context
-import android.text.TextUtils
 import android.util.AttributeSet
 import android.widget.EditText
 import com.google.android.material.textfield.TextInputLayout
@@ -11,36 +10,36 @@ import com.sha.formvalidator.textview.validator.composite.AndValidator
 import com.sha.formvalidator.textview.validator.composite.CompositeValidator
 
 /**
- * Default implementation of an [EditTextValidator]
+ * Default implementation of an [TextViewValidator]
  */
-class DefaultEditTextValidator : EditTextValidator {
+class DefTextViewValidator : TextViewValidator {
     /**
      * The custom validators set using
      */
     private lateinit var mValidator: CompositeValidator
     lateinit var editText: EditText
 
-    private val options = Options()
+    private val attrInfo = TextViewAttrInfo()
 
     val regex: String?
-        get() = options.regex
+        get() = attrInfo.regex
 
     var errorMessage: String
-        get() = options.errorMessage
+        get() = attrInfo.errorMessage
         set(errorString) {
-            options.errorMessage = errorString
+            attrInfo.errorMessage = errorString
             setupValidator(editText.context)
         }
 
-    var validationType: ValidationType?
-        get() = options.validationType
+    var validationType: TextViewValidationType?
+        get() = attrInfo.validationType
         set(validationType) {
-            options.validationType = validationType
+            attrInfo.validationType = validationType
             setupValidator(editText.context)
         }
 
     override val isRequired: Boolean
-        get() = options.required
+        get() = attrInfo.required
 
     /**
      * support dynamic new DefaultEditTextValidator() ,used for Java call
@@ -57,7 +56,7 @@ class DefaultEditTextValidator : EditTextValidator {
     }
 
     private fun setupDynamically(editText: EditText, context: Context) {
-        options.validationType = ValidationType.NOT_EMPTY
+        attrInfo.validationType = TextViewValidationType.NOT_EMPTY
         this.editText = editText
         setupValidator(context)
     }
@@ -75,26 +74,26 @@ class DefaultEditTextValidator : EditTextValidator {
     private fun setupAttrs(attrs: AttributeSet, context: Context) {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.FormEditText)
 
-        options.required = typedArray.getBoolean(R.styleable.FormEditText_required, true)
+        attrInfo.required = typedArray.getBoolean(R.styleable.FormEditText_required, true)
 
-        val validationTypeValue = typedArray.getInt(R.styleable.FormEditText_validationType, ValidationType.NOT_DETECTABLE.value)
-        options.validationType = ValidationType.fromValue(validationTypeValue)
+        val validationTypeValue = typedArray.getInt(R.styleable.FormEditText_validationType, TextViewValidationType.NOT_DETECTABLE.value)
+        attrInfo.validationType = TextViewValidationType.fromValue(validationTypeValue)
 
-        options.errorMessage = typedArray.getString(R.styleable.FormEditText_errorMessage) ?: ""
-        options.customValidationType = typedArray.getString(R.styleable.FormEditText_customValidationType) ?: ""
-        options.regex = typedArray.getString(R.styleable.FormEditText_regex) ?: ""
-        options.emptyErrorMessage = typedArray.getString(R.styleable.FormEditText_requiredErrorMessage) ?: ""
-        options.dateFormat = typedArray.getString(R.styleable.FormEditText_dateFormat) ?: ""
+        attrInfo.errorMessage = typedArray.getString(R.styleable.FormEditText_errorMessage) ?: ""
+        attrInfo.customValidationType = typedArray.getString(R.styleable.FormEditText_customValidationType) ?: ""
+        attrInfo.regex = typedArray.getString(R.styleable.FormEditText_regex) ?: ""
+        attrInfo.emptyErrorMessage = typedArray.getString(R.styleable.FormEditText_requiredErrorMessage) ?: ""
+        attrInfo.dateFormat = typedArray.getString(R.styleable.FormEditText_dateFormat) ?: ""
 
-        when (options.validationType) {
-            ValidationType.NUMERIC_RANGE -> {
-                options.minNumber = typedArray.getInt(R.styleable.FormEditText_minNumber, Integer.MIN_VALUE)
-                options.maxNumber = typedArray.getInt(R.styleable.FormEditText_maxNumber, Integer.MAX_VALUE)
+        when (attrInfo.validationType) {
+            TextViewValidationType.NUMERIC_RANGE -> {
+                attrInfo.minNumber = typedArray.getInt(R.styleable.FormEditText_minNumber, Integer.MIN_VALUE)
+                attrInfo.maxNumber = typedArray.getInt(R.styleable.FormEditText_maxNumber, Integer.MAX_VALUE)
             }
 
-            ValidationType.FLOAT_NUMERIC_RANGE -> {
-                options.floatMinNumber = typedArray.getFloat(R.styleable.FormEditText_floatMinNumber, java.lang.Float.MIN_VALUE)
-                options.floatMaxNumber = typedArray.getFloat(R.styleable.FormEditText_floatMaxNumber, java.lang.Float.MAX_VALUE)
+            TextViewValidationType.FLOAT_NUMERIC_RANGE -> {
+                attrInfo.floatMinNumber = typedArray.getFloat(R.styleable.FormEditText_floatMinNumber, java.lang.Float.MIN_VALUE)
+                attrInfo.floatMaxNumber = typedArray.getFloat(R.styleable.FormEditText_floatMaxNumber, java.lang.Float.MAX_VALUE)
             }
             else -> {}
         }
@@ -107,14 +106,8 @@ class DefaultEditTextValidator : EditTextValidator {
     }
 
     override fun setupValidator(context: Context) {
-
         mValidator = AndValidator()
-
-        addValidator(ImplicitValidatorFactory.validator(options, context))
-    }
-
-    override fun validate(): Boolean {
-        return validate(true)
+        addValidator(TextViewValidatorFactory.validator(attrInfo, context))
     }
 
     override fun validate(showError: Boolean): Boolean {
@@ -148,13 +141,13 @@ class DefaultEditTextValidator : EditTextValidator {
     // >>>>>>>>>> getters & setters
 
     fun setRegex(regex: String, context: Context) {
-        options.validationType = ValidationType.REGEX
-        options.regex = regex
+        attrInfo.validationType = TextViewValidationType.REGEX
+        attrInfo.regex = regex
         setupValidator(context)
     }
 
     fun setRequired(required: Boolean, context: Context) {
-        options.required = required
+        attrInfo.required = required
         setupValidator(context)
     }
 }

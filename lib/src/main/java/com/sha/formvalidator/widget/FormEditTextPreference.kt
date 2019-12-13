@@ -10,8 +10,8 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.TextView.OnEditorActionListener
-import com.sha.formvalidator.textview.DefaultEditTextValidator
-import com.sha.formvalidator.textview.EditTextValidator
+import com.sha.formvalidator.textview.DefTextViewValidator
+import com.sha.formvalidator.textview.TextViewValidator
 
 /**
  * A validating [EditTextPreference] validation is performed when the OK
@@ -20,7 +20,7 @@ import com.sha.formvalidator.textview.EditTextValidator
  */
 open class FormEditTextPreference : EditTextPreference {
 
-    var validator: EditTextValidator? = null
+    var validator: TextViewValidator? = null
 
     constructor(context: Context) : super(context) { setupDefaultValidator(null, context) }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setupDefaultValidator(attrs, context) }
@@ -31,11 +31,11 @@ open class FormEditTextPreference : EditTextPreference {
     private fun setupDefaultValidator(attrs: AttributeSet?, context: Context) {
         if (attrs == null) {
             //support dynamic new FormEditText(context)
-            validator = DefaultEditTextValidator(editText, context)
+            validator = DefTextViewValidator(editText, context)
             return
         }
 
-        validator = DefaultEditTextValidator(editText, attrs, context)
+        validator = DefTextViewValidator(editText, attrs, context)
     }
 
     override fun showDialog(state: Bundle) {

@@ -4,10 +4,10 @@ import android.content.Context
 import android.text.TextUtils
 import com.sha.formvalidator.R
 
-class Options {
+class TextViewAttrInfo {
     var errorMessage: String = ""
     var required = true
-    var validationType: ValidationType? = null
+    var validationType: TextViewValidationType? = null
     var customValidationType: String = ""
 
     var regex: String = ""

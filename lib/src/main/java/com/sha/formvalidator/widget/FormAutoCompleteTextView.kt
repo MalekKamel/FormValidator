@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import com.sha.formvalidator.Validatable
-import com.sha.formvalidator.textview.DefaultEditTextValidator
-import com.sha.formvalidator.textview.EditTextValidator
+import com.sha.formvalidator.textview.DefTextViewValidator
+import com.sha.formvalidator.textview.TextViewValidator
 
 /**
  * AutoCompleteTextView Extension with validation.
@@ -13,7 +13,7 @@ import com.sha.formvalidator.textview.EditTextValidator
  */
 open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable {
 
-    lateinit var validator: EditTextValidator
+    lateinit var validator: TextViewValidator
 
     constructor(context: Context) : super(context) {
         setupDefaultValidator(null, context)
@@ -30,11 +30,11 @@ open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable
     private fun setupDefaultValidator(attrs: AttributeSet?, context: Context) {
         if (attrs == null) {
             //support dynamic new FormEditText(context)
-            validator = DefaultEditTextValidator(this, context)
+            validator = DefTextViewValidator(this, context)
             return
         }
 
-        validator = DefaultEditTextValidator(this, attrs, context)
+        validator = DefTextViewValidator(this, attrs, context)
     }
 
 
