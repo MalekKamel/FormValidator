@@ -14,12 +14,12 @@ class RxFormValidator<T : Validatable> : BaseFormValidator<T> {
     constructor(vararg fields: T) : super(*fields)
 
     fun validate(): Single<Boolean> {
-        return Single.just(isValidForm)
+        return Single.just(isValid)
     }
 
     fun validateOnClick(view: View): Flowable<Boolean> {
         val pp = PublishProcessor.create<Boolean>()
-        view.setOnClickListener { pp.onNext(isValidForm) }
+        view.setOnClickListener { pp.onNext(isValid) }
         return pp
     }
 

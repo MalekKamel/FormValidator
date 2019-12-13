@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 
-
 open class Form: LinearLayout {
 
     constructor(context: Context) : super(context) { setup(null) }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup(attrs) }
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) { setup(attrs) }
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
+        setup(attrs)
+    }
 
     private fun setup(attrs: AttributeSet?) {
 
@@ -35,13 +36,9 @@ open class Form: LinearLayout {
         return children
     }
 
-    open fun validate(): Boolean {
-        var isValid = true
-        formChildren(this).forEach { isValid = it.validate() && isValid }
-        return isValid
-    }
+    open fun validate(): Boolean = FormValidator(formChildren(this)).isValid
 
-   open fun validateOnClick(view: View, validationCallback: (Boolean) -> Unit) {
+    open fun validateOnClick(view: View, validationCallback: (Boolean) -> Unit) {
         view.setOnClickListener { validationCallback(validate()) }
     }
 
