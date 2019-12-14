@@ -3,7 +3,6 @@ package com.sha.formvalidator.textview
 import android.annotation.SuppressLint
 import android.content.Context
 import android.text.TextUtils
-import com.annimon.stream.Stream
 import com.sha.formvalidator.R
 import com.sha.formvalidator.textview.validator.*
 import com.sha.formvalidator.textview.validator.pattern.*
@@ -26,26 +25,22 @@ object TextViewValidatorFactory {
 
         if (!TextUtils.isEmpty(attrInfo.errorMessage)) validator.errorMessage = attrInfo.errorMessage
 
-        // If the xml tells us that this is not a required field, we will add new InverseValidator(new RequiredValidator()).
+        // If the xml tells us that this is not a required field, we will add InverseValidator(RequiredValidator()).
         return if (attrInfo.required) ValidatorFactory.allValid(
                 RequiredValidator(attrInfo.emptyErrorMessage(context)),
-                validator
-        ) else ValidatorFactory.anyValid(
+                validator)
+        else ValidatorFactory.anyValid(
                 validator.errorMessage,
                 InverseValidator(RequiredValidator()),
-                validator
-        )
-
+                validator)
     }
 
     private fun customValidator(attrInfo: TextViewAttrInfo, context: Context): Validator {
-        val opt = Stream.of(TextViewValidators.customValidators)
-                .filter { item -> item.customValidationType(context) == attrInfo.customValidationType }
-                .findFirst()
-
-        check(opt.isPresent) { "couldn't find a custom validator for custom validation type: ${attrInfo.customValidationType}" }
-
-        return opt.get()
+        val opt = TextViewValidators.customValidators.firstOrNull {
+            it.customValidationType(context) == attrInfo.customValidationType
+        }
+        check(opt != null) { "couldn't find a custom validator for custom validation type: ${attrInfo.customValidationType}" }
+        return opt
     }
 
     @SuppressLint("StringFormatMatches")
