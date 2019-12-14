@@ -7,9 +7,5 @@ import android.util.Patterns
  * Note that if an email passes the validation with this validator it doesn't mean it's a valid email - it means it's a valid email <storng>format
  *
 </storng> */
-class EmailValidator : PatternValidator {
-
-    constructor() : super("", Patterns.EMAIL_ADDRESS) {}
-
-    constructor(errorMessage: String = "") : super(errorMessage, Patterns.EMAIL_ADDRESS) {}
+class EmailValidator(errorMessage: String = "") : PatternValidator(errorMessage, Patterns.EMAIL_ADDRESS) {
 }

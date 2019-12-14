@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.widget.EditText
 import com.google.android.material.textfield.TextInputLayout
 import com.sha.formvalidator.R
-import com.sha.formvalidator.textview.validator.Validator
+import com.sha.formvalidator.textview.validator.TextViewValidator
 import com.sha.formvalidator.textview.validator.composite.AndValidator
 import com.sha.formvalidator.textview.validator.composite.CompositeValidator
 
@@ -84,7 +84,7 @@ class DefTextViewValidator : TextViewValidator {
         typedArray.recycle()
     }
 
-    override fun addValidator(validator: Validator) {
+    override fun addValidator(validator: TextViewValidator) {
         mValidator.enqueue(validator)
     }
 

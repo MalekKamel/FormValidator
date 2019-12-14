@@ -6,8 +6,6 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import com.sha.formvalidator.Validatable
 import com.sha.formvalidator.textview.DefTextViewValidator
-import com.sha.formvalidator.textview.TextViewValidator
-import com.sha.formvalidator.textview.validator.Validator
 
 /**
  * EditText Extension to be used in order to create forms in android.
@@ -37,7 +35,7 @@ open class FormEditText : AppCompatEditText, Validatable {
      *
      * @param validator object
      */
-    fun addValidator(validator: Validator) {
+    fun addValidator(validator: com.sha.formvalidator.textview.validator.TextViewValidator) {
         this.validator.addValidator(validator)
     }
 

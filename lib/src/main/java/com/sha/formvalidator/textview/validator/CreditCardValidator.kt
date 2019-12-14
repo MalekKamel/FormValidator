@@ -7,10 +7,7 @@ import android.widget.TextView
  * This validator takes care of validating the edittext. The input will be valid only if the number is a valid credit card.
  *
  */
-class CreditCardValidator : Validator {
-
-    constructor() : super("")
-    constructor(errorMessage: String = "") : super(errorMessage)
+class CreditCardValidator(errorMessage: String = "") : TextViewValidator(errorMessage) {
 
     override fun isValid(tv: TextView): Boolean {
         return try {

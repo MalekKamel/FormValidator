@@ -7,7 +7,7 @@ import android.widget.TextView
  * and the number is within the given range.
  *
  */
-class NumericRangeValidator(errorMessage: String, private val min: Long, private val max: Long) : Validator(errorMessage) {
+class NumericRangeValidator(errorMessage: String, private val min: Long, private val max: Long) : TextViewValidator(errorMessage) {
 
     override fun isValid(tv: TextView): Boolean {
         return try {

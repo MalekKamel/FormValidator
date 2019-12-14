@@ -36,7 +36,7 @@ open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable
      *
      * @param validator object
      */
-    fun addValidator(validator: com.sha.formvalidator.textview.validator.Validator) {
+    fun addValidator(validator: com.sha.formvalidator.textview.validator.TextViewValidator) {
         this.validator.addValidator(validator)
     }
 

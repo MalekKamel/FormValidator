@@ -1,7 +1,7 @@
 package com.sha.formvalidator.textview
 
 import android.widget.EditText
-import com.sha.formvalidator.textview.validator.Validator
+import com.sha.formvalidator.textview.validator.TextViewValidator
 import com.sha.formvalidator.textview.validator.ValueMatchValidator
 import com.sha.formvalidator.textview.validator.composite.AndValidator
 import com.sha.formvalidator.textview.validator.composite.OrValidator
@@ -13,7 +13,7 @@ object ValidatorFactory {
      * @param validators objects
      * @return a [com.sha.formvalidator.validator.composite.CompositeValidator]
      */
-    fun allValid(vararg validators: Validator): Validator {
+    fun allValid(vararg validators: TextViewValidator): TextViewValidator {
         return AndValidator(*validators)
     }
 
@@ -23,7 +23,7 @@ object ValidatorFactory {
      * @param validators objects
      * @return a [com.sha.formvalidator.validator.composite.CompositeValidator]
      */
-    fun anyValid(errorMessage: String, vararg validators: Validator): Validator {
+    fun anyValid(errorMessage: String, vararg validators: TextViewValidator): TextViewValidator {
         return OrValidator(errorMessage, *validators)
     }
 
@@ -33,7 +33,7 @@ object ValidatorFactory {
      * @param ets objects
      * @return a [CompositeValidator]
      */
-    fun valueMatch(errorMessage: String, vararg ets: EditText): Validator {
+    fun valueMatch(errorMessage: String, vararg ets: EditText): TextViewValidator {
         return ValueMatchValidator(errorMessage, *ets)
     }
 
@@ -49,7 +49,7 @@ object ValidatorFactory {
             errorMessage: String,
             passwordEditText1: EditText,
             passwordEditText2: EditText
-    ): Validator {
+    ): TextViewValidator {
         return ValueMatchValidator(errorMessage, passwordEditText1, passwordEditText2)
     }
 }

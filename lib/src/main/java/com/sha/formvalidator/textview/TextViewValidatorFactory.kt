@@ -5,6 +5,7 @@ import android.content.Context
 import android.text.TextUtils
 import com.sha.formvalidator.R
 import com.sha.formvalidator.textview.validator.*
+import com.sha.formvalidator.textview.validator.TextViewValidator
 import com.sha.formvalidator.textview.validator.pattern.*
 
 object TextViewValidatorFactory {
@@ -12,7 +13,7 @@ object TextViewValidatorFactory {
     fun validator(
             attrInfo: TextViewAttrInfo,
             context: Context
-    ): Validator {
+    ): TextViewValidator {
 
         val validator = when (attrInfo.validationType) {
             TextViewValidationType.NOT_DETECTABLE -> {
@@ -35,7 +36,7 @@ object TextViewValidatorFactory {
                 validator)
     }
 
-    private fun customValidator(attrInfo: TextViewAttrInfo, context: Context): Validator {
+    private fun customValidator(attrInfo: TextViewAttrInfo, context: Context): TextViewValidator {
         val opt = TextViewValidators.customValidators.firstOrNull {
             it.customValidationType(context) == attrInfo.customValidationType
         }
@@ -44,7 +45,7 @@ object TextViewValidatorFactory {
     }
 
     @SuppressLint("StringFormatMatches")
-    private fun predefinedValidator(attrInfo: TextViewAttrInfo, context: Context): Validator {
+    private fun predefinedValidator(attrInfo: TextViewAttrInfo, context: Context): TextViewValidator {
         return when (attrInfo.validationType) {
             TextViewValidationType.NOT_EMPTY -> DummyValidator()
             TextViewValidationType.ALPHA -> AlphaValidator(context.getString(R.string.error_only_standard_letters_are_allowed))

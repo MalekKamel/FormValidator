@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class DateValidator(errorMessage: String, _format: String) : Validator(errorMessage) {
+class DateValidator(errorMessage: String, _format: String) : TextViewValidator(errorMessage) {
     private val formats: Array<String> = if (!TextUtils.isEmpty(_format))
         _format.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
     else

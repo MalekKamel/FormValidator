@@ -8,7 +8,7 @@ import android.widget.TextView
  *
  * @author Said Tahsin Dane <tasomaniac></tasomaniac>@gmail.com>
  */
-class FloatNumericRangeValidator(errorMessage: String, private val floatMin: Double, private val floatMax: Double) : Validator(errorMessage) {
+class FloatNumericRangeValidator(errorMessage: String, private val floatMin: Double, private val floatMax: Double) : TextViewValidator(errorMessage) {
     override fun isValid(tv: TextView): Boolean {
        return try { tv.text.toString().toDouble() in floatMin..floatMax }
         catch (e: NumberFormatException) { false }

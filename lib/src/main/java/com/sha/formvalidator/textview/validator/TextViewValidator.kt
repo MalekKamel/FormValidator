@@ -6,10 +6,10 @@ import android.widget.TextView
  * Validator abstract class. To be used with FormEditText
  *
  */
-abstract class Validator(var errorMessage: String = "") {
+abstract class TextViewValidator(var errorMessage: String = "") {
 
     /**
-     * Should check if the EditText is valid.
+     * Should check if the [TextView] is valid.
      *
      * @param tv the [TextView] under evaluation
      * @return true if the edittext is valid, false otherwise

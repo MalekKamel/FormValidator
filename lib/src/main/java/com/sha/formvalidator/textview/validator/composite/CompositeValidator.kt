@@ -1,6 +1,6 @@
 package com.sha.formvalidator.textview.validator.composite
 
-import com.sha.formvalidator.textview.validator.Validator
+import com.sha.formvalidator.textview.validator.TextViewValidator
 import java.util.*
 
 /**
@@ -10,18 +10,14 @@ import java.util.*
  *
  * @see OrValidator
  */
-abstract class CompositeValidator : Validator {
-    protected val validators: MutableList<Validator>
+abstract class CompositeValidator(message: String, vararg validators: TextViewValidator) : TextViewValidator(message) {
+    protected val validators: MutableList<TextViewValidator>
 
-    constructor(message: String, vararg validators: Validator) : super(message) {
+    init {
         this.validators = ArrayList(listOf(*validators))
     }
 
-    constructor(message: String) : super(message) {
-        this.validators = ArrayList()
-    }
-
-    fun enqueue(newValidator: Validator) {
+    fun enqueue(newValidator: TextViewValidator) {
         validators.add(newValidator)
     }
 

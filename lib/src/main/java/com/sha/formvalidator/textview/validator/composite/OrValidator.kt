@@ -1,7 +1,7 @@
 package com.sha.formvalidator.textview.validator.composite
 
 import android.widget.TextView
-import com.sha.formvalidator.textview.validator.Validator
+import com.sha.formvalidator.textview.validator.TextViewValidator
 
 /**
  * The or validator checks if one of passed validators is returning true.<br></br>
@@ -9,7 +9,7 @@ import com.sha.formvalidator.textview.validator.Validator
  * Note: the message that will be shown is the one passed to the Constructor
  *
  */
-class OrValidator(message: String, vararg validators: Validator) : CompositeValidator(message, *validators) {
+class OrValidator(message: String, vararg validators: TextViewValidator) : CompositeValidator(message, *validators) {
 
     override fun isValid(tv: TextView): Boolean {
         for (v in validators)
