@@ -1,7 +1,6 @@
 package com.sha.formvalidator.textview.validator
 
 import android.annotation.SuppressLint
-import android.text.TextUtils
 import android.widget.TextView
 import java.text.DateFormat
 import java.text.ParseException
@@ -10,15 +9,15 @@ import java.util.*
 
 
 class DateValidator(errorMessage: String, _format: String) : TextViewValidator(errorMessage) {
-    private val formats: Array<String> = if (!TextUtils.isEmpty(_format))
+    private val formats: Array<String> = if (_format.isNotEmpty())
         _format.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
     else
         arrayOf("DefaultDate", "DefaultTime", "DefaultDateTime")
 
     @SuppressLint("SimpleDateFormat")
     override fun isValid(tv: TextView): Boolean {
-        if (TextUtils.isEmpty(tv.text))
-            return true
+        if (tv.text.isEmpty()) return false
+
         val value = tv.text.toString()
 
         for (_format in formats) {

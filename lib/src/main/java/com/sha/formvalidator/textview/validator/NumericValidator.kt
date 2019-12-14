@@ -1,6 +1,5 @@
 package com.sha.formvalidator.textview.validator
 
-import android.text.TextUtils
 import android.widget.TextView
 
 /**
@@ -10,6 +9,26 @@ import android.widget.TextView
 class NumericValidator(errorMessage: String) : TextViewValidator(errorMessage) {
 
     override fun isValid(tv: TextView): Boolean {
-        return TextUtils.isDigitsOnly(tv.text)
+        return if(tv.text.isEmpty()) false else isDigitsOnly(tv.text)
+    }
+
+    /**
+     * This function is copied from [android.text.TextUtils]
+     * to be able to run unit test with mockito
+     */
+    private fun isDigitsOnly(str: CharSequence): Boolean {
+        val len = str.length
+        var cp: Int
+        var i = 0
+        while (i < len) {
+            cp = Character.codePointAt(str, i)
+            if (!Character.isDigit(cp)) {
+                return false
+            }
+            i += Character.charCount(cp)
+        }
+        return true
     }
 }
+
+

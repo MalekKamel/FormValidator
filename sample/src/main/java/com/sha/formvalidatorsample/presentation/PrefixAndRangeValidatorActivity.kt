@@ -10,7 +10,7 @@ import android.widget.Toast
 
 import com.sha.formvalidator.textview.ValidatorFactory
 import com.sha.formvalidator.textview.validator.PrefixValidator
-import com.sha.formvalidator.textview.validator.RangeValidator
+import com.sha.formvalidator.textview.validator.LengthRangeValidator
 import com.sha.formvalidator.widget.FormEditText
 import com.sha.formvalidatorsample.R
 
@@ -27,9 +27,7 @@ class PrefixAndRangeValidatorActivity : Activity() {
         fdt.addValidator(
                 ValidatorFactory.allValid(
                         PrefixValidator("d", "Must start with d."),
-                        RangeValidator("Must be of length 1-5.", 1, 5)
-                )
-        )
+                        LengthRangeValidator("Must be of length 1-5.", 1, 5)))
 
     }
 
