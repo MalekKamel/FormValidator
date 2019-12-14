@@ -11,7 +11,7 @@ object ValidatorFactory {
     /**
      * all validators must be valid.
      * @param validators objects
-     * @return a [com.sha.formvalidator.validator.composite.CompositeValidator]
+     * @return a [CompositeValidator]
      */
     fun allValid(vararg validators: TextViewValidator): TextViewValidator {
         return AndValidator(*validators)
@@ -21,7 +21,7 @@ object ValidatorFactory {
      * one validator MUST be valid.
      * @param errorMessage string
      * @param validators objects
-     * @return a [com.sha.formvalidator.validator.composite.CompositeValidator]
+     * @return a [CompositeValidator]
      */
     fun anyValid(errorMessage: String, vararg validators: TextViewValidator): TextViewValidator {
         return OrValidator(errorMessage, *validators)
@@ -43,7 +43,7 @@ object ValidatorFactory {
      * @param errorMessage string
      * @param passwordEditText1 object
      * @param passwordEditText2 object
-     * @return a [com.sha.formvalidator.validator.composite.CompositeValidator]
+     * @return a [CompositeValidator]
      */
     fun passwordMatch(
             errorMessage: String,

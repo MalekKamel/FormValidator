@@ -5,14 +5,16 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import com.sha.formvalidator.Validatable
-import com.sha.formvalidator.textview.DefTextViewValidator
+import com.sha.formvalidator.textview.DefTextViewValidationHandler
+import com.sha.formvalidator.textview.TextViewValidationHandler
+import com.sha.formvalidator.textview.validator.TextViewValidator
 
 /**
  * EditText Extension to be used in order to create forms in android.
  *
  */
 open class FormEditText : AppCompatEditText, Validatable {
-    lateinit var validator: TextViewValidator
+    lateinit var validationHandler: TextViewValidationHandler
 
     constructor(context: Context) : super(context) { setupDefaultValidator(null, context) }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setupDefaultValidator(attrs, context) }
@@ -23,10 +25,10 @@ open class FormEditText : AppCompatEditText, Validatable {
     private fun setupDefaultValidator(attrs: AttributeSet?, context: Context) {
         if (attrs == null) {
             //support dynamic new FormEditText(context)
-            validator = DefTextViewValidator(this, context)
+            validationHandler = DefTextViewValidationHandler(this, context)
             return
         }
-        validator = DefTextViewValidator(this, attrs, context)
+        validationHandler = DefTextViewValidationHandler(this, attrs, context)
     }
 
     /**
@@ -35,8 +37,8 @@ open class FormEditText : AppCompatEditText, Validatable {
      *
      * @param validator object
      */
-    fun addValidator(validator: com.sha.formvalidator.textview.validator.TextViewValidator) {
-        this.validator.addValidator(validator)
+    fun addValidator(validator: TextViewValidator) {
+        this.validationHandler.addValidator(validator)
     }
 
     /**
@@ -45,7 +47,7 @@ open class FormEditText : AppCompatEditText, Validatable {
      * @return true if valid.
      */
     override fun validate(): Boolean {
-        return validator.validate()
+        return validationHandler.validate()
     }
 
     override fun getBackground(): Drawable? {

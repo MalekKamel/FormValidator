@@ -12,7 +12,7 @@ import com.sha.formvalidator.textview.validator.composite.CompositeValidator
 /**
  * Default implementation of an [TextViewValidator]
  */
-class DefTextViewValidator : TextViewValidator {
+class DefTextViewValidationHandler : TextViewValidationHandler {
     /**
      * The custom validators set using
      */

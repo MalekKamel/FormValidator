@@ -7,7 +7,7 @@ import com.sha.formvalidator.textview.validator.TextViewValidator
 /**
  * Interface for encapsulating validation of an EditText control
  */
-interface TextViewValidator {
+interface TextViewValidationHandler {
 
     val isRequired: Boolean
     /**

@@ -10,8 +10,8 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.TextView.OnEditorActionListener
-import com.sha.formvalidator.textview.DefTextViewValidator
-import com.sha.formvalidator.textview.TextViewValidator
+import com.sha.formvalidator.textview.DefTextViewValidationHandler
+import com.sha.formvalidator.textview.TextViewValidationHandler
 
 /**
  * A validating [EditTextPreference] validation is performed when the OK
@@ -20,7 +20,7 @@ import com.sha.formvalidator.textview.TextViewValidator
  */
 open class FormEditTextPreference : EditTextPreference {
 
-    var validator: TextViewValidator? = null
+    var validationHandler: TextViewValidationHandler? = null
 
     constructor(context: Context) : super(context) { setupDefaultValidator(null, context) }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setupDefaultValidator(attrs, context) }
@@ -31,11 +31,11 @@ open class FormEditTextPreference : EditTextPreference {
     private fun setupDefaultValidator(attrs: AttributeSet?, context: Context) {
         if (attrs == null) {
             //support dynamic new FormEditText(context)
-            validator = DefTextViewValidator(editText, context)
+            validationHandler = DefTextViewValidationHandler(editText, context)
             return
         }
 
-        validator = DefTextViewValidator(editText, attrs, context)
+        validationHandler = DefTextViewValidationHandler(editText, attrs, context)
     }
 
     override fun showDialog(state: Bundle) {
@@ -88,7 +88,7 @@ open class FormEditTextPreference : EditTextPreference {
     private fun performValidation(dialog: AlertDialog, originalBottomPadding: Int) {
         editText.error = null
 
-        if (validator!!.validate()) {
+        if (validationHandler!!.validate()) {
             // Dismiss once everything is OK.
             dialog.dismiss()
             onClick(dialog, AlertDialog.BUTTON_POSITIVE)
