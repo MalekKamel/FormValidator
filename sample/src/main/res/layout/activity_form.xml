@@ -38,6 +38,32 @@
             android:layout_width="match_parent"
             android:layout_height="15dp" />
 
+        <com.sha.formvalidator.widget.FormEditText
+            android:id="@+id/etIgnored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ignored By Interceptor"
+            android:inputType="phone"
+            app:validationType="required"
+            />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <com.sha.formvalidator.widget.FormEditText
+            android:id="@+id/etIgnoredId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ignored By ID"
+            android:inputType="phone"
+            app:validationType="required"
+            />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
         <com.sha.formvalidator.widget.FormCheckBox
             android:text="I accept terms &amp; conditions"
             android:layout_width="match_parent"

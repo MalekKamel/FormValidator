@@ -72,4 +72,9 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="Form">
+        <attr name="validateHiddenFields" format="string" />
+    </declare-styleable>
+
+
 </resources>
