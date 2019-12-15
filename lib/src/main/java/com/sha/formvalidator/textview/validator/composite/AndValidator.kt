@@ -15,7 +15,7 @@ class AndValidator(vararg validators: TextViewValidator) : CompositeValidator(""
         anyFails?.let {
             // error message equals the first failing validator
             this.errorMessage = it.errorMessage
-            return false // Remember :) We're acting like an || operator.
+            return false // Remember :) We're acting like an && operator.
         }
         // true if no one fails
         return true
