@@ -5,14 +5,14 @@ import android.util.AttributeSet
 import android.widget.EditText
 import com.google.android.material.textfield.TextInputLayout
 import com.sha.formvalidator.R
-import com.sha.formvalidator.textview.validator.TextViewValidator
+import com.sha.formvalidator.textview.validator.TextValidator
 import com.sha.formvalidator.textview.validator.composite.AndValidator
 import com.sha.formvalidator.textview.validator.composite.CompositeValidator
 
 /**
- * Default implementation of an [TextViewValidator]
+ * Default implementation of an [TextValidator]
  */
-class DefTextViewValidationHandler : TextViewValidationHandler {
+class DefTextValidationHandler : TextValidationHandler {
     /**
      * The custom validators set using
      */
@@ -84,7 +84,7 @@ class DefTextViewValidationHandler : TextViewValidationHandler {
         typedArray.recycle()
     }
 
-    override fun addValidator(validator: TextViewValidator) {
+    override fun addValidator(validator: TextValidator) {
         mValidator.enqueue(validator)
     }
 
@@ -94,7 +94,7 @@ class DefTextViewValidationHandler : TextViewValidationHandler {
     }
 
     override fun validate(showError: Boolean): Boolean {
-        val isValid = mValidator.isValid(editText)
+        val isValid = mValidator.isValid(editText.text.toString())
         if (!isValid && showError) showError()
         return isValid
     }

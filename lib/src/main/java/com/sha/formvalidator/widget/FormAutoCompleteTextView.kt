@@ -4,16 +4,16 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import com.sha.formvalidator.Validatable
-import com.sha.formvalidator.textview.DefTextViewValidationHandler
-import com.sha.formvalidator.textview.TextViewValidationHandler
-import com.sha.formvalidator.textview.validator.TextViewValidator
+import com.sha.formvalidator.textview.DefTextValidationHandler
+import com.sha.formvalidator.textview.TextValidationHandler
+import com.sha.formvalidator.textview.validator.TextValidator
 
 /**
  * AutoCompleteTextView Extension with validation.
  *
  */
 open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable {
-    lateinit var validationHandler: TextViewValidationHandler
+    lateinit var validationHandler: TextValidationHandler
     constructor(context: Context) : super(context) { setupDefaultValidator(null) }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setupDefaultValidator(attrs) }
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
@@ -23,10 +23,10 @@ open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable
     private fun setupDefaultValidator(attrs: AttributeSet?) {
         if (attrs == null) {
             //support dynamic new FormEditText(context)
-            validationHandler = DefTextViewValidationHandler(this, context)
+            validationHandler = DefTextValidationHandler(this, context)
             return
         }
-        validationHandler = DefTextViewValidationHandler(this, attrs, context)
+        validationHandler = DefTextValidationHandler(this, attrs, context)
     }
 
 
@@ -36,13 +36,13 @@ open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable
      *
      * @param validator object
      */
-    fun addValidator(validator: TextViewValidator) {
+    fun addValidator(validator: TextValidator) {
         this.validationHandler.addValidator(validator)
     }
 
     /**
      * Calling *validate()* will cause the AutoCompleteTextView to go through
-     * customValidators and call [com.sha.formvalidator.textview.validator.TextViewValidator.isValid]
+     * customValidators and call [com.sha.formvalidator.textview.validator.TextValidator.isValid]
      *
      * @return true if the validity passes false otherwise.
      */

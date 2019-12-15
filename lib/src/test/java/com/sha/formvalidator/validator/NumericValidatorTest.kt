@@ -1,37 +1,30 @@
 package com.sha.formvalidator.validator
 
-import android.widget.TextView
-import com.nhaarman.mockitokotlin2.given
-import com.nhaarman.mockitokotlin2.mock
-import com.sha.formvalidator.textview.validator.*
+import com.sha.formvalidator.textview.validator.NumericValidator
+import com.sha.formvalidator.textview.validator.TextValidator
 import org.junit.Before
 import org.junit.Test
 
 class NumericValidatorTest {
-    lateinit var validator: TextViewValidator
-    lateinit var tv: TextView
+    lateinit var validator: TextValidator
 
     @Before
     fun setup() {
-        tv = mock()
         validator = NumericValidator("Invalid!")
     }
 
     @Test
     fun validate_valid() {
-        given(tv.text).will { "1" }
-        assert(validator.isValid(tv))
+        assert(validator.isValid("1"))
     }
 
     @Test
     fun validate_invalidIfWrong() {
-        given(tv.text).will { "6f" }
-        assert(!validator.isValid(tv))
+        assert(!validator.isValid("6f"))
     }
 
     @Test
     fun validate_invalidIfEmpty() {
-        given(tv.text).will { "" }
-        assert(!validator.isValid(tv))
+        assert(!validator.isValid(""))
     }
 }

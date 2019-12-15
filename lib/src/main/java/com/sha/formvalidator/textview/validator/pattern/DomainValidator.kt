@@ -1,5 +1,5 @@
 package com.sha.formvalidator.textview.validator.pattern
 
-import android.util.Patterns
+import androidx.core.util.PatternsCompat
 
-class DomainValidator(errorMessage: String) : PatternValidator(errorMessage, Patterns.DOMAIN_NAME)
+class DomainValidator(errorMessage: String) : PatternValidator(errorMessage, PatternsCompat.DOMAIN_NAME)

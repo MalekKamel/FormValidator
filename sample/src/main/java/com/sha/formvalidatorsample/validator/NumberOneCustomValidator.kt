@@ -1,7 +1,6 @@
 package com.sha.formvalidatorsample.validator
 
 import android.content.Context
-import android.widget.TextView
 import com.sha.formvalidator.textview.validator.CustomValidator
 import com.sha.formvalidatorsample.R
 
@@ -11,6 +10,6 @@ class NumberOneCustomValidator(errorMessage: String) : CustomValidator(errorMess
         return context.getString(R.string.custom_validator_number_one)
     }
 
-    override fun isValid(tv: TextView) = tv.text.toString() == "1"
+    override fun isValid(text: String) = text == "1"
 
 }

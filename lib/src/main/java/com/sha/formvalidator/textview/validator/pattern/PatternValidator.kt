@@ -1,7 +1,6 @@
 package com.sha.formvalidator.textview.validator.pattern
 
-import android.widget.TextView
-import com.sha.formvalidator.textview.validator.TextViewValidator
+import com.sha.formvalidator.textview.validator.TextValidator
 
 import java.util.regex.Pattern
 
@@ -18,12 +17,12 @@ import java.util.regex.Pattern
  *
  * @see WebUrlValidator
  */
-open class PatternValidator(_customErrorMessage: String, private val pattern: Pattern) : TextViewValidator(_customErrorMessage) {
+open class PatternValidator(_customErrorMessage: String, private val pattern: Pattern) : TextValidator(_customErrorMessage) {
 
     constructor(errorMessage: String, regex: String) : this(errorMessage, Pattern.compile(regex))
 
-    override fun isValid(tv: TextView): Boolean {
-        return pattern.matcher(tv.text).matches()
+    override fun isValid(text: String): Boolean {
+        return pattern.matcher(text).matches()
     }
 
 }

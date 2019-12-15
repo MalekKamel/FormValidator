@@ -2,12 +2,12 @@ package com.sha.formvalidator.textview
 
 import android.content.Context
 
-import com.sha.formvalidator.textview.validator.TextViewValidator
+import com.sha.formvalidator.textview.validator.TextValidator
 
 /**
  * Interface for encapsulating validation of an EditText control
  */
-interface TextViewValidationHandler {
+interface TextValidationHandler {
 
     val isRequired: Boolean
     /**
@@ -16,10 +16,10 @@ interface TextViewValidationHandler {
      *
      * @param validator
      */
-    fun addValidator(validator: TextViewValidator)
+    fun addValidator(validator: TextValidator)
 
     /**
-     * setup the [TextViewValidator]s
+     * setup the [TextValidator]s
      */
     fun setupValidator(context: Context)
 

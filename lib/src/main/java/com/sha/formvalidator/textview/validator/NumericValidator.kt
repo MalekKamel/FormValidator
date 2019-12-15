@@ -1,15 +1,13 @@
 package com.sha.formvalidator.textview.validator
 
-import android.widget.TextView
-
 /**
  * A validator that returns true only if the input field contains only numbers.
  *
  */
-class NumericValidator(errorMessage: String) : TextViewValidator(errorMessage) {
+class NumericValidator(errorMessage: String) : TextValidator(errorMessage) {
 
-    override fun isValid(tv: TextView): Boolean {
-        return if(tv.text.isEmpty()) false else isDigitsOnly(tv.text)
+    override fun isValid(text: String): Boolean {
+        return if(text.isEmpty()) false else isDigitsOnly(text)
     }
 
     /**

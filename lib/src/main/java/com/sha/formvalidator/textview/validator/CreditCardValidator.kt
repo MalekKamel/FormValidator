@@ -1,17 +1,15 @@
 package com.sha.formvalidator.textview.validator
 
-import android.widget.TextView
-
 
 /**
  * This validator takes care of validating the edittext. The input will be valid only if the number is a valid credit card.
  *
  */
-class CreditCardValidator(errorMessage: String = "") : TextViewValidator(errorMessage) {
+class CreditCardValidator(errorMessage: String = "") : TextValidator(errorMessage) {
 
-    override fun isValid(tv: TextView): Boolean {
+    override fun isValid(text: String): Boolean {
         return try {
-            validateCardNumber(tv.text.toString())
+            validateCardNumber(text)
         } catch (e: Exception) {
             false
         }
