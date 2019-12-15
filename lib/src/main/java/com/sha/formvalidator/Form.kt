@@ -3,11 +3,12 @@ package com.sha.formvalidator
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import io.reactivex.Single
 
 open class Form: LinearLayout {
+
+    open lateinit var formHelper: FormHelper
 
     constructor(context: Context) : super(context) { setup(null) }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup(attrs) }
@@ -16,33 +17,17 @@ open class Form: LinearLayout {
     }
 
     private fun setup(attrs: AttributeSet?) {
-
+        formHelper = FormHelper()
     }
 
-    open fun formChildren(viewGroup: ViewGroup): List<Validatable> {
-        val children: MutableList<Validatable> = mutableListOf()
+    open fun formFields() = formHelper.fields(this)
 
-        for (i in 0 until viewGroup.childCount) {
-            val child = viewGroup.getChildAt(i)
-            // the view group may be Validatable, if it's the case, we shouldn't
-            // loop over its children
-            if(child !is Validatable && child is ViewGroup) {
-                // loop recursively to get all children
-                children += formChildren(child)
-                continue
-            }
-            (child as? Validatable)?.let { children += it }
-        }
-
-        return children
-    }
-
-    open fun validate(): Boolean = FormValidator(formChildren(this)).isValid
+    open fun validate(): Boolean = FormValidator(formHelper.fields(this)).isValid
 
     open fun validateOnClick(view: View, validationCallback: (Boolean) -> Unit) {
         view.setOnClickListener { validationCallback(validate()) }
     }
 
-    open fun single(): Single<Boolean> = RxFormValidator(formChildren(this)).validate()
+    open fun single(): Single<Boolean> = RxFormValidator(formHelper.fields(this)).validate()
 
 }
