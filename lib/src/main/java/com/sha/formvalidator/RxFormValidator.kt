@@ -6,7 +6,7 @@ import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.processors.PublishProcessor
 
-class RxFormValidator<T : Validatable> : BaseFormValidator<T> {
+class RxFormValidator<T : Validatable> : AbstractFormValidator<T> {
 
     constructor(fields: List<T>) : super(fields)
     @SafeVarargs

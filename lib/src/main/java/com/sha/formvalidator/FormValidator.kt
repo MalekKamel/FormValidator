@@ -2,7 +2,7 @@ package com.sha.formvalidator
 
 import android.view.View
 
-class FormValidator<T : Validatable> : BaseFormValidator<T> {
+class FormValidator<T : Validatable> : AbstractFormValidator<T> {
     constructor(fields: List<T>) : super(fields)
 
     @SafeVarargs
