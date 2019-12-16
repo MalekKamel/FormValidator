@@ -1,6 +1,5 @@
 package com.sha.formvalidator
 
-import org.junit.Before
 import org.junit.Test
 
 class FormValidatorTest {

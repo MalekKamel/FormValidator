@@ -2,9 +2,7 @@ package com.sha.formvalidatorsample.presentation
 
 import android.app.Activity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import com.sha.formvalidator.FormValidator
 import com.sha.formvalidator.model.FormOptions
 import com.sha.formvalidator.model.IgnoreField
 import com.sha.formvalidatorsample.R

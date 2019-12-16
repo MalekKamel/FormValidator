@@ -2,9 +2,8 @@ package com.sha.formvalidator.model
 
 import android.view.View
 
-enum class IgnoreField {
-    YES, NO
-}
+enum class IgnoreField { YES, NO }
+
 data class FormOptions(
         var validationInterceptor: ((View) -> IgnoreField)? = null,
         var ignoreFieldsIds: List<Int> = emptyList(),
