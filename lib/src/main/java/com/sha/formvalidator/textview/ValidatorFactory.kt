@@ -6,6 +6,9 @@ import com.sha.formvalidator.textview.validator.ValueMatchValidator
 import com.sha.formvalidator.textview.validator.composite.AndValidator
 import com.sha.formvalidator.textview.validator.composite.OrValidator
 
+/**
+ * Factory for creating composite validators
+ */
 object ValidatorFactory {
 
     /**

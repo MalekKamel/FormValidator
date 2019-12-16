@@ -8,6 +8,9 @@ import com.sha.formvalidator.R
 import com.sha.formvalidator.Validatable
 import com.sha.formvalidator.model.OnOffValidation
 
+/**
+ * An implementation of [Validatable] for [SwitchCompat]
+ */
 open class FormSwitch: SwitchCompat, Validatable {
     private var validation: OnOffValidation = OnOffValidation.ON
     private var originalColor: Int = -1

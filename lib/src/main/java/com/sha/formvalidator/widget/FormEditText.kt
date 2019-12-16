@@ -10,8 +10,7 @@ import com.sha.formvalidator.textview.TextValidationHandler
 import com.sha.formvalidator.textview.validator.TextValidator
 
 /**
- * EditText Extension to be used in order to create forms in android.
- *
+ * An implementation of [Validatable] for [AppCompatEditText].
  */
 open class FormEditText : AppCompatEditText, Validatable {
     lateinit var validationHandler: TextValidationHandler

@@ -7,6 +7,10 @@ import android.widget.LinearLayout
 import com.sha.formvalidator.model.FormOptions
 import io.reactivex.Single
 
+/**
+ * A [LinearLayout] that wraps all [Validatable] fields and applies
+ * different validators on each field.
+ */
 open class Form: LinearLayout {
 
     open lateinit var formHelper: FormHelper

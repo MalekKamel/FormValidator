@@ -8,6 +8,9 @@ import com.sha.formvalidator.R
 import com.sha.formvalidator.Validatable
 import com.sha.formvalidator.model.CheckedValidation
 
+/**
+ * An implementation of [Validatable] for [AppCompatCheckBox].
+ */
 open class FormCheckBox: AppCompatCheckBox, Validatable {
     private var validation: CheckedValidation = CheckedValidation.CHECKED
     private var originalColor: Int = -1

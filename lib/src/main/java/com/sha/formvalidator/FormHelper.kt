@@ -5,8 +5,19 @@ import android.view.ViewGroup
 import com.sha.formvalidator.model.FormOptions
 import com.sha.formvalidator.model.IgnoreField
 
+/**
+ * Helps collecting all the fields that implement [Validatable] interface
+ * and applies options.
+ */
 open class FormHelper {
 
+    /**
+     * Collects fields that implement [Validatable] interface
+     * and applies options.
+     * The function is invoked recursively for each [ViewGroup] to collect all
+     * fields.
+     * @param viewGroup The view group to collect values from
+     */
     fun fields(viewGroup: ViewGroup, options: FormOptions): List<Validatable> {
         val children: MutableList<Validatable> = mutableListOf()
 

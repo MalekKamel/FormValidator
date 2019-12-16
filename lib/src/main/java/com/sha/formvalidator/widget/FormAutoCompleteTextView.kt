@@ -9,8 +9,7 @@ import com.sha.formvalidator.textview.TextValidationHandler
 import com.sha.formvalidator.textview.validator.TextValidator
 
 /**
- * AutoCompleteTextView Extension with validation.
- *
+ * An implementation of [Validatable] for [AppCompatAutoCompleteTextView].
  */
 open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable {
     lateinit var validationHandler: TextValidationHandler

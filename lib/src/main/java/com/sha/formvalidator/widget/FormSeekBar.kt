@@ -10,6 +10,9 @@ import com.sha.formvalidator.R
 import com.sha.formvalidator.Validatable
 import com.sha.formvalidator.model.RequiredValidation
 
+/**
+ * An implementation of [Validatable] for [AppCompatSeekBar].
+ */
 open class FormSeekBar: AppCompatSeekBar, Validatable {
     private var validation: RequiredValidation = RequiredValidation.REQUIRED
     private var originalColor: Int = -1
