@@ -36,11 +36,7 @@ data class FormOptions(
 
     companion object {
         fun defaultOptions(): FormOptions = Builder().build()
-
-        fun create(block: FormOptions.() -> Unit): FormOptions{
-            val options = FormOptions().apply { block() }
-            return options
-        }
+        fun create(block: FormOptions.() -> Unit) = FormOptions().apply { block() }
     }
 }
 

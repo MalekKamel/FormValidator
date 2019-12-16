@@ -13,10 +13,9 @@ object TextViewValidatorFactory {
             attrInfo: TextViewAttrInfo,
             context: Context
     ): TextValidator {
-
         val validator = when (attrInfo.validationType) {
             TextViewValidationType.NOT_DETECTABLE -> {
-                if (!TextUtils.isEmpty(attrInfo.customValidationType))
+                if (attrInfo.customValidationType.isNotEmpty())
                     customValidator(attrInfo, context) else
                     predefinedValidator(attrInfo, context)
             }
