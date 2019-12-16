@@ -5,8 +5,10 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import com.sha.formvalidator.Validatable
+import com.sha.formvalidator.model.CompositeValidatorInfo
 import com.sha.formvalidator.textview.DefTextValidationHandler
 import com.sha.formvalidator.textview.TextValidationHandler
+import com.sha.formvalidator.textview.ValidatorFactory
 import com.sha.formvalidator.textview.validator.TextValidator
 
 /**
@@ -38,6 +40,12 @@ open class FormEditText : AppCompatEditText, Validatable {
      */
     fun addValidator(validator: TextValidator) {
         this.validationHandler.addValidator(validator)
+    }
+
+    fun addValidators(block: CompositeValidatorInfo.() -> Unit) {
+        CompositeValidatorInfo().apply { block() }
+                .validators
+                .map { validationHandler.addValidator(it) }
     }
 
     /**

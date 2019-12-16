@@ -24,11 +24,17 @@ class PrefixAndRangeValidatorActivity : Activity() {
         //Interesting stuff starts here
         val fdt = findViewById<FormEditText>(R.id.et)
 
+        fdt.addValidators {
+            allValid(
+                    PrefixValidator("d", "Must start with d."),
+                    LengthRangeValidator("Must be of length 1-5.", 1, 5))
+        }
+
+        // OR add using ValidatorFactory (appropriate for Java)
         fdt.addValidator(
                 ValidatorFactory.allValid(
                         PrefixValidator("d", "Must start with d."),
                         LengthRangeValidator("Must be of length 1-5.", 1, 5)))
-
     }
 
     private fun setupUi() {

@@ -1,6 +1,7 @@
 package com.sha.formvalidator.textview
 
 import android.widget.EditText
+import android.widget.TextView
 import com.sha.formvalidator.textview.validator.TextValidator
 import com.sha.formvalidator.textview.validator.ValueMatchValidator
 import com.sha.formvalidator.textview.validator.composite.AndValidator
@@ -14,7 +15,7 @@ object ValidatorFactory {
     /**
      * all validators must be valid.
      * @param validators objects
-     * @return a [CompositeValidator]
+     * @return a [TextValidator]
      */
     fun allValid(vararg validators: TextValidator): TextValidator {
         return AndValidator(*validators)
@@ -24,7 +25,7 @@ object ValidatorFactory {
      * one validator MUST be valid.
      * @param errorMessage string
      * @param validators objects
-     * @return a [CompositeValidator]
+     * @return a [TextValidator]
      */
     fun anyValid(errorMessage: String, vararg validators: TextValidator): TextValidator {
         return OrValidator(errorMessage, *validators)
@@ -33,29 +34,26 @@ object ValidatorFactory {
     /**
      * the value of each [EditText] must be the same.
      * @param errorMessage string
-     * @param ets objects
-     * @return a [CompositeValidator]
+     * @param fields [TextView]s to be validated
+     * @return a [TextValidator]
      */
-    fun valueMatch(errorMessage: String, vararg texts: String): TextValidator {
-        return ValueMatchValidator(errorMessage, *texts)
+    fun valueMatch(errorMessage: String, vararg fields: TextView): TextValidator {
+        val list = Array(fields.size) { fields[it].text.toString() }
+        return ValueMatchValidator(errorMessage, *list)
     }
 
     /**
      * both of password EditTexts must match
      * see [.valueMatch]
      * @param errorMessage string
-     * @param passwordEditText1 object
-     * @param passwordEditText2 object
-     * @return a [CompositeValidator]
+     * @param field1 object
+     * @param field2 object
+     * @return a [TextValidator]
      */
-    fun passwordMatch(
-            errorMessage: String,
-            passwordEditText1: EditText,
-            passwordEditText2: EditText
-    ): TextValidator {
+    fun passwordMatch(errorMessage: String, field1: TextView, field2: TextView): TextValidator {
         return ValueMatchValidator(
                 errorMessage,
-                passwordEditText1.text.toString(),
-                passwordEditText2.text.toString())
+                field1.text.toString(),
+                field2.text.toString())
     }
 }
