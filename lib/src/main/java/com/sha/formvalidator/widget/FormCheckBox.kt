@@ -15,13 +15,13 @@ open class FormCheckBox: AppCompatCheckBox, Validatable {
     private var validation: CheckedValidation = CheckedValidation.CHECKED
     private var originalColor: Int = -1
 
-    constructor(context: Context) : super(context) { setup(null, context) }
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup(attrs, context) }
+    constructor(context: Context) : super(context) { setup(null) }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup(attrs) }
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        setup(attrs, context)
+        setup(attrs)
     }
 
-    private fun setup(attrs: AttributeSet?, context: Context) {
+    private fun setup(attrs: AttributeSet?) {
         originalColor = currentTextColor
 
         // the view is added programmatically

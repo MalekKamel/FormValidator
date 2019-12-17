@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
+import com.sha.formvalidator.model.CheckedValidation
 import com.sha.formvalidator.model.FormOptions
 import io.reactivex.Single
 
@@ -25,6 +26,15 @@ open class Form: LinearLayout {
 
     private fun setup(attrs: AttributeSet?) {
         formHelper = FormHelper()
+
+        // the view is added programmatically
+        if (attrs == null) return
+
+        context.obtainStyledAttributes(attrs, R.styleable.Form).run {
+            options.shakeOnError = getBoolean(R.styleable.Form_shakeOnError, true)
+            options.ignoreHiddenFields = getBoolean(R.styleable.Form_ignoreHiddenFields, true)
+            recycle()
+        }
     }
 
     open fun validate(): Boolean = FormValidator(options, formHelper.fields(this, options)).isValid

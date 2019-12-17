@@ -73,7 +73,8 @@
     </declare-styleable>
 
     <declare-styleable name="Form">
-        <attr name="validateHiddenFields" format="string" />
+        <attr name="ignoreHiddenFields" format="boolean" />
+        <attr name="shakeOnError" format="boolean" />
     </declare-styleable>
 
 
