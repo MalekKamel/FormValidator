@@ -38,4 +38,8 @@
         <item name="android:ellipsize">end</item>
     </style>
 
+    <style name="Button.Round" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/bg_round_corners</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>

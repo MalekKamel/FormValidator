@@ -10,21 +10,30 @@
         android:text="Fields"
         android:textAllCaps="false"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        style="@style/Button.Round"
+        android:layout_margin="5dp"
+        />
 
     <Button
         android:id="@+id/btnForm"
         android:text="Form"
         android:textAllCaps="false"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        style="@style/Button.Round"
+        android:layout_margin="5dp"
+        />
 
     <Button
         android:id="@+id/btnRxForm"
         android:text="RxForm"
         android:textAllCaps="false"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        style="@style/Button.Round"
+        />
 
 
 </LinearLayout>

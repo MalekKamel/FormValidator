@@ -1,9 +1,13 @@
 <resources>
 
-    <color name="colorPrimary">#4BAD4F</color>
-    <color name="colorPrimaryDark">#26852B</color>
-    <color name="colorAccent">#FF5722</color>
+    <color name="colorPrimary">@color/black</color>
+    <color name="colorPrimaryDark">@color/black</color>
+    <color name="yellow">#fcbf10</color>
+    <color name="yellow_dark">#E6AE0E</color>
+    <color name="colorAccent">@color/yellow</color>
     <color name="red_light">#F4A890</color>
     <color name="accentText">#000</color>
+    <color name="white">#fff</color>
+    <color name="black">#545554</color>
 
 </resources>

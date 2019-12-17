@@ -124,8 +124,9 @@
             android:text="Validate Form"
             android:textAllCaps="false"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            style="@style/Button.Round"
+            />
 
     </com.sha.formvalidator.Form>
 
