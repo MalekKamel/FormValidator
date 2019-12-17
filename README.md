@@ -75,49 +75,52 @@ override fun validate(): Boolean {
 ## Predefined Widgets
 FormValidator has a collection of different widgets that implements ```Validatable``` and ready for use directly. here's the list of these widgets:
 
-|       **Widget**         |  **Required attributes** |      **Default**       |
-| -----------------------  | ------------------------ | ---------------------  |
-| **FormEditText**         |   see [TextView Validation](#textview-validation)     |        checked         |
-| **FormCheckBox**         |  checkBoxValidation      |        checked         |
-| **FormRatingBar**        |  ratingBarValidation     |        required        |
-| **FormSeekBar**          |  seekBarValidation       |        required        |
-| **FormSwitch**           |  switchValidation        |        on              |
-| **FormToggleButton**     |  toggleButtonValidation  |        on              |
+|         **Widget**           |                **Required attributes**             |      **Default**       |
+| --------------------------   | -------------------------------------------------- | ---------------------  |
+| **FormEditText**             |  see [TextView Validation](#textview-validation)   |        -               |
+| **FormAutoCompleteTextView** |  see [TextView Validation](#textview-validation)   |        -               |
+| **FormAutoCompleteTextView** |  see [TextView Validation](#textview-validation)   |        -               |
+| **FormCheckBox**             |  checkBoxValidation                                |        checked         |
+| **FormRatingBar**            |  ratingBarValidation                               |        required        |
+| **FormSeekBar**              |  seekBarValidation                                 |        required        |
+| **FormSwitch**               |  switchValidation                                  |        on              |
+| **FormToggleButton**         |  toggleButtonValidation                            |        on              |
 
 
 ## TextView Validation
-FormValidator contains rich validators for validating ```TextView```
+FormValidator contains rich validators for validating ```TextView```. There're are 3 predefined widgets that inherit from `TextView`: `FormEditText`, `EditTextPreference`, and `FormAutoCompleteTextView`
 
-## Validation Types
-Validation type can be set with `validationType` attribute like the previous example `app:validationType="phone"`
-**Note:** `required` is the default validation type. f you don't specify any  one
-
-| **Type** | **Description** | **Required attributes** |
-| ------------- | ------------- | ------------- |
-| **required**           | validates required fields   | _ |
-| **numeric**            | validates numeric only      | _ |
-| **alpha**              | validates alpha only        | _ |
-| **alphaNumeric**       | validates alpha numeric     | _ |
-| **email**              | validates email             | _ |
-| **creditCard**         | validates credit card <br> using [Luhn Algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm) | _ |
-| **phone**              | validates phone            | _ |
-| **domainName**         | validates domain name      | _ |
-| **ipAddress**          | validates IP address       | _ |
-| **webUrl**             | validates web URL          | _ |
-| **personName**         | validates person name      | _ |
-| **personFullName**     | validates person full name | _ |
-| **regex**              | validates a REGEX          | - **regex** |
-| **numericRange**       | validates numeric range    | - **minNumber** <br> - **maxNumber**|
-| **floatNumericRange**  | validates floating-point ranges | - **floatMinNumber** <br> - **floatMaxNumber**|
-| **date**  | validates date                          | - **dateFormat** |
-
-## Other Attributes
+## TextView Validation Attributes
+There are many attributes that can be used in `TextView` validation, here're all the available attributes
 
 | **Attribute** | **Description** |
 | -----------------         | --------------------------------------------------------- |
-| **errorMessage**          | message if the field is invalid                               |
+| **validationType**        | see [TextView validationType Values](#textview-validationtype-values)|
+| **errorMessage**          | message if the field is invalid                           |
 | **requiredErrorMessage**  | message if the field is empty                             |
 | **customValidationType**  | a string for custom validation <br> (**see usage below**) |
+
+
+#### TextView `validationType` Values
+
+| **Type** | **Description** | **Required attributes** |
+| ---------------------- | ----------------------------- | ----------------------------------------------- |
+| **required**           | validates required fields     |  _                                              |
+| **numeric**            | validates numeric only        |  _                                              |
+| **alpha**              | validates alpha only          |  _                                              |
+| **alphaNumeric**       | validates alpha numeric       |  _                                              |
+| **email**              | validates email               |  _                                              |
+| **creditCard**         | validates credit card <br> using [Luhn Algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm)                                                            | _                                               |
+| **phone**              | validates phone               |  _                                              |
+| **domainName**         | validates domain name         |  _                                              |
+| **ipAddress**          | validates IP address          |  _                                              |
+| **webUrl**             | validates web URL             |  _                                              |
+| **personName**         | validates person name         |  _                                              |
+| **personFullName**     | validates person full name    |  _                                              |
+| **regex**              | validates a REGEX             | - **regex**                                     |
+| **numericRange**       | validates numeric range       | - **minNumber** <br> - **maxNumber** .          |
+| **floatNumericRange**  | validates floating-point ranges | - **floatMinNumber** <br> - **floatMaxNumber**|
+| **date**  | validates date                             | - **dateFormat**                                |
 
 ## Custom Validators in XML
 FormValidator is very flexible. It's support any custom validator. 
