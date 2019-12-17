@@ -63,3 +63,4 @@ styleable FormRatingBar ratingBarValidation
 styleable FormSeekBar seekBarValidation
 styleable FormSwitch switchValidation
 styleable FormToggleButton toggleButtonValidation
+xml settings

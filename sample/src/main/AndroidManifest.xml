@@ -27,11 +27,6 @@
         <activity android:name=".presentation.PasswordValidatorActivity" />
         <activity android:name=".presentation.AutoCompleteTextViewActivity" />
 
-        <activity
-            android:name=".presentation.SettingsActivity"
-            android:label="Preferences">
-        </activity>
-
     </application>
 
 </manifest>

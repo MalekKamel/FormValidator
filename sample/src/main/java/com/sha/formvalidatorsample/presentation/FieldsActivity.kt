@@ -21,32 +21,12 @@ class FieldsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_examples)
 
         setupList()
-
-        SnackBarUtil.gotIt(
-                findViewById<View>(R.id.rv),
-                "Click settings icon in ToolBar to show FormEditTextPreference"
-        )
     }
 
     private fun setupList() {
         val rv = findViewById<RecyclerView>(R.id.rv)
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = RecyclerAdapter()
-    }
-
-    override fun onCreateOptionsMenu(menu: android.view.Menu): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.prefs -> {
-                startActivity(Intent(this, SettingsActivity::class.java))
-                true
-            }
-            else -> false
-        }
     }
 
 }
