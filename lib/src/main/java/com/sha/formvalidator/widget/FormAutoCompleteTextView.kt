@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import com.sha.formvalidator.Validatable
+import com.sha.formvalidator.model.CompositeValidatorInfo
 import com.sha.formvalidator.textview.DefTextValidationHandler
 import com.sha.formvalidator.textview.TextValidationHandler
 import com.sha.formvalidator.textview.validator.TextValidator
@@ -37,6 +38,12 @@ open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable
      */
     fun addValidator(validator: TextValidator) {
         this.validationHandler.addValidator(validator)
+    }
+
+    fun addValidators(block: CompositeValidatorInfo.() -> Unit) {
+        CompositeValidatorInfo().apply { block() }
+                .validators
+                .map { validationHandler.addValidator(it) }
     }
 
     /**
