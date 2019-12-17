@@ -17,22 +17,28 @@ object Versions {
     const val androidx_test_rules = "1.3.0-alpha02"
     const val mockito_kotlin = "2.2.0"
     const val modelMapper = "0.1.0"
+    const val androidx_appCompat = "1.1.0"
+    const val android_material = "1.2.0-alpha02"
+    const val rxJava = "2.2.15"
+    const val androidx_core_ktx = "1.1.0"
+    const val multidex = "2.0.1"
 }
 
 object Deps {
-    const val test_junit = "junit:junit:${Versions.test_junit}"
-    const val androidx_espressoCore = "androidx.test.espresso:espresso-core:${Versions.androidx_espressoCore}"
+    const val androidx_appCompat = "androidx.appcompat:appcompat:${Versions.androidx_appCompat}"
+    const val android_material = "com.google.android.material:material:${Versions.android_material}"
+    const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
+    const val androidx_core_ktx = "androidx.core:core-ktx:${Versions.androidx_core_ktx}"
+    const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
 }
 
 object TestDeps {
 
-    const val test_junit = "junit:junit:${Versions.test_junit}"
+    const val androidx_espressoCore = "androidx.test.espresso:espresso-core:${Versions.androidx_espressoCore}"
+    const val junit = "junit:junit:${Versions.test_junit}"
     const val androidx_junit = "androidx.test.ext:junit:${Versions.androidx_junit}"
-
-    // <editor-fold desc="mockito">
-    const val mockito_core = "org.mockito:mockito-core:${Versions.mockito_core}"
+    const val androidx_test_core_ktx = "androidx.test:core-ktx:${Versions.androidx_test_core_ktx}"
     const val mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockito_kotlin}"
-    // </editor-fold>
 
     const val hamcrest_all = "org.hamcrest:hamcrest-all:${Versions.hamcrest_all}"
     const val kotlinx_coroutine_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinx_coroutine_test}"
@@ -42,7 +48,6 @@ object TestDeps {
     const val truth = "com.google.truth:truth:${Versions.truth}"
 
     // <editor-fold desc="androidx">
-    const val androidx_test_core_ktx = "androidx.test:core-ktx:${Versions.androidx_test_core_ktx}"
     const val androidx_test_ext_junit_ktx = "androidx.test.ext:junit-ktx:${Versions.androidx_test_ext_junit_ktx}"
     const val androidx_test_rules = "androidx.test:rules:${Versions.androidx_test_rules}"
     const val androidx_core_testing = "androidx.arch.core:core-testing:${Versions.androidx_core_testing}"

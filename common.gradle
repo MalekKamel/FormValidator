@@ -14,7 +14,13 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
+        multiDexEnabled true
 
+    }
+
+    android {
+        lintOptions { abortOnError false }
+        testOptions { unitTests.includeAndroidResources = true }
     }
 
     compileOptions {
@@ -40,11 +46,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    testImplementation Deps.test_junit
-    testImplementation Deps.androidx_junit
-    testImplementation Deps.androidx_espressoCore
-
 }
