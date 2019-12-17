@@ -21,7 +21,6 @@
 
         <activity android:name=".presentation.FieldsActivity" />
         <activity android:name=".presentation.FormActivity" />
-        <activity android:name=".presentation.RxFormActivity" />
         <activity android:name=".presentation.FieldActivity" />
         <activity android:name=".presentation.EmailOrCreditCardActivity" />
         <activity android:name=".presentation.PrefixAndRangeValidatorActivity" />

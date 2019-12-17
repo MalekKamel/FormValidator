@@ -1,0 +1,16 @@
+apply plugin: Plugins.androidLibrary
+apply from: "$rootDir/${GradleName.common}"
+apply plugin: "${Plugins.kotlinAndroid}"
+apply plugin: "${Plugins.kotlinAndroidExtensions}"
+apply plugin: "${Plugins.dcendents}"
+
+dependencies {
+    implementation Deps.androidx_appCompat
+    implementation Deps.android_material
+    implementation Deps.androidx_core_ktx
+
+    testImplementation TestDeps.junit
+    testImplementation TestDeps.androidx_junit
+    testImplementation TestDeps.androidx_espressoCore
+    testImplementation TestDeps.androidx_test_core_ktx
+}

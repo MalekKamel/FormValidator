@@ -1,0 +1,10 @@
+apply plugin: Plugins.androidLibrary
+apply from: "$rootDir/${GradleName.common}"
+apply plugin: "${Plugins.kotlinAndroid}"
+apply plugin: "${Plugins.kotlinAndroidExtensions}"
+apply plugin: "${Plugins.dcendents}"
+
+dependencies {
+    implementation project(':core')
+    api Deps.rxJava
+}
