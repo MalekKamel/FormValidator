@@ -42,7 +42,10 @@ allprojects {
 }
 
 dependencies {
-        implementation 'com.github.ShabanKamell:RxRequester:x.y.z'
+        // Core
+        implementation 'com.github.ShabanKamell.FormValidator:core:x.y.z'
+        // RxJava
+        implementation 'com.github.ShabanKamell.FormValidator:rxjava:x.y.z'
 }
 ```
 
