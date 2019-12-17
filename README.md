@@ -91,7 +91,7 @@ FormValidator has a collection of different widgets that implements ```Validatab
 
 
 ## TextView Validation
-FormValidator contains rich validators for validating ```TextView```. There're are 3 predefined widgets that inherit from `TextView`: `FormEditText`, `EditTextPreference`, and `FormAutoCompleteTextView`. see full documentation in [TextView doc](https://github.com/ShabanKamell/FormValidator/blob/dev/TEXTVIEW.md)
+FormValidator contains rich validators for validating ```TextView```. There're are 2 predefined widgets that inherit from `TextView`: `FormEditText` and `FormAutoCompleteTextView`. see full documentation in [TextView doc](https://github.com/ShabanKamell/FormValidator/blob/dev/TEXTVIEW.md)
 
 
 ### See 'app' module for the full code.
