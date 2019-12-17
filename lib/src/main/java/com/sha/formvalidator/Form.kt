@@ -27,7 +27,7 @@ open class Form: LinearLayout {
         formHelper = FormHelper()
     }
 
-    open fun validate(): Boolean = FormValidator(formHelper.fields(this, options)).isValid
+    open fun validate(): Boolean = FormValidator(options, formHelper.fields(this, options)).isValid
 
     open fun validateOnClick(view: View, validationCallback: (Boolean) -> Unit) {
         view.setOnClickListener { validationCallback(validate()) }

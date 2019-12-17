@@ -29,7 +29,6 @@ open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable
         validationHandler = DefTextValidationHandler(this, attrs, context)
     }
 
-
     /**
      * Add a validator to this AutoCompleteTextView. The validator will be added in the
      * queue of the current validators.

@@ -1,26 +1,41 @@
 package com.sha.formvalidator
 
+import android.view.View
+import com.sha.formvalidator.model.FormOptions
+import com.sha.formvalidator.model.helper.AnimationHelper
+
 /**
  * The base form validator that all validators must extend.
  */
 open class AbstractFormValidator<T : Validatable> {
+    private var options: FormOptions = FormOptions.defaultOptions()
     private var fields: List<T> = emptyList()
     val isValid: Boolean
         get() {
             if(fields.isEmpty()) return false
             var isValid = true
-            fields.forEach { isValid = it.validate() && isValid }
+            fields.forEach {
+                val fieldValid = it.validate()
+                isValid = fieldValid && isValid
+                if(options.shakeOnError && !fieldValid) AnimationHelper.error(it as View)
+            }
             return isValid
         }
     /**
      * create an instance with list of fields to be validated.
      */
-    constructor(fields: List<T>) { this.fields = fields }
+    constructor(options: FormOptions, fields: List<T>) {
+        this.fields = fields
+        this.options = options
+    }
 
     /**
      * create an instance with var args of fields to be
      * validated.
      */
     @SafeVarargs
-    constructor(vararg fields: T) { this.fields = fields.asList() }
+    constructor(options: FormOptions, vararg fields: T) {
+        this.fields = fields.asList()
+        this.options = options
+    }
 }

@@ -7,7 +7,8 @@ enum class IgnoreField { YES, NO }
 data class FormOptions(
         var validationInterceptor: ((View) -> IgnoreField)? = null,
         var ignoreFieldsIds: List<Int> = emptyList(),
-        var ignoreHiddenFields: Boolean = true
+        var ignoreHiddenFields: Boolean = true,
+        var shakeOnError: Boolean = true
 ){
 
     class Builder {
@@ -25,6 +26,11 @@ data class FormOptions(
 
         fun ignoreHiddenFields(ignore: Boolean): Builder {
             options.ignoreHiddenFields = ignore
+            return this
+        }
+
+        fun shakeOnError(shake: Boolean): Builder {
+            options.shakeOnError = shake
             return this
         }
 
