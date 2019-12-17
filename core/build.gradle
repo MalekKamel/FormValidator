@@ -6,6 +6,7 @@ apply plugin: "${Plugins.dcendents}"
 
 dependencies {
     implementation Deps.androidx_appCompat
+    implementation Deps.androidx_preference
     implementation Deps.android_material
     implementation Deps.androidx_core_ktx
 

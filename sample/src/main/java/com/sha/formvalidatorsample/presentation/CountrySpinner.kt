@@ -15,7 +15,7 @@ import com.sha.formvalidatorsample.R
  * To create a custom Form filed, just implement [Validatable] interface
  * and put your validation logic inside validate() function
  */
-open class CountrySpinner: AppCompatSpinner, Validatable {
+class CountrySpinner: AppCompatSpinner, Validatable {
     var validation: RequiredValidation = RequiredValidation.REQUIRED
     private var originalColor: Int = -1
 

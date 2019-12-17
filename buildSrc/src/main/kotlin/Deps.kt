@@ -22,6 +22,7 @@ object Versions {
     const val rxJava = "2.2.15"
     const val androidx_core_ktx = "1.1.0"
     const val multidex = "2.0.1"
+    const val androidx_preference = "1.1.0"
 }
 
 object Deps {
@@ -30,6 +31,7 @@ object Deps {
     const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
     const val androidx_core_ktx = "androidx.core:core-ktx:${Versions.androidx_core_ktx}"
     const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
+    const val androidx_preference = "androidx.preference:preference:${Versions.androidx_preference}"
 }
 
 object TestDeps {
