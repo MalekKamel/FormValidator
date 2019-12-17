@@ -1,12 +1,36 @@
 
 # FormValidator for Android
 
-Powerful, simple and customizable EditText validator for Android.
+A declarative Form Validation for Android, simple, clean, and customizable.
 
-[![](https://jitpack.io/v/ShabanKamell/FormValidator.svg)](https://jitpack.io/#ShabanKamell/FormValidator)
+Every time you create a form, you need to declare fields and write code for for validating each field in the form, and this results in many ```if else``` and a lot of boilerplate. For these reasons **FormValidator** is here, just declare your field in XML and its validation and all things will be done for you!
 
+```kotlin
 
-## Install
+<com.sha.formvalidator.Form ... >
+    <com.sha.formvalidator.widget.FormEditText 
+    	app:validationType="email"
+    ... />
+    
+    <com.sha.formvalidator.widget.FormCheckBox 
+    	app:checkBoxValidation="checked"
+    ... />
+    
+    <com.sha.formvalidator.widget.FormToggleButton 
+    	app:toggleButtonValidation="on"
+    ... />
+    
+    <com.sha.formvalidator.widget.FormSwitch 
+    	app:switchValidation="on"
+    ... />
+</com.sha.formvalidator.Form>
+
+// validate
+val isFormValid = findViewById<Form>(R.id.form).validate()
+
+```
+
+## Installation
 
 #### Gradle:
 ```groovy
@@ -18,31 +42,52 @@ allprojects {
 }
 
 dependencies {
-	        implementation 'com.github.ShabanKamell:FormValidator:1.0.1'
+        implementation 'com.github.ShabanKamell:RxRequester:x.y.z'
+}
+```
+
+(Please replace x, y and z with the latest version numbers: [![](https://jitpack.io/v/ShabanKamell/FormValidator.svg)](https://jitpack.io/#ShabanKamell/FormValidator))
+
+## Validatable interface
+FormValidator is based on ```Validatable``` interface to validate any field. If you want FormValidator to support any field, just implement ```Validatable```
+
+#### Interface Signature
+
+``` kotlin
+interface Validatable {
+    // return true if valid, false otherwise.
+    fun validate(): Boolean
+}
+```
+
+##### Example
+``` kotlin
+class CountrySpinner: AppCompatSpinner, Validatable {
+// ...
+
+// valid only if the first item is not selected (Select Country)
+override fun validate(): Boolean {
+  return selectedItem != adapter.getItem(0)
 }
 
 ```
 
-# Usage
+## Predefined Widgets
+FormValidator has a collection of different widgets that implements ```Validatable``` and ready for use directly. here's the list of these widgets:
 
-```xml
-<com.sha.formvalidator.widget.FormEditText
-    android:id="@+id/et"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/hint_phone"
-    android:inputType="phone"
-    app:validationType="phone" />
-```
-And validate the field in your code:
-``` java
-    FormEditText phoneField = findViewById(R.id.et);
-    if (phoneField.validate()){
-	// phone is valid
-    } else {
-    // phone isn't valid
-    }
-```
+|       **Widget**         |  **Required attributes** |      **Default**       |
+| -----------------------  | ------------------------ | ---------------------  |
+| **FormEditText**         |   see [TextView Validation](#textview-validation)     |        checked         |
+| **FormCheckBox**         |  checkBoxValidation      |        checked         |
+| **FormRatingBar**        |  ratingBarValidation     |        required        |
+| **FormSeekBar**          |  seekBarValidation       |        required        |
+| **FormSwitch**           |  switchValidation        |        on              |
+| **FormToggleButton**     |  toggleButtonValidation  |        on              |
+
+
+## TextView Validation
+FormValidator contains rich validators for validating ```TextView```
+
 ## Validation Types
 Validation type can be set with `validationType` attribute like the previous example `app:validationType="phone"`
 **Note:** `required` is the default validation type. f you don't specify any  one
