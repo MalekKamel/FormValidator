@@ -118,23 +118,6 @@ formEditText.addValidator(new SuffixValidator(/* suffix*/"d", /* error*/"Must st
 ```
 **Note** `SuffixValidator` is predefined in the library. 
 
-## Multiple Fields Validation
-For easy multiple fields validation, you can use `FormValidator` `
-```java
-findViewById(R.id.btnJustCheck).setOnClickListener(__ -> {  
-    boolean isValid = new FormValidator(etAllowEmpty, etAlpha, etPhone).isValid();  
-    toast("Just check result: " + isValid);
-});
-
-// OR
-
-new FormValidator(etAllowEmpty, etAlpha, etPhone)  
-        .validateOnClick(  
-                findViewById(R.id.btnValidateOnClick),  
-                isValid -> toast("Validate on Click result: " + isValid)  
-        );
-```
-
 ## AutoCompleteTextView
 You can use `FormAutoCompleteTextView` with complete validation support
 ```java
