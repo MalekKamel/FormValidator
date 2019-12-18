@@ -82,7 +82,6 @@ FormValidator has a collection of different widgets that implements ```Validatab
 | --------------------------   | -------------------------------------------------- | ---------------------  |
 | **FormEditText**             |  see [TextView Validation](#textview-validation)   |        -               |
 | **FormAutoCompleteTextView** |  see [TextView Validation](#textview-validation)   |        -               |
-| **FormAutoCompleteTextView** |  see [TextView Validation](#textview-validation)   |        -               |
 | **FormCheckBox**             |  checkBoxValidation                                |        checked         |
 | **FormRatingBar**            |  ratingBarValidation                               |        required        |
 | **FormSeekBar**              |  seekBarValidation                                 |        required        |
