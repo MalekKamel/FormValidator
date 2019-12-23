@@ -46,7 +46,7 @@ class SuffixValidator(private val suffix: String, errorMessage: String) : TextVa
     override fun isValid(text: String): Boolean = text.endsWith(suffix)
 }
 ```
-## Usage
+Use the validator
 
 ```java
 formEditText.addValidator(SuffixValidator("Must start with d."))
@@ -78,7 +78,7 @@ Declare `NumberOneCustomValidator` in XML
     />
 ```
 
-Register custom validators
+Register custom validators. Note that it's mandatory to register custom validators to be recognized by FormValidator.
 
 ```kotlin
 class App : Application() {
