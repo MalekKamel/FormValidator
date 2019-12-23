@@ -5,8 +5,6 @@ A declarative Form Validation for Android, simple, clean, and customizable.
 
 Every time you create a form, you need to declare fields and write code for for validating each field in the form, and this results in many ```if else``` and a lot of boilerplate. For these reasons **FormValidator** is here, just declare your field in XML and its validation and all things will be done for you!
 
-<img src="https://github.com/ShabanKamell/FormValidator/blob/dev/blob/master/raw/diagragm.png" height="500">
-
 ```kotlin
 
 <com.sha.formvalidator.Form ... >
@@ -52,6 +50,8 @@ dependencies {
 ```
 
 (Please replace x, y and z with the latest version numbers: [![](https://jitpack.io/v/ShabanKamell/FormValidator.svg)](https://jitpack.io/#ShabanKamell/FormValidator))
+
+<img src="https://github.com/ShabanKamell/FormValidator/blob/dev/blob/master/raw/diagragm.png" height="600">
 
 ## Validatable interface
 FormValidator is based on ```Validatable``` interface to validate any field. If you want FormValidator to support any field, just implement ```Validatable```
