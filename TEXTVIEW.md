@@ -1,10 +1,9 @@
 TextView Validation
 ===================
-
+`FormEditText` and `FormAutoCompleteTextView` are predefined `TextView` widgets 
 FormValidator contains rich validators for validating ```TextView```. There're are 2 predefined widgets that inherit from `TextView`: `FormEditText` and `FormAutoCompleteTextView`
 
-## TextView Validation Attributes
-There are many attributes that can be used in `TextView` validation, here're all the available attributes
+## Attributes
 
 | **Attribute** | **Description** |
 | -----------------         | --------------------------------------------------------- |
@@ -35,7 +34,7 @@ There are many attributes that can be used in `TextView` validation, here're all
 | **floatNumericRange**  | validates floating-point ranges | - **floatMinNumber** <br> - **floatMaxNumber**|
 | **date**  | validates date                             | - **dateFormat**                                |
 
-## Custom Validators in XML
+## Custom Validators
 FormValidator is very flexible, it supports any custom validator. 
 Just extend `CustomValidator` and specify a unique constant
  to be used as a custom validation type:
@@ -73,8 +72,7 @@ Validators.customValidators = Arrays.asList(
 ```
 
 ### Custom Validators Best Practices
-- [ ] DON'T hard-code the type `app:customValidationType="customType"`
-- [ ] Add custom code as a non-translatable string in a separate value file
+- [ ] DON'T hard-code the type like `app:customValidationType="customType"`, and add custom code as a non-translatable string in a separate value file
 ```xml
 <!-- defined in custom_validators.xml -->
 <string name="custom_validator_number_one" translatable="false">NumberOne</string>
@@ -82,15 +80,12 @@ Validators.customValidators = Arrays.asList(
 and refer to it as a string as the previous example in custom validator and XML.
 **Note** defining the custom like this prevents changing the value by mistake.
 - [ ]  The best place to define cusom validators is Application class
-```java
-public class App extends Application {  
-  @Override  
-  public void onCreate() {  
-        super.onCreate();  
-        Validators.customValidators = Arrays.asList(  
-                new NumberOneCustomValidator("Value doesn't equal 1") // use    context.getString() in production  
-        );  
-  }  
+```kotlin
+class App : Application() {
+    override fun onCreate() {
+      super.onCreate()
+      TextViewValidators.customValidators = listOf(NumberOneCustomValidator("Value doesn't equal 1"))
+   }
 }
 ```
 
