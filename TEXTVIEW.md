@@ -1,7 +1,6 @@
 TextView Validation
 ===================
-`FormEditText` and `FormAutoCompleteTextView` are predefined `TextView` widgets 
-FormValidator contains rich validators for validating ```TextView```. There're are 2 predefined widgets that inherit from `TextView`: `FormEditText` and `FormAutoCompleteTextView`
+`FormEditText` and `FormAutoCompleteTextView` are predefined `TextView` widgets that implement `validatable` interface.
 
 ## Attributes
 
