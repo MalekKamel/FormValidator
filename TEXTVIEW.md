@@ -35,8 +35,9 @@ TextView Validation
 
 ## Custom Validators
 There are 2 approaches to create a cutom validator
--[] Extend `TextValidator` to use the validator programmatically
--[] Extend `CustomValidator` to use the validator in XML.
+
+- [ ] Extend `TextValidator` to use the validator programmatically.
+- [ ] Extend `CustomValidator` to use the validator in XML.
 
 #### TextValidator
 
