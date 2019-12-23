@@ -1,4 +1,4 @@
-package com.sha.formvalidator.rxjava.validator
+package com.sha.formvalidator.validator
 
 import com.sha.formvalidator.textview.validator.SuffixValidator
 import com.sha.formvalidator.textview.validator.TextValidator

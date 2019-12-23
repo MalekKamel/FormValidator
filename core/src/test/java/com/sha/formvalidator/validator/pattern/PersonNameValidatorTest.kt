@@ -1,4 +1,4 @@
-package com.sha.formvalidator.rxjava.validator.pattern
+package com.sha.formvalidator.validator.pattern
 
 import com.sha.formvalidator.textview.validator.TextValidator
 import com.sha.formvalidator.textview.validator.pattern.PersonNameValidator

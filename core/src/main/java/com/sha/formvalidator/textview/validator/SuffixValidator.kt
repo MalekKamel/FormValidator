@@ -5,6 +5,5 @@ package com.sha.formvalidator.textview.validator
  *
  */
 class SuffixValidator(private val suffix: String, errorMessage: String) : TextValidator(errorMessage) {
-
     override fun isValid(text: String): Boolean = text.endsWith(suffix)
 }

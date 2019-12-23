@@ -27,6 +27,8 @@ class FormActivity : Activity() {
                 }
             }
             ignoreFieldsIds = listOf(R.id.etIgnoredId)
+            ignoreHiddenFields = true
+            shakeOnError = true
         }
     }
 }

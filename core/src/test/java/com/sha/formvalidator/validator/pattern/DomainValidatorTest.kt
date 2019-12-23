@@ -1,21 +1,21 @@
-package com.sha.formvalidator.rxjava.validator
+package com.sha.formvalidator.validator.pattern
 
-import com.sha.formvalidator.textview.validator.PrefixValidator
 import com.sha.formvalidator.textview.validator.TextValidator
+import com.sha.formvalidator.textview.validator.pattern.DomainValidator
 import org.junit.Before
 import org.junit.Test
 
-class PrefixValidatorTest {
+class DomainValidatorTest {
     lateinit var validator: TextValidator
 
     @Before
     fun setup() {
-        validator = PrefixValidator("prefix", "Invalid!")
+        validator = DomainValidator("Invalid!")
     }
 
     @Test
     fun validate_valid() {
-        assert(validator.isValid("prefixXX"))
+        assert(validator.isValid("www.google.com"))
     }
 
     @Test

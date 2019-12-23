@@ -1,16 +1,16 @@
-package com.sha.formvalidator.rxjava.validator
+package com.sha.formvalidator.validator
 
-import com.sha.formvalidator.textview.validator.RequiredValidator
+import com.sha.formvalidator.textview.validator.CreditCardValidator
 import com.sha.formvalidator.textview.validator.TextValidator
 import org.junit.Before
 import org.junit.Test
 
-class RequiredValidatorTest {
+class CreditCardValidatorTest {
     lateinit var validator: TextValidator
 
     @Before
     fun setup() {
-        validator = RequiredValidator("Invalid!")
+        validator = CreditCardValidator("Invalid!")
     }
 
     @Test
@@ -20,6 +20,6 @@ class RequiredValidatorTest {
 
     @Test
     fun validate_invalid() {
-        assert(!validator.isValid(""))
+        assert(!validator.isValid("11"))
     }
 }

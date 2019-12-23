@@ -1,16 +1,15 @@
-package com.sha.formvalidator.rxjava.validator
+package com.sha.formvalidator.validator
 
-import com.sha.formvalidator.textview.validator.FloatNumericRangeValidator
 import com.sha.formvalidator.textview.validator.TextValidator
 import org.junit.Before
 import org.junit.Test
 
-class FloatNumericLengthRangeValidatorTest {
+class CustomValidatorTest {
     lateinit var validator: TextValidator
 
     @Before
     fun setup() {
-        validator = FloatNumericRangeValidator("Invalid!", 1.0, 5.0)
+        validator = NumberOneCustomValidator("Invalid!")
     }
 
     @Test
@@ -20,6 +19,6 @@ class FloatNumericLengthRangeValidatorTest {
 
     @Test
     fun validate_invalid() {
-        assert(!validator.isValid("6"))
+        assert(!validator.isValid("2"))
     }
 }

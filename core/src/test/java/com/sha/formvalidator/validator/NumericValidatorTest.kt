@@ -1,26 +1,26 @@
-package com.sha.formvalidator.rxjava.validator
+package com.sha.formvalidator.validator
 
-import com.sha.formvalidator.textview.validator.DateValidator
+import com.sha.formvalidator.textview.validator.NumericValidator
 import com.sha.formvalidator.textview.validator.TextValidator
 import org.junit.Before
 import org.junit.Test
 
-class DateValidatorTest {
+class NumericValidatorTest {
     lateinit var validator: TextValidator
 
     @Before
     fun setup() {
-        validator = DateValidator("Invalid!", "YYYY:MM:DD")
+        validator = NumericValidator("Invalid!")
     }
 
     @Test
     fun validate_valid() {
-        assert(validator.isValid("2019:12:14"))
+        assert(validator.isValid("1"))
     }
 
     @Test
     fun validate_invalidIfWrong() {
-        assert(!validator.isValid("2019"))
+        assert(!validator.isValid("6f"))
     }
 
     @Test

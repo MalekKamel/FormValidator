@@ -1,16 +1,16 @@
-package com.sha.formvalidator.rxjava.validator
+package com.sha.formvalidator.validator
 
-import com.sha.formvalidator.textview.validator.LengthRangeValidator
+import com.sha.formvalidator.textview.validator.NumericRangeValidator
 import com.sha.formvalidator.textview.validator.TextValidator
 import org.junit.Before
 import org.junit.Test
 
-class LengthRangeValidatorTest {
+class NumericLengthRangeValidatorTest {
     lateinit var validator: TextValidator
 
     @Before
     fun setup() {
-        validator = LengthRangeValidator("Invalid!", 1, 5)
+        validator = NumericRangeValidator("Invalid!", 1, 5)
     }
 
     @Test
@@ -20,6 +20,6 @@ class LengthRangeValidatorTest {
 
     @Test
     fun validate_invalid() {
-        assert(!validator.isValid("123456"))
+        assert(!validator.isValid("6"))
     }
 }
