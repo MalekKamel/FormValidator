@@ -70,7 +70,7 @@ class NumberOneCustomValidator(errorMessage: String) : CustomValidator(errorMess
 
 Declare `NumberOneCustomValidator` in XML
 
-```xml
+``` xml
 <com.sha.formvalidator.widget.FormEditText
     <!-- use the type defined using non-translatable string to avoid mistakes  -->
     app:customValidationType="@string/custom_validator_number_one" 
