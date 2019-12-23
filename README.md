@@ -85,6 +85,7 @@ interface Validatable {
 ## Form Layout
 `Form` is a LinearLayout that warps all widgets and provides APIs for triggering validation with options.
 
+Declare `Form` in XML
 ``` kotlin
 <com.sha.formvalidator.Form
         ..
@@ -92,22 +93,42 @@ interface Validatable {
         app:shakeOnError="true"
         app:ignoreHiddenFields="true"
         >
-        
-// set options programmatically
+    <com.sha.formvalidator.widget.FormEditText 
+    	app:validationType="email"
+    ... />
+    
+    <com.sha.formvalidator.widget.FormCheckBox 
+    	app:checkBoxValidation="checked"
+    ... />
+    
+    <com.sha.formvalidator.widget.FormToggleButton 
+    	app:toggleButtonValidation="on"
+    ... />
+    
+    <com.sha.formvalidator.widget.FormSwitch 
+    	app:switchValidation="on"
+    ... />
+</com.sha.formvalidator.Form>
+   
+```
+Set options programmatically
 
+``` kotlin
 form.options = FormOptions.create {
        validationInterceptor = { .. }
        ignoreFieldsIds = listOf(R.id.etIgnoredId)
        ignoreHiddenFields = true
        shakeOnError = true
 }
+```
 
-// trigger validation
+Trigger Validation
+
+``` kotlin
 val isValid = form.validate()
 
 // OR
 form.validateOnClick(btnValidateForm) { isValid -> ..}
-        
 ```
 
 ##### Example
