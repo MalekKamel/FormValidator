@@ -36,7 +36,7 @@ There are many attributes that can be used in `TextView` validation, here're all
 | **date**  | validates date                             | - **dateFormat**                                |
 
 ## Custom Validators in XML
-FormValidator is very flexible. It's support any custom validator. 
+FormValidator is very flexible, it supports any custom validator. 
 Just extend `CustomValidator` and specify a unique constant
  to be used as a custom validation type:
 ```java
