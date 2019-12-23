@@ -53,16 +53,61 @@ dependencies {
 
 <img src="https://github.com/ShabanKamell/FormValidator/blob/dev/blob/master/raw/diagragm.png" height="600">
 
-## Validatable interface
-FormValidator is based on ```Validatable``` interface to validate any field. If you want FormValidator to support any field, just implement ```Validatable```
+## Widgets
+FormValidator has a collection of different widgets that implement `Validatable`. There're `TextView` widgets and other widgets.
 
-#### Interface Signature
+### TextView Widgets
+
+|         **Widget**           |                **Required attributes**             |      **Default**       |
+| --------------------------   | -------------------------------------------------- | ---------------------  |
+| **FormEditText**             |  see [TextView Validation](#textview-validation)   |        -               |
+| **FormAutoCompleteTextView** |  see [TextView Validation](#textview-validation)   |        -               |
+
+### Other Widgets
+
+|         **Widget**           |                **Required attributes**             |      **Default**       |
+| --------------------------   | -------------------------------------------------- | ---------------------  |
+| **FormCheckBox**             |  checkBoxValidation                                |        checked         |
+| **FormRatingBar**            |  ratingBarValidation                               |        required        |
+| **FormSeekBar**              |  seekBarValidation                                 |        required        |
+| **FormSwitch**               |  switchValidation                                  |        on              |
+| **FormToggleButton**         |  toggleButtonValidation                            |        on              |
+
+## Validatable interface
+```Validatable``` is a fubctional interface implemented by widgets to support validation.
 
 ``` kotlin
 interface Validatable {
     // return true if valid, false otherwise.
     fun validate(): Boolean
 }
+```
+## Form Layout
+`Form` is a LinearLayout that warps all widgets and provides APIs for triggering validation with options.
+
+``` kotlin
+<com.sha.formvalidator.Form
+        ..
+        android:id="@+id/form"
+        app:shakeOnError="true"
+        app:ignoreHiddenFields="true"
+        >
+        
+// set options programmatically
+
+form.options = FormOptions.create {
+       validationInterceptor = { .. }
+       ignoreFieldsIds = listOf(R.id.etIgnoredId)
+       ignoreHiddenFields = true
+       shakeOnError = true
+}
+
+// trigger validation
+val isValid = form.validate()
+
+// OR
+form.validateOnClick(btnValidateForm) { isValid -> ..}
+        
 ```
 
 ##### Example
@@ -76,20 +121,6 @@ override fun validate(): Boolean {
 }
 
 ```
-
-## Predefined Widgets
-FormValidator has a collection of different widgets that implements ```Validatable``` and ready for use directly. here's the list of these widgets:
-
-|         **Widget**           |                **Required attributes**             |      **Default**       |
-| --------------------------   | -------------------------------------------------- | ---------------------  |
-| **FormEditText**             |  see [TextView Validation](#textview-validation)   |        -               |
-| **FormAutoCompleteTextView** |  see [TextView Validation](#textview-validation)   |        -               |
-| **FormCheckBox**             |  checkBoxValidation                                |        checked         |
-| **FormRatingBar**            |  ratingBarValidation                               |        required        |
-| **FormSeekBar**              |  seekBarValidation                                 |        required        |
-| **FormSwitch**               |  switchValidation                                  |        on              |
-| **FormToggleButton**         |  toggleButtonValidation                            |        on              |
-
 
 ## TextView Validation
 FormValidator contains rich validators for validating ```TextView```. There're are 2 predefined widgets that inherit from `TextView`: `FormEditText` and `FormAutoCompleteTextView`. see full documentation in [TextView doc](https://github.com/ShabanKamell/FormValidator/blob/dev/TEXTVIEW.md)
