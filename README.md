@@ -44,8 +44,8 @@ allprojects {
 dependencies {
         // Core
         implementation 'com.github.ShabanKamell.FormValidator:core:x.y.z'
-        // RxJava
-        implementation 'com.github.ShabanKamell.FormValidator:rxjava:x.y.z'
+        // RxJava & Core
+        implementation 'com.github.ShabanKamell:FormValidator:x.y.z'
 }
 ```
 
