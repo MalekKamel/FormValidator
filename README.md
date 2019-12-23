@@ -3,7 +3,7 @@
 
 A declarative Form Validation for Android, simple, clean, and customizable.
 
-Every time you create a form, you need to declare fields and write code for for validating each field in the form, and this results in many ```if else``` and a lot of boilerplate. For these reasons **FormValidator** is here, just declare your field in XML and its validation and all things will be done for you!
+Every time you create a form, you need to declare fields and write code for for validating each field in the form, and this results in many ```if else``` and a lot of boilerplate. For these reasons **FormValidator** is here, just declare your fields in XML and its validation and all things will be done for you!
 
 ```kotlin
 
