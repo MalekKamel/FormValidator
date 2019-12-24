@@ -1,7 +1,7 @@
 apply plugin: Plugins.androidApplication
 apply from: "$rootDir/${GradleName.common}"
-apply plugin: "${Plugins.kotlinAndroid}"
-apply plugin: "${Plugins.kotlinAndroidExtensions}"
+apply plugin: Plugins.kotlinAndroid
+apply plugin: Plugins.kotlinAndroidExtensions
 
 dependencies {
     implementation project(Lib.core)
