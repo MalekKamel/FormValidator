@@ -45,7 +45,7 @@ dependencies {
         // Core
         implementation 'com.github.ShabanKamell.FormValidator:core:x.y.z'
         // RxJava
-        implementation 'com.github.ShabanKamell.FormValidator:rxjava:x.y.z'
+        implementation 'com.github.ShabanKamell:FormValidator:x.y.z'
 }
 ```
 
@@ -131,23 +131,11 @@ val isValid = form.validate()
 form.validateOnClick(btnValidateForm) { isValid -> ..}
 ```
 
-##### Example
-``` kotlin
-class CountrySpinner: AppCompatSpinner, Validatable {
-// ...
-
-// valid only if the first item is not selected (Select Country)
-override fun validate(): Boolean {
-  return selectedItem != adapter.getItem(0)
-}
-
-```
-
 ## TextView Validation
 FormValidator contains rich validators for validating ```TextView```. There're are 2 predefined widgets that inherit from `TextView`: `FormEditText` and `FormAutoCompleteTextView`. see full documentation in  👉 👉 [TextView Validation](https://github.com/ShabanKamell/FormValidator/blob/dev/TEXTVIEW.md)
 
 
-### See 'app' module for the full code.
+### See 'sample' module for the full code.
 
 ### Credit
  [Android Form EditText](https://github.com/vekexasia/android-edittext-validator).
