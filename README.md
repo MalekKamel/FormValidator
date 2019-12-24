@@ -135,7 +135,7 @@ form.validateOnClick(btnValidateForm) { isValid -> ..}
 FormValidator contains rich validators for validating ```TextView```. There're are 2 predefined widgets that inherit from `TextView`: `FormEditText` and `FormAutoCompleteTextView`. see full documentation in  👉 👉 [TextView Validation](https://github.com/ShabanKamell/FormValidator/blob/dev/TEXTVIEW.md)
 
 
-### See 'app' module for the full code.
+### See 'sample' module for the full code.
 
 ### Credit
  [Android Form EditText](https://github.com/vekexasia/android-edittext-validator).
