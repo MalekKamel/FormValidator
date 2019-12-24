@@ -131,18 +131,6 @@ val isValid = form.validate()
 form.validateOnClick(btnValidateForm) { isValid -> ..}
 ```
 
-##### Example
-``` kotlin
-class CountrySpinner: AppCompatSpinner, Validatable {
-// ...
-
-// valid only if the first item is not selected (Select Country)
-override fun validate(): Boolean {
-  return selectedItem != adapter.getItem(0)
-}
-
-```
-
 ## TextView Validation
 FormValidator contains rich validators for validating ```TextView```. There're are 2 predefined widgets that inherit from `TextView`: `FormEditText` and `FormAutoCompleteTextView`. see full documentation in  👉 👉 [TextView Validation](https://github.com/ShabanKamell/FormValidator/blob/dev/TEXTVIEW.md)
 
