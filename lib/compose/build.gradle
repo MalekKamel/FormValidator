@@ -4,7 +4,21 @@ apply plugin: Plugins.kotlinAndroid
 apply plugin: Plugins.kotlinAndroidExtensions
 apply plugin: Plugins.dcendents
 
+android {
+    buildFeatures {
+        // Enables Jetpack Compose for this module
+        compose true
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
 dependencies {
     api project(Lib.core)
-    api Deps.rxJava
+
+    api ComposeDeps.tooling
+    api ComposeDeps.layout
+    api ComposeDeps.material
 }

@@ -54,5 +54,16 @@ object TestDeps {
     const val androidx_test_rules = "androidx.test:rules:${Versions.androidx_test_rules}"
     const val androidx_core_testing = "androidx.arch.core:core-testing:${Versions.androidx_core_testing}"
     // </editor-fold>
+}
 
+object ComposeVersions {
+    const val tooling = "0.1.0-dev02"
+    const val layout = "0.1.0-dev02"
+    const val material = "0.1.0-dev02"
+}
+
+object ComposeDeps {
+    const val tooling = "androidx.appcompat:appcompat:${ComposeVersions.tooling}"
+    const val layout = "androidx.appcompat:appcompat:${ComposeVersions.layout}"
+    const val material = "androidx.appcompat:appcompat:${ComposeVersions.material}"
 }
