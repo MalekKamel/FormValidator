@@ -1,37 +1,37 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml:1:1-52
-INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml:1:1-52
-INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml:1:1-52
-INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml:1:1-52
-INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml:1:1-52
-INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml:1:1-52
-INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml:1:1-52
+ADDED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml:1:1-52
+INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml:1:1-52
+INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml:1:1-52
+INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml:1:1-52
+INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml:1:1-52
+INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml:1:1-52
+INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml:1:1-52
 	package
-		ADDED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml:1:11-49
-		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
-		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
+		ADDED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml:1:11-49
+		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
-		ADDED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml:1:1-52
-		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
+		ADDED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml:1:1-52
+		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml:1:1-52
+		ADDED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml:1:1-52
 	android:versionCode
-		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
-		ADDED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml:1:1-52
-		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
+		ADDED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml:1:1-52
+		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
 uses-sdk
-INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
-INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
-INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
-INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
+INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
+INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
+INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
+INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
-		ADDED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
-		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
+		ADDED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
-		ADDED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
-		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/rxjava/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
+		ADDED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/rxjava/src/main/AndroidManifest.xml

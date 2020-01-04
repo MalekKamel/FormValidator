@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/classic/build/intermediates/res/merged/debug/layout-sw600dp-v13/design_layout_snackbar.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/4ae0b01ce3fa0c3cb2d06fa7603a068c/material-1.2.0-alpha02/res/layout-sw600dp-v13/design_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/classic/build/intermediates/res/merged/debug/layout-sw600dp-v13/mtrl_layout_snackbar.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/4ae0b01ce3fa0c3cb2d06fa7603a068c/material-1.2.0-alpha02/res/layout-sw600dp-v13/mtrl_layout_snackbar.xml"
+    }
+]

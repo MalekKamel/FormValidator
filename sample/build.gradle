@@ -4,7 +4,8 @@ apply plugin: Plugins.kotlinAndroid
 apply plugin: Plugins.kotlinAndroidExtensions
 
 dependencies {
-    implementation project(Lib.core)
+//    implementation project(Lib.compose)
+    implementation project(Lib.classic)
     implementation project(Lib.rxJava)
 
     implementation Deps.androidx_appCompat

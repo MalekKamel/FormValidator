@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/classic/build/intermediates/res/merged/debug/layout-watch-v20/abc_alert_dialog_title_material.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/7617d3cd51c7d106c5003b27d739686d/appcompat-1.1.0/res/layout-watch-v20/abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/classic/build/intermediates/res/merged/debug/layout-watch-v20/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/7617d3cd51c7d106c5003b27d739686d/appcompat-1.1.0/res/layout-watch-v20/abc_alert_dialog_button_bar_material.xml"
+    }
+]

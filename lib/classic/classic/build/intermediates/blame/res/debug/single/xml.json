@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/classic/build/intermediates/res/merged/debug/xml/settings.xml",
+        "source": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/core/build/intermediates/packaged_res/debug/xml/settings.xml"
+    },
+    {
+        "merged": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/classic/build/intermediates/res/merged/debug/xml/standalone_badge_gravity_top_start.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/4ae0b01ce3fa0c3cb2d06fa7603a068c/material-1.2.0-alpha02/res/xml/standalone_badge_gravity_top_start.xml"
+    },
+    {
+        "merged": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/classic/build/intermediates/res/merged/debug/xml/standalone_badge_gravity_bottom_end.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/4ae0b01ce3fa0c3cb2d06fa7603a068c/material-1.2.0-alpha02/res/xml/standalone_badge_gravity_bottom_end.xml"
+    },
+    {
+        "merged": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/classic/build/intermediates/res/merged/debug/xml/standalone_badge_gravity_bottom_start.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/4ae0b01ce3fa0c3cb2d06fa7603a068c/material-1.2.0-alpha02/res/xml/standalone_badge_gravity_bottom_start.xml"
+    },
+    {
+        "merged": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/classic/build/intermediates/res/merged/debug/xml/standalone_badge_offset.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/4ae0b01ce3fa0c3cb2d06fa7603a068c/material-1.2.0-alpha02/res/xml/standalone_badge_offset.xml"
+    },
+    {
+        "merged": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/classic/build/intermediates/res/merged/debug/xml/standalone_badge.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/4ae0b01ce3fa0c3cb2d06fa7603a068c/material-1.2.0-alpha02/res/xml/standalone_badge.xml"
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/classic/build/intermediates/res/merged/debug/interpolator-v21/mtrl_fast_out_slow_in.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/4ae0b01ce3fa0c3cb2d06fa7603a068c/material-1.2.0-alpha02/res/interpolator-v21/mtrl_fast_out_slow_in.xml"
+    },
+    {
+        "merged": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/classic/build/intermediates/res/merged/debug/interpolator-v21/mtrl_linear_out_slow_in.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/4ae0b01ce3fa0c3cb2d06fa7603a068c/material-1.2.0-alpha02/res/interpolator-v21/mtrl_linear_out_slow_in.xml"
+    },
+    {
+        "merged": "/Users/mac/Desktop/android/projects/me/lib/FormValidator/lib/classic/classic/build/intermediates/res/merged/debug/interpolator-v21/mtrl_fast_out_linear_in.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/4ae0b01ce3fa0c3cb2d06fa7603a068c/material-1.2.0-alpha02/res/interpolator-v21/mtrl_fast_out_linear_in.xml"
+    }
+]
