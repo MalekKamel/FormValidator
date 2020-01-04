@@ -63,7 +63,7 @@ object ComposeVersions {
 }
 
 object ComposeDeps {
-    const val tooling = "androidx.appcompat:appcompat:${ComposeVersions.tooling}"
-    const val layout = "androidx.appcompat:appcompat:${ComposeVersions.layout}"
-    const val material = "androidx.appcompat:appcompat:${ComposeVersions.material}"
+    const val tooling = "androidx.ui:ui-tooling:${ComposeVersions.tooling}"
+    const val layout = "androidx.ui:ui-layout:${ComposeVersions.layout}"
+    const val material = "androidx.ui:ui-material:${ComposeVersions.material}"
 }
