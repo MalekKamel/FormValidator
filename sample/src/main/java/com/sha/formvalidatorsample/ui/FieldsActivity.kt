@@ -1,9 +1,6 @@
-package com.sha.formvalidatorsample.presentation
+package com.sha.formvalidatorsample.ui
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.sha.formvalidatorsample.R
 import com.sha.formvalidatorsample.adapter.RecyclerAdapter
-import com.sha.formvalidatorsample.util.SnackBarUtil
 
 
 class FieldsActivity : AppCompatActivity() {

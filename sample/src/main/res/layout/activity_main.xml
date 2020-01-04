@@ -25,4 +25,14 @@
         android:layout_margin="5dp"
         />
 
+    <Button
+        android:id="@+id/btnCompose"
+        android:text="Form"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Button.Round"
+        android:layout_margin="5dp"
+        />
+
 </LinearLayout>

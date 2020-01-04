@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,13 +19,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.FieldsActivity" />
-        <activity android:name=".presentation.FormActivity" />
-        <activity android:name=".presentation.FieldActivity" />
-        <activity android:name=".presentation.EmailOrCreditCardActivity" />
-        <activity android:name=".presentation.PrefixAndRangeValidatorActivity" />
-        <activity android:name=".presentation.PasswordValidatorActivity" />
-        <activity android:name=".presentation.AutoCompleteTextViewActivity" />
+        <activity android:name=".ui.FieldsActivity" />
+        <activity android:name=".ui.FormActivity" />
+        <activity android:name=".ui.FieldActivity" />
+        <activity android:name=".ui.EmailOrCreditCardActivity" />
+        <activity android:name=".ui.PrefixAndRangeValidatorActivity" />
+        <activity android:name=".ui.PasswordValidatorActivity" />
+        <activity android:name=".ui.AutoCompleteTextViewActivity" />
+        <activity android:name=".ui.ComposeActivity" />
 
     </application>
 
