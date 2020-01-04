@@ -8,6 +8,7 @@
 .idea/modules.xml
 .DS_Store
 /build
+Build
 /sample/build
 /lib/build
 /captures
