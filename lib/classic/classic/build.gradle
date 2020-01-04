@@ -5,6 +5,6 @@ apply plugin: Plugins.kotlinAndroidExtensions
 apply plugin: Plugins.dcendents
 
 dependencies {
-    api project(path: ':core')
+    api project(Lib.core)
     api Deps.rxJava
 }
