@@ -15,7 +15,7 @@
         app:ignoreHiddenFields="true"
         >
 
-        <com.sha.formvalidatorsample.ui.CountrySpinner
+        <com.sha.formvalidatorsample.classic.ui.CountrySpinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:countrySpinnerValidation="required"

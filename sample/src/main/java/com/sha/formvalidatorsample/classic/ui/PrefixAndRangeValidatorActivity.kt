@@ -1,4 +1,4 @@
-package com.sha.formvalidatorsample.ui
+package com.sha.formvalidatorsample.classic.ui
 
 import android.app.Activity
 import android.os.Bundle
@@ -9,17 +9,35 @@ import android.widget.TextView
 import android.widget.Toast
 
 import com.sha.formvalidator.textview.ValidatorFactory
-import com.sha.formvalidator.textview.validator.CreditCardValidator
-import com.sha.formvalidator.textview.validator.pattern.EmailValidator
+import com.sha.formvalidator.textview.validator.PrefixValidator
+import com.sha.formvalidator.textview.validator.LengthRangeValidator
 import com.sha.formvalidator.widget.FormEditText
 import com.sha.formvalidatorsample.R
 
-class EmailOrCreditCardActivity : Activity() {
+class PrefixAndRangeValidatorActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_field)
+        setupUi()
 
+        //Interesting stuff starts here
+        val fdt = findViewById<FormEditText>(R.id.et)
+
+        fdt.addValidators {
+            allValid(
+                    PrefixValidator("d", "Must start with d."),
+                    LengthRangeValidator("Must be of length 1-5.", 1, 5))
+        }
+
+        // OR add using ValidatorFactory (appropriate for Java)
+        fdt.addValidator(
+                ValidatorFactory.allValid(
+                        PrefixValidator("d", "Must start with d."),
+                        LengthRangeValidator("Must be of length 1-5.", 1, 5)))
+    }
+
+    private fun setupUi() {
         val flContainer = findViewById<FrameLayout>(R.id.fl)
         val tvDescription = findViewById<TextView>(R.id.tv_description)
         val tvTitle = findViewById<TextView>(R.id.tv_title)
@@ -28,17 +46,6 @@ class EmailOrCreditCardActivity : Activity() {
         tvDescription.setText(R.string.description_email_or_credit)
         tvTitle.setText(R.string.email_or_credit_title)
 
-        //Interesting stuff starts here
-
-        val fdt = findViewById<FormEditText>(R.id.et)
-
-        fdt.addValidator(
-                ValidatorFactory.anyValid(
-                        "This is neither a creditcard or an email",
-                        CreditCardValidator(),
-                        EmailValidator()
-                )
-        )
     }
 
     fun onClickValidate(v: View) {

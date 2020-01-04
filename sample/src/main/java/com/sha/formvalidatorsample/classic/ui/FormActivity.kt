@@ -1,4 +1,4 @@
-package com.sha.formvalidatorsample.ui
+package com.sha.formvalidatorsample.classic.ui
 
 import android.app.Activity
 import android.os.Bundle

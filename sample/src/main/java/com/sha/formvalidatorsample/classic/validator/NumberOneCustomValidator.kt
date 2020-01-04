@@ -1,4 +1,4 @@
-package com.sha.formvalidatorsample.validator
+package com.sha.formvalidatorsample.classic.validator
 
 import android.content.Context
 import com.sha.formvalidator.textview.validator.CustomValidator

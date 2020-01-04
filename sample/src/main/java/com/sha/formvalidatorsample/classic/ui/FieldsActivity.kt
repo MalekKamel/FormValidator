@@ -1,4 +1,4 @@
-package com.sha.formvalidatorsample.ui
+package com.sha.formvalidatorsample.classic.ui
 
 import android.os.Bundle
 
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.sha.formvalidatorsample.R
-import com.sha.formvalidatorsample.adapter.RecyclerAdapter
+import com.sha.formvalidatorsample.classic.adapter.RecyclerAdapter
 
 
 class FieldsActivity : AppCompatActivity() {

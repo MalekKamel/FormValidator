@@ -1,4 +1,4 @@
-package com.sha.formvalidatorsample.ui
+package com.sha.formvalidatorsample.classic.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 
 import com.sha.formvalidatorsample.R
+import com.sha.formvalidatorsample.compose.ComposeActivity
 
 class MainActivity : Activity() {
 

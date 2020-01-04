@@ -1,4 +1,4 @@
-package com.sha.formvalidatorsample.util
+package com.sha.formvalidatorsample.classic.util
 
 import android.os.Handler
 import android.view.View

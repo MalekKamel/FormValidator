@@ -1,10 +1,10 @@
-package com.sha.formvalidatorsample.adapter
+package com.sha.formvalidatorsample.classic.adapter
 
 import com.sha.formvalidatorsample.R
-import com.sha.formvalidatorsample.ui.AutoCompleteTextViewActivity
-import com.sha.formvalidatorsample.ui.EmailOrCreditCardActivity
-import com.sha.formvalidatorsample.ui.PasswordValidatorActivity
-import com.sha.formvalidatorsample.ui.PrefixAndRangeValidatorActivity
+import com.sha.formvalidatorsample.classic.ui.AutoCompleteTextViewActivity
+import com.sha.formvalidatorsample.classic.ui.EmailOrCreditCardActivity
+import com.sha.formvalidatorsample.classic.ui.PasswordValidatorActivity
+import com.sha.formvalidatorsample.classic.ui.PrefixAndRangeValidatorActivity
 
 internal object FieldInfo {
 

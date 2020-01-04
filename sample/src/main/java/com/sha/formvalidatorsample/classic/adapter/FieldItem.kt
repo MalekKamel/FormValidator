@@ -1,10 +1,10 @@
-package com.sha.formvalidatorsample.adapter
+package com.sha.formvalidatorsample.classic.adapter
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 
-import com.sha.formvalidatorsample.ui.FieldActivity
+import com.sha.formvalidatorsample.classic.ui.FieldActivity
 
 class FieldItem {
     private lateinit var clazz: Class<out Activity>

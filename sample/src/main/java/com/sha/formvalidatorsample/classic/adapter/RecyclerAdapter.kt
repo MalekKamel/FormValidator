@@ -1,4 +1,4 @@
-package com.sha.formvalidatorsample.adapter
+package com.sha.formvalidatorsample.classic.adapter
 
 import android.view.LayoutInflater
 import android.view.View
