@@ -5,9 +5,9 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import com.sha.formvalidator.Validatable
 import com.sha.formvalidator.model.CompositeValidatorInfo
-import com.sha.formvalidator.textview.DefTextValidationHandler
-import com.sha.formvalidator.textview.TextValidationHandler
-import com.sha.formvalidator.textview.validator.TextValidator
+import com.sha.formvalidator.core.text.DefTextValidationHandler
+import com.sha.formvalidator.core.text.TextValidationHandler
+import com.sha.formvalidator.core.text.validator.TextValidator
 
 /**
  * An implementation of [Validatable] for [AppCompatAutoCompleteTextView].

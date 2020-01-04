@@ -57,13 +57,16 @@ object TestDeps {
 }
 
 object ComposeVersions {
-    const val tooling = "0.1.0-dev02"
-    const val layout = "0.1.0-dev02"
-    const val material = "0.1.0-dev02"
+    const val compose_version = "0.1.0-dev03"
 }
 
 object ComposeDeps {
-    const val tooling = "androidx.ui:ui-tooling:${ComposeVersions.tooling}"
-    const val layout = "androidx.ui:ui-layout:${ComposeVersions.layout}"
-    const val material = "androidx.ui:ui-material:${ComposeVersions.material}"
+    const val tooling = "androidx.ui:ui-tooling:${ComposeVersions.compose_version}"
+    const val layout = "androidx.ui:ui-layout:${ComposeVersions.compose_version}"
+    const val material = "androidx.ui:ui-material:${ComposeVersions.compose_version}"
+    const val animation = "androidx.ui:ui-animation:${ComposeVersions.compose_version}"
+    const val foundation = "androidx.ui:ui-foundation:${ComposeVersions.compose_version}"
+    const val framework = "androidx.ui:ui-framework:${ComposeVersions.compose_version}"
+    const val runtime = "androidx.compose:compose-runtime:${ComposeVersions.compose_version}"
 }
+

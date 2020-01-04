@@ -1,7 +1,7 @@
 package com.sha.formvalidator.validator.pattern
 
-import com.sha.formvalidator.textview.validator.TextValidator
-import com.sha.formvalidator.textview.validator.pattern.PersonFullNameValidator
+import com.sha.formvalidator.core.text.validator.TextValidator
+import com.sha.formvalidator.core.text.validator.pattern.PersonFullNameValidator
 import org.junit.Before
 import org.junit.Test
 

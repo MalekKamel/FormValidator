@@ -1,7 +1,7 @@
 package com.sha.formvalidator.validator
 
-import com.sha.formvalidator.textview.validator.NumericValidator
-import com.sha.formvalidator.textview.validator.TextValidator
+import com.sha.formvalidator.core.text.validator.NumericValidator
+import com.sha.formvalidator.core.text.validator.TextValidator
 import org.junit.Before
 import org.junit.Test
 

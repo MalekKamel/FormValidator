@@ -1,8 +1,8 @@
 package com.sha.formvalidator.validator
 
-import com.sha.formvalidator.textview.validator.CreditCardValidator
-import com.sha.formvalidator.textview.validator.InverseValidator
-import com.sha.formvalidator.textview.validator.TextValidator
+import com.sha.formvalidator.core.text.validator.CreditCardValidator
+import com.sha.formvalidator.core.text.validator.InverseValidator
+import com.sha.formvalidator.core.text.validator.TextValidator
 import org.junit.Before
 import org.junit.Test
 

@@ -1,7 +1,7 @@
 package com.sha.formvalidator.validator
 
 import android.content.Context
-import com.sha.formvalidator.textview.validator.CustomValidator
+import com.sha.formvalidator.core.text.validator.CustomValidator
 
 class NumberOneCustomValidator(errorMessage: String) : CustomValidator(errorMessage) {
     override fun customValidationType(context: Context): String {

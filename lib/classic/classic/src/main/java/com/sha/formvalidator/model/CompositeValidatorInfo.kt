@@ -1,8 +1,8 @@
 package com.sha.formvalidator.model
 
 import android.widget.TextView
-import com.sha.formvalidator.textview.ValidatorFactory
-import com.sha.formvalidator.textview.validator.TextValidator
+import com.sha.formvalidator.core.text.ValidatorFactory
+import com.sha.formvalidator.core.text.validator.TextValidator
 
 data class CompositeValidatorInfo(
        internal var validators: MutableList<TextValidator> = mutableListOf()

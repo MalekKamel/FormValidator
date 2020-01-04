@@ -3,6 +3,17 @@ apply from: "$rootDir/${GradleName.common}"
 apply plugin: Plugins.kotlinAndroid
 apply plugin: Plugins.kotlinAndroidExtensions
 
+android {
+    buildFeatures {
+        // Enables Jetpack Compose for this module
+        compose true
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
 dependencies {
     implementation project(Lib.compose)
     implementation project(Lib.classic)
@@ -12,4 +23,13 @@ dependencies {
     implementation Deps.android_material
     implementation Deps.androidx_core_ktx
     implementation Deps.multidex
+
+    implementation ComposeDeps.tooling
+    implementation ComposeDeps.layout
+    implementation ComposeDeps.material
+    implementation ComposeDeps.runtime
+    implementation ComposeDeps.animation
+    implementation ComposeDeps.foundation
+    implementation ComposeDeps.framework
+
 }

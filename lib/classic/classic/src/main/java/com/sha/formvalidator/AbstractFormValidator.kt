@@ -1,8 +1,8 @@
 package com.sha.formvalidator
 
 import android.view.View
-import com.sha.formvalidator.model.FormOptions
 import com.sha.formvalidator.helper.AnimationHelper
+import com.sha.formvalidator.model.FormOptions
 
 /**
  * The base form validator that all validators must extend.

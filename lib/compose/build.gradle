@@ -18,7 +18,7 @@ android {
 dependencies {
     api project(Lib.core)
 
-    api ComposeDeps.tooling
-    api ComposeDeps.layout
-    api ComposeDeps.material
+    implementation ComposeDeps.tooling
+    implementation ComposeDeps.layout
+    implementation ComposeDeps.material
 }

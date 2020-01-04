@@ -6,9 +6,9 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import com.sha.formvalidator.Validatable
 import com.sha.formvalidator.model.CompositeValidatorInfo
-import com.sha.formvalidator.textview.DefTextValidationHandler
-import com.sha.formvalidator.textview.TextValidationHandler
-import com.sha.formvalidator.textview.validator.TextValidator
+import com.sha.formvalidator.core.text.DefTextValidationHandler
+import com.sha.formvalidator.core.text.TextValidationHandler
+import com.sha.formvalidator.core.text.validator.TextValidator
 
 /**
  * An implementation of [Validatable] for [AppCompatEditText].
@@ -52,9 +52,7 @@ open class FormEditText : AppCompatEditText, Validatable {
      *
      * @return true if valid.
      */
-    override fun validate(): Boolean {
-        return validationHandler.validate()
-    }
+    override fun validate() = validationHandler.validate()
 
     override fun getBackground(): Drawable? {
         val background = super.getBackground()

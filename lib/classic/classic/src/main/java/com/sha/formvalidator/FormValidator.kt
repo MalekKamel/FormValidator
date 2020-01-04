@@ -6,7 +6,7 @@ import com.sha.formvalidator.model.FormOptions
 /**
  * The class responsible for validating fields
  */
-class FormValidator<T : Validatable> : com.sha.formvalidator.AbstractFormValidator<T> {
+class FormValidator<T : Validatable> : AbstractFormValidator<T> {
 
     /**
      * create an instance with list of fields to be validated.

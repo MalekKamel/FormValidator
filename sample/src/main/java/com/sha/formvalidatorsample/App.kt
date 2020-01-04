@@ -1,7 +1,7 @@
 package com.sha.formvalidatorsample
 
 import android.app.Application
-import com.sha.formvalidator.textview.TextViewValidators
+import com.sha.formvalidator.core.text.TextViewValidators
 import com.sha.formvalidatorsample.classic.validator.NumberOneCustomValidator
 
 class App : Application() {
