@@ -21,4 +21,6 @@ dependencies {
     implementation ComposeDeps.tooling
     implementation ComposeDeps.layout
     implementation ComposeDeps.material
+    implementation ComposeDeps.foundation
+
 }

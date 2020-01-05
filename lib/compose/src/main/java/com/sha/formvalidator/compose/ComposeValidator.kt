@@ -2,7 +2,7 @@ package com.sha.formvalidator.compose
 
 import androidx.compose.State
 
-class ComposeFormValidator<T : ValidatableTextModel> : AbstractComposeFormValidator<T> {
+class ComposeValidator<T : ValidatableTextModel> : AbstractComposeValidator<T> {
 
     /**
      * create an instance with list of models to be validated.
