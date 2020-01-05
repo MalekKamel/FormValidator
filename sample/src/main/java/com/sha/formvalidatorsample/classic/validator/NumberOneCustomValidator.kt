@@ -1,7 +1,7 @@
 package com.sha.formvalidatorsample.classic.validator
 
 import android.content.Context
-import com.sha.formvalidator.core.text.validator.CustomValidator
+import com.sha.formvalidator.core.validator.CustomValidator
 import com.sha.formvalidatorsample.R
 
 class NumberOneCustomValidator(errorMessage: String) : CustomValidator(errorMessage) {

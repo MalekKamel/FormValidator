@@ -1,7 +1,7 @@
 package com.sha.formvalidator.validator
 
-import com.sha.formvalidator.core.text.validator.DateValidator
-import com.sha.formvalidator.core.text.validator.TextValidator
+import com.sha.formvalidator.core.validator.DateValidator
+import com.sha.formvalidator.core.validator.TextValidator
 import org.junit.Before
 import org.junit.Test
 

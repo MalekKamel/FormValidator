@@ -12,25 +12,23 @@ import androidx.ui.material.Button
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Surface
 import androidx.ui.tooling.preview.Preview
-import com.sha.formvalidator.compose.ComposeValidator
-import com.sha.formvalidator.compose.FormTextField
-import com.sha.formvalidator.compose.MandatoryValidation
+import com.sha.formvalidator.compose.*
 
 @Composable
 fun ComposeFieldsScreen() {
 
-    val country = MandatoryValidation.create {
-        errorText = "Invalid Country"
+    val compositeValidation = CompositeValidation<ValidatableModel>()
+
+    val country = Validation.mandatory(compositeValidation) {
+        errorText = "Invalid Country!"
         validateOnChange = true
     }
 
-    val email = MandatoryValidation.create {
-        errorText = "Invalid Email"
+    val email = Validation.mandatory(compositeValidation) {
+        errorText = "Invalid Email!"
     }
 
-    val password = MandatoryValidation.create {
-        errorText = "Invalid Email"
-    }
+    val password = Validation.mandatory(compositeValidation) {}
 
     Column {
         VerticalScroller(modifier = Flexible(1f)) {
@@ -57,11 +55,13 @@ fun ComposeFieldsScreen() {
                         text = "Login",
                         modifier = Spacing(8.dp),
                         onClick = {
-                            println("Country valid = ${country.value.isValid}")
-                            println("Email valid = ${email.value.isValid}")
-                            println("Password valid = ${password.value.isValid}")
+                            println("Country valid = ${country.isValid()}")
+                            println("Email valid = ${email.isValid()}")
+                            println("Password valid = ${password.isValid()}")
 
                             println("Form valid = ${ComposeValidator(country, email, password).isValid}")
+                            println("Form valid = ${ComposeValidator(compositeValidation).isValid}")
+                            println("Form valid = ${compositeValidation.isValid}")
                         }
                 )
             }

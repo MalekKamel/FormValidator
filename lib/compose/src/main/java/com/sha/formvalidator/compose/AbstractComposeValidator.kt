@@ -6,7 +6,7 @@ import androidx.compose.State
 /**
  * The base form validator that all validators must extend.
  */
-open class AbstractComposeValidator<T : ValidatableTextModel> {
+open class AbstractComposeValidator<T : ValidatableModel> {
     private var fields: List<State<T>> = emptyList()
     val isValid: Boolean
         get() {
@@ -19,6 +19,13 @@ open class AbstractComposeValidator<T : ValidatableTextModel> {
             }
             return isValid
         }
+    /**
+     * create an instance with list of fields to be validated.
+     */
+    constructor(models: CompositeValidation<T>) {
+        this.fields = models.list
+    }
+
     /**
      * create an instance with list of fields to be validated.
      */

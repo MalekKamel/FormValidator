@@ -24,13 +24,12 @@ fun <T: ValidatableTextModel> FormTextField(
         onImeActionPerformed: (ImeAction) -> Unit = {},
         visualTransformation: VisualTransformation? = null) {
     Recompose { recompose ->
-        model.value.recompose =  recompose
-
+        model.value.recompose = recompose
+        +state { model.value.text = value }
         Column {
-            +state { model.value.text = value }
             val inputField = @Composable {
                 TextField(
-                        value = model.value.text,
+                        value = model.text(),
                         modifier = modifier,
                         onValueChange = {
                             model.value.text = it
@@ -58,7 +57,7 @@ fun Validate(model: ValidatableModel) {
     model.forceValidationOnce = false
 
     if (canValidate && !model.isValid)
-        Text(text = "required", style = TextStyle(color = Color.Red, fontSize = 18.sp))
+        Text(text = model.errorText, style = TextStyle(color = Color.Red, fontSize = 18.sp))
 }
 
 @Composable
@@ -71,9 +70,7 @@ fun Hint(
         inputField()
         return
     }
-    val hintText =  @Composable {
-        Text(text = hint, style = TextStyle(fontSize = 18.sp))
-    }
+    val hintText =  @Composable { Text(text = hint, style = TextStyle(fontSize = 18.sp)) }
 
     Layout(inputField, hintText) { measurable, constraints ->
         val inputFieldPlaceable = measurable[inputField].first().measure(constraints)

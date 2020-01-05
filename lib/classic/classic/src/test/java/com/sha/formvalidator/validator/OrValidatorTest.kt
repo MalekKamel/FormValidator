@@ -1,9 +1,9 @@
 package com.sha.formvalidator.validator
 
-import com.sha.formvalidator.core.text.validator.CreditCardValidator
-import com.sha.formvalidator.core.text.validator.PrefixValidator
-import com.sha.formvalidator.core.text.validator.TextValidator
-import com.sha.formvalidator.core.text.validator.composite.OrValidator
+import com.sha.formvalidator.core.validator.CreditCardValidator
+import com.sha.formvalidator.core.validator.PrefixValidator
+import com.sha.formvalidator.core.validator.TextValidator
+import com.sha.formvalidator.core.validator.composite.OrValidator
 import org.junit.Before
 import org.junit.Test
 

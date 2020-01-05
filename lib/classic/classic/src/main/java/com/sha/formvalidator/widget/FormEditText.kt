@@ -6,9 +6,9 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import com.sha.formvalidator.Validatable
 import com.sha.formvalidator.model.CompositeValidatorInfo
-import com.sha.formvalidator.core.text.DefTextValidationHandler
-import com.sha.formvalidator.core.text.TextValidationHandler
-import com.sha.formvalidator.core.text.validator.TextValidator
+import com.sha.formvalidator.core.DefTextValidationHandler
+import com.sha.formvalidator.core.TextValidationHandler
+import com.sha.formvalidator.core.validator.TextValidator
 
 /**
  * An implementation of [Validatable] for [AppCompatEditText].
