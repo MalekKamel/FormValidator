@@ -6,16 +6,16 @@ import androidx.compose.State
 /**
  * The base form validator that all validators must extend.
  */
-open class AbstractComposeValidator<T : ValidatableModel> {
-    private var fields: List<State<T>> = emptyList()
+open class AbstractComposeValidator<T: ValidatableModel> {
+    private var fields: List<T> = emptyList()
     val isValid: Boolean
         get() {
             if(fields.isEmpty()) return false
             var isValid = true
             fields.forEach {
-                val fieldValid = it.value.isValid
+                val fieldValid = it.isValid
                 isValid = fieldValid && isValid
-                it.value.validate()
+                it.validate()
             }
             return isValid
         }
@@ -29,7 +29,7 @@ open class AbstractComposeValidator<T : ValidatableModel> {
     /**
      * create an instance with list of fields to be validated.
      */
-    constructor(fields: List<State<T>>) {
+    constructor(fields: List<T>) {
         this.fields = fields
     }
 
@@ -38,7 +38,7 @@ open class AbstractComposeValidator<T : ValidatableModel> {
      * validated.
      */
     @SafeVarargs
-    constructor(vararg fields: State<T>) {
+    constructor(vararg fields: T) {
         this.fields = fields.asList()
     }
 }

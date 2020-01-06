@@ -10,8 +10,8 @@ import androidx.ui.layout.Column
 import androidx.ui.text.TextStyle
 
 @Composable
-fun <T: ValidatableTextModel> FormTextField(
-        model: State<T>,
+fun <T: ValidatableModel> FormTextField(
+        model: T,
         value: String = "",
         hint: String = "",
         modifier: Modifier = Modifier.None,
@@ -24,15 +24,15 @@ fun <T: ValidatableTextModel> FormTextField(
         onImeActionPerformed: (ImeAction) -> Unit = {},
         visualTransformation: VisualTransformation? = null) {
     Recompose { recompose ->
-        model.value.recompose = recompose
-        +state { model.value.text = value }
+        model.recompose = recompose
+        +state { model.text = value }
         Column {
             val inputField = @Composable {
                 TextField(
-                        value = model.text(),
+                        value = model.text,
                         modifier = modifier,
                         onValueChange = {
-                            model.value.text = it
+                            model.text = it
                             recompose()
                         },
                         textStyle = textStyle,
@@ -45,8 +45,8 @@ fun <T: ValidatableTextModel> FormTextField(
                         visualTransformation = visualTransformation
                 )
             }
-            Hint(hint, model.value.text, inputField)
-            Validate(model.value)
+            Hint(hint, model.text, inputField)
+            Validate(model)
         }
     }
 }
@@ -83,3 +83,45 @@ fun Hint(
 }
 
 
+@Composable
+fun <T: ValidatableModel> FormTextFieldTest(
+        model: T,
+        value: String = "",
+        hint: String = "",
+        modifier: Modifier = Modifier.None,
+        textStyle: TextStyle? = null,
+        keyboardType: KeyboardType = KeyboardType.Text,
+        imeAction: ImeAction = ImeAction.Unspecified,
+        onFocus: () -> Unit = {},
+        onBlur: () -> Unit = {},
+        focusIdentifier: String? = null,
+        onImeActionPerformed: (ImeAction) -> Unit = {},
+        visualTransformation: VisualTransformation? = null) {
+    Recompose { recompose ->
+        val state = +state { model }
+        state.value.recompose = recompose
+        +state { state.value.text = value }
+        Column {
+            val inputField = @Composable {
+                TextField(
+                        value = state.value.text,
+                        modifier = modifier,
+                        onValueChange = {
+                            state.value.text = it
+                            recompose()
+                        },
+                        textStyle = textStyle,
+                        keyboardType = keyboardType,
+                        imeAction = imeAction,
+                        onFocus = onFocus,
+                        onBlur = onBlur,
+                        focusIdentifier = focusIdentifier,
+                        onImeActionPerformed = onImeActionPerformed,
+                        visualTransformation = visualTransformation
+                )
+            }
+            Hint(hint, state.value.text, inputField)
+            Validate(state.value)
+        }
+    }
+}

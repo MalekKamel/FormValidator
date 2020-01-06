@@ -8,7 +8,10 @@ import com.sha.formvalidator.core.validator.TextValidator
  * Note: the message that will be shown is the one passed to the Constructor
  *
  */
-class OrValidator(message: String, vararg validators: TextValidator) : CompositeValidator(message, *validators) {
+class OrValidator : CompositeValidator {
+
+    constructor(message: String, vararg validators: TextValidator): super(message, *validators)
+    constructor(message: String, validators: List<TextValidator>): super(message, validators)
 
     override fun isValid(text: String): Boolean {
         for (v in validators)

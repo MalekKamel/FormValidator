@@ -24,11 +24,11 @@ fun ComposeFieldsScreen() {
         validateOnChange = true
     }
 
-    val email = Validation.mandatory(compositeValidation) {
+    val email = Validation.email(compositeValidation) {
         errorText = "Invalid Email!"
     }
 
-    val password = Validation.mandatory(compositeValidation) {}
+    val password = Validation.mandatory(compositeValidation)
 
     Column {
         VerticalScroller(modifier = Flexible(1f)) {
@@ -55,9 +55,9 @@ fun ComposeFieldsScreen() {
                         text = "Login",
                         modifier = Spacing(8.dp),
                         onClick = {
-                            println("Country valid = ${country.isValid()}")
-                            println("Email valid = ${email.isValid()}")
-                            println("Password valid = ${password.isValid()}")
+                            println("Country valid = ${country.isValid}")
+                            println("Email valid = ${email.isValid}")
+                            println("Password valid = ${password.isValid}")
 
                             println("Form valid = ${ComposeValidator(country, email, password).isValid}")
                             println("Form valid = ${ComposeValidator(compositeValidation).isValid}")

@@ -2,7 +2,7 @@ package com.sha.formvalidator.compose
 
 import androidx.compose.State
 
-class ComposeValidator<T : ValidatableModel> : AbstractComposeValidator<T> {
+class ComposeValidator<T: ValidatableModel> : AbstractComposeValidator<T> {
 
     /**
      * create an instance with list of models to be validated.
@@ -14,12 +14,12 @@ class ComposeValidator<T : ValidatableModel> : AbstractComposeValidator<T> {
      * create an instance with list of models to be validated.
      * @param fields the fields to be validated.
      */
-    constructor(fields: List<State<T>>) : super(fields)
+    constructor(fields: List<T>) : super(fields)
 
     /**
      * create an instance with list of models to be validated.
      * @param fields the fields to be validated.
      */
-    constructor(vararg fields: State<T>) : super(*fields)
+    constructor(vararg fields: T) : super(*fields)
 
 }

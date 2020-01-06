@@ -7,7 +7,10 @@ import com.sha.formvalidator.core.validator.TextValidator
  * Note: the message that will be shown is the one of the first failing validator
  *
  */
-class AndValidator(vararg validators: TextValidator) : CompositeValidator("", *validators) {
+class AndValidator: CompositeValidator {
+
+    constructor(vararg validators: TextValidator): super("", *validators)
+    constructor(validators: List<TextValidator>): super("", validators)
 
     override fun isValid(text: String): Boolean {
        val anyFails = validators.firstOrNull { !it.isValid(text) }
