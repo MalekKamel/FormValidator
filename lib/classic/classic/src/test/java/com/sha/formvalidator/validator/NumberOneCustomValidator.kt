@@ -7,5 +7,5 @@ class NumberOneCustomValidator(errorMessage: String) : CustomValidator(errorMess
     override fun customValidationType(context: Context): String {
         return "Num1"
     }
-    override fun isValid(text: String) = text == "1"
+    override fun isValid(value: String) = value == "1"
 }

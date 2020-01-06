@@ -6,8 +6,8 @@ package com.sha.formvalidator.core.validator
  */
 class LengthRangeValidator(errorMessage: String, private val min: Long, private val max: Long) : TextValidator(errorMessage) {
 
-    override fun isValid(text: String): Boolean {
-        val length = text.length
+    override fun isValid(value: String): Boolean {
+        val length = value.length
         return length in min..max
     }
 }

@@ -13,9 +13,9 @@ class OrValidator : CompositeValidator {
     constructor(message: String, vararg validators: TextValidator): super(message, *validators)
     constructor(message: String, validators: List<TextValidator>): super(message, validators)
 
-    override fun isValid(text: String): Boolean {
+    override fun isValid(value: String): Boolean {
         for (v in validators)
-            if (v.isValid(text)) return true // Remember :) We're acting like an || operator.
+            if (v.isValid(value)) return true // Remember :) We're acting like an || operator.
 
         return false
     }

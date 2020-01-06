@@ -7,6 +7,6 @@ package com.sha.formvalidator.core.validator
 class InverseValidator(validator: TextValidator, errorMessage: String = "") : TextValidator(errorMessage) {
     private var v: TextValidator = validator
 
-    override fun isValid(text: String): Boolean = !v.isValid(text)
+    override fun isValid(value: String): Boolean = !v.isValid(value)
 
 }

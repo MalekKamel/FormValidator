@@ -7,9 +7,9 @@ package com.sha.formvalidator.core.validator
  */
 class CreditCardValidator(errorMessage: String = "") : TextValidator(errorMessage) {
 
-    override fun isValid(text: String): Boolean {
+    override fun isValid(value: String): Boolean {
         return try {
-            validateCardNumber(text)
+            validateCardNumber(value)
         } catch (e: Exception) {
             false
         }

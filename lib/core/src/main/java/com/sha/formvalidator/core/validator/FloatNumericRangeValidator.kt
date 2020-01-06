@@ -7,8 +7,8 @@ package com.sha.formvalidator.core.validator
  * @author Said Tahsin Dane <tasomaniac></tasomaniac>@gmail.com>
  */
 class FloatNumericRangeValidator(errorMessage: String, private val floatMin: Double, private val floatMax: Double) : TextValidator(errorMessage) {
-    override fun isValid(text: String): Boolean {
-       return try { text.toDouble() in floatMin..floatMax }
+    override fun isValid(value: String): Boolean {
+       return try { value.toDouble() in floatMin..floatMax }
         catch (e: NumberFormatException) { false }
     }
 }

@@ -7,5 +7,5 @@ package com.sha.formvalidator.core.validator
 class ValueMatchValidator(errorMessage: String, vararg texts: String) : TextValidator(errorMessage) {
     private val tvs: List<String> = listOf(*texts)
 
-    override fun isValid(text: String): Boolean = tvs.all { it == text }
+    override fun isValid(value: String): Boolean = tvs.all { it == value }
 }

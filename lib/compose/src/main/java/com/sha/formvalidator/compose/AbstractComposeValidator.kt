@@ -1,12 +1,10 @@
 package com.sha.formvalidator.compose
 
-import androidx.compose.State
-
 
 /**
  * The base form validator that all validators must extend.
  */
-open class AbstractComposeValidator<T: ValidatableModel> {
+open class AbstractComposeValidator<T: Validatable> {
     private var fields: List<T> = emptyList()
     val isValid: Boolean
         get() {

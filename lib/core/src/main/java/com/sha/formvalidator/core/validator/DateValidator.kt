@@ -14,8 +14,8 @@ class DateValidator(errorMessage: String, _format: String) : TextValidator(error
         arrayOf("DefaultDate", "DefaultTime", "DefaultDateTime")
 
     @SuppressLint("SimpleDateFormat")
-    override fun isValid(text: String): Boolean {
-        if (text.isEmpty()) return false
+    override fun isValid(value: String): Boolean {
+        if (value.isEmpty()) return false
 
         for (_format in formats) {
 
@@ -32,7 +32,7 @@ class DateValidator(errorMessage: String, _format: String) : TextValidator(error
             val date: Date?
 
             try {
-                date = format.parse(text)
+                date = format.parse(value)
             } catch (e: ParseException) {
                 return false
             }

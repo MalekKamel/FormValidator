@@ -1,17 +1,18 @@
 package com.sha.formvalidator.compose.widget
 
-import androidx.compose.*
+import androidx.compose.Composable
+import androidx.compose.Recompose
+import androidx.compose.state
+import androidx.compose.unaryPlus
 import androidx.ui.core.*
-import androidx.ui.graphics.Color
 import androidx.ui.input.ImeAction
 import androidx.ui.input.KeyboardType
 import androidx.ui.input.VisualTransformation
-import androidx.ui.layout.Column
 import androidx.ui.text.TextStyle
 import com.sha.formvalidator.compose.ValidatableModel
 
 @Composable
-fun <T: ValidatableModel> FormTextField(
+fun <T: ValidatableModel<String>> FormTextField(
         model: T,
         value: String = "",
         hint: String = "",
@@ -25,15 +26,14 @@ fun <T: ValidatableModel> FormTextField(
         onImeActionPerformed: (ImeAction) -> Unit = {},
         visualTransformation: VisualTransformation? = null) {
     Recompose { recompose ->
-        model.recompose = recompose
-        +state { model.text = value }
-        Column {
+        FormContainer(model, recompose) {
+            +state { model.value = value }
             val inputField = @Composable {
                 TextField(
-                        value = model.text,
+                        value = model.value,
                         modifier = modifier,
                         onValueChange = {
-                            model.text = it
+                            model.value = it
                             recompose()
                         },
                         textStyle = textStyle,
@@ -46,20 +46,11 @@ fun <T: ValidatableModel> FormTextField(
                         visualTransformation = visualTransformation
                 )
             }
-            Hint(hint, model.text, inputField)
-            Validate(model)
+            Hint(hint, model.value, inputField)
         }
     }
 }
 
-@Composable
-fun Validate(model: ValidatableModel) {
-    val canValidate = model.forceValidationOnce || model.validateOnChange
-    model.forceValidationOnce = false
-
-    if (canValidate && !model.isValid)
-        Text(text = model.errorText, style = TextStyle(color = Color.Red, fontSize = 18.sp))
-}
 
 @Composable
 fun Hint(

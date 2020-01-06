@@ -12,8 +12,8 @@ class AndValidator: CompositeValidator {
     constructor(vararg validators: TextValidator): super("", *validators)
     constructor(validators: List<TextValidator>): super("", validators)
 
-    override fun isValid(text: String): Boolean {
-       val anyFails = validators.firstOrNull { !it.isValid(text) }
+    override fun isValid(value: String): Boolean {
+       val anyFails = validators.firstOrNull { !it.isValid(value) }
         anyFails?.let {
             // error message equals the first failing validator
             this.errorMessage = it.errorMessage

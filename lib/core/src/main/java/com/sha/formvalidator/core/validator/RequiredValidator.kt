@@ -6,5 +6,5 @@ package com.sha.formvalidator.core.validator
  */
 class RequiredValidator(errorMessage: String = "") : TextValidator(errorMessage) {
 
-    override fun isValid(text: String): Boolean = text.trim { it <= ' ' }.isNotEmpty()
+    override fun isValid(value: String): Boolean = value.trim { it <= ' ' }.isNotEmpty()
 }

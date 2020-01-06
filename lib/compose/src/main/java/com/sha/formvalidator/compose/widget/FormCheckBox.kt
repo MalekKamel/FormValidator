@@ -17,6 +17,7 @@
 package com.sha.formvalidator.compose.widget
 
 import androidx.compose.Composable
+import androidx.compose.Recompose
 import androidx.compose.unaryPlus
 import androidx.ui.core.Modifier
 import androidx.ui.core.dp
@@ -36,21 +37,33 @@ import androidx.ui.material.surface.Surface
 import androidx.ui.res.vectorResource
 import androidx.ui.tooling.preview.Preview
 import com.sha.formvalidator.compose.R
+import com.sha.formvalidator.compose.ValidatableModel
+import com.sha.formvalidator.compose.Validation
 
 @Composable
-fun FormCheckBox(
+fun <T: ValidatableModel<Boolean>> FormCheckBox(
+        model: T,
         vectorImage: VectorAsset,
         modifier: Modifier = Modifier.None,
         onSelected: ((Boolean) -> Unit)? = null,
         selected: Boolean = false
 ) {
-    Ripple(bounded = false) {
-        Toggleable(selected, onSelected) {
-            Container(modifier = modifier wraps Size(36.dp, 36.dp)) {
-                if (selected) {
-                    DrawCheckBoxOn(vectorImage)
-                } else {
-                    DrawCheckBoxOff(vectorImage)
+    Recompose {recompose ->
+        FormContainer(model = model, recompose = recompose) {
+            Ripple(bounded = false) {
+                Toggleable(
+                        value = model.value,
+                        onValueChange = {
+                            model.value = it
+                            onSelected?.invoke(it)
+                        }) {
+                    Container(modifier = modifier wraps Size(36.dp, 36.dp)) {
+                        if (selected) {
+                            DrawCheckBoxOn(vectorImage)
+                        } else {
+                            DrawCheckBoxOff(vectorImage)
+                        }
+                    }
                 }
             }
         }
@@ -60,8 +73,8 @@ fun FormCheckBox(
 @Composable
 private fun DrawCheckBoxOn(vectorImage: VectorAsset) {
     DrawShape(
-        shape = CircleShape,
-        color = (+MaterialTheme.colors()).primary
+            shape = CircleShape,
+            color = (+MaterialTheme.colors()).primary
     )
     DrawVector(vectorImage)
 }
@@ -70,12 +83,12 @@ private fun DrawCheckBoxOn(vectorImage: VectorAsset) {
 private fun DrawCheckBoxOff(vectorImage: VectorAsset) {
     val borderColor = ((+MaterialTheme.colors()).onSurface).copy(alpha = 0.12f)
     DrawBorder(
-        shape = CircleShape,
-        border = Border(borderColor, 2.dp)
+            shape = CircleShape,
+            border = Border(borderColor, 2.dp)
     )
     DrawVector(
-        vectorImage = vectorImage,
-        tintColor = (+MaterialTheme.colors()).primary
+            vectorImage = vectorImage,
+            tintColor = (+MaterialTheme.colors()).primary
     )
 }
 
@@ -88,15 +101,14 @@ fun CheckBoxPreviewOff() {
 @Preview("On")
 @Composable
 fun CheckBoxPreviewOn() {
-    CheckBoxPreviewTemplate(
-        true
-    )
+    CheckBoxPreviewTemplate(true)
 }
 
 @Composable
 private fun CheckBoxPreviewTemplate(selected: Boolean) {
     Surface {
         FormCheckBox(
+                model = Validation.boolean(true),
                 vectorImage = +vectorResource(R.drawable.ic_add_preview),
                 modifier = Spacing(32.dp),
                 selected = selected

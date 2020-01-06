@@ -6,8 +6,8 @@ package com.sha.formvalidator.core.validator
  */
 class NumericValidator(errorMessage: String) : TextValidator(errorMessage) {
 
-    override fun isValid(text: String): Boolean {
-        return if(text.isEmpty()) false else isDigitsOnly(text)
+    override fun isValid(value: String): Boolean {
+        return if(value.isEmpty()) false else isDigitsOnly(value)
     }
 
     /**

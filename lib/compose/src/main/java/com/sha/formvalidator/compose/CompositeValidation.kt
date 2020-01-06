@@ -1,6 +1,6 @@
 package com.sha.formvalidator.compose
 
-class CompositeValidation<T: ValidatableModel> {
+class CompositeValidation<T: Validatable> {
     internal var list: MutableList<T> = mutableListOf()
     val isValid: Boolean = ComposeValidator(this).isValid
     fun  add(model: T) = list.add(model)

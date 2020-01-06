@@ -7,9 +7,9 @@ package com.sha.formvalidator.core.validator
  */
 class NumericRangeValidator(errorMessage: String, private val min: Long, private val max: Long) : TextValidator(errorMessage) {
 
-    override fun isValid(text: String): Boolean {
+    override fun isValid(value: String): Boolean {
         return try {
-            val value = java.lang.Long.parseLong(text)
+            val value = java.lang.Long.parseLong(value)
             value in min..max
         } catch (e: NumberFormatException) {
             false
