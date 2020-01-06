@@ -1,5 +1,8 @@
 package com.sha.formvalidator.compose
 
+import androidx.compose.ambient
+import androidx.compose.unaryPlus
+import androidx.ui.core.ContextAmbient
 import com.sha.formvalidator.core.DefaultErrors
 import com.sha.formvalidator.core.validator.*
 import com.sha.formvalidator.core.validator.composite.AndValidator
@@ -9,6 +12,7 @@ import java.util.regex.Pattern
 
 interface ValidatableModel: ValidatableTextModel, Recomposable {
     var errorText: String
+    var errorTextRes: Int
     var isValid: Boolean
     var validateOnChange: Boolean
     var forceValidationOnce: Boolean
@@ -39,6 +43,12 @@ abstract class AbstractValidatableTextModel: ValidatableModel {
     override var validateOnChange: Boolean = false
     override var forceValidationOnce: Boolean = false
     override var recompose: () -> Unit = {}
+    override var errorTextRes: Int = -1
+        set(value) {
+            field = value
+            val context = +ambient(ContextAmbient)
+            errorText = context.getString(value)
+        }
 }
 
 class CompositeValidation<T: ValidatableModel> {

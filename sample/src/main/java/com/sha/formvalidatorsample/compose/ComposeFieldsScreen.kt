@@ -25,7 +25,7 @@ fun ComposeFieldsScreen() {
     }
 
     val email = Validation.email(compositeValidation) {
-        errorText = "Invalid Email!"
+        errorTextRes = R.string.error_email_address_not_valid
     }
 
     val password = Validation.mandatory(compositeValidation)
