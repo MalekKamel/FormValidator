@@ -13,6 +13,7 @@ import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Surface
 import androidx.ui.tooling.preview.Preview
 import com.sha.formvalidator.compose.*
+import com.sha.formvalidator.compose.widget.FormTextField
 
 @Composable
 fun ComposeFieldsScreen() {

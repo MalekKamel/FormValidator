@@ -1,4 +1,4 @@
-package com.sha.formvalidator.compose
+package com.sha.formvalidator.compose.widget
 
 import androidx.compose.*
 import androidx.ui.core.*
@@ -8,6 +8,7 @@ import androidx.ui.input.KeyboardType
 import androidx.ui.input.VisualTransformation
 import androidx.ui.layout.Column
 import androidx.ui.text.TextStyle
+import com.sha.formvalidator.compose.ValidatableModel
 
 @Composable
 fun <T: ValidatableModel> FormTextField(
