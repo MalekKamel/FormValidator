@@ -1,8 +1,5 @@
 package com.sha.formvalidator.compose
 
-import androidx.compose.State
-import androidx.compose.state
-import androidx.compose.unaryPlus
 import com.sha.formvalidator.core.DefaultErrors
 import com.sha.formvalidator.core.validator.*
 import com.sha.formvalidator.core.validator.composite.AndValidator
@@ -10,12 +7,7 @@ import com.sha.formvalidator.core.validator.composite.OrValidator
 import com.sha.formvalidator.core.validator.pattern.*
 import java.util.regex.Pattern
 
-interface Recomposable {
-    var recompose: () -> Unit
-}
-
-interface ValidatableModel: Recomposable {
-    var text: String
+interface ValidatableModel: ValidatableTextModel, Recomposable {
     var errorText: String
     var isValid: Boolean
     var validateOnChange: Boolean
@@ -32,11 +24,15 @@ interface ValidatableTextModel {
     var text: String
 }
 
+interface Recomposable {
+    var recompose: () -> Unit
+}
+
 abstract class AbstractValidatableTextModel: ValidatableModel {
     override var text: String = ""
         set(value) {
             field = value
-            isValid = RequiredValidator(value).isValid(value)
+            isValid = validator.isValid(value)
         }
     abstract val validator: TextValidator
     override var isValid: Boolean = false
@@ -47,25 +43,11 @@ abstract class AbstractValidatableTextModel: ValidatableModel {
 
 class CompositeValidation<T: ValidatableModel> {
     internal var list: MutableList<T> = mutableListOf()
-
-    fun  add(model: T) {
-        list.add(model)
-    }
-
-    fun addAll(models: List<T>) {
-        list.addAll(models)
-    }
-
-    fun remove(model: T) {
-        list.remove(model)
-    }
-
-    fun removeAll(models: List<T>) {
-        list.removeAll(models)
-    }
-
-    val isValid: Boolean
-        get() = ComposeValidator(this).isValid
+    val isValid: Boolean = ComposeValidator(this).isValid
+    fun  add(model: T) = list.add(model)
+    fun addAll(models: List<T>) = list.addAll(models)
+    fun remove(model: T)  = list.remove(model)
+    fun removeAll(models: List<T>) = list.removeAll(models)
 }
 
 @Suppress("UNCHECKED_CAST")
