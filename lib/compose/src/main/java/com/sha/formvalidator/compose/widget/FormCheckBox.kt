@@ -19,7 +19,9 @@ package com.sha.formvalidator.compose.widget
 import androidx.compose.Composable
 import androidx.compose.Recompose
 import androidx.compose.unaryPlus
+import androidx.ui.core.Dp
 import androidx.ui.core.Modifier
+import androidx.ui.core.Text
 import androidx.ui.core.dp
 import androidx.ui.foundation.selection.Toggleable
 import androidx.ui.foundation.shape.DrawShape
@@ -28,9 +30,7 @@ import androidx.ui.foundation.shape.border.DrawBorder
 import androidx.ui.foundation.shape.corner.CircleShape
 import androidx.ui.graphics.vector.DrawVector
 import androidx.ui.graphics.vector.VectorAsset
-import androidx.ui.layout.Container
-import androidx.ui.layout.Size
-import androidx.ui.layout.Spacing
+import androidx.ui.layout.*
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Surface
@@ -43,6 +43,8 @@ import com.sha.formvalidator.compose.Validation
 @Composable
 fun <T: ValidatableModel<Boolean>> FormCheckBox(
         model: T,
+        text: String = "",
+        drawablePadding: Dp = 8.dp,
         vectorImage: VectorAsset,
         modifier: Modifier = Modifier.None,
         onSelected: ((Boolean) -> Unit)? = null,
@@ -50,21 +52,27 @@ fun <T: ValidatableModel<Boolean>> FormCheckBox(
 ) {
     Recompose {recompose ->
         FormContainer(model = model, recompose = recompose) {
-            Ripple(bounded = false) {
-                Toggleable(
-                        value = model.value,
-                        onValueChange = {
-                            model.value = it
-                            onSelected?.invoke(it)
-                        }) {
-                    Container(modifier = modifier wraps Size(36.dp, 36.dp)) {
-                        if (selected) {
-                            DrawCheckBoxOn(vectorImage)
-                        } else {
-                            DrawCheckBoxOff(vectorImage)
+            Row {
+                Padding(padding = drawablePadding) {
+                    Ripple(bounded = false) {
+                        Toggleable(
+                                value = model.value,
+                                onValueChange = {
+                                    model.value = it
+                                    onSelected?.invoke(it)
+                                }) {
+                            Container(modifier = modifier wraps Size(36.dp, 36.dp)) {
+                                if (selected) {
+                                    DrawCheckBoxOn(vectorImage)
+                                } else {
+                                    DrawCheckBoxOff(vectorImage)
+                                }
+                            }
                         }
                     }
                 }
+                if (text.isNotEmpty())
+                    Text(modifier = Gravity.Center, text = text)
             }
         }
     }

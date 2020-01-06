@@ -3,20 +3,20 @@ package com.sha.formvalidatorsample.compose
 import androidx.compose.Composable
 import androidx.compose.Model
 import androidx.compose.unaryPlus
+import androidx.ui.core.Text
+import androidx.ui.core.TextField
 import androidx.ui.core.dp
 import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.shape.border.Border
 import androidx.ui.graphics.Color
-import androidx.ui.layout.Column
-import androidx.ui.layout.Gravity
-import androidx.ui.layout.Padding
-import androidx.ui.layout.Spacing
+import androidx.ui.layout.*
 import androidx.ui.material.Button
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.vectorResource
 import androidx.ui.tooling.preview.Preview
 import com.sha.formvalidator.compose.*
+import com.sha.formvalidator.compose.R
 import com.sha.formvalidator.compose.widget.FormCheckBox
 import com.sha.formvalidator.compose.widget.FormTextField
 
@@ -26,7 +26,7 @@ fun ComposeFieldsScreen() {
     val compositeValidation = CompositeValidation<Validatable>()
 
     val country = Validation.mandatory(compositeValidation) {
-        errorText = "Invalid Country!"
+        errorText = "Country Required!"
         validateOnChange = true
     }
 
@@ -37,6 +37,7 @@ fun ComposeFieldsScreen() {
     val password = Validation.mandatory(compositeValidation)
     val checkBox = Validation.boolean(true, compositeValidation) {
         validateOnChange = false
+        errorText = "You must accept terms & conditions"
     }
 
     Column {
@@ -60,15 +61,18 @@ fun ComposeFieldsScreen() {
                     }
                 }
 
-                Padding(padding = 8.dp) {
-                    FormCheckBox(
-                            model = checkBox,
-                            vectorImage = +vectorResource(R.drawable.ic_add_preview),
-                            onSelected = {
-                                CheckBoxStatus.checked = !CheckBoxStatus.checked
-                            },
-                            selected = CheckBoxStatus.checked
-                    )
+                Row {
+                    Padding(padding = 8.dp) {
+                        FormCheckBox(
+                                model = checkBox,
+                                text = "I accept terms & conditions.",
+                                vectorImage = +vectorResource(R.drawable.ic_add_preview),
+                                onSelected = {
+                                    CheckBoxStatus.checked = !CheckBoxStatus.checked
+                                },
+                                selected = CheckBoxStatus.checked
+                        )
+                    }
                 }
 
                 Button(
