@@ -62,7 +62,7 @@ fun Hint(
         inputField()
         return
     }
-    val hintText =  @Composable { Text(text = hint, style = TextStyle(fontSize = 18.sp)) }
+    val hintText = @Composable { Text(text = hint, style = TextStyle(fontSize = 18.sp)) }
 
     Layout(inputField, hintText) { measurable, constraints ->
         val inputFieldPlaceable = measurable[inputField].first().measure(constraints)
