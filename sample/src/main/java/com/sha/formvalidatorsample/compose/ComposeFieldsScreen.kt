@@ -2,21 +2,21 @@ package com.sha.formvalidatorsample.compose
 
 import androidx.compose.Composable
 import androidx.compose.Model
-import androidx.compose.unaryPlus
 import androidx.ui.core.dp
 import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.shape.border.Border
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Column
-import androidx.ui.layout.EdgeInsets
 import androidx.ui.layout.Padding
 import androidx.ui.layout.Spacing
 import androidx.ui.material.Button
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Surface
-import androidx.ui.res.vectorResource
 import androidx.ui.tooling.preview.Preview
-import com.sha.formvalidator.compose.*
+import com.sha.formvalidator.compose.ComposeValidator
+import com.sha.formvalidator.compose.CompositeValidation
+import com.sha.formvalidator.compose.Validatable
+import com.sha.formvalidator.compose.Validation
 import com.sha.formvalidator.compose.widget.FormCheckBox
 import com.sha.formvalidator.compose.widget.FormTextField
 import com.sha.formvalidator.compose.widget.FormToggleButton
@@ -68,8 +68,7 @@ fun ComposeFieldsScreen() {
                     Padding(padding = 8.dp) {
                         FormTextField(
                                 model = password,
-                                hint = "Password",
-                                errorTextArgs = TextArgs(padding = EdgeInsets(top = 5.dp))
+                                hint = "Password"
                         )
                     }
                 }
@@ -78,7 +77,6 @@ fun ComposeFieldsScreen() {
                     FormCheckBox(
                             model = checkBox,
                             text = "I accept terms & conditions.",
-                            vectorImage = +vectorResource(R.drawable.ic_add_preview),
                             onSelected = {
                                 CheckBoxStatus.checked = !CheckBoxStatus.checked
                             },

@@ -7,10 +7,9 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
-
 import com.sha.formvalidator.core.ValidatorFactory
-import com.sha.formvalidator.core.validator.PrefixValidator
 import com.sha.formvalidator.core.validator.LengthRangeValidator
+import com.sha.formvalidator.core.validator.PrefixValidator
 import com.sha.formvalidator.widget.FormEditText
 import com.sha.formvalidatorsample.R
 

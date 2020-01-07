@@ -24,7 +24,7 @@ abstract class AbstractBooleanModel: AbstractValidatableModel<Boolean>() {
 abstract class AbstractValidatableModel<V>: ValidatableModel<V> {
     override fun validate(forceValidationOnce: Boolean): Boolean {
         if (forceValidationOnce) this.overrideValidateOnChangeOnce = true
-        // tmpError is only used when calling model.showError(), we should remove it here
+        // tmpError is only used when calling showError(), we should remove it here
         // to show the error provided with errorText
         tmpError = ""
         isValid = validator.isValid(value)
@@ -56,6 +56,17 @@ abstract class AbstractValidatableModel<V>: ValidatableModel<V> {
 interface ValidatableModel<V>: Validatable {
     var value: V
     fun showError(error: String)
+    fun createErrorText(): String? {
+        val canValidate = overrideValidateOnChangeOnce || validateOnChange
+        overrideValidateOnChangeOnce = false
+
+        if (canValidate && !isValid) {
+            // tmpError is only used when calling showError(), and it's removed 
+            // in the first call of validate() after showError() is called.
+            return if(tmpError.isNotEmpty()) tmpError else errorText
+        }
+        return null
+    }
 }
 
 interface Validatable: Recomposable {

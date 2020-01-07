@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="FormEditText">
+        <attr name="validationType">
+            <enum name="regex" value="0" />
+            <enum name="numeric" value="1" />
+            <enum name="alpha" value="2" />
+            <enum name="alphaNumeric" value="3" />
+            <enum name="email" value="4" />
+            <enum name="creditCard" value="5" />
+            <enum name="phone" value="6" />
+            <enum name="domainName" value="7" />
+            <enum name="ipAddress" value="8" />
+            <enum name="webUrl" value="9" />
+            <enum name="required" value="10" />
+            <enum name="personName" value="11" />
+            <enum name="personFullName" value="12" />
+            <enum name="date" value="13" />
+            <enum name="numericRange" value="14" />
+            <enum name="floatNumericRange" value="15" />
+        </attr>
+
+        <attr name="errorMessage" format="string" />
+        <attr name="requiredErrorMessage" format="string" />
+
+        <attr name="customValidationType" format="string" />
+        <attr name="regex" format="string" />
+        <attr name="dateFormat" format="string" />
+        <attr name="required" format="boolean" />
+
+        <attr name="minNumber" format="integer" />
+        <attr name="maxNumber" format="integer" />
+
+        <attr name="floatMinNumber" format="float" />
+        <attr name="floatMaxNumber" format="float" />
+
+    </declare-styleable>
+
+    <declare-styleable name="FormCheckBox">
+        <attr name="checkBoxValidation">
+            <enum name="checked" value="0" />
+            <enum name="unchecked" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="FormSwitch">
+        <attr name="switchValidation">
+            <enum name="on" value="0" />
+            <enum name="off" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="FormToggleButton">
+        <attr name="toggleButtonValidation">
+            <enum name="on" value="0" />
+            <enum name="off" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="FormRatingBar">
+        <attr name="ratingBarValidation">
+            <enum name="required" value="0" />
+            <enum name="notRequired" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="FormSeekBar">
+        <attr name="seekBarValidation">
+            <enum name="required" value="0" />
+            <enum name="notRequired" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="Form">
+        <attr name="ignoreHiddenFields" format="boolean" />
+        <attr name="shakeOnError" format="boolean" />
+    </declare-styleable>
+
+
+</resources>

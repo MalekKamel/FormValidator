@@ -4,13 +4,15 @@ import androidx.compose.Composable
 import androidx.compose.Recompose
 import androidx.compose.state
 import androidx.compose.unaryPlus
-import androidx.ui.core.*
+import androidx.ui.core.Modifier
+import androidx.ui.core.sp
+import androidx.ui.graphics.Color
 import androidx.ui.input.ImeAction
 import androidx.ui.input.KeyboardType
 import androidx.ui.input.VisualTransformation
-import androidx.ui.layout.EdgeInsets
 import androidx.ui.text.TextStyle
-import com.sha.formvalidator.compose.TextArgs
+import com.sha.compoz.TextField
+import com.sha.compoz.model.TextArgs
 import com.sha.formvalidator.compose.ValidatableModel
 
 @Composable
@@ -18,7 +20,7 @@ fun <T: ValidatableModel<String>> FormTextField(
         model: T,
         value: String = "",
         hint: String = "",
-        errorTextArgs: TextArgs = TextArgs(),
+        errorTextArgs: TextArgs = TextArgs(style = TextStyle(color = Color.Red, fontSize = 18.sp)),
         modifier: Modifier = Modifier.None,
         textStyle: TextStyle? = null,
         keyboardType: KeyboardType = KeyboardType.Text,
@@ -32,51 +34,30 @@ fun <T: ValidatableModel<String>> FormTextField(
     Recompose {recompose ->
         FormContainer(
                 model = model,
-                recompose = recompose,
-                errorTextArgs = errorTextArgs) {
+                recompose = recompose
+        ) {
             +state { model.value = value }
-            val inputField = @Composable {
-                TextField(
-                        value = model.value,
-                        modifier = modifier,
-                        onValueChange = {
-                            model.value = it
-                            recompose()
-                        },
-                        textStyle = textStyle,
-                        keyboardType = keyboardType,
-                        imeAction = imeAction,
-                        onFocus = onFocus,
-                        onBlur = onBlur,
-                        focusIdentifier = focusIdentifier,
-                        onImeActionPerformed = onImeActionPerformed,
-                        visualTransformation = visualTransformation
-                )
-            }
-            Hint(hint, model.value, inputField)
+
+            TextField(
+                    value = model.value,
+                    hint = hint,
+                    error = model.createErrorText(),
+                    errorTextArgs = errorTextArgs,
+                    modifier = modifier,
+                    onValueChange = {
+                        model.value = it
+                        recompose()
+                    },
+                    textStyle = textStyle,
+                    keyboardType = keyboardType,
+                    imeAction = imeAction,
+                    onFocus = onFocus,
+                    onBlur = onBlur,
+                    focusIdentifier = focusIdentifier,
+                    onImeActionPerformed = onImeActionPerformed,
+                    visualTransformation = visualTransformation
+            )
         }
     }
 }
 
-
-@Composable
-fun Hint(
-        hint: String,
-        text: String,
-        inputField: @Composable() () -> Unit
-) {
-    if (hint.isEmpty() || text.isNotEmpty()) {
-        inputField()
-        return
-    }
-    val hintText =  @Composable { Text(text = hint, style = TextStyle(fontSize = 18.sp)) }
-
-    Layout(inputField, hintText) { measurable, constraints ->
-        val inputFieldPlaceable = measurable[inputField].first().measure(constraints)
-        val hintTextPlaceable = measurable[hintText].first().measure(constraints)
-        layout(inputFieldPlaceable.width, inputFieldPlaceable.height) {
-            inputFieldPlaceable.place(0.ipx, 0.ipx)
-            hintTextPlaceable.place(0.ipx, 0.ipx)
-        }
-    }
-}

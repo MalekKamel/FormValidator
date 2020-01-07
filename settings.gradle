@@ -1,5 +1,6 @@
 include ':sample'
 include ':lib:compose'
+include ':lib:compoz'
 include ':lib:classic:rxjava'
 include ':lib:classic:classic'
 include ':lib:core'
