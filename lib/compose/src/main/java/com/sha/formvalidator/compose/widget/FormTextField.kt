@@ -8,6 +8,7 @@ import androidx.ui.core.*
 import androidx.ui.input.ImeAction
 import androidx.ui.input.KeyboardType
 import androidx.ui.input.VisualTransformation
+import androidx.ui.layout.EdgeInsets
 import androidx.ui.text.TextStyle
 import com.sha.formvalidator.compose.ValidatableModel
 
@@ -16,6 +17,7 @@ fun <T: ValidatableModel<String>> FormTextField(
         model: T,
         value: String = "",
         hint: String = "",
+        errorViewPadding: EdgeInsets = EdgeInsets(),
         modifier: Modifier = Modifier.None,
         textStyle: TextStyle? = null,
         keyboardType: KeyboardType = KeyboardType.Text,
@@ -24,9 +26,13 @@ fun <T: ValidatableModel<String>> FormTextField(
         onBlur: () -> Unit = {},
         focusIdentifier: String? = null,
         onImeActionPerformed: (ImeAction) -> Unit = {},
-        visualTransformation: VisualTransformation? = null) {
-    Recompose { recompose ->
-        FormContainer(model, recompose) {
+        visualTransformation: VisualTransformation? = null
+) {
+    Recompose {recompose ->
+        FormContainer(
+                model = model,
+                recompose = recompose,
+                errorViewPadding = errorViewPadding) {
             +state { model.value = value }
             val inputField = @Composable {
                 TextField(

@@ -31,10 +31,14 @@ fun <T: ValidatableModel<Boolean>> FormToggleButton(
         drawablePadding: Dp = 8.dp,
         modifier: Modifier = Modifier.None,
         onSelected: ((Boolean) -> Unit)? = null,
-        selected: Boolean = false
+        selected: Boolean = false,
+        errorViewPadding: EdgeInsets = EdgeInsets()
 ) {
     Recompose {recompose ->
-        FormContainer(model = model, recompose = recompose) {
+        FormContainer(
+                model = model,
+                recompose = recompose,
+                errorViewPadding = errorViewPadding) {
             Row {
                 Padding(right = drawablePadding) {
                     Ripple(bounded = false) {

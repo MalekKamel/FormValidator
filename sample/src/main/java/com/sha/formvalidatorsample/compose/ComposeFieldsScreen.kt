@@ -1,7 +1,5 @@
 package com.sha.formvalidatorsample.compose
 
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.LayerDrawable
 import androidx.compose.Composable
 import androidx.compose.Model
 import androidx.compose.unaryPlus
@@ -10,8 +8,8 @@ import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.shape.border.Border
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Column
+import androidx.ui.layout.EdgeInsets
 import androidx.ui.layout.Padding
-import androidx.ui.layout.Row
 import androidx.ui.layout.Spacing
 import androidx.ui.material.Button
 import androidx.ui.material.MaterialTheme
@@ -45,7 +43,7 @@ fun ComposeFieldsScreen() {
     val password = Validation.mandatory(compositeValidation)
 
     val checkBox = Validation.boolean(true, compositeValidation) {
-        validateOnChange = false
+        validateOnChange = true
         errorText = "You must accept terms & conditions"
     }
 
@@ -71,7 +69,7 @@ fun ComposeFieldsScreen() {
 
                 Surface(border = Border(Color.Gray, 1.dp), modifier = Spacing(8.dp)) {
                     Padding(padding = 8.dp) {
-                        FormTextField(password, hint = "Password")
+                        FormTextField(password, hint = "Password", errorViewPadding = EdgeInsets(top = 10.dp))
                     }
                 }
 
@@ -105,11 +103,16 @@ fun ComposeFieldsScreen() {
                             println("Country valid = ${country.isValid}")
                             println("Email valid = ${email.isValid}")
                             println("Password valid = ${password.isValid}")
-                            println("CheckBoox valid = ${checkBox.isValid}")
+                            println("CheckBox valid = ${checkBox.isValid}")
+                            println("ToggleButton valid = ${toggleButton.isValid}")
 
                             println("Form valid = ${ComposeValidator(country, email, password, checkBox).isValid}")
                             println("Form valid = ${ComposeValidator(compositeValidation).isValid}")
                             println("Form valid = ${compositeValidation.isValid}")
+
+                            if (!checkBox.value) {
+                                checkBox.showError("Please select this checkBox!")
+                            }
                         }
                 )
             }
