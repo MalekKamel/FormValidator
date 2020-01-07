@@ -35,8 +35,12 @@ import androidx.ui.material.MaterialTheme
 import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.vectorResource
+import androidx.ui.text.ParagraphStyle
+import androidx.ui.text.TextStyle
+import androidx.ui.text.style.TextOverflow
 import androidx.ui.tooling.preview.Preview
 import com.sha.formvalidator.compose.R
+import com.sha.formvalidator.compose.TextArgs
 import com.sha.formvalidator.compose.ValidatableModel
 import com.sha.formvalidator.compose.Validation
 
@@ -44,18 +48,19 @@ import com.sha.formvalidator.compose.Validation
 fun <T: ValidatableModel<Boolean>> FormCheckBox(
         model: T,
         text: String = "",
-        drawablePadding: Dp = 8.dp,
+        textArgs: TextArgs = TextArgs(),
+        errorTextArgs: TextArgs = TextArgs(),
+        drawablePadding: EdgeInsets = EdgeInsets(right = 8.dp),
         vectorImage: VectorAsset,
         modifier: Modifier = Modifier.None,
         onSelected: ((Boolean) -> Unit)? = null,
-        selected: Boolean = false,
-        errorViewPadding: EdgeInsets = EdgeInsets()
- ) {
+        selected: Boolean = false
+) {
     Recompose {recompose ->
         FormContainer(
                 model = model,
                 recompose = recompose,
-                errorViewPadding = errorViewPadding) {
+                errorTextArgs = errorTextArgs) {
             Row {
                 Padding(padding = drawablePadding) {
                     Ripple(bounded = false) {
@@ -75,8 +80,17 @@ fun <T: ValidatableModel<Boolean>> FormCheckBox(
                         }
                     }
                 }
-                if (text.isNotEmpty())
-                    Text(modifier = Gravity.Center, text = text)
+                if (text.isNotEmpty()){
+                    Padding(padding = textArgs.padding) {
+                        Text(text = text,
+                                modifier = textArgs.modifier,
+                                style = textArgs.style,
+                                paragraphStyle = textArgs.paragraphStyle,
+                                softWrap = textArgs.softWrap,
+                                overflow = textArgs.overflow,
+                                maxLines = textArgs.maxLines)
+                    }
+                }
             }
         }
     }

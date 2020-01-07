@@ -10,6 +10,7 @@ import androidx.ui.input.KeyboardType
 import androidx.ui.input.VisualTransformation
 import androidx.ui.layout.EdgeInsets
 import androidx.ui.text.TextStyle
+import com.sha.formvalidator.compose.TextArgs
 import com.sha.formvalidator.compose.ValidatableModel
 
 @Composable
@@ -17,7 +18,7 @@ fun <T: ValidatableModel<String>> FormTextField(
         model: T,
         value: String = "",
         hint: String = "",
-        errorViewPadding: EdgeInsets = EdgeInsets(),
+        errorTextArgs: TextArgs = TextArgs(),
         modifier: Modifier = Modifier.None,
         textStyle: TextStyle? = null,
         keyboardType: KeyboardType = KeyboardType.Text,
@@ -32,7 +33,7 @@ fun <T: ValidatableModel<String>> FormTextField(
         FormContainer(
                 model = model,
                 recompose = recompose,
-                errorViewPadding = errorViewPadding) {
+                errorTextArgs = errorTextArgs) {
             +state { model.value = value }
             val inputField = @Composable {
                 TextField(

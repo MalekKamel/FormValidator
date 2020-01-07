@@ -5,28 +5,28 @@ import androidx.ui.core.Text
 import androidx.ui.core.sp
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Column
-import androidx.ui.layout.EdgeInsets
 import androidx.ui.layout.Padding
 import androidx.ui.text.TextStyle
+import com.sha.formvalidator.compose.TextArgs
 import com.sha.formvalidator.compose.Validatable
 
 @Composable
 fun <T: Validatable> FormContainer(
         model: T,
         recompose: () -> Unit,
-        errorViewPadding: EdgeInsets = EdgeInsets(),
+        errorTextArgs: TextArgs = TextArgs(),
         children: @Composable() () -> Unit) {
     model.recompose = recompose
     Column {
         children()
-        Validate(model = model, errorViewPadding = errorViewPadding)
+        Validate(model = model, errorTextArgs = errorTextArgs)
     }
 }
 
 @Composable
 fun Validate(
         model: Validatable,
-        errorViewPadding: EdgeInsets = EdgeInsets()
+        errorTextArgs: TextArgs = TextArgs()
 ) {
     val canValidate = model.overrideValidateOnChangeOnce || model.validateOnChange
     model.overrideValidateOnChangeOnce = false
@@ -36,7 +36,7 @@ fun Validate(
     val error = if(model.tmpError.isNotEmpty()) model.tmpError else model.errorText
 
     if (canValidate && !model.isValid) {
-        Padding(padding = errorViewPadding) {
+        Padding(padding = errorTextArgs.padding) {
             Text(text = error, style = TextStyle(color = Color.Red, fontSize = 18.sp))
         }
     }

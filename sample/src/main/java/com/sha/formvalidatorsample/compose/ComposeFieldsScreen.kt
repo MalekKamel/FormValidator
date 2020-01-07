@@ -16,10 +16,7 @@ import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.vectorResource
 import androidx.ui.tooling.preview.Preview
-import com.sha.formvalidator.compose.ComposeValidator
-import com.sha.formvalidator.compose.CompositeValidation
-import com.sha.formvalidator.compose.Validatable
-import com.sha.formvalidator.compose.Validation
+import com.sha.formvalidator.compose.*
 import com.sha.formvalidator.compose.widget.FormCheckBox
 import com.sha.formvalidator.compose.widget.FormTextField
 import com.sha.formvalidator.compose.widget.FormToggleButton
@@ -57,33 +54,37 @@ fun ComposeFieldsScreen() {
             Column {
                 Surface(border = Border(Color.Gray, 1.dp), modifier = Spacing(8.dp)) {
                     Padding(padding = 8.dp) {
-                        FormTextField(country, value = "USA")
+                        FormTextField(model = country, value = "USA")
                     }
                 }
 
                 Surface(border = Border(Color.Gray, 1.dp), modifier = Spacing(8.dp)) {
                     Padding(padding = 8.dp) {
-                        FormTextField(email, hint = "Email")
+                        FormTextField(model = email, hint = "Email")
                     }
                 }
 
                 Surface(border = Border(Color.Gray, 1.dp), modifier = Spacing(8.dp)) {
                     Padding(padding = 8.dp) {
-                        FormTextField(password, hint = "Password", errorViewPadding = EdgeInsets(top = 10.dp))
-                    }
-                }
-
-                    Padding(padding = 8.dp) {
-                        FormCheckBox(
-                                model = checkBox,
-                                text = "I accept terms & conditions.",
-                                vectorImage = +vectorResource(R.drawable.ic_add_preview),
-                                onSelected = {
-                                    CheckBoxStatus.checked = !CheckBoxStatus.checked
-                                },
-                                selected = CheckBoxStatus.checked
+                        FormTextField(
+                                model = password,
+                                hint = "Password",
+                                errorTextArgs = TextArgs(padding = EdgeInsets(top = 5.dp))
                         )
                     }
+                }
+
+                Padding(padding = 8.dp) {
+                    FormCheckBox(
+                            model = checkBox,
+                            text = "I accept terms & conditions.",
+                            vectorImage = +vectorResource(R.drawable.ic_add_preview),
+                            onSelected = {
+                                CheckBoxStatus.checked = !CheckBoxStatus.checked
+                            },
+                            selected = CheckBoxStatus.checked
+                    )
+                }
 
                 Padding(padding = 8.dp) {
                     FormToggleButton(
@@ -110,9 +111,8 @@ fun ComposeFieldsScreen() {
                             println("Form valid = ${ComposeValidator(compositeValidation).isValid}")
                             println("Form valid = ${compositeValidation.isValid}")
 
-                            if (!checkBox.value) {
-                                checkBox.showError("Please select this checkBox!")
-                            }
+                            // You can show error
+                            checkBox.showError("Please select this checkBox!")
                         }
                 )
             }

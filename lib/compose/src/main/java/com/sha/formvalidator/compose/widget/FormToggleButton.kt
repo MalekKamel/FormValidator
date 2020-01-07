@@ -17,6 +17,7 @@ import androidx.ui.material.surface.Surface
 import androidx.ui.res.vectorResource
 import androidx.ui.tooling.preview.Preview
 import com.sha.formvalidator.compose.R
+import com.sha.formvalidator.compose.TextArgs
 import com.sha.formvalidator.compose.ValidatableModel
 import com.sha.formvalidator.compose.Validation
 
@@ -24,23 +25,25 @@ import com.sha.formvalidator.compose.Validation
 fun <T: ValidatableModel<Boolean>> FormToggleButton(
         model: T,
         text: String = "",
+        textArgs: TextArgs = TextArgs(),
+        errorTextArgs: TextArgs = TextArgs(),
         checkedVectorImage: VectorAsset = +vectorResource(R.drawable.ic_switch_on_def),
         uncheckedVectorImage: VectorAsset = +vectorResource(R.drawable.ic_switch_off_def),
         drawableWidth: Dp = 40.dp,
         drawableHeight: Dp = 40.dp,
-        drawablePadding: Dp = 8.dp,
+        drawablePadding: EdgeInsets = EdgeInsets(right = 8.dp),
         modifier: Modifier = Modifier.None,
         onSelected: ((Boolean) -> Unit)? = null,
-        selected: Boolean = false,
-        errorViewPadding: EdgeInsets = EdgeInsets()
+        selected: Boolean = false
 ) {
+
     Recompose {recompose ->
         FormContainer(
                 model = model,
                 recompose = recompose,
-                errorViewPadding = errorViewPadding) {
+                errorTextArgs = errorTextArgs) {
             Row {
-                Padding(right = drawablePadding) {
+                Padding(padding = drawablePadding) {
                     Ripple(bounded = false) {
                         Toggleable(
                                 value = model.value,
@@ -58,7 +61,17 @@ fun <T: ValidatableModel<Boolean>> FormToggleButton(
                         }
                     }
                 }
-                if (text.isNotEmpty()) Text(modifier = Gravity.Center, text = text)
+                if (text.isNotEmpty()){
+                    Padding(padding = textArgs.padding) {
+                        Text(text = text,
+                                modifier = textArgs.modifier,
+                                style = textArgs.style,
+                                paragraphStyle = textArgs.paragraphStyle,
+                                softWrap = textArgs.softWrap,
+                                overflow = textArgs.overflow,
+                                maxLines = textArgs.maxLines)
+                    }
+                }
             }
         }
     }
