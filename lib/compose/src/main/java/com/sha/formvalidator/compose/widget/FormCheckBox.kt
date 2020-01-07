@@ -117,6 +117,7 @@ private fun CheckBoxPreviewTemplate(selected: Boolean) {
     Surface {
         FormCheckBox(
                 model = Validation.boolean(true),
+                text = "Check Box",
                 vectorImage = +vectorResource(R.drawable.ic_add_preview),
                 modifier = Spacing(32.dp),
                 selected = selected

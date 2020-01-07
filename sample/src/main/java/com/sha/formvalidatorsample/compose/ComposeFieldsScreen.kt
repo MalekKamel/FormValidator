@@ -1,24 +1,32 @@
 package com.sha.formvalidatorsample.compose
 
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import androidx.compose.Composable
 import androidx.compose.Model
 import androidx.compose.unaryPlus
-import androidx.ui.core.Text
-import androidx.ui.core.TextField
 import androidx.ui.core.dp
 import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.shape.border.Border
 import androidx.ui.graphics.Color
-import androidx.ui.layout.*
+import androidx.ui.layout.Column
+import androidx.ui.layout.Padding
+import androidx.ui.layout.Row
+import androidx.ui.layout.Spacing
 import androidx.ui.material.Button
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.vectorResource
 import androidx.ui.tooling.preview.Preview
-import com.sha.formvalidator.compose.*
-import com.sha.formvalidator.compose.R
+import com.sha.formvalidator.compose.ComposeValidator
+import com.sha.formvalidator.compose.CompositeValidation
+import com.sha.formvalidator.compose.Validatable
+import com.sha.formvalidator.compose.Validation
 import com.sha.formvalidator.compose.widget.FormCheckBox
 import com.sha.formvalidator.compose.widget.FormTextField
+import com.sha.formvalidator.compose.widget.FormToggleButton
+import com.sha.formvalidatorsample.R
+
 
 @Composable
 fun ComposeFieldsScreen() {
@@ -35,9 +43,15 @@ fun ComposeFieldsScreen() {
     }
 
     val password = Validation.mandatory(compositeValidation)
+
     val checkBox = Validation.boolean(true, compositeValidation) {
         validateOnChange = false
         errorText = "You must accept terms & conditions"
+    }
+
+    val toggleButton = Validation.boolean(true, compositeValidation) {
+        validateOnChange = false
+        errorText = "You must receive notifications :)"
     }
 
     Column {
@@ -61,7 +75,6 @@ fun ComposeFieldsScreen() {
                     }
                 }
 
-                Row {
                     Padding(padding = 8.dp) {
                         FormCheckBox(
                                 model = checkBox,
@@ -73,6 +86,16 @@ fun ComposeFieldsScreen() {
                                 selected = CheckBoxStatus.checked
                         )
                     }
+
+                Padding(padding = 8.dp) {
+                    FormToggleButton(
+                            model = toggleButton,
+                            text = "Receive email notification.",
+                            onSelected = {
+                                ToggleButtonStatus.checked = !ToggleButtonStatus.checked
+                            },
+                            selected = ToggleButtonStatus.checked
+                    )
                 }
 
                 Button(
@@ -102,5 +125,10 @@ fun DefaultPreview() {
 
 @Model
 object CheckBoxStatus {
+    var checked = false
+}
+
+@Model
+object ToggleButtonStatus {
     var checked = false
 }
