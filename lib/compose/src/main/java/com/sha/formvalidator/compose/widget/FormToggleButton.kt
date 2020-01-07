@@ -24,11 +24,11 @@ import com.sha.formvalidator.compose.Validation
 fun <T: ValidatableModel<Boolean>> FormToggleButton(
         model: T,
         text: String = "",
+        checkedVectorImage: VectorAsset = +vectorResource(R.drawable.ic_switch_on_def),
+        uncheckedVectorImage: VectorAsset = +vectorResource(R.drawable.ic_switch_off_def),
         drawableWidth: Dp = 40.dp,
         drawableHeight: Dp = 40.dp,
         drawablePadding: Dp = 8.dp,
-        checkedVectorImage: VectorAsset = +vectorResource(R.drawable.ic_switch_on_def),
-        uncheckedVectorImage: VectorAsset = +vectorResource(R.drawable.ic_switch_off_def),
         modifier: Modifier = Modifier.None,
         onSelected: ((Boolean) -> Unit)? = null,
         selected: Boolean = false
