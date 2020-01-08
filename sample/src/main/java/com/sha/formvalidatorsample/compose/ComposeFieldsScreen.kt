@@ -2,6 +2,8 @@ package com.sha.formvalidatorsample.compose
 
 import androidx.compose.Composable
 import androidx.compose.Model
+import androidx.compose.state
+import androidx.compose.unaryPlus
 import androidx.ui.core.dp
 import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.shape.border.Border
@@ -18,8 +20,9 @@ import com.sha.formvalidator.compose.CompositeValidation
 import com.sha.formvalidator.compose.Validatable
 import com.sha.formvalidator.compose.Validation
 import com.sha.formvalidator.compose.widget.FormCheckBox
+import com.sha.formvalidator.compose.widget.FormRadioGroup
 import com.sha.formvalidator.compose.widget.FormTextField
-import com.sha.formvalidator.compose.widget.FormToggleButton
+import com.sha.formvalidator.compose.widget.FormSwitch
 import com.sha.formvalidatorsample.R
 
 
@@ -44,9 +47,14 @@ fun ComposeFieldsScreen() {
         errorText = "You must accept terms & conditions"
     }
 
-    val toggleButton = Validation.boolean(true, compositeValidation) {
+    val switch = Validation.boolean(true, compositeValidation) {
         validateOnChange = false
         errorText = "You must receive notifications :)"
+    }
+
+    val radioGroup = Validation.mandatory(compositeValidation) {
+        errorText = "Select method!"
+        validateOnChange = true
     }
 
     Column {
@@ -77,21 +85,31 @@ fun ComposeFieldsScreen() {
                     FormCheckBox(
                             model = checkBox,
                             text = "I accept terms & conditions.",
-                            onSelected = {
+                            onCheckedChange = {
                                 CheckBoxStatus.checked = !CheckBoxStatus.checked
-                            },
-                            selected = CheckBoxStatus.checked
+                            }
                     )
                 }
 
                 Padding(padding = 8.dp) {
-                    FormToggleButton(
-                            model = toggleButton,
+                    FormSwitch(
+                            model = switch,
                             text = "Receive email notification.",
                             onSelected = {
-                                ToggleButtonStatus.checked = !ToggleButtonStatus.checked
-                            },
-                            selected = ToggleButtonStatus.checked
+                                SwitchStatus.checked = !SwitchStatus.checked
+                            }
+                    )
+                }
+
+                val radioOptions = listOf("Phone Call", "SMS", "Email")
+                val (_, onOptionSelected) = +state { radioOptions[0] }
+
+                Padding(padding = 8.dp) {
+                    FormRadioGroup(
+                            model = radioGroup,
+                            options = radioOptions,
+                            selectedOption = null,
+                            onSelectedChange = onOptionSelected
                     )
                 }
 
@@ -103,7 +121,7 @@ fun ComposeFieldsScreen() {
                             println("Email valid = ${email.isValid}")
                             println("Password valid = ${password.isValid}")
                             println("CheckBox valid = ${checkBox.isValid}")
-                            println("ToggleButton valid = ${toggleButton.isValid}")
+                            println("ToggleButton valid = ${switch.isValid}")
 
                             println("Form valid = ${ComposeValidator(country, email, password, checkBox).isValid}")
                             println("Form valid = ${ComposeValidator(compositeValidation).isValid}")
@@ -130,6 +148,6 @@ object CheckBoxStatus {
 }
 
 @Model
-object ToggleButtonStatus {
+object SwitchStatus {
     var checked = false
 }

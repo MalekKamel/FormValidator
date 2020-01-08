@@ -2,43 +2,38 @@ package com.sha.compoz
 
 
 import androidx.compose.Composable
-import androidx.compose.memo
-import androidx.compose.unaryPlus
 import androidx.ui.core.Modifier
 import androidx.ui.core.Text
 import androidx.ui.core.dp
 import androidx.ui.core.sp
 import androidx.ui.foundation.Clickable
-import androidx.ui.foundation.selection.Toggleable
 import androidx.ui.graphics.Color
-import androidx.ui.graphics.vector.DrawVector
 import androidx.ui.layout.*
-import androidx.ui.material.Checkbox
+import androidx.ui.material.Switch
 import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Surface
-import androidx.ui.res.vectorResource
 import androidx.ui.text.TextStyle
 import androidx.ui.tooling.preview.Preview
 import com.sha.compoz.model.TextArgs
 import com.sha.compoz.model.VectorArgs
 
 @Composable
-fun CheckBox(
+fun Switch(
         checked: Boolean,
         text: String = "",
         textArgs: TextArgs = TextArgs(),
+        vectorArgs: VectorArgs = VectorArgs(),
+        modifier: Modifier = Modifier.None,
         error: String? = null,
         errorTextArgs: TextArgs = TextArgs(style = TextStyle(color = Color.Red, fontSize = 18.sp)),
-        onCheckedChange: ((Boolean) -> Unit)? = null,
-        vectorArgs: VectorArgs = VectorArgs(width = 25.dp, height = 25.dp),
-        modifier: Modifier = Modifier.None
+        onCheckedChange: ((Boolean) -> Unit)? = null
 ) {
     Column {
         Clickable(onClick = { onCheckedChange?.invoke(!checked) }) {
                 Row(arrangement = Arrangement.Center) {
                     Padding(padding = vectorArgs.padding) {
                         Container(modifier = modifier wraps Size(vectorArgs.width, vectorArgs.height) wraps Gravity.Center) {
-                            Checkbox(
+                            Switch(
                                     checked = checked,
                                     onCheckedChange = onCheckedChange
                             )
@@ -60,22 +55,22 @@ fun CheckBox(
 
 @Preview("Off")
 @Composable
-fun CheckBoxPreviewOff() {
-    CheckBoxPreviewTemplate(false)
+fun ToggleButtonPreviewOff() {
+    ToggleButtonPreviewTemplate(false)
 }
 
 @Preview("On")
 @Composable
-fun CheckBoxPreviewOn() {
-    CheckBoxPreviewTemplate(true)
+fun ToggleButtonPreviewOn() {
+    ToggleButtonPreviewTemplate(true)
 }
 
 @Composable
-private fun CheckBoxPreviewTemplate(selected: Boolean) {
+private fun ToggleButtonPreviewTemplate(selected: Boolean) {
     Surface {
-        CheckBox(
+        Switch(
                 checked = selected,
-                text = "CheckBox",
+                text = "Toggle Button",
                 modifier = Spacing(32.dp)
         )
     }

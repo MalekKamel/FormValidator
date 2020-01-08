@@ -18,71 +18,59 @@ package com.sha.formvalidator.compose.widget
 
 import androidx.compose.Composable
 import androidx.compose.Recompose
+import androidx.compose.state
+import androidx.compose.unaryPlus
 import androidx.ui.core.Modifier
 import androidx.ui.core.dp
 import androidx.ui.core.sp
 import androidx.ui.graphics.Color
-import androidx.ui.layout.Spacing
 import androidx.ui.material.surface.Surface
 import androidx.ui.text.TextStyle
-import androidx.ui.tooling.preview.Preview
-import com.sha.compoz.CheckBox
+import com.sha.compoz.RadioGroup
 import com.sha.compoz.model.TextArgs
 import com.sha.compoz.model.VectorArgs
 import com.sha.formvalidator.compose.ValidatableModel
 import com.sha.formvalidator.compose.Validation
 
 @Composable
-fun <T: ValidatableModel<Boolean>> FormCheckBox(
+fun <T: ValidatableModel<String>> FormRadioGroup(
         model: T,
-        text: String = "",
-        textArgs: TextArgs = TextArgs(),
-        errorTextArgs: TextArgs = TextArgs(style = TextStyle(color = Color.Red, fontSize = 18.sp)),
+        options: List<String>,
+        selectedOption: String?,
+        onSelectedChange: (String) -> Unit,
         vectorArgs: VectorArgs = VectorArgs(width = 25.dp, height = 25.dp),
-        modifier: Modifier = Modifier.None,
-        onCheckedChange: ((Boolean) -> Unit)? = null
+        errorTextArgs: TextArgs = TextArgs(style = TextStyle(color = Color.Red, fontSize = 18.sp))
 ) {
     Recompose { recompose ->
         FormContainer(
                 model = model,
                 recompose = recompose
         ) {
-            CheckBox(
-                    text = text,
-                    checked = model.value,
-                    textArgs = textArgs,
-                    vectorArgs = vectorArgs,
-                    modifier = modifier,
-                    error = model.createErrorText(),
-                    errorTextArgs = errorTextArgs,
-                    onCheckedChange = {
+            RadioGroup(
+                    options = options,
+                    selectedOption = selectedOption,
+                    onSelectedChange = {
                         model.value = it
-                        onCheckedChange?.invoke(it)
-                    }
+                        onSelectedChange(it)
+                    },
+                    vectorArgs = vectorArgs,
+                    error = model.createErrorText(),
+                    errorTextArgs = errorTextArgs
             )
         }
     }
 }
 
-@Preview("Off")
 @Composable
-fun CheckBoxPreviewOff() {
-    CheckBoxPreviewTemplate(false)
-}
-
-@Preview("On")
-@Composable
-fun CheckBoxPreviewOn() {
-    CheckBoxPreviewTemplate(true)
-}
-
-@Composable
-private fun CheckBoxPreviewTemplate(selected: Boolean) {
+private fun FormRadioGroupPreview() {
     Surface {
-        FormCheckBox(
-                model = Validation.boolean(true),
-                text = "Check Box",
-                modifier = Spacing(32.dp)
+        val radioOptions = listOf("Calls", "Missed", "Friends")
+        val (selectedOption, onOptionSelected) = +state { radioOptions[0] }
+        FormRadioGroup(
+                model = Validation.email(),
+                options = radioOptions,
+                selectedOption = selectedOption,
+                onSelectedChange = onOptionSelected
         )
     }
 }
