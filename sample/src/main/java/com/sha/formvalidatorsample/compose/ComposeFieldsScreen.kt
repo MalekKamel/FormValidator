@@ -121,14 +121,16 @@ fun ComposeFieldsScreen() {
                             println("Email valid = ${email.isValid}")
                             println("Password valid = ${password.isValid}")
                             println("CheckBox valid = ${checkBox.isValid}")
-                            println("ToggleButton valid = ${switch.isValid}")
+                            println("Switch valid = ${switch.isValid}")
+                            println("RadioGroup valid = ${radioGroup.isValid}")
 
                             println("Form valid = ${ComposeValidator(country, email, password, checkBox).isValid}")
                             println("Form valid = ${ComposeValidator(compositeValidation).isValid}")
                             println("Form valid = ${compositeValidation.isValid}")
 
                             // You can show error
-                            checkBox.showError("Please select this checkBox!")
+                            if (!checkBox.isValid)
+                                checkBox.showError("Please select this checkBox!")
                         }
                 )
             }
