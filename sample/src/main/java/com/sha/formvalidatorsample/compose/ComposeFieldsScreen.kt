@@ -1,9 +1,6 @@
 package com.sha.formvalidatorsample.compose
 
-import androidx.compose.Composable
-import androidx.compose.Model
-import androidx.compose.state
-import androidx.compose.unaryPlus
+import androidx.compose.*
 import androidx.ui.core.dp
 import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.shape.border.Border
@@ -85,9 +82,7 @@ fun ComposeFieldsScreen() {
                     FormCheckBox(
                             model = checkBox,
                             text = "I accept terms & conditions.",
-                            onCheckedChange = {
-                                CheckBoxStatus.checked = !CheckBoxStatus.checked
-                            }
+                            onCheckedChange = {}
                     )
                 }
 
@@ -95,9 +90,7 @@ fun ComposeFieldsScreen() {
                     FormSwitch(
                             model = switch,
                             text = "Receive email notification.",
-                            onSelected = {
-                                SwitchStatus.checked = !SwitchStatus.checked
-                            }
+                            onSelected = {}
                     )
                 }
 
@@ -142,14 +135,4 @@ fun ComposeFieldsScreen() {
 @Composable
 fun DefaultPreview() {
     MaterialTheme { ComposeFieldsScreen() }
-}
-
-@Model
-object CheckBoxStatus {
-    var checked = false
-}
-
-@Model
-object SwitchStatus {
-    var checked = false
 }
