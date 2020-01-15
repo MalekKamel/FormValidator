@@ -10,7 +10,6 @@ import androidx.ui.foundation.Clickable
 import androidx.ui.graphics.Color
 import androidx.ui.layout.*
 import androidx.ui.material.Switch
-import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Surface
 import androidx.ui.text.TextStyle
 import androidx.ui.tooling.preview.Preview

@@ -4,7 +4,6 @@ import androidx.compose.Composable
 import androidx.compose.Recompose
 import androidx.compose.state
 import androidx.compose.unaryPlus
-import androidx.ui.core.Modifier
 import androidx.ui.core.dp
 import androidx.ui.core.sp
 import androidx.ui.graphics.Color
