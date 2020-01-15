@@ -40,7 +40,8 @@ fun SeekBar(
     }) {
         PressGestureDetector(
                 onPress = { position ->
-                    animValue.animateTo(position.x.value,
+                    animValue.animateTo(
+                            position.x.value,
                             PhysicsBuilder(dampingRatio = 1.0f, stiffness = 1500f)
                     )
                 }) {

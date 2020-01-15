@@ -21,6 +21,14 @@ abstract class AbstractBooleanModel: AbstractValidatableModel<Boolean>() {
         }
 }
 
+abstract class AbstractDoubleModel: AbstractValidatableModel<Double>() {
+    override var value: Double = 0.0
+        set(value) {
+            field = value
+            validate(false)
+        }
+}
+
 abstract class AbstractValidatableModel<V>: ValidatableModel<V> {
     override fun validate(forceValidationOnce: Boolean): Boolean {
         if (forceValidationOnce) this.overrideValidateOnChangeOnce = true

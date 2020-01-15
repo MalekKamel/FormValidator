@@ -16,10 +16,7 @@ import com.sha.formvalidator.compose.ComposeValidator
 import com.sha.formvalidator.compose.CompositeValidation
 import com.sha.formvalidator.compose.Validatable
 import com.sha.formvalidator.compose.Validation
-import com.sha.formvalidator.compose.widget.FormCheckBox
-import com.sha.formvalidator.compose.widget.FormRadioGroup
-import com.sha.formvalidator.compose.widget.FormTextField
-import com.sha.formvalidator.compose.widget.FormSwitch
+import com.sha.formvalidator.compose.widget.*
 import com.sha.formvalidatorsample.R
 
 
@@ -104,6 +101,10 @@ fun ComposeFieldsScreen() {
                             selectedOption = null,
                             onSelectedChange = onOptionSelected
                     )
+                }
+
+                Padding(padding = 8.dp) {
+                    FormSeekBar(model = radioGroup)
                 }
 
                 Button(

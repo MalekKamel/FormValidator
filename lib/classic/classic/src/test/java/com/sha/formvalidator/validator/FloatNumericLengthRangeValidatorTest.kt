@@ -10,7 +10,7 @@ class FloatNumericLengthRangeValidatorTest {
 
     @Before
     fun setup() {
-        validator = FloatNumericRangeValidator("Invalid!", 1.0, 5.0)
+        validator = FloatNumericRangeValidator(1.0, 5.0, "Invalid!")
     }
 
     @Test

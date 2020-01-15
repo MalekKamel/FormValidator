@@ -60,13 +60,15 @@ object TextViewValidatorFactory {
             TextViewValidationType.DATE -> DateValidator(context.getString(R.string.error_date_not_valid), attrInfo.dateFormat)
 
             TextViewValidationType.NUMERIC_RANGE -> NumericRangeValidator(
-                    context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.minNumber, attrInfo.maxNumber),
                     attrInfo.minNumber.toLong(),
-                    attrInfo.maxNumber.toLong())
+                    attrInfo.maxNumber.toLong(),
+                    context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.minNumber, attrInfo.maxNumber)
+            )
             TextViewValidationType.FLOAT_NUMERIC_RANGE -> FloatNumericRangeValidator(
-                    context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.floatMinNumber, attrInfo.floatMaxNumber),
                     attrInfo.floatMinNumber.toDouble(),
-                    attrInfo.floatMaxNumber.toDouble())
+                    attrInfo.floatMaxNumber.toDouble(),
+                    context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.floatMinNumber, attrInfo.floatMaxNumber)
+            )
             else -> DummyValidator()
         }
     }

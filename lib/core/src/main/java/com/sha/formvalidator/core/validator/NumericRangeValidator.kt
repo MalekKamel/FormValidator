@@ -5,12 +5,14 @@ package com.sha.formvalidator.core.validator
  * and the number is within the given range.
  *
  */
-class NumericRangeValidator(errorMessage: String, private val min: Long, private val max: Long) : TextValidator(errorMessage) {
+class NumericRangeValidator(
+        private val min: Long,
+        private val max: Long,
+        errorMessage: String) : TextValidator(errorMessage) {
 
     override fun isValid(value: String): Boolean {
         return try {
-            val value = java.lang.Long.parseLong(value)
-            value in min..max
+            value.toLong() in min..max
         } catch (e: NumberFormatException) {
             false
         }

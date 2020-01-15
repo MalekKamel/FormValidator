@@ -2,21 +2,15 @@ package com.sha.compoz
 
 
 import androidx.compose.Composable
-import androidx.compose.memo
-import androidx.compose.unaryPlus
 import androidx.ui.core.Modifier
 import androidx.ui.core.Text
 import androidx.ui.core.dp
 import androidx.ui.core.sp
 import androidx.ui.foundation.Clickable
-import androidx.ui.foundation.selection.Toggleable
 import androidx.ui.graphics.Color
-import androidx.ui.graphics.vector.DrawVector
 import androidx.ui.layout.*
 import androidx.ui.material.Checkbox
-import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Surface
-import androidx.ui.res.vectorResource
 import androidx.ui.text.TextStyle
 import androidx.ui.tooling.preview.Preview
 import com.sha.compoz.model.TextArgs

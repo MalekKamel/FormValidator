@@ -98,7 +98,7 @@ class NumericValidation : AbstractStringModel() {
 }
 
 class NumericRangeValidation(min: Long, max: Long) : AbstractStringModel() {
-    override val validator: TextValidator by lazy { NumericRangeValidator(errorText, min, max) }
+    override val validator: TextValidator by lazy { NumericRangeValidator(min, max, errorText) }
     override var errorText = DefaultErrors.numericRangeError
 }
 
@@ -108,7 +108,7 @@ class LengthRangeValidation(min: Long, max: Long) : AbstractStringModel() {
 }
 
 class FloatNumericRangeValidation(min: Double, max: Double) : AbstractStringModel() {
-    override val validator: TextValidator by lazy { FloatNumericRangeValidator(errorText, min, max) }
+    override val validator: TextValidator by lazy { FloatNumericRangeValidator(min, max, errorText) }
     override var errorText = DefaultErrors.floatNumericRangeError
 }
 
@@ -124,5 +124,10 @@ class CreditCardValidation : AbstractStringModel() {
 
 class BooleanValidation(validation: Boolean) : AbstractBooleanModel() {
     override val validator: Validator<Boolean> = BooleanValidator(validation)
+    override var errorText = DefaultErrors.booleanError
+}
+
+class RangeValidation(private val min: Long, private val max: Long) : AbstractStringModel() {
+    override val validator: TextValidator by lazy { NumericRangeValidator(min, max, errorText) }
     override var errorText = DefaultErrors.booleanError
 }

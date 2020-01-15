@@ -10,7 +10,7 @@ class NumericLengthRangeValidatorTest {
 
     @Before
     fun setup() {
-        validator = NumericRangeValidator("Invalid!", 1, 5)
+        validator = NumericRangeValidator(1, 5, "Invalid!")
     }
 
     @Test
