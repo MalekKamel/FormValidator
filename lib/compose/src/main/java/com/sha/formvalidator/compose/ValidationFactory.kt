@@ -10,8 +10,10 @@ object Validation {
             block: (MandatoryValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return MandatoryValidation()
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun optional(
@@ -19,8 +21,10 @@ object Validation {
             block: (OptionalValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return OptionalValidation()
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun webUrl(
@@ -28,8 +32,10 @@ object Validation {
             block: (WebUrlValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return WebUrlValidation()
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun phone(
@@ -37,8 +43,10 @@ object Validation {
             block: (PhoneValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return PhoneValidation()
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun personName(
@@ -46,8 +54,10 @@ object Validation {
             block: (PersonNameValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return PersonNameValidation()
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun personFullName(
@@ -55,8 +65,10 @@ object Validation {
             block: (PersonFullNameValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return PersonFullNameValidation()
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun ipAddress(
@@ -64,8 +76,10 @@ object Validation {
             block: (IpAddressValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return IpAddressValidation()
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun email(
@@ -73,8 +87,10 @@ object Validation {
             block: (EmailValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return EmailValidation()
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun domain(
@@ -82,8 +98,10 @@ object Validation {
             block: (DomainValidatorValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return DomainValidatorValidation()
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun alpha(
@@ -91,8 +109,10 @@ object Validation {
             block: (AlphaValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return AlphaValidation()
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun alphaNumeric(
@@ -100,8 +120,10 @@ object Validation {
             block: (AlphaNumericValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return AlphaNumericValidation()
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun valueMatch(
@@ -109,8 +131,10 @@ object Validation {
             block: (ValueMatchValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return ValueMatchValidation()
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun numeric(
@@ -118,8 +142,10 @@ object Validation {
             block: (NumericValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return NumericValidation()
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun creditCard(
@@ -127,8 +153,10 @@ object Validation {
             block: (CreditCardValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return CreditCardValidation()
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun pattern(
@@ -137,8 +165,10 @@ object Validation {
             block: (PatternValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return PatternValidation(pattern)
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun or(
@@ -147,8 +177,10 @@ object Validation {
             block: (OrValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return OrValidation(validators)
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun and(
@@ -157,8 +189,10 @@ object Validation {
             block: (AndValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return AndValidation(validators)
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun prefix(
@@ -167,8 +201,10 @@ object Validation {
             block: (PrefixValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return PrefixValidation(prefix)
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun suffix(
@@ -177,8 +213,10 @@ object Validation {
             block: (SuffixValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return SuffixValidation(suffix)
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun date(
@@ -187,8 +225,10 @@ object Validation {
             block: (DateValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return DateValidation(format)
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun numericRange(
@@ -198,8 +238,10 @@ object Validation {
             block: (NumericRangeValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return NumericRangeValidation(min, max)
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun lengthRange(
@@ -209,19 +251,23 @@ object Validation {
             block: (LengthRangeValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
         return LengthRangeValidation(min, max)
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun floatNumericRange(
-            min: Double,
-            max: Double,
+            min: Float,
+            max: Float,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (FloatRangeValidation.() -> Unit)? = null
     ): ValidatableModel<Float> {
         return FloatRangeValidation(min, max)
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 
     fun boolean(
@@ -230,7 +276,9 @@ object Validation {
             block: (BooleanValidation.() -> Unit)? = null
     ): ValidatableModel<Boolean> {
         return BooleanValidation(validation)
-                .apply { block?.invoke(this) }
-                .apply { compositeValidation?.add(this) }
+                .apply {
+                    block?.invoke(this)
+                    compositeValidation?.add(this)
+                }
     }
 }

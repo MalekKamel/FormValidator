@@ -52,7 +52,7 @@ fun ComposeFieldsScreen() {
         validateOnChange = true
     }
 
-    val slider = Validation.floatNumericRange(0.5, 0.9, compositeValidation) {
+    val slider = Validation.floatNumericRange(0.5f, 0.9f, compositeValidation) {
         errorText = "Please select within 0.5 - 0.9!"
         validateOnChange = true
     }
@@ -125,6 +125,7 @@ fun ComposeFieldsScreen() {
                             println("CheckBox valid = ${checkBox.isValid}")
                             println("Switch valid = ${switch.isValid}")
                             println("RadioGroup valid = ${radioGroup.isValid}")
+                            println("Slider valid = ${slider.isValid}")
 
                             println("Form valid = ${ComposeValidator(country, email, password, checkBox).isValid}")
                             println("Form valid = ${ComposeValidator(compositeValidation).isValid}")
