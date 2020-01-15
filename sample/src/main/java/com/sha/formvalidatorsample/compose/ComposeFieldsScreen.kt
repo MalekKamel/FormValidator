@@ -100,13 +100,13 @@ fun ComposeFieldsScreen() {
                 }
 
                 val radioOptions = listOf("Phone Call", "SMS", "Email")
-                val (_, onOptionSelected) = +state { radioOptions[0] }
+                val (selectedOption, onOptionSelected) = +state { "" }
 
                 Padding(padding = 8.dp) {
                     FormRadioGroup(
                             model = radioGroup,
                             options = radioOptions,
-                            selectedOption = null,
+                            selectedOption = selectedOption,
                             onSelectedChange = onOptionSelected
                     )
                 }
