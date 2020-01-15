@@ -13,10 +13,7 @@ import androidx.ui.material.MaterialTheme
 import androidx.ui.material.SliderPosition
 import androidx.ui.material.surface.Surface
 import androidx.ui.tooling.preview.Preview
-import com.sha.formvalidator.compose.ComposeValidator
-import com.sha.formvalidator.compose.CompositeValidation
-import com.sha.formvalidator.compose.Validatable
-import com.sha.formvalidator.compose.Validation
+import com.sha.formvalidator.compose.*
 import com.sha.formvalidator.compose.widget.*
 import com.sha.formvalidatorsample.R
 
@@ -24,7 +21,11 @@ import com.sha.formvalidatorsample.R
 @Composable
 fun ComposeFieldsScreen() {
 
-    val compositeValidation = CompositeValidation<Validatable>()
+    val compositeValidation by lazy {
+        CompositeValidation.create<Validatable> {
+
+        }
+    }
 
     val country = Validation.mandatory(compositeValidation) {
         errorText = "Country Required!"
@@ -36,6 +37,8 @@ fun ComposeFieldsScreen() {
     }
 
     val password = Validation.mandatory(compositeValidation)
+
+    val confirmPassword = Validation.mandatory(compositeValidation)
 
     val checkBox = Validation.boolean(true, compositeValidation) {
         validateOnChange = true
@@ -83,6 +86,15 @@ fun ComposeFieldsScreen() {
                     }
                 }
 
+                Surface(border = Border(Color.Gray, 1.dp), modifier = Spacing(8.dp)) {
+                    Padding(padding = 8.dp) {
+                        FormTextField(
+                                model = confirmPassword,
+                                hint = "Confirm Password"
+                        )
+                    }
+                }
+
                 Padding(padding = 8.dp) {
                     FormCheckBox(
                             model = checkBox,
@@ -113,6 +125,10 @@ fun ComposeFieldsScreen() {
 
                 Padding(padding = 8.dp) {
                     FormSlider(model = slider, position = sliderPosition)
+                }
+
+                compositeValidation + Validation.valueMatch(password, confirmPassword) {
+                    errorText = "Passwords don't match!"
                 }
 
                 Button(

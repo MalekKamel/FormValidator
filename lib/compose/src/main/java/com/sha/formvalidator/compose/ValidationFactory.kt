@@ -127,10 +127,11 @@ object Validation {
     }
 
     fun valueMatch(
+            vararg models: ValidatableModel<String>,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (ValueMatchValidation.() -> Unit)? = null
     ): ValidatableModel<String> {
-        return ValueMatchValidation()
+        return ValueMatchValidation(*models)
                 .apply {
                     block?.invoke(this)
                     compositeValidation?.add(this)

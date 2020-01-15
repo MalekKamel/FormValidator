@@ -7,4 +7,14 @@ class CompositeValidation<T: Validatable> {
     fun addAll(models: List<T>) = list.addAll(models)
     fun remove(model: T)  = list.remove(model)
     fun removeAll(models: List<T>) = list.removeAll(models)
+
+    operator fun plus(validation: T) {
+        add(validation)
+    }
+
+    companion object {
+        fun <T: Validatable> create(block: CompositeValidation<T>.() -> Unit): CompositeValidation<T> {
+            return CompositeValidation<T>().apply(block)
+        }
+    }
 }

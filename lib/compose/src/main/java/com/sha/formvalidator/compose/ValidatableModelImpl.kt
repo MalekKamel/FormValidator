@@ -77,8 +77,18 @@ class AndValidation(validators: List<TextValidator>) : AbstractStringModel() {
     override var errorText = ""
 }
 
-class ValueMatchValidation : AbstractStringModel() {
-    override val validator: TextValidator by lazy { ValueMatchValidator(errorText) }
+class ValueMatchValidation(vararg models: ValidatableModel<String>) : AbstractStringModel() {
+    override val validator: Validator<String> by lazy {
+        object : Validator<String> {
+            override fun isValid(value: String): Boolean {
+                if (models.isEmpty()) return true
+                val firstValue = models.first().value
+                val valid = models.all { it.value == firstValue }
+                if (!valid) models.forEach { it.showError(errorText) }
+                return valid
+            }
+        }
+    }
     override var errorText = DefaultErrors.valueMatchError
 }
 
