@@ -27,18 +27,18 @@ fun ComposeFieldsScreen() {
         }
     }
 
-    val country = Validation.mandatory(compositeValidation) {
+    val country = TextValidation.mandatory(compositeValidation) {
         errorText = "Country Required!"
         validateOnChange = true
     }
 
-    val email = Validation.email(compositeValidation) {
+    val email = TextValidation.email(compositeValidation) {
         errorTextRes = R.string.error_email_address_not_valid
     }
 
-    val password = Validation.mandatory(compositeValidation)
+    val password = TextValidation.mandatory(compositeValidation)
 
-    val confirmPassword = Validation.mandatory(compositeValidation)
+    val confirmPassword = TextValidation.mandatory(compositeValidation)
 
     val checkBox = Validation.boolean(true, compositeValidation) {
         validateOnChange = true
@@ -50,12 +50,12 @@ fun ComposeFieldsScreen() {
         errorText = "You must receive notifications :)"
     }
 
-    val radioGroup = Validation.mandatory(compositeValidation) {
+    val radioGroup = TextValidation.mandatory(compositeValidation) {
         errorText = "Select method!"
         validateOnChange = true
     }
 
-    val slider = Validation.floatNumericRange(0.5f, 0.9f, compositeValidation) {
+    val slider = Validation.floatRange(0.5f, 0.9f, compositeValidation) {
         errorText = "Please select within 0.5 - 0.9!"
         validateOnChange = true
     }
@@ -127,7 +127,7 @@ fun ComposeFieldsScreen() {
                     FormSlider(model = slider, position = sliderPosition)
                 }
 
-                compositeValidation + Validation.valueMatch(password, confirmPassword) {
+                compositeValidation + TextValidation.valueMatch(password, confirmPassword) {
                     errorText = "Passwords don't match!"
                 }
 

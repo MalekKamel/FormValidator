@@ -18,7 +18,7 @@ object DefaultErrors {
     var numericError = "Invalid Number!"
     var numericRangeError = "Invalid Range!"
     var lengthRangeError = "Invalid Length!"
-    var floatNumericRangeError = "Invalid Range!"
+    var rangeError = "Invalid Range!"
     var dateError = "Invalid Date!"
     var creditCardError = "Invalid Credit Card!"
     var booleanError = "Invalid Selection!"

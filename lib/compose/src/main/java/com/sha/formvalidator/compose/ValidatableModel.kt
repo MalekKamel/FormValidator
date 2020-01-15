@@ -21,6 +21,54 @@ abstract class AbstractBooleanModel: AbstractValidatableModel<Boolean>() {
         }
 }
 
+abstract class AbstractDoubleModel: AbstractValidatableModel<Double>() {
+    override var value: Double = 0.0
+        set(value) {
+            field = value
+            validate(false)
+        }
+}
+
+abstract class AbstractLongModel: AbstractValidatableModel<Long>() {
+    override var value: Long = 0
+        set(value) {
+            field = value
+            validate(false)
+        }
+}
+
+abstract class AbstractIntModel: AbstractValidatableModel<Int>() {
+    override var value: Int = 0
+        set(value) {
+            field = value
+            validate(false)
+        }
+}
+
+abstract class AbstractCharModel: AbstractValidatableModel<Char>() {
+    override var value: Char = ' '
+        set(value) {
+            field = value
+            validate(false)
+        }
+}
+
+abstract class AbstractShortModel: AbstractValidatableModel<Short>() {
+    override var value: Short = 0
+        set(value) {
+            field = value
+            validate(false)
+        }
+}
+
+abstract class AbstractByteModel: AbstractValidatableModel<Byte>() {
+    override var value: Byte = 0
+        set(value) {
+            field = value
+            validate(false)
+        }
+}
+
 abstract class AbstractFloatModel: AbstractValidatableModel<Float>() {
     override var value: Float = 0.0f
         set(value) {

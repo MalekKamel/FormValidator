@@ -52,6 +52,6 @@ fun <T: ValidatableModel<Float>> FormSlider(
 @Composable
 private fun FormSeekBarPreview() {
     Surface {
-        FormSlider(model = Validation.floatNumericRange(0.1f, 0.5f), position = SliderPosition())
+        FormSlider(model = Validation.floatRange(0.1f, 0.5f), position = SliderPosition())
     }
 }
