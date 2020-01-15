@@ -107,8 +107,10 @@ class LengthRangeValidation(min: Long, max: Long) : AbstractStringModel() {
     override var errorText = DefaultErrors.lengthRangeError
 }
 
-class FloatNumericRangeValidation(min: Double, max: Double) : AbstractStringModel() {
-    override val validator: TextValidator by lazy { FloatNumericRangeValidator(min, max, errorText) }
+class FloatRangeValidation(min: Double, max: Double) : AbstractFloatModel() {
+    override val validator: Validator<Float> by lazy {
+        object: Validator<Float> { override fun isValid(value: Float) = value in min..max }
+    }
     override var errorText = DefaultErrors.floatNumericRangeError
 }
 

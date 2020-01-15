@@ -21,8 +21,8 @@ abstract class AbstractBooleanModel: AbstractValidatableModel<Boolean>() {
         }
 }
 
-abstract class AbstractDoubleModel: AbstractValidatableModel<Double>() {
-    override var value: Double = 0.0
+abstract class AbstractFloatModel: AbstractValidatableModel<Float>() {
+    override var value: Float = 0.0f
         set(value) {
             field = value
             validate(false)

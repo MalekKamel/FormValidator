@@ -10,6 +10,7 @@ import androidx.ui.layout.Padding
 import androidx.ui.layout.Spacing
 import androidx.ui.material.Button
 import androidx.ui.material.MaterialTheme
+import androidx.ui.material.SliderPosition
 import androidx.ui.material.surface.Surface
 import androidx.ui.tooling.preview.Preview
 import com.sha.formvalidator.compose.ComposeValidator
@@ -50,6 +51,13 @@ fun ComposeFieldsScreen() {
         errorText = "Select method!"
         validateOnChange = true
     }
+
+    val slider = Validation.floatNumericRange(0.5, 0.9, compositeValidation) {
+        errorText = "Please select within 0.5 - 0.9!"
+        validateOnChange = true
+    }
+
+    val sliderPosition = SliderPosition()
 
     Column {
         VerticalScroller(modifier = Flexible(1f)) {
@@ -104,7 +112,7 @@ fun ComposeFieldsScreen() {
                 }
 
                 Padding(padding = 8.dp) {
-                    FormSeekBar(model = radioGroup)
+                    FormSlider(model = slider, position = sliderPosition)
                 }
 
                 Button(

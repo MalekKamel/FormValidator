@@ -217,9 +217,9 @@ object Validation {
             min: Double,
             max: Double,
             compositeValidation: CompositeValidation<Validatable>? = null,
-            block: (FloatNumericRangeValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return FloatNumericRangeValidation(min, max)
+            block: (FloatRangeValidation.() -> Unit)? = null
+    ): ValidatableModel<Float> {
+        return FloatRangeValidation(min, max)
                 .apply { block?.invoke(this) }
                 .apply { compositeValidation?.add(this) }
     }
