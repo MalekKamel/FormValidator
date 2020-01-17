@@ -8,357 +8,186 @@ object Validation {
     fun mandatory(
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (MandatoryValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return MandatoryValidation()
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(MandatoryValidation(), compositeValidation, block)
 
     fun optional(
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (OptionalValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return OptionalValidation()
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(OptionalValidation(), compositeValidation, block)
 
     fun webUrl(
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (WebUrlValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return WebUrlValidation()
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(WebUrlValidation(), compositeValidation, block)
 
     fun phone(
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (PhoneValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return PhoneValidation()
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(PhoneValidation(), compositeValidation, block)
 
     fun personName(
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (PersonNameValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return PersonNameValidation()
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(PersonNameValidation(), compositeValidation, block)
 
     fun personFullName(
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (PersonFullNameValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return PersonFullNameValidation()
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(PersonFullNameValidation(), compositeValidation, block)
 
     fun ipAddress(
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (IpAddressValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return IpAddressValidation()
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(IpAddressValidation(), compositeValidation, block)
 
     fun email(
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (EmailValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return EmailValidation()
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(EmailValidation(), compositeValidation, block)
 
     fun domain(
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (DomainValidatorValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return DomainValidatorValidation()
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(DomainValidatorValidation(), compositeValidation, block)
 
     fun alpha(
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (AlphaValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return AlphaValidation()
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(AlphaValidation(), compositeValidation, block)
 
     fun alphaNumeric(
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (AlphaNumericValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return AlphaNumericValidation()
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(AlphaNumericValidation(), compositeValidation, block)
 
     fun valueMatch(
             vararg models: ValidatableModel<String>,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (ValueMatchValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return ValueMatchValidation(*models)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(ValueMatchValidation(*models), compositeValidation, block)
 
     fun numeric(
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (NumericValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return NumericValidation()
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(NumericValidation(), compositeValidation, block)
 
     fun creditCard(
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (CreditCardValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return CreditCardValidation()
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(CreditCardValidation(), compositeValidation, block)
 
     fun pattern(
             pattern: Pattern,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (PatternValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return PatternValidation(pattern)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(PatternValidation(pattern), compositeValidation, block)
 
     fun or(
             compositeValidation: CompositeValidation<Validatable>? = null,
             validators: List<TextValidator>,
             block: (OrValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return OrValidation(validators)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(OrValidation(validators), compositeValidation, block)
 
     fun and(
             compositeValidation: CompositeValidation<Validatable>? = null,
             validators: List<TextValidator>,
             block: (AndValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return AndValidation(validators)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(AndValidation(validators), compositeValidation, block)
 
     fun prefix(
             prefix: String,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (PrefixValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return PrefixValidation(prefix)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(PrefixValidation(prefix), compositeValidation, block)
 
     fun suffix(
             suffix: String,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (SuffixValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return SuffixValidation(suffix)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(SuffixValidation(suffix), compositeValidation, block)
 
     fun date(
             format: String,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (DateValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return DateValidation(format)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(DateValidation(format), compositeValidation, block)
 
     fun numericRange(
             min: Long,
             max: Long,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (NumericRangeValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return NumericRangeValidation(min, max)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(NumericRangeValidation(min, max), compositeValidation, block)
 
     fun lengthRange(
             min: Long,
             max: Long,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (LengthRangeValidation.() -> Unit)? = null
-    ): ValidatableModel<String> {
-        return LengthRangeValidation(min, max)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(LengthRangeValidation(min, max), compositeValidation, block)
 
     fun floatRange(
             min: Float,
             max: Float,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (FloatRangeValidation.() -> Unit)? = null
-    ): ValidatableModel<Float> {
-        return FloatRangeValidation(min, max)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(FloatRangeValidation(min, max), compositeValidation, block)
 
     fun doubleRange(
             min: Double,
             max: Double,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (DoubleRangeValidation.() -> Unit)? = null
-    ): ValidatableModel<Double> {
-        return DoubleRangeValidation(min, max)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(DoubleRangeValidation(min, max), compositeValidation, block)
 
     fun longRange(
             min: Long,
             max: Long,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (LongRangeValidation.() -> Unit)? = null
-    ): ValidatableModel<Long> {
-        return LongRangeValidation(min, max)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(LongRangeValidation(min, max), compositeValidation, block)
 
     fun intRange(
             min: Int,
             max: Int,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (IntRangeValidation.() -> Unit)? = null
-    ): ValidatableModel<Int> {
-        return IntRangeValidation(min, max)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
-
+    ) = makeModel(IntRangeValidation(min, max), compositeValidation, block)
     fun charRange(
             min: Char,
             max: Char,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (CharRangeValidation.() -> Unit)? = null
-    ): ValidatableModel<Char> {
-        return CharRangeValidation(min, max)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(CharRangeValidation(min, max), compositeValidation, block)
 
     fun shortRange(
             min: Short,
             max: Short,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (ShortRangeValidation.() -> Unit)? = null
-    ): ValidatableModel<Short> {
-        return ShortRangeValidation(min, max)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(ShortRangeValidation(min, max), compositeValidation, block)
 
     fun byteRange(
             min: Byte,
             max: Byte,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (ByteRangeValidation.() -> Unit)? = null
-    ): ValidatableModel<Byte> {
-        return ByteRangeValidation(min, max)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(ByteRangeValidation(min, max), compositeValidation, block)
 
     fun boolean(
             validation: Boolean,
             compositeValidation: CompositeValidation<Validatable>? = null,
             block: (BooleanValidation.() -> Unit)? = null
-    ): ValidatableModel<Boolean> {
-        return BooleanValidation(validation)
-                .apply {
-                    block?.invoke(this)
-                    compositeValidation?.add(this)
-                }
-    }
+    ) = makeModel(BooleanValidation(validation), compositeValidation, block)
 
+    fun <T: Validatable> makeModel(
+            model: T,
+            compositeValidation: CompositeValidation<Validatable>? = null,
+            block: (T.() -> Unit)? = null
+    ): T {
+        return model.apply {
+            block?.invoke(this)
+            compositeValidation?.add(this)
+        }
+    }
 }
