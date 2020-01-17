@@ -1,16 +1,16 @@
 package com.sha.formvalidator.core
 
-import com.sha.formvalidator.core.validator.LongRangeValidator
+import com.sha.formvalidator.core.validator.FloatRangeTextValidator
 import com.sha.formvalidator.core.validator.TextValidator
 import org.junit.Before
 import org.junit.Test
 
-class NumericLengthRangeValidatorTest {
+class FloatRangeTextValidatorTest {
     lateinit var validator: TextValidator
 
     @Before
     fun setup() {
-        validator = LongRangeValidator(1, 5, "Invalid!")
+        validator = FloatRangeTextValidator(1.0f, 5.0f, "Invalid!")
     }
 
     @Test

@@ -8,7 +8,7 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.sha.formvalidator.ValidatorFactory
-import com.sha.formvalidator.core.validator.LengthRangeValidator
+import com.sha.formvalidator.core.validator.LengthRangeTextValidator
 import com.sha.formvalidator.core.validator.PrefixValidator
 import com.sha.formvalidator.widget.FormEditText
 import com.sha.formvalidatorsample.R
@@ -26,14 +26,14 @@ class PrefixAndRangeValidatorActivity : Activity() {
         fdt.addValidators {
             allValid(
                     PrefixValidator("d", "Must start with d."),
-                    LengthRangeValidator("Must be of length 1-5.", 1, 5))
+                    LengthRangeTextValidator("Must be of length 1-5.", 1, 5))
         }
 
         // OR add using ValidatorFactory (appropriate for Java)
         fdt.addValidator(
                 ValidatorFactory.allValid(
                         PrefixValidator("d", "Must start with d."),
-                        LengthRangeValidator("Must be of length 1-5.", 1, 5)))
+                        LengthRangeTextValidator("Must be of length 1-5.", 1, 5)))
     }
 
     private fun setupUi() {

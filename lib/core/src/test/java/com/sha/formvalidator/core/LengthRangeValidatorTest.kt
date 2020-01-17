@@ -1,6 +1,6 @@
 package com.sha.formvalidator.core
 
-import com.sha.formvalidator.core.validator.LengthRangeValidator
+import com.sha.formvalidator.core.validator.LengthRangeTextValidator
 import com.sha.formvalidator.core.validator.TextValidator
 import org.junit.Before
 import org.junit.Test
@@ -10,7 +10,7 @@ class LengthRangeValidatorTest {
 
     @Before
     fun setup() {
-        validator = LengthRangeValidator("Invalid!", 1, 5)
+        validator = LengthRangeTextValidator("Invalid!", 1, 5)
     }
 
     @Test

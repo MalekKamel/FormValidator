@@ -109,12 +109,12 @@ class NumericValidation : AbstractStringModel() {
 }
 
 class NumericRangeValidation(min: Long, max: Long) : AbstractStringModel() {
-    override val validator: TextValidator by lazy { LongRangeValidator(min, max, errorMessage) }
+    override val validator: TextValidator by lazy { LongRangeTextValidator(min, max, errorMessage) }
     override var errorMessage = DefaultErrors.numericRangeError
 }
 
 class LengthRangeValidation(min: Long, max: Long) : AbstractStringModel() {
-    override val validator: TextValidator by lazy { LengthRangeValidator(errorMessage, min, max) }
+    override val validator: TextValidator by lazy { LengthRangeTextValidator(errorMessage, min, max) }
     override var errorMessage = DefaultErrors.lengthRangeError
 }
 
@@ -134,66 +134,36 @@ class BooleanValidation(validation: Boolean) : AbstractBooleanModel() {
 }
 
 class DoubleRangeValidation(min: Double, max: Double) : AbstractDoubleModel() {
-    override val validator: Validator<Double> by lazy {
-        object: Validator<Double> {
-            override var value: Double = 0.0
-            override fun validate() = value in min..max }
-    }
+    override val validator: Validator<Double> by lazy { DoubleRangeValidator(min, max) }
     override var errorMessage = DefaultErrors.rangeError
 }
 
 class FloatRangeValidation(min: Float, max: Float) : AbstractFloatModel() {
-    override val validator: Validator<Float> by lazy {
-        object: Validator<Float> {
-            override var value: Float = 0f
-            override fun validate() = value in min..max
-        }
-    }
+    override val validator: Validator<Float> by lazy { FloatRangeValidator(min, max) }
     override var errorMessage = DefaultErrors.rangeError
 }
 
 class LongRangeValidation(min: Long, max: Long) : AbstractLongModel() {
-    override val validator: Validator<Long> by lazy {
-        object: Validator<Long> {
-            override var value: Long = 0
-            override fun validate() = value in min..max }
-    }
+    override val validator: Validator<Long> by lazy { LongRangeValidator(min, max) }
     override var errorMessage = DefaultErrors.rangeError
 }
 
 class IntRangeValidation(min: Int, max: Int) : AbstractIntModel() {
-    override val validator: Validator<Int> by lazy {
-        object: Validator<Int> {
-            override var value: Int = 0
-            override fun validate() = value in min..max }
-    }
+    override val validator: Validator<Int> by lazy { IntRangeValidator(min, max) }
     override var errorMessage = DefaultErrors.rangeError
 }
 
 class CharRangeValidation(min: Char, max: Char) : AbstractCharModel() {
-    override val validator: Validator<Char> by lazy {
-        object: Validator<Char> {
-            override var value: Char = ' '
-            override fun validate() = value in min..max }
-    }
+    override val validator: Validator<Char> by lazy { CharRangeValidator(min, max) }
     override var errorMessage = DefaultErrors.rangeError
 }
 
 class ShortRangeValidation(min: Short, max: Short) : AbstractShortModel() {
-    override val validator: Validator<Short> by lazy {
-        object: Validator<Short> {
-            override var value: Short = 0
-            override fun validate() = value in min..max }
-    }
+    override val validator: Validator<Short> by lazy { ShortRangeValidator(min, max) }
     override var errorMessage = DefaultErrors.rangeError
 }
 
 class ByteRangeValidation(min: Byte, max: Byte) : AbstractByteModel() {
-    override val validator: Validator<Byte> by lazy {
-        object: Validator<Byte> {
-            override var value: Byte = 0
-            override fun validate() = value in min..max
-        }
-    }
+    override val validator: Validator<Byte> by lazy { ByteRangeValidator(min, max) }
     override var errorMessage = DefaultErrors.rangeError
 }

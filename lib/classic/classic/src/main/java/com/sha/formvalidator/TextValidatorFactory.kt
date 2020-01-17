@@ -60,12 +60,12 @@ object TextValidatorFactory {
             TextViewValidationType.PERSON_FULL_NAME -> PersonFullNameValidator(context.getString(R.string.error_not_valid_person_full_name))
             TextViewValidationType.DATE -> DateValidator(context.getString(R.string.error_date_not_valid), attrInfo.dateFormat)
 
-            TextViewValidationType.NUMERIC_RANGE -> LongRangeValidator(
+            TextViewValidationType.NUMERIC_RANGE -> LongRangeTextValidator(
                     attrInfo.minNumber.toLong(),
                     attrInfo.maxNumber.toLong(),
                     context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.minNumber, attrInfo.maxNumber)
             )
-            TextViewValidationType.FLOAT_NUMERIC_RANGE -> FloatRangeValidator(
+            TextViewValidationType.FLOAT_NUMERIC_RANGE -> FloatRangeTextValidator(
                     attrInfo.floatMinNumber,
                     attrInfo.floatMaxNumber,
                     context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.floatMinNumber, attrInfo.floatMaxNumber)
