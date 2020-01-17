@@ -1,7 +1,7 @@
 package com.sha.formvalidator.model
 
 import android.widget.TextView
-import com.sha.formvalidator.core.ValidatorFactory
+import com.sha.formvalidator.ValidatorFactory
 import com.sha.formvalidator.core.validator.TextValidator
 
 data class CompositeValidatorInfo(

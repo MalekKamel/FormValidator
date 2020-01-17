@@ -5,5 +5,5 @@ package com.sha.formvalidator.core.validator
  *
  */
 class SuffixValidator(private val suffix: String, errorMessage: String) : TextValidator(errorMessage) {
-    override fun isValid(value: String): Boolean = value.endsWith(suffix)
+    override fun validate(): Boolean = value.endsWith(suffix)
 }

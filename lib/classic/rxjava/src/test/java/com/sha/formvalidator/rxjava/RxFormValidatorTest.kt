@@ -1,8 +1,4 @@
 package com.sha.formvalidator.rxjava
-
-import com.sha.formvalidator.validator.FakeInvalidValidator
-import com.sha.formvalidator.validator.FakeValidValidator
-import com.sha.formvalidator.Validatable
 import org.junit.Test
 
 class RxFormValidatorTest {
@@ -10,9 +6,9 @@ class RxFormValidatorTest {
     @Test
     fun isValid_allValid() {
         val validator = RxFormValidator(
-                com.sha.formvalidator.validator.FakeValidValidator(),
-                com.sha.formvalidator.validator.FakeValidValidator(),
-                com.sha.formvalidator.validator.FakeValidValidator())
+                FakeValidValidator(),
+                FakeValidValidator(),
+                FakeValidValidator())
         validator.validate()
                 .test()
                 .assertNoErrors()
@@ -23,10 +19,10 @@ class RxFormValidatorTest {
     @Test
     fun isValid_someInValid() {
         val validator = RxFormValidator(
-                com.sha.formvalidator.validator.FakeValidValidator(),
-                com.sha.formvalidator.validator.FakeInvalidValidator(),
-                com.sha.formvalidator.validator.FakeInvalidValidator(),
-                com.sha.formvalidator.validator.FakeValidValidator())
+                FakeValidValidator(),
+                FakeInvalidValidator(),
+                FakeInvalidValidator(),
+                FakeValidValidator())
         validator.validate()
                 .test()
                 .assertNoErrors()
@@ -37,10 +33,10 @@ class RxFormValidatorTest {
     @Test
     fun isValid_allInValid() {
         val validator = RxFormValidator(
-                com.sha.formvalidator.validator.FakeInvalidValidator(),
-                com.sha.formvalidator.validator.FakeInvalidValidator(),
-                com.sha.formvalidator.validator.FakeInvalidValidator(),
-                com.sha.formvalidator.validator.FakeInvalidValidator())
+                FakeInvalidValidator(),
+                FakeInvalidValidator(),
+                FakeInvalidValidator(),
+                FakeInvalidValidator())
         validator.validate()
                 .test()
                 .assertNoErrors()
@@ -58,4 +54,12 @@ class RxFormValidatorTest {
                 .assertValueCount(1)
     }
 
+}
+
+class FakeValidValidator: com.sha.formvalidator.Validatable {
+    override fun validate(): Boolean = true
+}
+
+class FakeInvalidValidator: com.sha.formvalidator.Validatable {
+    override fun validate(): Boolean = false
 }

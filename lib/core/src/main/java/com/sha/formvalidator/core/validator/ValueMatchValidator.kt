@@ -7,7 +7,11 @@ import com.sha.formvalidator.core.DefaultErrors
  *
  */
 class ValueMatchValidator(errorMessage: String = DefaultErrors.valueMatchError, vararg strings: String) : TextValidator(errorMessage) {
-    private val tvs: List<String> = listOf(*strings)
+    private val values: List<String> = listOf(*strings)
 
-    override fun isValid(value: String): Boolean = tvs.all { it == value }
+    override fun validate(): Boolean {
+        if (values.isEmpty()) return false
+        val firstValue = values.first()
+        return values.all { it == firstValue }
+    }
 }

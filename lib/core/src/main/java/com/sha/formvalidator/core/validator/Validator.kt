@@ -1,5 +1,8 @@
 package com.sha.formvalidator.core.validator
 
 interface Validator<V> {
-    fun isValid(value: V): Boolean
+    var value: V
+    val isValid: Boolean
+        get() = validate()
+    fun validate(): Boolean
 }

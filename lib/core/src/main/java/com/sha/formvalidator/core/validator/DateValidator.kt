@@ -14,7 +14,7 @@ class DateValidator(errorMessage: String, _format: String) : TextValidator(error
         arrayOf("DefaultDate", "DefaultTime", "DefaultDateTime")
 
     @SuppressLint("SimpleDateFormat")
-    override fun isValid(value: String): Boolean {
+    override fun validate(): Boolean {
         if (value.isEmpty()) return false
 
         for (_format in formats) {

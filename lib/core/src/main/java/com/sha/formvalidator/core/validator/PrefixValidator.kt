@@ -6,5 +6,5 @@ package com.sha.formvalidator.core.validator
  */
 class PrefixValidator(private val prefix: String, errorMessage: String) : TextValidator(errorMessage) {
 
-    override fun isValid(value: String): Boolean = value.startsWith(prefix)
+    override fun validate(): Boolean = value.startsWith(prefix)
 }

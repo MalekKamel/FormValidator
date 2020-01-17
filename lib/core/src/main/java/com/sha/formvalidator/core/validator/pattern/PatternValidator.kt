@@ -21,7 +21,7 @@ open class PatternValidator(_customErrorMessage: String, private val pattern: Pa
 
     constructor(errorMessage: String, regex: String) : this(errorMessage, Pattern.compile(regex))
 
-    override fun isValid(value: String): Boolean {
+    override fun validate(): Boolean {
         return pattern.matcher(value).matches()
     }
 

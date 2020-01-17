@@ -8,175 +8,192 @@ import com.sha.formvalidator.core.validator.pattern.*
 import java.util.regex.Pattern
 
 class MandatoryValidation: AbstractStringModel() {
-    override val validator: TextValidator by lazy { RequiredValidator(errorText) }
-    override var errorText = DefaultErrors.mandatoryError
+    override val validator: TextValidator by lazy { RequiredValidator(errorMessage) }
+    override var errorMessage = DefaultErrors.mandatoryError
 }
 
 class OptionalValidation: AbstractStringModel() {
-    override val validator = object : TextValidator() { override fun isValid(value: String) = true }
-    override var errorText: String = ""
+    override val validator = object : TextValidator() { override fun validate() = true }
+    override var errorMessage: String = ""
 }
 
 class WebUrlValidation: AbstractStringModel() {
-    override val validator: TextValidator by lazy { WebUrlValidator(errorText) }
-    override var errorText = DefaultErrors.webUrlError
+    override val validator: TextValidator by lazy { WebUrlValidator(errorMessage) }
+    override var errorMessage = DefaultErrors.webUrlError
 }
 
 class PhoneValidation: AbstractStringModel() {
-    override val validator: TextValidator by lazy { PhoneValidator(errorText) }
-    override var errorText = DefaultErrors.phoneError
+    override val validator: TextValidator by lazy { PhoneValidator(errorMessage) }
+    override var errorMessage = DefaultErrors.phoneError
 }
 
 class PersonNameValidation: AbstractStringModel() {
-    override val validator: TextValidator by lazy { PersonNameValidator(errorText) }
-    override var errorText = DefaultErrors.personNameError
+    override val validator: TextValidator by lazy { PersonNameValidator(errorMessage) }
+    override var errorMessage = DefaultErrors.personNameError
 }
 
 class PersonFullNameValidation: AbstractStringModel() {
-    override val validator: TextValidator by lazy { PersonFullNameValidator(errorText) }
-    override var errorText = DefaultErrors.personFullNameError
+    override val validator: TextValidator by lazy { PersonFullNameValidator(errorMessage) }
+    override var errorMessage = DefaultErrors.personFullNameError
 }
 
 class PatternValidation(pattern: Pattern): AbstractStringModel() {
-    override val validator: TextValidator by lazy { PatternValidator(errorText, pattern) }
-    override var errorText = DefaultErrors.patternError
+    override val validator: TextValidator by lazy { PatternValidator(errorMessage, pattern) }
+    override var errorMessage = DefaultErrors.patternError
 }
 
 class IpAddressValidation: AbstractStringModel() {
-    override val validator: TextValidator by lazy { IpAddressValidator(errorText) }
-    override var errorText = DefaultErrors.ipAddressError
+    override val validator: TextValidator by lazy { IpAddressValidator(errorMessage) }
+    override var errorMessage = DefaultErrors.ipAddressError
 }
 
 class EmailValidation: AbstractStringModel() {
-    override val validator: TextValidator by lazy { EmailValidator(errorText) }
-    override var errorText = DefaultErrors.emailError
+    override val validator: TextValidator by lazy { EmailValidator(errorMessage) }
+    override var errorMessage = DefaultErrors.emailError
 }
 
 class DomainValidatorValidation: AbstractStringModel() {
-    override val validator: TextValidator by lazy { DomainValidator(errorText) }
-    override var errorText = DefaultErrors.domainError
+    override val validator: TextValidator by lazy { DomainValidator(errorMessage) }
+    override var errorMessage = DefaultErrors.domainError
 }
 
 class AlphaValidation: AbstractStringModel() {
-    override val validator: TextValidator by lazy { AlphaValidator(errorText) }
-    override var errorText = DefaultErrors.alphaError
+    override val validator: TextValidator by lazy { AlphaValidator(errorMessage) }
+    override var errorMessage = DefaultErrors.alphaError
 }
 
 class AlphaNumericValidation : AbstractStringModel() {
-    override val validator: TextValidator by lazy { AlphaNumericValidator(errorText) }
-    override var errorText = DefaultErrors.alphaNumericError
+    override val validator: TextValidator by lazy { AlphaNumericValidator(errorMessage) }
+    override var errorMessage = DefaultErrors.alphaNumericError
 }
 
 class OrValidation(validators: List<TextValidator>) : AbstractStringModel() {
-    override val validator: TextValidator by lazy { OrValidator(errorText, validators) }
-    override var errorText = DefaultErrors.orError
+    override val validator: TextValidator by lazy { OrValidator(errorMessage, validators) }
+    override var errorMessage = DefaultErrors.orError
 }
 
 class AndValidation(validators: List<TextValidator>) : AbstractStringModel() {
     override val validator: TextValidator by lazy { AndValidator(validators) }
-    override var errorText = ""
+    override var errorMessage = ""
 }
 
 class ValueMatchValidation(vararg models: ValidatableModel<String>) : AbstractStringModel() {
     override val validator: Validator<String> by lazy {
         object : Validator<String> {
-            override fun isValid(value: String): Boolean {
+            override var value: String = ""
+            override fun validate(): Boolean {
                 if (models.isEmpty()) return true
                 val firstValue = models.first().value
                 val valid = models.all { it.value == firstValue }
-                if (!valid) models.forEach { it.showError(errorText) }
+                if (!valid) models.forEach { it.showError(errorMessage) }
                 return valid
             }
         }
     }
-    override var errorText = DefaultErrors.valueMatchError
+    override var errorMessage = DefaultErrors.valueMatchError
 }
 
 class PrefixValidation(prefix: String) : AbstractStringModel() {
-    override val validator: TextValidator by lazy { PrefixValidator(prefix, errorText) }
-    override var errorText = DefaultErrors.suffixError
+    override val validator: TextValidator by lazy { PrefixValidator(prefix, errorMessage) }
+    override var errorMessage = DefaultErrors.suffixError
 }
 
 class SuffixValidation(suffix: String) : AbstractStringModel() {
-    override val validator: TextValidator by lazy { SuffixValidator(suffix, errorText) }
-    override var errorText = DefaultErrors.suffixError
+    override val validator: TextValidator by lazy { SuffixValidator(suffix, errorMessage) }
+    override var errorMessage = DefaultErrors.suffixError
 }
 
 class NumericValidation : AbstractStringModel() {
-    override val validator: TextValidator by lazy { NumericValidator(errorText) }
-    override var errorText = DefaultErrors.numericError
+    override val validator: TextValidator by lazy { NumericValidator(errorMessage) }
+    override var errorMessage = DefaultErrors.numericError
 }
 
 class NumericRangeValidation(min: Long, max: Long) : AbstractStringModel() {
-    override val validator: TextValidator by lazy { NumericRangeValidator(min, max, errorText) }
-    override var errorText = DefaultErrors.numericRangeError
+    override val validator: TextValidator by lazy { LongRangeValidator(min, max, errorMessage) }
+    override var errorMessage = DefaultErrors.numericRangeError
 }
 
 class LengthRangeValidation(min: Long, max: Long) : AbstractStringModel() {
-    override val validator: TextValidator by lazy { LengthRangeValidator(errorText, min, max) }
-    override var errorText = DefaultErrors.lengthRangeError
+    override val validator: TextValidator by lazy { LengthRangeValidator(errorMessage, min, max) }
+    override var errorMessage = DefaultErrors.lengthRangeError
 }
 
 class DateValidation(format: String) : AbstractStringModel() {
-    override val validator: TextValidator by lazy { DateValidator(errorText, format) }
-    override var errorText = DefaultErrors.dateError
+    override val validator: TextValidator by lazy { DateValidator(errorMessage, format) }
+    override var errorMessage = DefaultErrors.dateError
 }
 
 class CreditCardValidation : AbstractStringModel() {
-    override val validator: TextValidator by lazy { CreditCardValidator(errorText) }
-    override var errorText = DefaultErrors.creditCardError
+    override val validator: TextValidator by lazy { CreditCardValidator(errorMessage) }
+    override var errorMessage = DefaultErrors.creditCardError
 }
 
 class BooleanValidation(validation: Boolean) : AbstractBooleanModel() {
     override val validator: Validator<Boolean> = BooleanValidator(validation)
-    override var errorText = DefaultErrors.booleanError
+    override var errorMessage = DefaultErrors.booleanError
 }
 
 class DoubleRangeValidation(min: Double, max: Double) : AbstractDoubleModel() {
     override val validator: Validator<Double> by lazy {
-        object: Validator<Double> { override fun isValid(value: Double) = value in min..max }
+        object: Validator<Double> {
+            override var value: Double = 0.0
+            override fun validate() = value in min..max }
     }
-    override var errorText = DefaultErrors.rangeError
+    override var errorMessage = DefaultErrors.rangeError
 }
 
 class FloatRangeValidation(min: Float, max: Float) : AbstractFloatModel() {
     override val validator: Validator<Float> by lazy {
-        object: Validator<Float> { override fun isValid(value: Float) = value in min..max }
+        object: Validator<Float> {
+            override var value: Float = 0f
+            override fun validate() = value in min..max
+        }
     }
-    override var errorText = DefaultErrors.rangeError
+    override var errorMessage = DefaultErrors.rangeError
 }
 
 class LongRangeValidation(min: Long, max: Long) : AbstractLongModel() {
     override val validator: Validator<Long> by lazy {
-        object: Validator<Long> { override fun isValid(value: Long) = value in min..max }
+        object: Validator<Long> {
+            override var value: Long = 0
+            override fun validate() = value in min..max }
     }
-    override var errorText = DefaultErrors.rangeError
+    override var errorMessage = DefaultErrors.rangeError
 }
 
 class IntRangeValidation(min: Int, max: Int) : AbstractIntModel() {
     override val validator: Validator<Int> by lazy {
-        object: Validator<Int> { override fun isValid(value: Int) = value in min..max }
+        object: Validator<Int> {
+            override var value: Int = 0
+            override fun validate() = value in min..max }
     }
-    override var errorText = DefaultErrors.rangeError
+    override var errorMessage = DefaultErrors.rangeError
 }
 
 class CharRangeValidation(min: Char, max: Char) : AbstractCharModel() {
     override val validator: Validator<Char> by lazy {
-        object: Validator<Char> { override fun isValid(value: Char) = value in min..max }
+        object: Validator<Char> {
+            override var value: Char = ' '
+            override fun validate() = value in min..max }
     }
-    override var errorText = DefaultErrors.rangeError
+    override var errorMessage = DefaultErrors.rangeError
 }
 
 class ShortRangeValidation(min: Short, max: Short) : AbstractShortModel() {
     override val validator: Validator<Short> by lazy {
-        object: Validator<Short> { override fun isValid(value: Short) = value in min..max }
+        object: Validator<Short> {
+            override var value: Short = 0
+            override fun validate() = value in min..max }
     }
-    override var errorText = DefaultErrors.rangeError
+    override var errorMessage = DefaultErrors.rangeError
 }
 
 class ByteRangeValidation(min: Byte, max: Byte) : AbstractByteModel() {
     override val validator: Validator<Byte> by lazy {
-        object: Validator<Byte> { override fun isValid(value: Byte) = value in min..max }
+        object: Validator<Byte> {
+            override var value: Byte = 0
+            override fun validate() = value in min..max
+        }
     }
-    override var errorText = DefaultErrors.rangeError
+    override var errorMessage = DefaultErrors.rangeError
 }

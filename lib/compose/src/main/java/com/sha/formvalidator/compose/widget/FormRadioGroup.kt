@@ -13,6 +13,7 @@ import androidx.ui.tooling.preview.Preview
 import com.sha.compoz.RadioGroup
 import com.sha.compoz.model.TextArgs
 import com.sha.compoz.model.VectorArgs
+import com.sha.formvalidator.compose.TextValidation
 import com.sha.formvalidator.compose.ValidatableModel
 import com.sha.formvalidator.compose.Validation
 
@@ -52,7 +53,7 @@ private fun FormRadioGroupPreview() {
         val radioOptions = listOf("Calls", "Missed", "Friends")
         val (selectedOption, onOptionSelected) = +state { radioOptions[0] }
         FormRadioGroup(
-                model = Validation.email(),
+                model = TextValidation.email(),
                 options = radioOptions,
                 selectedOption = selectedOption,
                 onSelectedChange = onOptionSelected

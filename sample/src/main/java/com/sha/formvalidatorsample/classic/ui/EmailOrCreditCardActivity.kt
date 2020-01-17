@@ -8,7 +8,7 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 
-import com.sha.formvalidator.core.ValidatorFactory
+import com.sha.formvalidator.ValidatorFactory
 import com.sha.formvalidator.core.validator.CreditCardValidator
 import com.sha.formvalidator.core.validator.pattern.EmailValidator
 import com.sha.formvalidator.widget.FormEditText

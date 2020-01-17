@@ -17,7 +17,7 @@ open class AbstractFormValidator<T : Validatable> {
             fields.forEach {
                 val fieldValid = it.validate()
                 isValid = fieldValid && isValid
-                if(options.shakeOnError && !fieldValid) AnimationHelper.error(it as View)
+                if(options.shakeOnError && !fieldValid) AnimationHelper.error(it as? View)
             }
             return isValid
         }

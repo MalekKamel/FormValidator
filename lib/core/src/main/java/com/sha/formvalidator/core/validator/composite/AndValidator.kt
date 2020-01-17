@@ -12,14 +12,13 @@ class AndValidator: CompositeValidator {
     constructor(vararg validators: TextValidator): super("", *validators)
     constructor(validators: List<TextValidator>): super("", validators)
 
-    override fun isValid(value: String): Boolean {
-       val anyFails = validators.firstOrNull { !it.isValid(value) }
+    override fun validate(): Boolean {
+       val anyFails = validators.firstOrNull { !it.isValid }
         anyFails?.let {
             // error message equals the first failing validator
             this.errorMessage = it.errorMessage
-            return false // Remember :) We're acting like an && operator.
+            return false
         }
-        // true if no one fails
         return true
     }
 }

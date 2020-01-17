@@ -83,7 +83,8 @@ abstract class AbstractValidatableModel<V>: ValidatableModel<V> {
         // tmpError is only used when calling showError(), we should remove it here
         // to show the error provided with errorText
         tmpError = ""
-        isValid = validator.isValid(value)
+        validator.value = value
+        isValid = validator.isValid
         recompose()
         return isValid
     }
@@ -96,7 +97,7 @@ abstract class AbstractValidatableModel<V>: ValidatableModel<V> {
         set(value) {
             field = value
             val context = +ambient(ContextAmbient)
-            errorText = context.getString(value)
+            errorMessage = context.getString(value)
         }
 
     override var tmpError: String = ""
@@ -118,8 +119,8 @@ interface ValidatableModel<V>: Validatable {
 
         if (canValidate && !isValid) {
             // tmpError is only used when calling showError(), and it's removed 
-            // in the first call of validate() after showError() is called.
-            return if(tmpError.isNotEmpty()) tmpError else errorText
+            // in the first call of isValid after showError() is called.
+            return if(tmpError.isNotEmpty()) tmpError else errorMessage
         }
         return null
     }
@@ -127,7 +128,7 @@ interface ValidatableModel<V>: Validatable {
 
 interface Validatable: Recomposable {
     var tmpError: String
-    var errorText: String
+    var errorMessage: String
     var errorTextRes: Int
     var isValid: Boolean
     var validateOnChange: Boolean

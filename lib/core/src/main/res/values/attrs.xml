@@ -28,6 +28,7 @@
         <attr name="regex" format="string" />
         <attr name="dateFormat" format="string" />
         <attr name="required" format="boolean" />
+        <attr name="validateOnChange" format="boolean" />
 
         <attr name="minNumber" format="integer" />
         <attr name="maxNumber" format="integer" />

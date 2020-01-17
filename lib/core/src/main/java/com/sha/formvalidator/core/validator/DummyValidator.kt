@@ -5,5 +5,5 @@ package com.sha.formvalidator.core.validator
  *
  */
 class DummyValidator : TextValidator("") {
-    override fun isValid(value: String): Boolean  = true
+    override fun validate(): Boolean  = true
 }

@@ -7,4 +7,10 @@ apply plugin: Plugins.dcendents
 dependencies {
     api project(Lib.classic)
     api Deps.rxJava
+
+    testImplementation TestDeps.junit
+    testImplementation TestDeps.androidx_junit
+    testImplementation TestDeps.androidx_espressoCore
+    testImplementation TestDeps.androidx_test_core_ktx
+
 }

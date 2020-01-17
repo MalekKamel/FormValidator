@@ -8,5 +8,5 @@ class NumberOneCustomValidator(errorMessage: String) : CustomValidator(errorMess
     override fun customValidationType(context: Context): String {
         return context.getString(R.string.custom_validator_number_one)
     }
-    override fun isValid(value: String) = value == "1"
+    override fun validate() = value == "1"
 }

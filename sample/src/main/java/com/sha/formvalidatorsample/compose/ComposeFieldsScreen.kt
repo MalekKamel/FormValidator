@@ -28,7 +28,7 @@ fun ComposeFieldsScreen() {
     }
 
     val country = TextValidation.mandatory(compositeValidation) {
-        errorText = "Country Required!"
+        errorMessage = "Country Required!"
         validateOnChange = true
     }
 
@@ -42,21 +42,21 @@ fun ComposeFieldsScreen() {
 
     val checkBox = Validation.boolean(true, compositeValidation) {
         validateOnChange = true
-        errorText = "You must accept terms & conditions"
+        errorMessage = "You must accept terms & conditions"
     }
 
     val switch = Validation.boolean(true, compositeValidation) {
         validateOnChange = false
-        errorText = "You must receive notifications :)"
+        errorMessage = "You must receive notifications :)"
     }
 
     val radioGroup = TextValidation.mandatory(compositeValidation) {
-        errorText = "Select method!"
+        errorMessage = "Select method!"
         validateOnChange = true
     }
 
     val slider = Validation.floatRange(0.5f, 0.9f, compositeValidation) {
-        errorText = "Please select within 0.5 - 0.9!"
+        errorMessage = "Please select within 0.5 - 0.9!"
         validateOnChange = true
     }
 
@@ -128,7 +128,7 @@ fun ComposeFieldsScreen() {
                 }
 
                 compositeValidation + TextValidation.valueMatch(password, confirmPassword) {
-                    errorText = "Passwords don't match!"
+                    errorMessage = "Passwords don't match!"
                 }
 
                 Button(

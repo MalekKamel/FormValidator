@@ -10,7 +10,7 @@ import com.sha.formvalidator.core.validator.TextValidator
  * @see OrValidator
  */
 abstract class CompositeValidator : TextValidator {
-    protected var validators: MutableList<TextValidator> = mutableListOf()
+    var validators: MutableList<TextValidator> = mutableListOf()
 
     constructor(message: String, vararg validators: TextValidator): super(message) {
         this.validators = validators.toMutableList()
@@ -23,4 +23,10 @@ abstract class CompositeValidator : TextValidator {
     fun enqueue(newValidator: TextValidator) {
         validators.add(newValidator)
     }
+
+    override var value: String = ""
+        set(value) {
+            field = value
+            validators.forEach { it.value = value }
+        }
 }
