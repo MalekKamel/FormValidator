@@ -15,7 +15,6 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
             field = value
             validate(false)
         }
-    abstract val validator: Validator<V>
     override var isValid: Boolean = false
     override var errorMessage: String = ""
         get() = validator.errorMessage
@@ -59,6 +58,7 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
 
 interface ValidatableModel<V>: Validatable {
     var value: V?
+    val validator: Validator<V>
     fun createErrorText(): String? {
         val canValidate = overrideValidateOnChangeOnce || validateOnChange
         overrideValidateOnChangeOnce = false
