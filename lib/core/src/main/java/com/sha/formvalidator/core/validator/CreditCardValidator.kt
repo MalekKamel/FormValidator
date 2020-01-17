@@ -12,7 +12,8 @@ class CreditCardValidator() : TextValidator() {
 
     override fun validate(): Boolean {
         return try {
-            validateCardNumber(value)
+            if (value == null) return false
+            validateCardNumber(value!!)
         } catch (e: Exception) {
             false
         }

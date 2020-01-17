@@ -8,5 +8,5 @@ import com.sha.formvalidator.core.DefaultErrors
  */
 class PrefixValidator(private val prefix: String) : TextValidator() {
     override var errorMessage: String = DefaultErrors.prefixError
-    override fun validate(): Boolean = value.startsWith(prefix)
+    override fun validate(): Boolean = value?.startsWith(prefix) == true
 }

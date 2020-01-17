@@ -5,7 +5,7 @@ import org.junit.Before
 import org.junit.Test
 
 class LengthRangeValidatorTest {
-    lateinit var validator: TextValidator
+    lateinit var validator: Validator<String>
 
     @Before
     fun setup() {
@@ -25,8 +25,8 @@ class LengthRangeValidatorTest {
     }
 }
 
-class WrapTextValidatorTest {
-    lateinit var validator: TextValidator
+class WrapValidatorTest {
+    lateinit var validator: Validator<String>
 
     @Before
     fun setup() {
@@ -34,7 +34,7 @@ class WrapTextValidatorTest {
                 1f,
                 5f
         )
-        validator = WrapTextValidator(v) { it.toFloat() }
+        validator = WrapValidator(v) { it?.toFloat() }
     }
 
     @Test

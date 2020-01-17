@@ -8,7 +8,7 @@ import org.junit.Test
 class MandatoryValidationTest {
     private lateinit var compositeValidation: CompositeValidation<Validatable>
 
-    class FakeValidation: AbstractStringModel() {
+    class FakeValidation: AbsValidationModel<String>() {
         var isRecomposeInvoked = false
         override var recompose: () -> Unit = { isRecomposeInvoked = true }
         override val validator: TextValidator by lazy { MandatoryValidator() }

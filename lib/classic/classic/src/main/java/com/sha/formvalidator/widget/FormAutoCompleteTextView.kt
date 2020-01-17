@@ -39,8 +39,8 @@ open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable
         this.validationHandler.addValidator(validator)
     }
 
-    fun addValidators(block: CompositeValidatorInfo.() -> Unit) {
-        CompositeValidatorInfo().apply { block() }
+    fun addValidators(block: CompositeValidatorInfo<String>.() -> Unit) {
+        CompositeValidatorInfo<String>().apply { block() }
                 .validators
                 .map { validationHandler.addValidator(it) }
     }

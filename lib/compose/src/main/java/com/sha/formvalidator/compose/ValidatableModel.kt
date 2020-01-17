@@ -5,90 +5,16 @@ import androidx.compose.unaryPlus
 import androidx.ui.core.ContextAmbient
 import com.sha.formvalidator.core.validator.Validator
 
-abstract class AbstractStringModel: AbstractValidatableModel<String>() {
-    override var value: String = ""
+open class ValidationModel<V>(validator: Validator<V>): AbsValidationModel<V>() {
+    override val validator: Validator<V> by lazy { validator }
+}
+
+abstract class AbsValidationModel<V>: ValidatableModel<V> {
+    override var value: V? = null
         set(value) {
             field = value
             validate(false)
         }
-}
-
-abstract class AbstractBooleanModel: AbstractValidatableModel<Boolean>() {
-    override var value: Boolean = false
-        set(value) {
-            field = value
-            validate(false)
-        }
-}
-
-abstract class AbstractDoubleModel: AbstractValidatableModel<Double>() {
-    override var value: Double = 0.0
-        set(value) {
-            field = value
-            validate(false)
-        }
-}
-
-abstract class AbstractLongModel: AbstractValidatableModel<Long>() {
-    override var value: Long = 0
-        set(value) {
-            field = value
-            validate(false)
-        }
-}
-
-abstract class AbstractIntModel: AbstractValidatableModel<Int>() {
-    override var value: Int = 0
-        set(value) {
-            field = value
-            validate(false)
-        }
-}
-
-abstract class AbstractCharModel: AbstractValidatableModel<Char>() {
-    override var value: Char = ' '
-        set(value) {
-            field = value
-            validate(false)
-        }
-}
-
-abstract class AbstractShortModel: AbstractValidatableModel<Short>() {
-    override var value: Short = 0
-        set(value) {
-            field = value
-            validate(false)
-        }
-}
-
-abstract class AbstractByteModel: AbstractValidatableModel<Byte>() {
-    override var value: Byte = 0
-        set(value) {
-            field = value
-            validate(false)
-        }
-}
-
-abstract class AbstractFloatModel: AbstractValidatableModel<Float>() {
-    override var value: Float = 0.0f
-        set(value) {
-            field = value
-            validate(false)
-        }
-}
-
-abstract class AbstractValidatableModel<V>: ValidatableModel<V> {
-    override fun validate(overrideValidateOnChangeOnce: Boolean): Boolean {
-        if (overrideValidateOnChangeOnce) this.overrideValidateOnChangeOnce = true
-        // tmpError is only used when calling showError(), we should remove it here
-        // to show the error provided with errorText
-        tmpError = ""
-        validator.value = value
-        isValid = validator.isValid
-        recompose()
-        onValidate?.invoke(isValid)
-        return isValid
-    }
     abstract val validator: Validator<V>
     override var isValid: Boolean = false
     override var errorMessage: String = ""
@@ -111,6 +37,18 @@ abstract class AbstractValidatableModel<V>: ValidatableModel<V> {
 
     override var onValidate: ((Boolean) -> Unit)? = null
 
+    override fun validate(overrideValidateOnChangeOnce: Boolean): Boolean {
+        if (overrideValidateOnChangeOnce) this.overrideValidateOnChangeOnce = true
+        // tmpError is only used when calling showError(), we should remove it here
+        // to show the error provided with errorText
+        tmpError = ""
+        validator.value = value
+        isValid = validator.isValid
+        recompose()
+        onValidate?.invoke(isValid)
+        return isValid
+    }
+
     override fun showError(error: String) {
         isValid = false
         overrideValidateOnChangeOnce = true
@@ -120,7 +58,7 @@ abstract class AbstractValidatableModel<V>: ValidatableModel<V> {
 }
 
 interface ValidatableModel<V>: Validatable {
-    var value: V
+    var value: V?
     fun createErrorText(): String? {
         val canValidate = overrideValidateOnChangeOnce || validateOnChange
         overrideValidateOnChangeOnce = false

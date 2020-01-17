@@ -28,8 +28,8 @@ class PasswordValidatorActivity : Activity() {
         val etConfirmPassword = findViewById<FormEditText>(R.id.etConfirmPassword)
 
         etPassword.addValidator(ValidatorFactory.passwordMatch(
-                etPassword,
-                etConfirmPassword
+                etPassword.text.toString(),
+                etConfirmPassword.text.toString()
         ).apply { errorMessage = "Passwords don't match!" })
     }
 

@@ -9,6 +9,7 @@ import com.sha.formvalidator.model.CompositeValidatorInfo
 import com.sha.formvalidator.DefTextValidationHandler
 import com.sha.formvalidator.TextValidationHandler
 import com.sha.formvalidator.core.validator.TextValidator
+import com.sha.formvalidator.core.validator.Validator
 
 /**
  * An implementation of [Validatable] for [AppCompatEditText].
@@ -37,12 +38,12 @@ open class FormEditText : AppCompatEditText, Validatable {
      *
      * @param validator object
      */
-    fun addValidator(validator: TextValidator) {
+    fun addValidator(validator: Validator<String>) {
         this.validationHandler.addValidator(validator)
     }
 
-    fun addValidators(block: CompositeValidatorInfo.() -> Unit) {
-        CompositeValidatorInfo().apply { block() }
+    fun addValidators(block: CompositeValidatorInfo<String>.() -> Unit) {
+        CompositeValidatorInfo<String>().apply { block() }
                 .validators
                 .map { validationHandler.addValidator(it) }
     }

@@ -10,7 +10,7 @@ class NumericValidator : TextValidator() {
     override var errorMessage: String = DefaultErrors.numericError
 
     override fun validate(): Boolean {
-        return if(value.isEmpty()) false else isDigitsOnly(value)
+        return if(value?.isEmpty() == true) false else isDigitsOnly(value!!)
     }
 
     /**

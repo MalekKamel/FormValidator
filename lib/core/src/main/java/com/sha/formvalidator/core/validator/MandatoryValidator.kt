@@ -8,5 +8,5 @@ import com.sha.formvalidator.core.DefaultErrors
  */
 class MandatoryValidator : TextValidator() {
     override var errorMessage: String = DefaultErrors.mandatoryError
-    override fun validate() = value.trim().isNotEmpty()
+    override fun validate() = value?.trim()?.isNotEmpty() == true
 }

@@ -8,6 +8,7 @@ import android.widget.EditText
 import com.google.android.material.textfield.TextInputLayout
 import com.sha.formvalidator.core.R
 import com.sha.formvalidator.core.validator.TextValidator
+import com.sha.formvalidator.core.validator.Validator
 import com.sha.formvalidator.core.validator.composite.AndValidator
 import com.sha.formvalidator.core.validator.composite.CompositeValidator
 
@@ -18,7 +19,7 @@ class DefTextValidationHandler : TextValidationHandler {
     /**
      * The custom validators set using
      */
-    private lateinit var mValidator: CompositeValidator
+    private lateinit var mValidator: CompositeValidator<String>
     lateinit var editText: EditText
 
     private val attrInfo = TextViewAttrInfo()
@@ -98,8 +99,8 @@ class DefTextValidationHandler : TextValidationHandler {
         })
     }
 
-    override fun addValidator(validator: TextValidator) {
-        mValidator.enqueue(validator)
+    override fun addValidator(validator: Validator<String>) {
+        mValidator + validator
     }
 
     override fun setupValidator(context: Context) {

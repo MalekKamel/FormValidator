@@ -17,7 +17,7 @@ class DateValidator(format: String) : TextValidator() {
 
     @SuppressLint("SimpleDateFormat")
     override fun validate(): Boolean {
-        if (value.isEmpty()) return false
+        if (value?.isEmpty() == true) return false
 
         for (_format in formats) {
 

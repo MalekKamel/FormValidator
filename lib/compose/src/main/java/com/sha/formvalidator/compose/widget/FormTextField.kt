@@ -39,7 +39,7 @@ fun <T: ValidatableModel<String>> FormTextField(
             +state { model.value = value }
 
             TextField(
-                    value = model.value,
+                    value = model.value ?: "",
                     hint = hint,
                     error = model.createErrorText(),
                     errorTextArgs = errorTextArgs,

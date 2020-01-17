@@ -1,11 +1,11 @@
 package com.sha.formvalidator.core
 
-import com.sha.formvalidator.core.validator.TextValidator
+import com.sha.formvalidator.core.validator.Validator
 import com.sha.formvalidator.core.validator.ValueMatchValidator
 import org.junit.Test
 
 class ValueMatchValidatorTest {
-    lateinit var validator: TextValidator
+    lateinit var validator: Validator<String>
 
     @Test
     fun validate_valid() {

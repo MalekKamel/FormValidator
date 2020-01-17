@@ -12,7 +12,7 @@ object TextValidatorFactory {
     fun validator(
             attrInfo: TextViewAttrInfo,
             context: Context
-    ): TextValidator {
+    ): Validator<String> {
         val validator = when (attrInfo.validationType) {
             TextViewValidationType.NOT_DETECTABLE -> {
                 if (attrInfo.customValidationType.isNotEmpty())
@@ -44,7 +44,7 @@ object TextValidatorFactory {
     }
 
     @SuppressLint("StringFormatMatches")
-    private fun predefinedValidator(attrInfo: TextViewAttrInfo, context: Context): TextValidator {
+    private fun predefinedValidator(attrInfo: TextViewAttrInfo, context: Context): Validator<String> {
         return when (attrInfo.validationType) {
             TextViewValidationType.NOT_EMPTY -> DummyValidator()
             TextViewValidationType.ALPHA -> AlphaValidator().apply { errorMessage = context.getString(R.string.error_only_standard_letters_are_allowed) }
@@ -67,7 +67,7 @@ object TextValidatorFactory {
                         attrInfo.maxNumber
                 ).apply { errorMessage = context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.minNumber, attrInfo.maxNumber) }
 
-                WrapTextValidator(validator) { it.toLong() }
+                WrapValidator(validator) { it?.toLong() }
             }
             TextViewValidationType.FLOAT_NUMERIC_RANGE -> {
                 val validator = FloatRangeValidator(
@@ -75,7 +75,7 @@ object TextValidatorFactory {
                         attrInfo.floatMaxNumber
                 ).apply { errorMessage = context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.floatMinNumber, attrInfo.floatMaxNumber) }
 
-                WrapTextValidator(validator) { it.toFloat() }
+                WrapValidator(validator) { it?.toFloat() }
             }
             else -> DummyValidator()
         }

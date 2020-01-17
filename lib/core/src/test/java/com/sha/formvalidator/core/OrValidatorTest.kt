@@ -8,7 +8,7 @@ import org.junit.Before
 import org.junit.Test
 
 class OrValidatorTest {
-    lateinit var validator: CompositeValidator
+    lateinit var validator: CompositeValidator<String>
 
     @Before
     fun setup() {

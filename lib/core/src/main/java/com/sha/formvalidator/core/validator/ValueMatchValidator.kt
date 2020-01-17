@@ -6,7 +6,8 @@ import com.sha.formvalidator.core.DefaultErrors
  * A simple validator that validates the field only if the value is the same as another one.
  *
  */
-class ValueMatchValidator(private val values: () -> List<String>) : TextValidator() {
+class ValueMatchValidator<V>(private val values: () -> List<V?>) : Validator<V> {
+    override var value: V? = null
     override var errorMessage: String = DefaultErrors.valueMatchError
     var onError: (() -> Unit)? = null
 

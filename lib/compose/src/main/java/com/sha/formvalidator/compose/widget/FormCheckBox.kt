@@ -49,7 +49,7 @@ fun <T: ValidatableModel<Boolean>> FormCheckBox(
         ) {
             CheckBox(
                     text = text,
-                    checked = model.value,
+                    checked = model.value ?: false,
                     textArgs = textArgs,
                     vectorArgs = vectorArgs,
                     modifier = modifier,

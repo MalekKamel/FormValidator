@@ -1,7 +1,7 @@
 package com.sha.formvalidator.core.validator.composite
 
 import com.sha.formvalidator.core.DefaultErrors
-import com.sha.formvalidator.core.validator.TextValidator
+import com.sha.formvalidator.core.validator.Validator
 
 /**
  * The or validator checks if one of passed validators is returning true.<br></br>
@@ -9,11 +9,11 @@ import com.sha.formvalidator.core.validator.TextValidator
  * Note: the message that will be shown is the one passed to the Constructor
  *
  */
-class OrValidator : CompositeValidator {
+class OrValidator<V> : CompositeValidator<V> {
     override var errorMessage: String = DefaultErrors.orError
 
-    constructor(vararg validators: TextValidator): super(*validators)
-    constructor(validators: List<TextValidator>): super(validators)
+    constructor(vararg validators: Validator<V>): super(*validators)
+    constructor(validators: List<Validator<V>>): super(validators)
 
     override fun validate(): Boolean {
         for (v in validators) if (v.isValid) return true

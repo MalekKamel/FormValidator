@@ -1,30 +1,29 @@
 package com.sha.formvalidator.model
 
-import android.widget.TextView
 import com.sha.formvalidator.ValidatorFactory
-import com.sha.formvalidator.core.validator.TextValidator
+import com.sha.formvalidator.core.validator.Validator
 
-data class CompositeValidatorInfo(
-       internal var validators: MutableList<TextValidator> = mutableListOf()
+data class CompositeValidatorInfo<V>(
+       internal var validators: MutableList<Validator<V>> = mutableListOf()
 ) {
 
-    fun validator(vararg validators: TextValidator) {
+    fun validator(vararg validators: Validator<V>) {
         this.validators.addAll(validators)
     }
 
-    fun allValid(vararg validators: TextValidator) {
+    fun allValid(vararg validators: Validator<V>) {
         this.validators.add(ValidatorFactory.allValid(*validators))
     }
 
-    fun anyValid(vararg validators: TextValidator) {
+    fun anyValid(vararg validators: Validator<V>) {
         this.validators.add(ValidatorFactory.anyValid( *validators))
     }
 
-    fun valueMatch(vararg fields: TextView) {
-        this.validators.add(ValidatorFactory.valueMatch(*fields))
+    fun valueMatch(values: List<V?>) {
+        this.validators.add(ValidatorFactory.valueMatch(values))
     }
 
-    fun passwordMatch(field1: TextView, field2: TextView) {
+    fun passwordMatch(field1: V, field2: V) {
         this.validators.add(ValidatorFactory.passwordMatch(field1, field2))
     }
 }

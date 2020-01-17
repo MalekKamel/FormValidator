@@ -3,6 +3,7 @@ package com.sha.formvalidator
 import android.content.Context
 
 import com.sha.formvalidator.core.validator.TextValidator
+import com.sha.formvalidator.core.validator.Validator
 
 /**
  * Interface for encapsulating validation of an EditText control
@@ -14,7 +15,7 @@ interface TextValidationHandler {
      *
      * @param validator
      */
-    fun addValidator(validator: TextValidator)
+    fun addValidator(validator: Validator<String>)
 
     /**
      * setup the [TextValidator]s

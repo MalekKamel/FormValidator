@@ -33,7 +33,7 @@ fun <T: ValidatableModel<Boolean>> FormSwitch(
                 recompose = recompose
         ) {
             Switch(
-                    checked = model.value,
+                    checked = model.value ?: false,
                     text = text,
                     textArgs = textArgs,
                     vectorArgs = vectorArgs,

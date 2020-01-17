@@ -1,6 +1,6 @@
 package com.sha.formvalidator.core.validator.composite
 
-import com.sha.formvalidator.core.validator.TextValidator
+import com.sha.formvalidator.core.validator.Validator
 
 /**
  * Abstract class for a multi-validator.
@@ -9,22 +9,26 @@ import com.sha.formvalidator.core.validator.TextValidator
  *
  * @see OrValidator
  */
-abstract class CompositeValidator : TextValidator {
-    var validators: MutableList<TextValidator> = mutableListOf()
+abstract class CompositeValidator<V> : Validator<V> {
+    var validators: MutableList<Validator<V>> = mutableListOf()
 
-    constructor(vararg validators: TextValidator): super() {
+    constructor(vararg validators: Validator<V>): super() {
         this.validators = validators.toMutableList()
     }
 
-    constructor(validators: List<TextValidator>): super() {
+    constructor(validators: List<Validator<V>>): super() {
         this.validators = validators.toMutableList()
     }
 
-    fun enqueue(newValidator: TextValidator) {
-        validators.add(newValidator)
+    fun enqueue(validator: Validator<V>) {
+        validators.add(validator)
     }
 
-    override var value: String = ""
+    operator fun plus(validator: Validator<V>) {
+        enqueue(validator)
+    }
+
+    override var value: V? = null
         set(value) {
             field = value
             validators.forEach { it.value = value }

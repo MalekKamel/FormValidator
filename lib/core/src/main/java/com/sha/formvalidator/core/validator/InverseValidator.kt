@@ -14,7 +14,7 @@ class InverseValidator(validator: TextValidator) : TextValidator() {
 
     override fun validate(): Boolean = !v.isValid
 
-    override var value: String = ""
+    override var value: String? = ""
         set(value) {
             field = value
             v.value = value
