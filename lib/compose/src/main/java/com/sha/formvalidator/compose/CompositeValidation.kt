@@ -7,6 +7,7 @@ class CompositeValidation<T: Validatable> {
     fun addAll(models: List<T>) = list.addAll(models)
     fun remove(model: T)  = list.remove(model)
     fun removeAll(models: List<T>) = list.removeAll(models)
+    fun isEmpty() = list.isEmpty()
 
     operator fun plus(validation: T) {
         add(validation)

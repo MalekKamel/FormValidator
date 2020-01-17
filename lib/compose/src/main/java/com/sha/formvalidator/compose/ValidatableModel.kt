@@ -86,6 +86,7 @@ abstract class AbstractValidatableModel<V>: ValidatableModel<V> {
         validator.value = value
         isValid = validator.isValid
         recompose()
+        onValidate?.invoke(isValid)
         return isValid
     }
     abstract val validator: Validator<V>
@@ -107,6 +108,8 @@ abstract class AbstractValidatableModel<V>: ValidatableModel<V> {
         }
 
     override var tmpError: String = ""
+
+    override var onValidate: ((Boolean) -> Unit)? = null
 
     override fun showError(error: String) {
         isValid = false
@@ -139,6 +142,7 @@ interface Validatable: Recomposable {
     var isValid: Boolean
     var validateOnChange: Boolean
     var overrideValidateOnChangeOnce: Boolean
+    var onValidate: ((Boolean) -> Unit)?
     fun validate(forceValidationOnce: Boolean = true): Boolean
 }
 

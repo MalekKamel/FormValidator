@@ -30,6 +30,7 @@ fun ComposeFieldsScreen() {
     val country = Validation.mandatory(compositeValidation) {
         errorMessage = "Country Required!"
         validateOnChange = true
+        onValidate = { print("country valid = $it")}
     }
 
     val email = Validation.email(compositeValidation) {
@@ -127,7 +128,7 @@ fun ComposeFieldsScreen() {
                     FormSlider(model = slider, position = sliderPosition)
                 }
 
-                compositeValidation + Validation.valueMatch(password, confirmPassword) {
+                compositeValidation + Validation.valueMatch(listOf(password, confirmPassword)) {
                     errorMessage = "Passwords don't match!"
                 }
 

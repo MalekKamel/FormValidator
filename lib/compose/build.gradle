@@ -24,4 +24,7 @@ dependencies {
     implementation ComposeDeps.material
     implementation ComposeDeps.foundation
 
+    testImplementation TestDeps.junit
+    testImplementation TestDeps.androidx_junit
+    testImplementation TestDeps.androidx_test_core_ktx
 }

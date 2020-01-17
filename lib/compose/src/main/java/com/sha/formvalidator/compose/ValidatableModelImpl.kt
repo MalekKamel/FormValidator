@@ -62,7 +62,7 @@ class AndValidation(validators: List<TextValidator>) : AbstractStringModel() {
     override val validator: TextValidator by lazy { AndValidator(validators) }
 }
 
-class ValueMatchValidation(vararg models: ValidatableModel<String>) : AbstractStringModel() {
+class ValueMatchValidation(models: List<ValidatableModel<String>>) : AbstractStringModel() {
     override var validator: Validator<String> =
             ValueMatchValidator { models.map { it.value } }
                     .apply {
