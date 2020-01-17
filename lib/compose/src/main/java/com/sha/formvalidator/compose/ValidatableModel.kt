@@ -78,8 +78,8 @@ abstract class AbstractFloatModel: AbstractValidatableModel<Float>() {
 }
 
 abstract class AbstractValidatableModel<V>: ValidatableModel<V> {
-    override fun validate(forceValidationOnce: Boolean): Boolean {
-        if (forceValidationOnce) this.overrideValidateOnChangeOnce = true
+    override fun validate(overrideValidateOnChangeOnce: Boolean): Boolean {
+        if (overrideValidateOnChangeOnce) this.overrideValidateOnChangeOnce = true
         // tmpError is only used when calling showError(), we should remove it here
         // to show the error provided with errorText
         tmpError = ""
@@ -121,7 +121,6 @@ abstract class AbstractValidatableModel<V>: ValidatableModel<V> {
 
 interface ValidatableModel<V>: Validatable {
     var value: V
-    fun showError(error: String)
     fun createErrorText(): String? {
         val canValidate = overrideValidateOnChangeOnce || validateOnChange
         overrideValidateOnChangeOnce = false
@@ -143,7 +142,8 @@ interface Validatable: Recomposable {
     var validateOnChange: Boolean
     var overrideValidateOnChangeOnce: Boolean
     var onValidate: ((Boolean) -> Unit)?
-    fun validate(forceValidationOnce: Boolean = true): Boolean
+    fun validate(overrideValidateOnChangeOnce: Boolean = true): Boolean
+    fun showError(error: String)
 }
 
 interface Recomposable {

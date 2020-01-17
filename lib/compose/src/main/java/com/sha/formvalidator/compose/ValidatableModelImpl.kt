@@ -7,7 +7,7 @@ import com.sha.formvalidator.core.validator.pattern.*
 import java.util.regex.Pattern
 
 class MandatoryValidation: AbstractStringModel() {
-    override val validator: TextValidator by lazy { RequiredValidator() }
+    override val validator: TextValidator by lazy { MandatoryValidator() }
 }
 
 class OptionalValidation: AbstractStringModel() {

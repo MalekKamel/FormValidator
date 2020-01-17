@@ -1,16 +1,16 @@
 package com.sha.formvalidator.core
 
-import com.sha.formvalidator.core.validator.RequiredValidator
+import com.sha.formvalidator.core.validator.MandatoryValidator
 import com.sha.formvalidator.core.validator.TextValidator
 import org.junit.Before
 import org.junit.Test
 
-class RequiredValidatorTest {
+class MandatoryValidatorTest {
     lateinit var validator: TextValidator
 
     @Before
     fun setup() {
-        validator = RequiredValidator()
+        validator = MandatoryValidator()
     }
 
     @Test

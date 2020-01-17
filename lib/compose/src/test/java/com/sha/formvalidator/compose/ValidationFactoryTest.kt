@@ -1,10 +1,19 @@
 package com.sha.formvalidator.compose
 
+import com.sha.formvalidator.core.validator.MandatoryValidator
+import com.sha.formvalidator.core.validator.TextValidator
 import org.junit.Before
 import org.junit.Test
 
 class MandatoryValidationTest {
     private lateinit var compositeValidation: CompositeValidation<Validatable>
+
+    class FakeValidation: AbstractStringModel() {
+        var isRecomposeInvoked = false
+        override var recompose: () -> Unit = { isRecomposeInvoked = true }
+        override val validator: TextValidator by lazy { MandatoryValidator() }
+        override var errorMessage: String = "x"
+    }
 
     @Before
     fun setup() {
@@ -25,6 +34,28 @@ class MandatoryValidationTest {
         model.value = ""
         assert(!model.isValid)
         assert(!compositeValidation.isEmpty())
+    }
+
+    @Test
+    fun `test showError`() {
+        val model = FakeValidation()
+        model.showError("error")
+        assert(!model.isValid)
+        // should be true, and be false after calling createErrorText()
+        assert(model.overrideValidateOnChangeOnce)
+        // will be empty after calling createErrorText()
+        assert(model.tmpError == "error")
+        // must be called to recompose the view
+        assert(model.isRecomposeInvoked)
+
+        model.value = "x"
+
+        model.createErrorText()
+
+        // valid as we assigned value x
+        assert(model.isValid)
+        assert(!model.overrideValidateOnChangeOnce)
+        assert(model.tmpError == "")
     }
 }
 
