@@ -5,7 +5,7 @@ import androidx.compose.unaryPlus
 import androidx.ui.core.ContextAmbient
 import com.sha.formvalidator.core.validator.Validator
 
-open class ValidationModel<V>(validator: Validator<V>): AbsValidationModel<V>() {
+class ValidationModel<V>(validator: Validator<V>): AbsValidationModel<V>() {
     override val validator: Validator<V> by lazy { validator }
 }
 

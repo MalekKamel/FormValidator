@@ -9,8 +9,14 @@ class CompositeValidation<T: Validatable> {
     fun removeAll(models: List<T>) = list.removeAll(models)
     fun isEmpty() = list.isEmpty()
 
-    operator fun plus(validation: T) {
+    operator fun plus(validation: T): CompositeValidation<T> {
         add(validation)
+        return this
+    }
+
+    operator fun minus(validation: T): CompositeValidation<T> {
+        remove(validation)
+        return this
     }
 
     companion object {
