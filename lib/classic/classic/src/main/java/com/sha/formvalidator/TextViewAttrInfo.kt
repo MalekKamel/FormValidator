@@ -16,8 +16,8 @@ class TextViewAttrInfo {
 
     var emptyErrorMessage: String = ""
 
-    var minNumber: Int = 0
-    var maxNumber: Int = 0
+    var minNumber: Long = 0
+    var maxNumber: Long = 0
 
     var floatMinNumber: Float = 0f
     var floatMaxNumber: Float = 0f

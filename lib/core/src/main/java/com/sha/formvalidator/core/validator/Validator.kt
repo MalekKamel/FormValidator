@@ -5,4 +5,5 @@ interface Validator<V> {
     val isValid: Boolean
         get() = validate()
     fun validate(): Boolean
+    var errorMessage: String
 }

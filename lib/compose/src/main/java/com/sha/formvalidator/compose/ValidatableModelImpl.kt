@@ -80,6 +80,7 @@ class AndValidation(validators: List<TextValidator>) : AbstractStringModel() {
 class ValueMatchValidation(vararg models: ValidatableModel<String>) : AbstractStringModel() {
     override val validator: Validator<String> by lazy {
         object : Validator<String> {
+            override var errorMessage: String = DefaultErrors.valueMatchError
             override var value: String = ""
             override fun validate(): Boolean {
                 if (models.isEmpty()) return true
@@ -109,7 +110,9 @@ class NumericValidation : AbstractStringModel() {
 }
 
 class NumericRangeValidation(min: Long, max: Long) : AbstractStringModel() {
-    override val validator: TextValidator by lazy { LongRangeTextValidator(min, max, errorMessage) }
+    override val validator: TextValidator by lazy {
+        WrapTextValidator(LongRangeValidator(min, max)) { it.toLong() }
+    }
     override var errorMessage = DefaultErrors.numericRangeError
 }
 

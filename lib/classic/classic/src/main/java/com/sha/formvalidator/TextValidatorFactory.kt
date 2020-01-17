@@ -60,16 +60,22 @@ object TextValidatorFactory {
             TextViewValidationType.PERSON_FULL_NAME -> PersonFullNameValidator(context.getString(R.string.error_not_valid_person_full_name))
             TextViewValidationType.DATE -> DateValidator(context.getString(R.string.error_date_not_valid), attrInfo.dateFormat)
 
-            TextViewValidationType.NUMERIC_RANGE -> LongRangeTextValidator(
-                    attrInfo.minNumber.toLong(),
-                    attrInfo.maxNumber.toLong(),
-                    context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.minNumber, attrInfo.maxNumber)
-            )
-            TextViewValidationType.FLOAT_NUMERIC_RANGE -> FloatRangeTextValidator(
-                    attrInfo.floatMinNumber,
-                    attrInfo.floatMaxNumber,
-                    context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.floatMinNumber, attrInfo.floatMaxNumber)
-            )
+            TextViewValidationType.NUMERIC_RANGE -> {
+                val validator = LongRangeValidator(
+                        attrInfo.minNumber,
+                        attrInfo.maxNumber
+                ).apply { errorMessage = context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.minNumber, attrInfo.maxNumber) }
+
+                WrapTextValidator(validator) { it.toLong() }
+            }
+            TextViewValidationType.FLOAT_NUMERIC_RANGE -> {
+                val validator = FloatRangeValidator(
+                        attrInfo.floatMinNumber,
+                        attrInfo.floatMaxNumber
+                ).apply { errorMessage = context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.floatMinNumber, attrInfo.floatMaxNumber) }
+
+                WrapTextValidator(validator) { it.toFloat() }
+            }
             else -> DummyValidator()
         }
     }

@@ -1,31 +1,18 @@
 package com.sha.formvalidator.core.validator
 
-/**
- * A validator that returns true only if the input field contains only numbers
- * and the number is within the given range.
- **/
-class FloatRangeTextValidator(
-        private val floatMin: Float,
-        private val floatMax: Float,
-        errorMessage: String
-) : TextValidator(errorMessage) {
-    override fun validate(): Boolean {
-        return try { value.toDouble() in floatMin..floatMax } catch (e: NumberFormatException) { false }
-    }
-}
+import com.sha.formvalidator.core.DefaultErrors
 
-/**
- * A validator that returns true only if the input field contains only numbers
- * and the number is within the given range.
- */
-class LongRangeTextValidator(
-        private val min: Long,
-        private val max: Long,
-        errorMessage: String) : TextValidator(errorMessage) {
 
-    override fun validate(): Boolean {
-        return try { value.toLong() in min..max } catch (e: NumberFormatException) { false }
-    }
+class WrapTextValidator<V>(
+        private val validator: Validator<V>,
+        private val convertValue: (String) -> V
+): TextValidator() {
+    override var value: String = ""
+        set(value) {
+            field = value
+            validator.value = convertValue(value)
+        }
+    override fun validate() = validator.isValid
 }
 
 /**
@@ -48,6 +35,7 @@ class DoubleRangeValidator(
 ): Validator<Double> {
     override var value: Double = 0.0
     override fun validate() = value in min..max
+    override var errorMessage: String = DefaultErrors.rangeError
 }
 
 class FloatRangeValidator(
@@ -56,6 +44,7 @@ class FloatRangeValidator(
 ): Validator<Float> {
     override var value: Float = 0f
     override fun validate() = value in min..max
+    override var errorMessage: String = DefaultErrors.rangeError
 }
 
 class LongRangeValidator(
@@ -64,6 +53,7 @@ class LongRangeValidator(
 ): Validator<Long> {
     override var value: Long = 0
     override fun validate() = value in min..max
+    override var errorMessage: String = DefaultErrors.rangeError
 }
 
 class IntRangeValidator(
@@ -72,6 +62,7 @@ class IntRangeValidator(
 ): Validator<Int> {
     override var value: Int = 0
     override fun validate() = value in min..max
+    override var errorMessage: String = DefaultErrors.rangeError
 }
 
 class CharRangeValidator(
@@ -80,6 +71,7 @@ class CharRangeValidator(
 ): Validator<Char> {
     override var value: Char = ' '
     override fun validate() = value in min..max
+    override var errorMessage: String = DefaultErrors.rangeError
 }
 
 class ShortRangeValidator(
@@ -88,6 +80,7 @@ class ShortRangeValidator(
 ): Validator<Short> {
     override var value: Short = 0
     override fun validate() = value in min..max
+    override var errorMessage: String = DefaultErrors.rangeError
 }
 
 class ByteRangeValidator(
@@ -96,4 +89,5 @@ class ByteRangeValidator(
 ): Validator<Byte> {
     override var value: Byte = 0
     override fun validate() = value in min..max
+    override var errorMessage: String = DefaultErrors.rangeError
 }

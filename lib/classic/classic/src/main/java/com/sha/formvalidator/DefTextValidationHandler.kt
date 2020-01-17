@@ -72,8 +72,8 @@ class DefTextValidationHandler : TextValidationHandler {
 
         when (attrInfo.validationType) {
             TextViewValidationType.NUMERIC_RANGE -> {
-                attrInfo.minNumber = typedArray.getInt(R.styleable.FormEditText_minNumber, Integer.MIN_VALUE)
-                attrInfo.maxNumber = typedArray.getInt(R.styleable.FormEditText_maxNumber, Integer.MAX_VALUE)
+                attrInfo.minNumber = typedArray.getInt(R.styleable.FormEditText_minNumber, Integer.MIN_VALUE).toLong()
+                attrInfo.maxNumber = typedArray.getInt(R.styleable.FormEditText_maxNumber, Integer.MAX_VALUE).toLong()
             }
 
             TextViewValidationType.FLOAT_NUMERIC_RANGE -> {

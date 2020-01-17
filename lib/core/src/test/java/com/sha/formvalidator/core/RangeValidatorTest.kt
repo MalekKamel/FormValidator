@@ -25,33 +25,16 @@ class LengthRangeValidatorTest {
     }
 }
 
-class LongRangeTextValidatorTest {
+class WrapTextValidatorTest {
     lateinit var validator: TextValidator
 
     @Before
     fun setup() {
-        validator = LongRangeTextValidator(1, 5, "Invalid!")
-    }
-
-    @Test
-    fun validate_valid() {
-        validator.value = "1"
-        assert(validator.isValid)
-    }
-
-    @Test
-    fun validate_invalid() {
-        validator.value = "6"
-        assert(!validator.isValid)
-    }
-}
-
-class FloatRangeTextValidatorTest {
-    lateinit var validator: TextValidator
-
-    @Before
-    fun setup() {
-        validator = FloatRangeTextValidator(1.0f, 5.0f, "Invalid!")
+        val v = FloatRangeValidator(
+                1f,
+                5f
+        )
+        validator = WrapTextValidator(v) { it.toFloat() }
     }
 
     @Test
