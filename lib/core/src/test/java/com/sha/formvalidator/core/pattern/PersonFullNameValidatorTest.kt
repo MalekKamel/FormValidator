@@ -10,7 +10,7 @@ class PersonFullNameValidatorTest {
 
     @Before
     fun setup() {
-        validator = PersonFullNameValidator("Invalid!")
+        validator = PersonFullNameValidator()
     }
 
     @Test

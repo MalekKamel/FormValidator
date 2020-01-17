@@ -10,7 +10,7 @@ class CreditCardValidatorTest {
 
     @Before
     fun setup() {
-        validator = CreditCardValidator("Invalid!")
+        validator = CreditCardValidator()
     }
 
     @Test

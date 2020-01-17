@@ -90,6 +90,12 @@ abstract class AbstractValidatableModel<V>: ValidatableModel<V> {
     }
     abstract val validator: Validator<V>
     override var isValid: Boolean = false
+    override var errorMessage: String = ""
+        get() = validator.errorMessage
+        set(value) {
+            field = value
+            validator.errorMessage = value
+        }
     override var validateOnChange: Boolean = false
     override var overrideValidateOnChangeOnce: Boolean = false
     override var recompose: () -> Unit = {}

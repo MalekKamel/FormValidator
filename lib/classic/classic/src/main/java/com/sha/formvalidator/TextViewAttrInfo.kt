@@ -2,6 +2,7 @@ package com.sha.formvalidator
 
 import android.content.Context
 import android.text.TextUtils
+import com.sha.formvalidator.core.DefaultErrors
 import com.sha.formvalidator.core.R
 
 class TextViewAttrInfo {
@@ -24,6 +25,6 @@ class TextViewAttrInfo {
 
     fun emptyErrorMessage(context: Context): String {
         return if (!TextUtils.isEmpty(emptyErrorMessage))
-            emptyErrorMessage else context.getString(R.string.required)
+            emptyErrorMessage else DefaultErrors.mandatoryError
     }
 }

@@ -1,5 +1,6 @@
 package com.sha.formvalidator.core.validator.composite
 
+import com.sha.formvalidator.core.DefaultErrors
 import com.sha.formvalidator.core.validator.TextValidator
 
 /**
@@ -9,9 +10,10 @@ import com.sha.formvalidator.core.validator.TextValidator
  *
  */
 class OrValidator : CompositeValidator {
+    override var errorMessage: String = DefaultErrors.orError
 
-    constructor(message: String, vararg validators: TextValidator): super(message, *validators)
-    constructor(message: String, validators: List<TextValidator>): super(message, validators)
+    constructor(vararg validators: TextValidator): super(*validators)
+    constructor(validators: List<TextValidator>): super(validators)
 
     override fun validate(): Boolean {
         for (v in validators) if (v.isValid) return true

@@ -1,10 +1,13 @@
 package com.sha.formvalidator.core.validator
 
+import com.sha.formvalidator.core.DefaultErrors
+
 /**
  * A validator that returns true only if the input field contains only numbers.
  *
  */
-class NumericValidator(errorMessage: String) : TextValidator(errorMessage) {
+class NumericValidator : TextValidator() {
+    override var errorMessage: String = DefaultErrors.numericError
 
     override fun validate(): Boolean {
         return if(value.isEmpty()) false else isDigitsOnly(value)

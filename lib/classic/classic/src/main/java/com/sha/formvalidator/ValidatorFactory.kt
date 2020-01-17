@@ -27,19 +27,17 @@ object ValidatorFactory {
      * @param validators objects
      * @return a [TextValidator]
      */
-    fun anyValid(errorMessage: String, vararg validators: TextValidator): TextValidator {
-        return OrValidator(errorMessage, *validators)
+    fun anyValid(vararg validators: TextValidator): TextValidator {
+        return OrValidator(*validators)
     }
 
     /**
      * the value of each [EditText] must be the same.
-     * @param errorMessage string
      * @param fields [TextView]s to be validated
      * @return a [TextValidator]
      */
-    fun valueMatch(errorMessage: String, vararg fields: TextView): TextValidator {
-        val list = Array(fields.size) { fields[it].text.toString() }
-        return ValueMatchValidator(errorMessage, *list)
+    fun valueMatch(vararg fields: TextView): TextValidator {
+        return ValueMatchValidator { fields.map { it.text.toString() }.toList() }
     }
 
     /**
@@ -50,10 +48,7 @@ object ValidatorFactory {
      * @param field2 object
      * @return a [TextValidator]
      */
-    fun passwordMatch(errorMessage: String, field1: TextView, field2: TextView): TextValidator {
-        return ValueMatchValidator(
-                errorMessage,
-                field1.text.toString(),
-                field2.text.toString())
+    fun passwordMatch(field1: TextView, field2: TextView): TextValidator {
+        return ValueMatchValidator { listOf(field1.text.toString(), field2.text.toString())}
     }
 }

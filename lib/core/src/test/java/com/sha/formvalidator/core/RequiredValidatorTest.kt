@@ -10,7 +10,7 @@ class RequiredValidatorTest {
 
     @Before
     fun setup() {
-        validator = RequiredValidator("Invalid!")
+        validator = RequiredValidator()
     }
 
     @Test

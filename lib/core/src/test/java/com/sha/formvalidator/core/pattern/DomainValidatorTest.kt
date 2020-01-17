@@ -10,7 +10,7 @@ class DomainValidatorTest {
 
     @Before
     fun setup() {
-        validator = DomainValidator("Invalid!")
+        validator = DomainValidator()
     }
 
     @Test

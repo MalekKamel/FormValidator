@@ -34,10 +34,9 @@ class EmailOrCreditCardActivity : Activity() {
 
         fdt.addValidator(
                 ValidatorFactory.anyValid(
-                        "This is neither a creditcard or an email",
                         CreditCardValidator(),
                         EmailValidator()
-                )
+                ).apply { errorMessage = "This is neither a creditcard or an email" }
         )
     }
 

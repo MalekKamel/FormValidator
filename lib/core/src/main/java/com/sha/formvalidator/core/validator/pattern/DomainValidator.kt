@@ -1,5 +1,8 @@
 package com.sha.formvalidator.core.validator.pattern
 
 import androidx.core.util.PatternsCompat
+import com.sha.formvalidator.core.DefaultErrors
 
-class DomainValidator(errorMessage: String) : PatternValidator(errorMessage, PatternsCompat.DOMAIN_NAME)
+class DomainValidator() : PatternValidator(PatternsCompat.DOMAIN_NAME) {
+    override var errorMessage: String = DefaultErrors.domainError
+}

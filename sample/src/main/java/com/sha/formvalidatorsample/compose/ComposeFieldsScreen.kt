@@ -27,18 +27,18 @@ fun ComposeFieldsScreen() {
         }
     }
 
-    val country = TextValidation.mandatory(compositeValidation) {
+    val country = Validation.mandatory(compositeValidation) {
         errorMessage = "Country Required!"
         validateOnChange = true
     }
 
-    val email = TextValidation.email(compositeValidation) {
+    val email = Validation.email(compositeValidation) {
         errorTextRes = R.string.error_email_address_not_valid
     }
 
-    val password = TextValidation.mandatory(compositeValidation)
+    val password = Validation.mandatory(compositeValidation)
 
-    val confirmPassword = TextValidation.mandatory(compositeValidation)
+    val confirmPassword = Validation.mandatory(compositeValidation)
 
     val checkBox = Validation.boolean(true, compositeValidation) {
         validateOnChange = true
@@ -50,7 +50,7 @@ fun ComposeFieldsScreen() {
         errorMessage = "You must receive notifications :)"
     }
 
-    val radioGroup = TextValidation.mandatory(compositeValidation) {
+    val radioGroup = Validation.mandatory(compositeValidation) {
         errorMessage = "Select method!"
         validateOnChange = true
     }
@@ -127,7 +127,7 @@ fun ComposeFieldsScreen() {
                     FormSlider(model = slider, position = sliderPosition)
                 }
 
-                compositeValidation + TextValidation.valueMatch(password, confirmPassword) {
+                compositeValidation + Validation.valueMatch(password, confirmPassword) {
                     errorMessage = "Passwords don't match!"
                 }
 

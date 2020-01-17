@@ -28,10 +28,9 @@ class PasswordValidatorActivity : Activity() {
         val etConfirmPassword = findViewById<FormEditText>(R.id.etConfirmPassword)
 
         etPassword.addValidator(ValidatorFactory.passwordMatch(
-                "Passwords don't match!",
                 etPassword,
                 etConfirmPassword
-        ))
+        ).apply { errorMessage = "Passwords don't match!" })
     }
 
     fun onClickValidate(v: View) {

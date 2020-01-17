@@ -10,7 +10,7 @@ class SuffixValidatorTest {
 
     @Before
     fun setup() {
-        validator = SuffixValidator("suffix", "Invalid!")
+        validator = SuffixValidator("suffix")
     }
 
     @Test

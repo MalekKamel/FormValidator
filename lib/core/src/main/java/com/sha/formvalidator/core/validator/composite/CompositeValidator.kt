@@ -12,11 +12,11 @@ import com.sha.formvalidator.core.validator.TextValidator
 abstract class CompositeValidator : TextValidator {
     var validators: MutableList<TextValidator> = mutableListOf()
 
-    constructor(message: String, vararg validators: TextValidator): super(message) {
+    constructor(vararg validators: TextValidator): super() {
         this.validators = validators.toMutableList()
     }
 
-    constructor(message: String, validators: List<TextValidator>): super(message) {
+    constructor(validators: List<TextValidator>): super() {
         this.validators = validators.toMutableList()
     }
 

@@ -10,7 +10,7 @@ class AlphaNumericValidatorTest {
 
     @Before
     fun setup() {
-        validator = AlphaNumericValidator("Invalid!")
+        validator = AlphaNumericValidator()
     }
 
     @Test

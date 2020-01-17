@@ -2,7 +2,6 @@ package com.sha.formvalidator.core
 
 import com.sha.formvalidator.core.validator.CreditCardValidator
 import com.sha.formvalidator.core.validator.PrefixValidator
-import com.sha.formvalidator.core.validator.TextValidator
 import com.sha.formvalidator.core.validator.composite.CompositeValidator
 import com.sha.formvalidator.core.validator.composite.OrValidator
 import org.junit.Before
@@ -13,12 +12,9 @@ class OrValidatorTest {
 
     @Before
     fun setup() {
-       val creditValidator = CreditCardValidator("Invalid Card!")
-       val prefixValidator = PrefixValidator("3787", "Invalid Prefix!")
-        validator = OrValidator(
-                "Invalid!",
-                creditValidator,
-                prefixValidator)
+       val creditValidator = CreditCardValidator()
+       val prefixValidator = PrefixValidator("3787")
+        validator = OrValidator(creditValidator, prefixValidator).apply { errorMessage = "Invalid!" }
     }
 
     @Test

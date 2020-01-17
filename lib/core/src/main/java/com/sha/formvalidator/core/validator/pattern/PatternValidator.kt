@@ -1,5 +1,6 @@
 package com.sha.formvalidator.core.validator.pattern
 
+import com.sha.formvalidator.core.DefaultErrors
 import com.sha.formvalidator.core.validator.TextValidator
 
 import java.util.regex.Pattern
@@ -17,9 +18,10 @@ import java.util.regex.Pattern
  *
  * @see WebUrlValidator
  */
-open class PatternValidator(_customErrorMessage: String, private val pattern: Pattern) : TextValidator(_customErrorMessage) {
+open class PatternValidator(private val pattern: Pattern) : TextValidator() {
 
-    constructor(errorMessage: String, regex: String) : this(errorMessage, Pattern.compile(regex))
+    override var errorMessage: String = DefaultErrors.patternError
+    constructor(regex: String) : this(Pattern.compile(regex))
 
     override fun validate(): Boolean {
         return pattern.matcher(value).matches()

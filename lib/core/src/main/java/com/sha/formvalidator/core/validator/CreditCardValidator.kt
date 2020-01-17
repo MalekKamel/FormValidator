@@ -1,11 +1,14 @@
 package com.sha.formvalidator.core.validator
 
+import com.sha.formvalidator.core.DefaultErrors
+
 
 /**
  * This validator takes care of validating the edittext. The input will be valid only if the number is a valid credit card.
  *
  */
-class CreditCardValidator(errorMessage: String = "") : TextValidator(errorMessage) {
+class CreditCardValidator() : TextValidator() {
+    override var errorMessage: String = DefaultErrors.creditCardError
 
     override fun validate(): Boolean {
         return try {

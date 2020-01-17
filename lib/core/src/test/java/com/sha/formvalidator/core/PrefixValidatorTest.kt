@@ -10,7 +10,7 @@ class PrefixValidatorTest {
 
     @Before
     fun setup() {
-        validator = PrefixValidator("prefix", "Invalid!")
+        validator = PrefixValidator("prefix")
     }
 
     @Test

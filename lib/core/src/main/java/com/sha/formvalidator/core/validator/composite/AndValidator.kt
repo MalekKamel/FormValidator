@@ -8,9 +8,10 @@ import com.sha.formvalidator.core.validator.TextValidator
  *
  */
 class AndValidator: CompositeValidator {
+    override var errorMessage: String = ""
 
-    constructor(vararg validators: TextValidator): super("", *validators)
-    constructor(validators: List<TextValidator>): super("", validators)
+    constructor(vararg validators: TextValidator): super(*validators)
+    constructor(validators: List<TextValidator>): super(validators)
 
     override fun validate(): Boolean {
        val anyFails = validators.firstOrNull { !it.isValid }

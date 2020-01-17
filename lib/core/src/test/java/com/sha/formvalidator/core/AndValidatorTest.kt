@@ -2,7 +2,6 @@ package com.sha.formvalidator.core
 
 import com.sha.formvalidator.core.validator.CreditCardValidator
 import com.sha.formvalidator.core.validator.PrefixValidator
-import com.sha.formvalidator.core.validator.TextValidator
 import com.sha.formvalidator.core.validator.composite.AndValidator
 import com.sha.formvalidator.core.validator.composite.CompositeValidator
 import org.junit.Before
@@ -13,8 +12,8 @@ class AndValidatorTest {
 
     @Before
     fun setup() {
-       val creditValidator = CreditCardValidator("Invalid Card!")
-        val prefixValidator = PrefixValidator("3787", "Invalid Prefix!")
+       val creditValidator = CreditCardValidator().apply { errorMessage = "Invalid Card!" }
+        val prefixValidator = PrefixValidator("3787").apply { errorMessage = "Invalid Prefix!" }
         validator = AndValidator(
                 creditValidator,
                 prefixValidator)

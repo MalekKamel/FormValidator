@@ -9,7 +9,7 @@ class LengthRangeValidatorTest {
 
     @Before
     fun setup() {
-        validator = LengthRangeTextValidator("Invalid!", 1, 5)
+        validator = LengthRangeTextValidator(1, 5)
     }
 
     @Test

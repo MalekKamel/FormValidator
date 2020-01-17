@@ -10,7 +10,7 @@ class NumericValidatorTest {
 
     @Before
     fun setup() {
-        validator = NumericValidator("Invalid!")
+        validator = NumericValidator()
     }
 
     @Test

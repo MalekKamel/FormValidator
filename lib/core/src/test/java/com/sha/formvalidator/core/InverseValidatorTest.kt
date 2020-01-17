@@ -12,7 +12,7 @@ class InverseValidatorTest {
     @Before
     fun setup() {
        val creditValidator = CreditCardValidator()
-        validator = InverseValidator(creditValidator, "Invalid!")
+        validator = InverseValidator(creditValidator)
     }
 
     @Test

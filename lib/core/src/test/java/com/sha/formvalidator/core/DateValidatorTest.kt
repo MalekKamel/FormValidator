@@ -10,7 +10,7 @@ class DateValidatorTest {
 
     @Before
     fun setup() {
-        validator = DateValidator("Invalid!", "YYYY:MM:DD")
+        validator = DateValidator("YYYY:MM:DD")
     }
 
     @Test

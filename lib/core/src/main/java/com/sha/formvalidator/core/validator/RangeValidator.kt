@@ -7,6 +7,12 @@ class WrapTextValidator<V>(
         private val validator: Validator<V>,
         private val convertValue: (String) -> V
 ): TextValidator() {
+    override var errorMessage: String = ""
+        set(value) {
+            field = value
+            validator.errorMessage = value
+        }
+
     override var value: String = ""
         set(value) {
             field = value
@@ -19,10 +25,10 @@ class WrapTextValidator<V>(
  * A validator that returns true only if the text is within the given range.
  */
 class LengthRangeTextValidator(
-        errorMessage: String,
         private val min: Long,
         private val max: Long
-) : TextValidator(errorMessage) {
+) : TextValidator() {
+    override var errorMessage: String = DefaultErrors.rangeError
 
     override fun validate(): Boolean {
         return value.length in min..max

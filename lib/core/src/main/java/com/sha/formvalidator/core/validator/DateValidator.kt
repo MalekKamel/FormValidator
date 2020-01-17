@@ -1,15 +1,17 @@
 package com.sha.formvalidator.core.validator
 
 import android.annotation.SuppressLint
+import com.sha.formvalidator.core.DefaultErrors
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class DateValidator(errorMessage: String, _format: String) : TextValidator(errorMessage) {
-    private val formats: Array<String> = if (_format.isNotEmpty())
-        _format.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+class DateValidator(format: String) : TextValidator() {
+    override var errorMessage: String = DefaultErrors.dateError
+    private val formats: Array<String> = if (format.isNotEmpty())
+        format.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
     else
         arrayOf("DefaultDate", "DefaultTime", "DefaultDateTime")
 

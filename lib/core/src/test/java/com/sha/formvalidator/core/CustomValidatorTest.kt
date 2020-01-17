@@ -9,7 +9,7 @@ class CustomValidatorTest {
 
     @Before
     fun setup() {
-        validator = NumberOneCustomValidator("Invalid!")
+        validator = NumberOneCustomValidator()
     }
 
     @Test

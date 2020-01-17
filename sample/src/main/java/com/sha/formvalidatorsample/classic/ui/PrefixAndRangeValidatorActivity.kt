@@ -25,15 +25,15 @@ class PrefixAndRangeValidatorActivity : Activity() {
 
         fdt.addValidators {
             allValid(
-                    PrefixValidator("d", "Must start with d."),
-                    LengthRangeTextValidator("Must be of length 1-5.", 1, 5))
+                    PrefixValidator("d").apply { errorMessage = "Must start with d." },
+                    LengthRangeTextValidator(1, 5).apply { errorMessage = "Must be of length 1-5." })
         }
 
         // OR add using ValidatorFactory (appropriate for Java)
         fdt.addValidator(
                 ValidatorFactory.allValid(
-                        PrefixValidator("d", "Must start with d."),
-                        LengthRangeTextValidator("Must be of length 1-5.", 1, 5)))
+                        PrefixValidator("d").apply { errorMessage = "Must start with d." },
+                        LengthRangeTextValidator(1, 5).apply { errorMessage = "Must be of length 1-5." }))
     }
 
     private fun setupUi() {
