@@ -204,17 +204,3 @@ object Validation {
         }
     }
 }
-
-object Factory {
-
-    fun <T: Validatable> makeModel(
-            model: T,
-            compositeValidation: CompositeValidation<Validatable>? = null,
-            block: (T.() -> Unit)? = null
-    ): T {
-        return model.apply {
-            block?.invoke(this)
-            compositeValidation?.add(this)
-        }
-    }
-}
