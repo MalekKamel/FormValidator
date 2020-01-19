@@ -1,6 +1,6 @@
 package com.sha.formvalidator.compose
 
-class CompositeValidation<T: Validatable> {
+class FormValidation<T: Validatable> {
     internal var list: MutableList<T> = mutableListOf()
     private val composeValidator = ComposeValidator(this)
     val isValid: Boolean
@@ -11,19 +11,19 @@ class CompositeValidation<T: Validatable> {
     fun removeAll(models: List<T>) = list.removeAll(models)
     fun isEmpty() = list.isEmpty()
 
-    operator fun plus(validation: T): CompositeValidation<T> {
+    operator fun plus(validation: T): T {
         add(validation)
-        return this
+        return validation
     }
 
-    operator fun minus(validation: T): CompositeValidation<T> {
+    operator fun minus(validation: T): FormValidation<T> {
         remove(validation)
         return this
     }
 
     companion object {
-        fun <T: Validatable> create(block: (CompositeValidation<T>.() -> Unit)?): CompositeValidation<T> {
-            return CompositeValidation<T>().apply { block?.invoke(this) }
+        fun <T: Validatable> create(block: (FormValidation<T>.() -> Unit)?): FormValidation<T> {
+            return FormValidation<T>().apply { block?.invoke(this) }
         }
     }
 }

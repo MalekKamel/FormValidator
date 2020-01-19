@@ -64,20 +64,20 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
 
     override fun matches(
             model: ValidatableModel<V>,
-            compositeValidation: CompositeValidation<Validatable>,
+            formValidation: FormValidation<Validatable>,
             errorMessage: String
     ): ValidatableModel<V> {
-        return matches(listOf(model), compositeValidation, errorMessage)
+        return matches(listOf(model), formValidation, errorMessage)
     }
 
     override fun matches(
             models: List<ValidatableModel<V>>,
-                         compositeValidation: CompositeValidation<Validatable>,
-                         errorMessage: String
+            formValidation: FormValidation<Validatable>,
+            errorMessage: String
     ): ValidatableModel<V> {
         val list = models.toMutableList().apply { add(0, this@AbsValidationModel) }
         val matchModel = Validation.valueMatch(list, errorMessage)
-        compositeValidation + matchModel
+        formValidation + matchModel
         return this
     }
 }
@@ -105,15 +105,15 @@ interface ValidatableModel<V>: Validatable {
     }
     fun matches(
             model: ValidatableModel<V>,
-            compositeValidation: CompositeValidation<Validatable>,
+            formValidation: FormValidation<Validatable>,
             errorMessage: String): ValidatableModel<V>
     fun matches(
             models: List<ValidatableModel<V>>,
-            compositeValidation: CompositeValidation<Validatable>,
+            formValidation: FormValidation<Validatable>,
             errorMessage: String): ValidatableModel<V>
 
-    fun addTo(compositeValidation: CompositeValidation<Validatable>): ValidatableModel<V> {
-        compositeValidation + this
+    fun addTo(formValidation: FormValidation<Validatable>): ValidatableModel<V> {
+        formValidation + this
         return this
     }
 }

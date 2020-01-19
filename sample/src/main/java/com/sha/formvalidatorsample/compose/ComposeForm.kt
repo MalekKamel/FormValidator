@@ -20,29 +20,29 @@ import com.sha.formvalidatorsample.R
 @Composable
 fun ComposeForm() {
 
-    val compositeValidation  = CompositeValidation.create<Validatable> {}
+    val compositeValidation  = FormValidation.create<Validatable> {}
 
     val country = Validation.mandatory {
         errorMessage = "Country Required!"
         validateOnChange = true
         onValidate = { print("country valid = $it")}
-        addTo(compositeValidation)
+        compositeValidation + this
     }
 
     val email = Validation.email {
         errorTextRes = R.string.error_email_address_not_valid
         isMandatory = false
-        addTo(compositeValidation)
+        compositeValidation + this
     }
 
     val phone = Validation.email {
         errorTextRes = R.string.error_phone_not_valid
-        addTo(compositeValidation)
+        compositeValidation + this
     }
 
     val emailOrPhone = Validation.anyValid(listOf(email, phone)) {
         errorTextRes = R.string.error_email_address_not_valid
-        addTo(compositeValidation)
+        compositeValidation + this
     }
 
     val password = Validation.mandatory().addTo(compositeValidation)
@@ -54,22 +54,26 @@ fun ComposeForm() {
     val checkBox = Validation.boolean(true) {
         validateOnChange = true
         errorMessage = "You must accept terms & conditions"
-    }.addTo(compositeValidation)
+        compositeValidation + this
+    }
 
     val switch = Validation.boolean(true) {
         validateOnChange = false
         errorMessage = "You must receive notifications :)"
-    }.addTo(compositeValidation)
+        compositeValidation + this
+    }
 
     val radioGroup = Validation.mandatory {
         errorMessage = "Select method!"
         validateOnChange = true
-    }.addTo(compositeValidation)
+        compositeValidation + this
+    }
 
     val slider = Validation.floatRange(0.5f, 0.9f) {
         errorMessage = "Please select within 0.5 - 0.9!"
         validateOnChange = true
-    }.addTo(compositeValidation)
+        compositeValidation + this
+    }
 
     val sliderPosition = SliderPosition()
 

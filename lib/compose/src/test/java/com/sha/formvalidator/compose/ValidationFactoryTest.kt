@@ -1,13 +1,12 @@
 package com.sha.formvalidator.compose
 
 import com.sha.formvalidator.core.validator.MandatoryValidator
-import com.sha.formvalidator.core.validator.TextValidator
 import com.sha.formvalidator.core.validator.Validator
 import org.junit.Before
 import org.junit.Test
 
 class MandatoryValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     class FakeValidation: AbsValidationModel<String>() {
         var isRecomposeInvoked = false
@@ -18,23 +17,23 @@ class MandatoryValidationTest {
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.mandatory(compositeValidation) {  }
+        val model = Validation.mandatory(formValidation) {  }
         model.value = "x"
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.mandatory(compositeValidation) {  }
+        val model = Validation.mandatory(formValidation) {  }
         model.value = ""
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
@@ -61,161 +60,161 @@ class MandatoryValidationTest {
 }
 
 class OptionalValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid if true and added to compositeValidation`() {
-        val model = Validation.optional(compositeValidation) {  }
+        val model = Validation.optional(formValidation) {  }
         model.value = "x"
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be valid if false and added to compositeValidation`() {
-        val model = Validation.optional(compositeValidation) {  }
+        val model = Validation.optional(formValidation) {  }
         model.value = ""
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class PersonNameValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.personName(compositeValidation) {  }
+        val model = Validation.personName(formValidation) {  }
         model.value = "Shaban"
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.personName(compositeValidation) {  }
+        val model = Validation.personName(formValidation) {  }
         model.value = "sha21"
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class PersonFullNameValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.personFullName(compositeValidation) {  }
+        val model = Validation.personFullName(formValidation) {  }
         model.value = "Shaban Kamel"
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.personFullName(compositeValidation) {  }
+        val model = Validation.personFullName(formValidation) {  }
         model.value = "dd33"
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class DomainValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.domain(compositeValidation) {  }
+        val model = Validation.domain(formValidation) {  }
         model.value = "google.com"
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.domain(compositeValidation) {  }
+        val model = Validation.domain(formValidation) {  }
         model.value = "x"
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class AlphaValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.alpha(compositeValidation) {  }
+        val model = Validation.alpha(formValidation) {  }
         model.value = "xyz"
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.alpha(compositeValidation) {  }
+        val model = Validation.alpha(formValidation) {  }
         model.value = "11_-"
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class AlphaNumericValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.alphaNumeric(compositeValidation) {  }
+        val model = Validation.alphaNumeric(formValidation) {  }
         model.value = "x1"
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.alphaNumeric(compositeValidation) {  }
+        val model = Validation.alphaNumeric(formValidation) {  }
         model.value = "x&"
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class ValueMatchValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
@@ -225,7 +224,7 @@ class ValueMatchValidationTest {
         val model = Validation.valueMatch(listOf(model1, model2), "error")
         model.value = "x"
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
@@ -235,57 +234,57 @@ class ValueMatchValidationTest {
         val model = Validation.valueMatch(listOf(model1, model2), "error")
         model.value = "x"
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class NumericValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.numeric(compositeValidation) {  }
+        val model = Validation.numeric(formValidation) {  }
         model.value = "23"
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.numeric(compositeValidation) {  }
+        val model = Validation.numeric(formValidation) {  }
         model.value = "x"
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class CreditCardValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.creditCard(compositeValidation) {  }
+        val model = Validation.creditCard(formValidation) {  }
         model.value = "378734493671000"
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.creditCard(compositeValidation) {  }
+        val model = Validation.creditCard(formValidation) {  }
         model.value = "123"
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
@@ -341,301 +340,301 @@ class CreditCardValidationTest {
 //}
 
 class PrefixValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.prefix("x", compositeValidation) {  }
+        val model = Validation.prefix("x", formValidation) {  }
         model.value = "x"
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.prefix("x", compositeValidation) {  }
+        val model = Validation.prefix("x", formValidation) {  }
         model.value = "y"
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class SuffixValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.suffix("x", compositeValidation) {  }
+        val model = Validation.suffix("x", formValidation) {  }
         model.value = "ex"
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.suffix("x", compositeValidation) {  }
+        val model = Validation.suffix("x", formValidation) {  }
         model.value = "yy"
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class LongTextRangeValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.longRange(1, 5, compositeValidation) {  }
+        val model = Validation.longRange(1, 5, formValidation) {  }
         model.value = 2
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.longRange(1, 5, compositeValidation) {  }
+        val model = Validation.longRange(1, 5, formValidation) {  }
         model.value = 7
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class LengthRangeValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.lengthRange(1, 5, compositeValidation) {  }
+        val model = Validation.lengthRange(1, 5, formValidation) {  }
         model.value = "xyz"
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.lengthRange(1, 5, compositeValidation) {  }
+        val model = Validation.lengthRange(1, 5, formValidation) {  }
         model.value = "xyxxyxxyx"
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class FloatRangeValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.floatRange(1f, 5f, compositeValidation) {  }
+        val model = Validation.floatRange(1f, 5f, formValidation) {  }
         model.value = 1f
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.floatRange(1f, 5f, compositeValidation) {  }
+        val model = Validation.floatRange(1f, 5f, formValidation) {  }
         model.value = 7f
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class DoubleRangeValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.doubleRange(1.0, 5.0, compositeValidation) {  }
+        val model = Validation.doubleRange(1.0, 5.0, formValidation) {  }
         model.value = 2.0
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.doubleRange(1.0, 5.0, compositeValidation) {  }
+        val model = Validation.doubleRange(1.0, 5.0, formValidation) {  }
         model.value = 7.0
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class LongRangeValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.longRange(1, 5, compositeValidation) {  }
+        val model = Validation.longRange(1, 5, formValidation) {  }
         model.value = 1
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.longRange(1, 5, compositeValidation) {  }
+        val model = Validation.longRange(1, 5, formValidation) {  }
         model.value = 7
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class IntRangeValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.intRange(1, 5, compositeValidation) {  }
+        val model = Validation.intRange(1, 5, formValidation) {  }
         model.value = 2
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.intRange(1, 5, compositeValidation) {  }
+        val model = Validation.intRange(1, 5, formValidation) {  }
         model.value = 8
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class CharRangeValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.charRange('a', 'c', compositeValidation) {  }
+        val model = Validation.charRange('a', 'c', formValidation) {  }
         model.value = 'b'
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.charRange('a', 'c', compositeValidation) {  }
+        val model = Validation.charRange('a', 'c', formValidation) {  }
         model.value = 'x'
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class ShortRangeValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.shortRange(1, 5, compositeValidation) {  }
+        val model = Validation.shortRange(1, 5, formValidation) {  }
         model.value = 1
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.shortRange(1, 5, compositeValidation) {  }
+        val model = Validation.shortRange(1, 5, formValidation) {  }
         model.value = 8
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class ByteValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.byteRange(1, 5, compositeValidation) {  }
+        val model = Validation.byteRange(1, 5, formValidation) {  }
         model.value = 1
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.byteRange(1, 5, compositeValidation) {  }
+        val model = Validation.byteRange(1, 5, formValidation) {  }
         model.value = 7
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }
 
 class BooleanValidationTest {
-    private lateinit var compositeValidation: CompositeValidation<Validatable>
+    private lateinit var formValidation: FormValidation<Validatable>
 
     @Before
     fun setup() {
-        compositeValidation = CompositeValidation.create {}
+        formValidation = FormValidation.create {}
     }
 
     @Test
     fun `should be valid and added to compositeValidation`() {
-        val model = Validation.boolean(true, compositeValidation) {  }
+        val model = Validation.boolean(true, formValidation) {  }
         model.value = true
         assert(model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 
     @Test
     fun `should be invalid and added to compositeValidation`() {
-        val model = Validation.boolean(true, compositeValidation) {  }
+        val model = Validation.boolean(true, formValidation) {  }
         model.value = false
         assert(!model.isValid)
-        assert(!compositeValidation.isEmpty())
+        assert(!formValidation.isEmpty())
     }
 }

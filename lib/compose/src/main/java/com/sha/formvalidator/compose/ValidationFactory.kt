@@ -49,7 +49,7 @@ object Validation {
     ): ValidatableModel<String> = makeModel(AlphaValidator(), block)
 
     fun alphaNumeric(
-            
+
             block: (ValidatableModel<String>.() -> Unit)? = null
     ): ValidatableModel<String> = makeModel(AlphaNumericValidator(), block)
     fun <V> valueMatch(
@@ -110,7 +110,6 @@ object Validation {
     fun longTextRange(
             min: Long,
             max: Long,
-            
             block: (ValidatableModel<String>.() -> Unit)? = null
     ): ValidatableModel<String> = makeModel(
             WrapValidator(LongRangeValidator(min, max)) { it?.toLong() },
@@ -120,7 +119,7 @@ object Validation {
     fun lengthRange(
             min: Long,
             max: Long,
-            
+
             block: (ValidatableModel<String>.() -> Unit)? = null
     ): ValidatableModel<String> = makeModel(LengthRangeTextValidator(min, max), block)
 
@@ -175,16 +174,12 @@ object Validation {
             validator: Validator<V>,
             block: (ValidationModel<V>.() -> Unit)? = null
     ): ValidationModel<V> {
-        val model = ValidationModel(validator).apply {
-            block?.invoke(this)
-        }
-        val mandatory = ValidationModel(MandatoryValidator<V>())
-
+        val model = ValidationModel(validator).apply { block?.invoke(this) }
         if (!model.isMandatory) return model
 
-        return ValidationModel(AllValidator(listOf(mandatory, model).map { it.validator })).apply {
-            block?.invoke(this)
-        }
+        val mandatory = ValidationModel(MandatoryValidator<V>())
+        return ValidationModel(AllValidator(listOf(mandatory, model).map { it.validator }))
+                .apply { block?.invoke(this) }
 
     }
 }

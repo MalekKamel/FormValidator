@@ -20,7 +20,7 @@ open class ComposeValidator<T: Validatable> {
     /**
      * create an instance with list of fields to be validated.
      */
-    constructor(models: CompositeValidation<T>) {
+    constructor(models: FormValidation<T>) {
         this.fields = models.list
     }
 
