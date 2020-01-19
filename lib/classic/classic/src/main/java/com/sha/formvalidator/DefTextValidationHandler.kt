@@ -9,7 +9,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.sha.formvalidator.core.R
 import com.sha.formvalidator.core.validator.TextValidator
 import com.sha.formvalidator.core.validator.Validator
-import com.sha.formvalidator.core.validator.composite.AndValidator
+import com.sha.formvalidator.core.validator.composite.AllValidator
 import com.sha.formvalidator.core.validator.composite.CompositeValidator
 
 /**
@@ -104,7 +104,7 @@ class DefTextValidationHandler : TextValidationHandler {
     }
 
     override fun setupValidator(context: Context) {
-        mValidator = AndValidator()
+        mValidator = AllValidator()
         val validator = TextValidatorFactory.validator(attrInfo, context)
         validator.value = editText.text.toString()
         addValidator(validator)

@@ -5,5 +5,5 @@ import androidx.ui.material.MaterialTheme
 
 @Composable
 fun ComposeApp() {
-    MaterialTheme { ComposeFieldsScreen() }
+    MaterialTheme { ComposeForm() }
 }

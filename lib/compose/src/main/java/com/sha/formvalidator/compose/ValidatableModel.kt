@@ -13,9 +13,11 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
     override var value: V? = null
         set(value) {
             field = value
+            validator.value = value
             validate(false)
         }
     override var isValid: Boolean = false
+    override var ignoreInitialValidation: Boolean = true
     override var errorMessage: String = ""
         get() = validator.errorMessage
         set(value) {
@@ -36,12 +38,17 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
 
     override var onValidate: ((Boolean) -> Unit)? = null
 
+    override var isMandatory: Boolean = true
+
+    override var isDisabled: Boolean = false
+
     override fun validate(overrideValidateOnChangeOnce: Boolean): Boolean {
+        if (isDisabled) return true
+
         if (overrideValidateOnChangeOnce) this.overrideValidateOnChangeOnce = true
         // tmpError is only used when calling showError(), we should remove it here
         // to show the error provided with errorText
         tmpError = ""
-        validator.value = value
         isValid = validator.isValid
         recompose()
         onValidate?.invoke(isValid)
@@ -54,12 +61,38 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
         tmpError = error
         recompose()
     }
+
+    override fun matches(
+            model: ValidatableModel<V>,
+            compositeValidation: CompositeValidation<Validatable>,
+            errorMessage: String
+    ): ValidatableModel<V> {
+        return matches(listOf(model), compositeValidation, errorMessage)
+    }
+
+    override fun matches(
+            models: List<ValidatableModel<V>>,
+                         compositeValidation: CompositeValidation<Validatable>,
+                         errorMessage: String
+    ): ValidatableModel<V> {
+        val list = models.toMutableList().apply { add(0, this@AbsValidationModel) }
+        val matchModel = Validation.valueMatch(list, errorMessage)
+        compositeValidation + matchModel
+        return this
+    }
 }
 
 interface ValidatableModel<V>: Validatable {
     var value: V?
     val validator: Validator<V>
+    var isDisabled: Boolean
     fun createErrorText(): String? {
+        if (isDisabled) return null
+
+        if (ignoreInitialValidation) {
+            ignoreInitialValidation = false
+            return null
+        }
         val canValidate = overrideValidateOnChangeOnce || validateOnChange
         overrideValidateOnChangeOnce = false
 
@@ -70,6 +103,19 @@ interface ValidatableModel<V>: Validatable {
         }
         return null
     }
+    fun matches(
+            model: ValidatableModel<V>,
+            compositeValidation: CompositeValidation<Validatable>,
+            errorMessage: String): ValidatableModel<V>
+    fun matches(
+            models: List<ValidatableModel<V>>,
+            compositeValidation: CompositeValidation<Validatable>,
+            errorMessage: String): ValidatableModel<V>
+
+    fun addTo(compositeValidation: CompositeValidation<Validatable>): ValidatableModel<V> {
+        compositeValidation + this
+        return this
+    }
 }
 
 interface Validatable: Recomposable {
@@ -77,9 +123,11 @@ interface Validatable: Recomposable {
     var errorMessage: String
     var errorTextRes: Int
     var isValid: Boolean
+    var ignoreInitialValidation: Boolean
     var validateOnChange: Boolean
     var overrideValidateOnChangeOnce: Boolean
     var onValidate: ((Boolean) -> Unit)?
+    var isMandatory: Boolean
     fun validate(overrideValidateOnChangeOnce: Boolean = true): Boolean
     fun showError(error: String)
 }

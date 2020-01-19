@@ -5,12 +5,13 @@ import com.sha.formvalidator.core.validator.Validator
 /**
  * Abstract class for a multi-validator.
  *
- * @see AndValidator
+ * @see AllValidator
  *
- * @see OrValidator
+ * @see AnyValidator
  */
 abstract class CompositeValidator<V> : Validator<V> {
     var validators: MutableList<Validator<V>> = mutableListOf()
+    var isSingleField = false
 
     constructor(vararg validators: Validator<V>): super() {
         this.validators = validators.toMutableList()

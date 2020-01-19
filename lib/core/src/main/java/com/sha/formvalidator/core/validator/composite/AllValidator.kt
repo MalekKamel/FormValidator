@@ -7,7 +7,7 @@ import com.sha.formvalidator.core.validator.Validator
  * Note: the message that will be shown is the one of the first failing validator
  *
  */
-class AndValidator<V>: CompositeValidator<V> {
+class AllValidator<V>: CompositeValidator<V> {
     override var errorMessage: String = ""
 
     constructor(vararg validators: Validator<V>): super(*validators)
@@ -16,11 +16,12 @@ class AndValidator<V>: CompositeValidator<V> {
     override fun validate(): Boolean {
        val anyFails = validators.firstOrNull { !it.isValid }
         anyFails?.let {
-            // error message equals the first failing validator
+            // show the first failing validator error message
             this.errorMessage = it.errorMessage
             return false
         }
         return true
     }
+
 }
 

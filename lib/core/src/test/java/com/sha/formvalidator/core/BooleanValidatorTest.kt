@@ -10,7 +10,7 @@ class BooleanValidatorTest {
 
     @Before
     fun setup() {
-        validator = BooleanValidator(true)
+        validator = BooleanValidator { true }
     }
 
     @Test

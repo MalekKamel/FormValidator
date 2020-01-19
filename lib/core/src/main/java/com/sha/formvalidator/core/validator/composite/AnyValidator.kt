@@ -9,7 +9,7 @@ import com.sha.formvalidator.core.validator.Validator
  * Note: the message that will be shown is the one passed to the Constructor
  *
  */
-class OrValidator<V> : CompositeValidator<V> {
+class AnyValidator<V> : CompositeValidator<V> {
     override var errorMessage: String = DefaultErrors.orError
 
     constructor(vararg validators: Validator<V>): super(*validators)

@@ -5,8 +5,8 @@ import android.widget.TextView
 import com.sha.formvalidator.core.validator.TextValidator
 import com.sha.formvalidator.core.validator.Validator
 import com.sha.formvalidator.core.validator.ValueMatchValidator
-import com.sha.formvalidator.core.validator.composite.AndValidator
-import com.sha.formvalidator.core.validator.composite.OrValidator
+import com.sha.formvalidator.core.validator.composite.AllValidator
+import com.sha.formvalidator.core.validator.composite.AnyValidator
 
 /**
  * Factory for creating composite validators
@@ -19,7 +19,7 @@ object ValidatorFactory {
      * @return a [TextValidator]
      */
     fun <V> allValid(vararg validators: Validator<V>): Validator<V> {
-        return AndValidator(*validators)
+        return AllValidator(*validators)
     }
 
     /**
@@ -28,7 +28,7 @@ object ValidatorFactory {
      * @return a [TextValidator]
      */
     fun <V> anyValid(vararg validators: Validator<V>): Validator<V> {
-        return OrValidator(*validators)
+        return AnyValidator(*validators)
     }
 
     /**

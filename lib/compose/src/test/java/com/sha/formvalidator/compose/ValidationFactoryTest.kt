@@ -2,6 +2,7 @@ package com.sha.formvalidator.compose
 
 import com.sha.formvalidator.core.validator.MandatoryValidator
 import com.sha.formvalidator.core.validator.TextValidator
+import com.sha.formvalidator.core.validator.Validator
 import org.junit.Before
 import org.junit.Test
 
@@ -11,7 +12,7 @@ class MandatoryValidationTest {
     class FakeValidation: AbsValidationModel<String>() {
         var isRecomposeInvoked = false
         override var recompose: () -> Unit = { isRecomposeInvoked = true }
-        override val validator: TextValidator by lazy { MandatoryValidator() }
+        override val validator: Validator<String> by lazy { MandatoryValidator<String>() }
         override var errorMessage: String = "x"
     }
 
@@ -221,7 +222,7 @@ class ValueMatchValidationTest {
     fun `should be valid and added to compositeValidation`() {
         val model1 = Validation.mandatory().apply { value = "x" }
         val model2 = Validation.mandatory().apply { value = "x" }
-        val model = Validation.valueMatch(listOf(model1, model2), compositeValidation) {  }
+        val model = Validation.valueMatch(listOf(model1, model2), "error")
         model.value = "x"
         assert(model.isValid)
         assert(!compositeValidation.isEmpty())
@@ -231,7 +232,7 @@ class ValueMatchValidationTest {
     fun `should be invalid and added to compositeValidation`() {
         val model1 = Validation.mandatory().apply { value = "x" }
         val model2 = Validation.mandatory().apply { value = "y" }
-        val model = Validation.valueMatch(listOf(model1, model2), compositeValidation) {  }
+        val model = Validation.valueMatch(listOf(model1, model2), "error")
         model.value = "x"
         assert(!model.isValid)
         assert(!compositeValidation.isEmpty())

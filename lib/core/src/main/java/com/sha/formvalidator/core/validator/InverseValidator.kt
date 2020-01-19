@@ -4,8 +4,8 @@ package com.sha.formvalidator.core.validator
  * It's a validator that applies the "NOT" logical operator to the validator it wraps.
  *
  */
-class InverseValidator(validator: TextValidator) : TextValidator() {
-    private var v: TextValidator = validator
+class InverseValidator<V>(validator: Validator<V>) : Validator<V> {
+    private var v: Validator<V> = validator
     override var errorMessage: String = v.errorMessage
         set(value) {
             field = value
@@ -14,7 +14,7 @@ class InverseValidator(validator: TextValidator) : TextValidator() {
 
     override fun validate(): Boolean = !v.isValid
 
-    override var value: String? = ""
+    override var value: V? = null
         set(value) {
             field = value
             v.value = value

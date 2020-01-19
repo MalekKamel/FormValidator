@@ -26,7 +26,7 @@ object TextValidatorFactory {
 
         // If the xml tells us that this is not a required field, we will add InverseValidator(RequiredValidator()).
         return if (attrInfo.required) ValidatorFactory.allValid(
-                MandatoryValidator().apply { errorMessage = attrInfo.emptyErrorMessage(context) },
+                MandatoryValidator<String>().apply { errorMessage = attrInfo.emptyErrorMessage(context) },
                 validator)
         else
             ValidatorFactory.anyValid(

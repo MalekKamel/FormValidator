@@ -24,7 +24,8 @@ open class PatternValidator(private val pattern: Pattern) : TextValidator() {
     constructor(regex: String) : this(Pattern.compile(regex))
 
     override fun validate(): Boolean {
-        return pattern.matcher(value).matches()
+        if (value == null) return false
+        return pattern.matcher(value!!).matches()
     }
 
 }

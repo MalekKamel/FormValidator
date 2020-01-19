@@ -2,7 +2,9 @@ package com.sha.formvalidator.compose
 
 class CompositeValidation<T: Validatable> {
     internal var list: MutableList<T> = mutableListOf()
-    val isValid: Boolean = ComposeValidator(this).isValid
+    private val composeValidator = ComposeValidator(this)
+    val isValid: Boolean
+        get() = composeValidator.isValid
     fun  add(model: T) = list.add(model)
     fun addAll(models: List<T>) = list.addAll(models)
     fun remove(model: T)  = list.remove(model)
@@ -20,8 +22,8 @@ class CompositeValidation<T: Validatable> {
     }
 
     companion object {
-        fun <T: Validatable> create(block: CompositeValidation<T>.() -> Unit): CompositeValidation<T> {
-            return CompositeValidation<T>().apply(block)
+        fun <T: Validatable> create(block: (CompositeValidation<T>.() -> Unit)?): CompositeValidation<T> {
+            return CompositeValidation<T>().apply { block?.invoke(this) }
         }
     }
 }
