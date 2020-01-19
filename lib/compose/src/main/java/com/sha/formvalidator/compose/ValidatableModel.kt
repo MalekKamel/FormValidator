@@ -34,10 +34,7 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
         }
     override var ignoreInitialValidation: Boolean = true
     override var errorMessage: String = ""
-        set(value) {
-            field = value
-//            validator.errorMessage = value
-        }
+
     override var validateOnChange: Boolean = false
     override var overrideValidateOnChangeOnce: Boolean = false
     override var recompose: () -> Unit = {}
