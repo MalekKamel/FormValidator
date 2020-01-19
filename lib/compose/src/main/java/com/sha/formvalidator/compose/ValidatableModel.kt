@@ -34,15 +34,14 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
         }
     override var ignoreInitialValidation: Boolean = true
     override var errorMessage: String = ""
-        get() = validator.errorMessage
         set(value) {
             field = value
-            validator.errorMessage = value
+//            validator.errorMessage = value
         }
     override var validateOnChange: Boolean = false
     override var overrideValidateOnChangeOnce: Boolean = false
     override var recompose: () -> Unit = {}
-    override var errorTextRes: Int = -1
+    override var errorMessageRes: Int = -1
         set(value) {
             field = value
             val context = +ambient(ContextAmbient)
@@ -167,7 +166,7 @@ interface ValidatableModel<V>: Validatable {
 interface Validatable: Recomposable {
 
     var errorMessage: String
-    var errorTextRes: Int
+    var errorMessageRes: Int
     val isValid: Boolean
         get() = validate(true)
     var ignoreInitialValidation: Boolean

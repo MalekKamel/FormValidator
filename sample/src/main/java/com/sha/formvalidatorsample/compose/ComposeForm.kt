@@ -36,16 +36,16 @@ fun ComposeForm() {
     }
 
     val email = form + ModelFactory.email {
-        errorTextRes = R.string.error_email_address_not_valid
+        errorMessageRes = R.string.error_email_address_not_valid
         isMandatory = false
     }
 
     val phone = form + ModelFactory.phone {
-        errorTextRes = R.string.error_phone_not_valid
+        errorMessageRes = R.string.error_phone_not_valid
     }
 
     val emailOrPhone = form + ModelFactory.anyValid(listOf(email, phone)) {
-        errorTextRes = R.string.error_email_address_not_valid
+        errorMessageRes = R.string.error_email_address_not_valid
     }
 
     val password = form + ModelFactory.mandatory { validateOnChange = true }
