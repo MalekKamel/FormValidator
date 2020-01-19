@@ -35,7 +35,7 @@ object TextValidatorFactory {
             ).apply { errorMessage = validator.errorMessage }
     }
 
-    private fun customValidator(attrInfo: TextViewAttrInfo, context: Context): TextValidator {
+    private fun customValidator(attrInfo: TextViewAttrInfo, context: Context): Validator<String> {
         val opt = TextViewValidators.customValidators.firstOrNull {
             it.customValidationType(context) == attrInfo.customValidationType
         }

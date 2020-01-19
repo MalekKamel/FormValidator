@@ -1,29 +1,32 @@
 package com.sha.formvalidator.compose
 
-class FormValidation<T: Validatable> {
-    internal var list: MutableList<T> = mutableListOf()
+class FormValidation {
+    internal var list: MutableList<ValidatableModel<*>> = mutableListOf()
     private val composeValidator = ComposeValidator(this)
     val isValid: Boolean
         get() = composeValidator.isValid
-    fun  add(model: T) = list.add(model)
-    fun addAll(models: List<T>) = list.addAll(models)
-    fun remove(model: T)  = list.remove(model)
-    fun removeAll(models: List<T>) = list.removeAll(models)
+
+    fun  add(model: ValidatableModel<*>) = list.add(model)
+    fun addAll(models: List<ValidatableModel<*>>) = list.addAll(models)
+    fun remove(model: ValidatableModel<*>)  = list.remove(model)
+    fun removeAll(models: List<ValidatableModel<*>>) = list.removeAll(models)
     fun isEmpty() = list.isEmpty()
 
-    operator fun plus(validation: T): T {
-        add(validation)
-        return validation
+    fun modelByTag(tag: String): ValidatableModel<*>? = list.firstOrNull { it.tag == tag }
+
+    operator fun <V> plus(model: ValidatableModel<V>): ValidatableModel<V> {
+        add(model)
+        return model
     }
 
-    operator fun minus(validation: T): FormValidation<T> {
-        remove(validation)
-        return this
+    operator fun <V> minus(model: ValidatableModel<V>): ValidatableModel<V> {
+        remove(model)
+        return model
     }
 
     companion object {
-        fun <T: Validatable> create(block: (FormValidation<T>.() -> Unit)?): FormValidation<T> {
-            return FormValidation<T>().apply { block?.invoke(this) }
+        fun create(block: (FormValidation.() -> Unit)?): FormValidation {
+            return FormValidation().apply { block?.invoke(this) }
         }
     }
 }

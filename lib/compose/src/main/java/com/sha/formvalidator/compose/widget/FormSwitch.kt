@@ -15,7 +15,7 @@ import com.sha.compoz.Switch
 import com.sha.compoz.model.TextArgs
 import com.sha.compoz.model.VectorArgs
 import com.sha.formvalidator.compose.ValidatableModel
-import com.sha.formvalidator.compose.Validation
+import com.sha.formvalidator.compose.ModelFactory
 
 @Composable
 fun <T: ValidatableModel<Boolean>> FormSwitch(
@@ -38,7 +38,7 @@ fun <T: ValidatableModel<Boolean>> FormSwitch(
                     textArgs = textArgs,
                     vectorArgs = vectorArgs,
                     modifier = modifier,
-                    error = model.createErrorText(),
+                    error = model.createError(),
                     errorTextArgs = errorTextArgs,
                     onCheckedChange = {
                         model.value = it
@@ -65,7 +65,7 @@ fun ToggleButtonPreviewOn() {
 private fun ToggleButtonPreviewTemplate(selected: Boolean) {
     Surface {
         FormSwitch(
-                model = Validation.boolean(true),
+                model = ModelFactory.boolean(true),
                 text = "Toggle Button",
                 modifier = Spacing(32.dp)
         )

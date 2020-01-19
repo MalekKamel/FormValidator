@@ -6,7 +6,7 @@ import com.sha.formvalidator.core.validator.composite.AnyValidator
 import com.sha.formvalidator.core.validator.pattern.*
 import java.util.regex.Pattern
 
-object Validation {
+object ModelFactory {
 
     fun mandatory(
             block: (ValidatableModel<String>.() -> Unit)? = null
@@ -52,22 +52,6 @@ object Validation {
 
             block: (ValidatableModel<String>.() -> Unit)? = null
     ): ValidatableModel<String> = makeModel(AlphaNumericValidator(), block)
-    fun <V> valueMatch(
-            models: List<ValidatableModel<V>>,
-            errorMessage: String
-    ): ValidatableModel<V> {
-        return makeModel(
-                ValueMatchValidator { models.map { it.value } }
-                        .apply {
-                            onError = { models.forEach { it.showError(errorMessage) } }
-                        }
-        ) {
-            this.errorMessage = errorMessage
-            // set false to avoid adding MandatoryValidation as the value of this model is always null
-            // cause it's not added to any widget
-            isMandatory = false
-        }
-    }
 
     fun numeric(
             block: (ValidatableModel<String>.() -> Unit)? = null
@@ -174,12 +158,11 @@ object Validation {
             validator: Validator<V>,
             block: (ValidationModel<V>.() -> Unit)? = null
     ): ValidationModel<V> {
-        val model = ValidationModel(validator).apply { block?.invoke(this) }
-        if (!model.isMandatory) return model
+        val model = ValidationModel.create(validator, block)
 
-        val mandatory = ValidationModel(MandatoryValidator<V>())
-        return ValidationModel(AllValidator(listOf(mandatory, model).map { it.validator }))
-                .apply { block?.invoke(this) }
+        if (validator !is MandatoryValidator && model.isMandatory)
+            model.validator.validators.add(0, MandatoryValidator())
 
+        return model
     }
 }

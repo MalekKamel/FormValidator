@@ -30,7 +30,7 @@ import com.sha.compoz.CheckBox
 import com.sha.compoz.model.TextArgs
 import com.sha.compoz.model.VectorArgs
 import com.sha.formvalidator.compose.ValidatableModel
-import com.sha.formvalidator.compose.Validation
+import com.sha.formvalidator.compose.ModelFactory
 
 @Composable
 fun <T: ValidatableModel<Boolean>> FormCheckBox(
@@ -53,7 +53,7 @@ fun <T: ValidatableModel<Boolean>> FormCheckBox(
                     textArgs = textArgs,
                     vectorArgs = vectorArgs,
                     modifier = modifier,
-                    error = model.createErrorText(),
+                    error = model.createError(),
                     errorTextArgs = errorTextArgs,
                     onCheckedChange = {
                         model.value = it
@@ -80,7 +80,7 @@ fun CheckBoxPreviewOn() {
 private fun CheckBoxPreviewTemplate(checked: Boolean) {
     Surface {
         FormCheckBox(
-                model = Validation.boolean(checked),
+                model = ModelFactory.boolean(checked),
                 text = "Check Box",
                 modifier = Spacing(32.dp)
         )

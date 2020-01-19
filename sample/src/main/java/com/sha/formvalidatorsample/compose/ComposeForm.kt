@@ -17,62 +17,67 @@ import com.sha.formvalidator.compose.*
 import com.sha.formvalidator.compose.widget.*
 import com.sha.formvalidatorsample.R
 
+enum class FormTag(val value: String) {
+    CHECKBOX("checkBox")
+}
+
 @Composable
 fun ComposeForm() {
 
-    val compositeValidation  = FormValidation.create<Validatable> {}
 
-    val country = Validation.mandatory {
+    // Declare FormValidation to validate all fields using FormValidation.isValid
+    val form  = FormValidation.create {}
+
+    // Declare a new field validation and add it to FormValidation
+    val country = form + ModelFactory.mandatory {
         errorMessage = "Country Required!"
         validateOnChange = true
         onValidate = { print("country valid = $it")}
-        compositeValidation + this
     }
 
-    val email = Validation.email {
+    val email = form + ModelFactory.email {
         errorTextRes = R.string.error_email_address_not_valid
         isMandatory = false
-        compositeValidation + this
     }
 
-    val phone = Validation.email {
+    val phone = form + ModelFactory.phone {
         errorTextRes = R.string.error_phone_not_valid
-        compositeValidation + this
     }
 
-    val emailOrPhone = Validation.anyValid(listOf(email, phone)) {
+    val emailOrPhone = form + ModelFactory.anyValid(listOf(email, phone)) {
         errorTextRes = R.string.error_email_address_not_valid
-        compositeValidation + this
     }
 
-    val password = Validation.mandatory().addTo(compositeValidation)
+    val password = form + ModelFactory.mandatory { validateOnChange = true }
 
-    val confirmPassword = Validation.mandatory()
-            .matches(password, compositeValidation,"Passwords don't match!")
-            .addTo(compositeValidation)
+    val confirmPassword = ModelFactory.mandatory { validateOnChange = true }
+            .matches(password,"Passwords don't match!")
+            .addTo(form)
 
-    val checkBox = Validation.boolean(true) {
+    val checkBox = ModelFactory.boolean(true) {
+        tag = FormTag.CHECKBOX.value
         validateOnChange = true
         errorMessage = "You must accept terms & conditions"
-        compositeValidation + this
+        form + this
     }
 
-    val switch = Validation.boolean(true) {
+    val switch = ModelFactory.boolean(true) {
         validateOnChange = false
         errorMessage = "You must receive notifications :)"
-        compositeValidation + this
+        shouldIgnore = { !form.modelByTag(FormTag.CHECKBOX.value)!!.isValid }
+        form + this
     }
 
-    val radioGroup = Validation.mandatory {
+    val radioGroup = ModelFactory.mandatory {
         errorMessage = "Select method!"
         validateOnChange = true
-        compositeValidation + this
+        form + this
     }
 
-    val slider = Validation.floatRange(0.5f, 0.9f) {
+    val slider = ModelFactory.floatRange(0.5f, 0.9f) {
         errorMessage = "Please select within 0.5 - 0.9!"
         validateOnChange = true
-        compositeValidation + this
+        form + this
     }
 
     val sliderPosition = SliderPosition()
@@ -146,23 +151,32 @@ fun ComposeForm() {
                         text = "Login",
                         modifier = Spacing(8.dp),
                         onClick = {
+                            val isFormValid = form.isValid
+                            println("Form valid = $isFormValid")
 
-                            println("Form valid = ${compositeValidation.isValid}")
-//                            println("Form valid = ${ComposeValidator(country, emailOrPhone, password, checkBox, switch, radioGroup, slider).isValid}")
-//                            println("Form valid = ${ComposeValidator(compositeValidation).isValid}")
+                            /*
+                            OR >> validate using ComposeValidator
+
+                           val isFormValid = ComposeValidator(
+                                    country,
+                                    emailOrPhone,
+                                    password,
+                                    checkBox,
+                                    switch,
+                                    radioGroup,
+                                    slider
+                            ).isValid
+
+                            OR >> using ComposeValidator with FormValidation
+                            val isFormValid = ComposeValidator(form).isValid
+                            */
 
                             // You can check single fields
-//                            println("Country valid = ${country.isValid}")
-//                            println("Email valid = ${emailOrPhone.isValid}")
-//                            println("Password valid = ${password.isValid}")
-//                            println("CheckBox valid = ${checkBox.isValid}")
-//                            println("Switch valid = ${switch.isValid}")
-//                            println("RadioGroup valid = ${radioGroup.isValid}")
-//                            println("Slider valid = ${slider.isValid}")
+                            // {country.isValid}
 
                             // You can show error
-//                            if (!checkBox.isValid)
-//                                checkBox.showError("Please select this checkBox!")
+                            if (!checkBox.isValid)
+                                checkBox.showError("Please select this checkBox!")
                         }
                 )
             }

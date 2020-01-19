@@ -1,5 +1,6 @@
 package com.sha.formvalidator.core.validator.composite
 
+import com.sha.formvalidator.core.validator.AbsValidator
 import com.sha.formvalidator.core.validator.Validator
 
 /**
@@ -9,7 +10,7 @@ import com.sha.formvalidator.core.validator.Validator
  *
  * @see AnyValidator
  */
-abstract class CompositeValidator<V> : Validator<V> {
+abstract class CompositeValidator<V> : AbsValidator<V> {
     var validators: MutableList<Validator<V>> = mutableListOf()
     var isSingleField = false
 

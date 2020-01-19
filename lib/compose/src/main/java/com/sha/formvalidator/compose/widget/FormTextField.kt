@@ -41,7 +41,7 @@ fun <T: ValidatableModel<String>> FormTextField(
             TextField(
                     value = model.value ?: "",
                     hint = hint,
-                    error = model.createErrorText(),
+                    error = model.createError(),
                     errorTextArgs = errorTextArgs,
                     modifier = modifier,
                     onValueChange = {

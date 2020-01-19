@@ -3,7 +3,7 @@ package com.sha.formvalidator.core.validator
 class WrapValidator<IN, OUT>(
         private val validator: Validator<IN>,
         private val convertValue: (OUT?) -> IN?
-): Validator<OUT> {
+): AbsValidator<OUT>() {
     override var errorMessage: String = ""
         set(value) {
             field = value

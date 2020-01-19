@@ -14,7 +14,7 @@ import androidx.ui.tooling.preview.Preview
 import com.sha.compoz.Slider
 import com.sha.compoz.model.TextArgs
 import com.sha.formvalidator.compose.ValidatableModel
-import com.sha.formvalidator.compose.Validation
+import com.sha.formvalidator.compose.ModelFactory
 
 @Composable
 fun <T: ValidatableModel<Float>> FormSlider(
@@ -41,7 +41,7 @@ fun <T: ValidatableModel<Float>> FormSlider(
                     modifier = modifier,
                     color = color,
                     onValueChangeEnd = onValueChangeEnd,
-                    error = model.createErrorText(),
+                    error = model.createError(),
                     errorTextArgs = errorTextArgs
             )
         }
@@ -52,6 +52,6 @@ fun <T: ValidatableModel<Float>> FormSlider(
 @Composable
 private fun FormSeekBarPreview() {
     Surface {
-        FormSlider(model = Validation.floatRange(0.1f, 0.5f), position = SliderPosition())
+        FormSlider(model = ModelFactory.floatRange(0.1f, 0.5f), position = SliderPosition())
     }
 }
