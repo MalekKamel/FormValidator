@@ -4,8 +4,8 @@ import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatCheckBox
-import com.sha.formvalidator.core.R
 import com.sha.formvalidator.Validatable
+import com.sha.formvalidator.core.R
 import com.sha.formvalidator.model.CheckedValidation
 
 /**

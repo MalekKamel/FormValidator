@@ -6,8 +6,8 @@ import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.core.content.ContextCompat
-import com.sha.formvalidator.core.R
 import com.sha.formvalidator.Validatable
+import com.sha.formvalidator.core.R
 import com.sha.formvalidator.model.RequiredValidation
 
 /**

@@ -3,7 +3,6 @@ package com.sha.formvalidator
 import android.content.Context
 import android.text.TextUtils
 import com.sha.formvalidator.core.DefaultErrors
-import com.sha.formvalidator.core.R
 
 class TextViewAttrInfo {
     var errorMessage: String = ""

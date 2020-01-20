@@ -1,7 +1,5 @@
 package com.sha.formvalidator.core.validator
 
-import com.sha.formvalidator.core.DefaultErrors
-
 /**
  * It's a validator that applies the "NOT" logical operator to the validator it wraps.
  *

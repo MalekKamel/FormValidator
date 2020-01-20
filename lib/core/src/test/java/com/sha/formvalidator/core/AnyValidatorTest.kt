@@ -2,8 +2,8 @@ package com.sha.formvalidator.core
 
 import com.sha.formvalidator.core.validator.CreditCardValidator
 import com.sha.formvalidator.core.validator.PrefixValidator
-import com.sha.formvalidator.core.validator.composite.CompositeValidator
 import com.sha.formvalidator.core.validator.composite.AnyValidator
+import com.sha.formvalidator.core.validator.composite.CompositeValidator
 import org.junit.Before
 import org.junit.Test
 
