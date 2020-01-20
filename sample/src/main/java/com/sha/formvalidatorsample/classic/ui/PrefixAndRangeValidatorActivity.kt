@@ -8,7 +8,6 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.sha.formvalidator.ValidatorFactory
-import com.sha.formvalidator.core.validator.ErrorGenerator
 import com.sha.formvalidator.core.validator.IntRangeValidator
 import com.sha.formvalidator.core.validator.PrefixValidator
 import com.sha.formvalidator.core.validator.WrapValidator
@@ -49,7 +48,6 @@ class PrefixAndRangeValidatorActivity : Activity() {
         flContainer.addView(LayoutInflater.from(this).inflate(R.layout.field_email_or_creditcard, flContainer, false))
         tvDescription.setText(R.string.description_email_or_credit)
         tvTitle.setText(R.string.email_or_credit_title)
-
     }
 
     fun onClickValidate(v: View) {
