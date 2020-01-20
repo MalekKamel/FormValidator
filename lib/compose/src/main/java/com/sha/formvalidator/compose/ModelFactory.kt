@@ -160,9 +160,158 @@ object ModelFactory {
     ): ValidationModel<V> {
         val model = ValidationModel.create(validator, block)
 
-        if (validator !is MandatoryValidator && model.isMandatory)
-            model.validator.validators.add(0, MandatoryValidator())
+        // DummyValidator means it's optional
+        if (validator is DummyValidator) return model
+        // no need to add another MandatoryValidator
+        if (validator is MandatoryValidator) return model
+        // it's optional
+        if (!model.isMandatory) return model
+
+        // add MandatoryValidator
+        model.validator.validators.add(0, MandatoryValidator())
 
         return model
     }
 }
+
+fun mandatory(
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.mandatory(block)
+
+fun optional(
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.optional(block)
+
+fun webUrl(
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.webUrl(block)
+
+fun phone(
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.phone(block)
+
+fun personName(
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.personName(block)
+
+fun personFullName(
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.personFullName(block)
+
+fun ipAddress(
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.ipAddress(block)
+
+fun email(
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.email(block)
+
+fun domain(
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.domain(block)
+
+fun alpha(
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.alpha(block)
+
+fun alphaNumeric(
+
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.alphaNumeric(block)
+
+fun numeric(
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.numeric(block)
+
+fun creditCard(
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.creditCard(block)
+
+fun pattern(
+        pattern: Pattern,
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.pattern(pattern, block)
+
+fun <V> anyValid(
+        models: List<ValidatableModel<V>>,
+        block: (ValidatableModel<V>.() -> Unit)? = null
+): ValidatableModel<V> = ModelFactory.anyValid(models, block)
+
+fun <V> allValid(
+        models: List<ValidatableModel<V>>,
+        block: (ValidatableModel<V>.() -> Unit)? = null
+): ValidatableModel<V> = ModelFactory.allValid(models, block)
+
+fun prefix(
+        prefix: String,
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.prefix(prefix, block)
+
+fun suffix(
+        suffix: String,
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.suffix(suffix, block)
+
+fun date(
+        format: String,
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.date(format, block)
+
+fun longTextRange(
+        min: Long,
+        max: Long,
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.longTextRange(min, max, block)
+
+fun lengthRange(
+        min: Long,
+        max: Long,
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = ModelFactory.lengthRange(min, max, block)
+
+fun floatRange(
+        min: Float,
+        max: Float,
+        block: (ValidatableModel<Float>.() -> Unit)? = null
+): ValidatableModel<Float> = ModelFactory.floatRange(min, max, block)
+
+fun doubleRange(
+        min: Double,
+        max: Double,
+        block: (ValidatableModel<Double>.() -> Unit)? = null
+): ValidatableModel<Double> = ModelFactory.doubleRange(min, max, block)
+
+fun longRange(
+        min: Long,
+        max: Long,
+        block: (ValidatableModel<Long>.() -> Unit)? = null
+): ValidatableModel<Long> = ModelFactory.longRange(min, max, block)
+
+fun intRange(
+        min: Int,
+        max: Int,
+        block: (ValidatableModel<Int>.() -> Unit)? = null
+): ValidatableModel<Int> = ModelFactory.intRange(min, max, block)
+
+fun charRange(
+        min: Char,
+        max: Char,
+        block: (ValidatableModel<Char>.() -> Unit)? = null
+): ValidatableModel<Char> = ModelFactory.charRange(min, max, block)
+
+fun shortRange(
+        min: Short,
+        max: Short,
+        block: (ValidatableModel<Short>.() -> Unit)? = null
+): ValidatableModel<Short> = ModelFactory.shortRange(min, max, block)
+
+fun byteRange(
+        min: Byte,
+        max: Byte,
+        block: (ValidatableModel<Byte>.() -> Unit)? = null
+): ValidatableModel<Byte> = ModelFactory.byteRange(min, max, block)
+
+fun boolean(
+        validation: Boolean,
+        block: (ValidatableModel<Boolean>.() -> Unit)? = null
+): ValidatableModel<Boolean> = ModelFactory.boolean(validation, block)

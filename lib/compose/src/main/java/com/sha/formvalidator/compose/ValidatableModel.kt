@@ -47,7 +47,7 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
             errorMessage = context.getString(value)
         }
 
-    override var tmpError: String = ""
+    override var tmpError: String? = null
 
     override var onValidate: ((Boolean) -> Unit)? = null
 
@@ -71,7 +71,7 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
 
         // tmpError is only used when calling showError(), we should remove it here
         // to show the error provided with errorText
-        tmpError = ""
+        tmpError = null
 
         val valid = validator.isValid
 
@@ -101,6 +101,7 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
     ): ValidatableModel<V> {
         val allModels = models.toMutableList().apply { add(0, this@AbsValidationModel) }
         val matchValidator = ValueMatchValidator {
+            // when return directly it returns List<ValidatableModel<V>, don't know why!
             val values = allModels.map { it.value }
             return@ValueMatchValidator values
         }
@@ -153,7 +154,7 @@ interface ValidatableModel<V>: Validatable {
 
         if (!canShowError) return null
 
-        return if(tmpError.isNotEmpty()) tmpError else errorGenerator.generate()
+        return if(!tmpError.isNullOrEmpty()) tmpError else errorGenerator.generate()
     }
 
     fun matches(
@@ -164,13 +165,28 @@ interface ValidatableModel<V>: Validatable {
             models: List<ValidatableModel<V>>,
             errorMessage: String): ValidatableModel<V>
 
-    infix fun addTo(formValidation: FormValidation): ValidatableModel<V> {
-        formValidation + this
+    fun addTo(form: Form): ValidatableModel<V> {
+        form + this
         return this
     }
 
     fun addValidator(other: Validator<V>): ValidatableModel<V> {
         validator + other
+        return this
+    }
+
+    fun addValidator(index: Int, other: Validator<V>): ValidatableModel<V> {
+        validator.validators.add(index, other)
+        return this
+    }
+
+    fun removeValidator(other: Validator<V>): ValidatableModel<V> {
+        validator - other
+        return this
+    }
+
+    fun removeValidator(index: Int): ValidatableModel<V> {
+        validator.validators.removeAt(index)
         return this
     }
 
@@ -191,7 +207,7 @@ interface Validatable: Recomposable {
      * This value is only used when calling showError(), and it's removed
      * in the first call of isValid after showError() is called.
      */
-    var tmpError: String
+    var tmpError: String?
 
     fun validate(validationSource: ValidationSource = ValidationSource.USER): Boolean
     fun showError(error: String)

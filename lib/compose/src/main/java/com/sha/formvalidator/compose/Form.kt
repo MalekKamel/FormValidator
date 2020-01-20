@@ -1,18 +1,26 @@
 package com.sha.formvalidator.compose
 
-class FormValidation {
+class Form {
     internal var list: MutableList<ValidatableModel<*>> = mutableListOf()
     private val composeValidator = ComposeValidator(this)
     val isValid: Boolean
         get() = composeValidator.isValid
 
-    fun  add(model: ValidatableModel<*>) = list.add(model)
-    fun addAll(models: List<ValidatableModel<*>>) = list.addAll(models)
-    fun remove(model: ValidatableModel<*>)  = list.remove(model)
-    fun removeAll(models: List<ValidatableModel<*>>) = list.removeAll(models)
-    fun isEmpty() = list.isEmpty()
+    val isEmpty
+        get() = list.isEmpty()
+    val size
+        get() = list.size
+
+    fun add(vararg models: ValidatableModel<*>) = list.addAll(models)
+    fun remove(vararg models: ValidatableModel<*>) = list.removeAll(models)
 
     fun modelByTag(tag: String): ValidatableModel<*>? = list.firstOrNull { it.tag == tag }
+
+    fun removeByTag(tag: String): ValidatableModel<*>? {
+        val model = modelByTag(tag)
+        model?.run { remove(this) }
+        return model
+    }
 
     operator fun <V> plus(model: ValidatableModel<V>): ValidatableModel<V> {
         add(model)
@@ -25,8 +33,8 @@ class FormValidation {
     }
 
     companion object {
-        fun create(block: (FormValidation.() -> Unit)?): FormValidation {
-            return FormValidation().apply { block?.invoke(this) }
+        fun create(block: (Form.() -> Unit)?): Form {
+            return Form().apply { block?.invoke(this) }
         }
     }
 }

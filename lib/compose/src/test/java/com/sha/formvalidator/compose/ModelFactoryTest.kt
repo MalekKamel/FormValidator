@@ -1,23 +1,14 @@
 package com.sha.formvalidator.compose
 
-import com.sha.formvalidator.core.validator.MandatoryValidator
-import com.sha.formvalidator.core.validator.composite.AllValidator
 import org.junit.Before
 import org.junit.Test
 
 class MandatoryValidationTest {
-    private lateinit var form: FormValidation
-
-    class FakeValidation: AbsValidationModel<String>() {
-        var isRecomposeInvoked = false
-        override var recompose: () -> Unit = { isRecomposeInvoked = true }
-        override val validator: AllValidator<String> by lazy { AllValidator(MandatoryValidator<String>()) }
-        override var errorMessage: String = "x"
-    }
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -25,7 +16,7 @@ class MandatoryValidationTest {
         val model = form + ModelFactory.mandatory {  }
         model.value = "x"
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -33,12 +24,12 @@ class MandatoryValidationTest {
         val model = form + ModelFactory.mandatory {  }
         model.value = ""
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
     fun `test showError`() {
-        val model = FakeValidation()
+        val model = FakeValidation.create()
         model.ignoreInitialValidation = false
 
         model.showError("error")
@@ -47,8 +38,7 @@ class MandatoryValidationTest {
 
         assert(!model.isValid)
         // should be true, and be false after calling createErrorText()
-//        assert(model.overrideValidateOnChangeOnce)
-        assert(model.tmpError == "")
+        assert(model.tmpError == null)
         // must be called to recompose the view
         assert(model.isRecomposeInvoked)
 
@@ -58,17 +48,16 @@ class MandatoryValidationTest {
 
         // valid as we assigned value x
         assert(model.isValid)
-//        assert(!model.overrideValidateOnChangeOnce)
-        assert(model.tmpError == "")
+        assert(model.tmpError == null)
     }
 }
 
 class OptionalValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -76,7 +65,7 @@ class OptionalValidationTest {
         val model = form + ModelFactory.optional {  }
         model.value = "x"
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -84,16 +73,16 @@ class OptionalValidationTest {
         val model = form + ModelFactory.optional {  }
         model.value = ""
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class PersonNameValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -101,7 +90,7 @@ class PersonNameValidationTest {
         val model = form + ModelFactory.personName {  }
         model.value = "Shaban"
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -109,16 +98,16 @@ class PersonNameValidationTest {
         val model = form + ModelFactory.personName {  }
         model.value = "sha21"
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class PersonFullNameValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -126,7 +115,7 @@ class PersonFullNameValidationTest {
         val model = form + ModelFactory.personFullName {  }
         model.value = "Shaban Kamel"
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -134,16 +123,16 @@ class PersonFullNameValidationTest {
         val model = form + ModelFactory.personFullName {  }
         model.value = "dd33"
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class DomainValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -151,7 +140,7 @@ class DomainValidationTest {
         val model = form + ModelFactory.domain {  }
         model.value = "google.com"
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -159,16 +148,16 @@ class DomainValidationTest {
         val model = form + ModelFactory.domain {  }
         model.value = "x"
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class AlphaValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -176,7 +165,7 @@ class AlphaValidationTest {
         val model = form + ModelFactory.alpha {  }
         model.value = "xyz"
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -184,16 +173,16 @@ class AlphaValidationTest {
         val model = form + ModelFactory.alpha {  }
         model.value = "11_-"
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class AlphaNumericValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -201,7 +190,7 @@ class AlphaNumericValidationTest {
         val model = form + ModelFactory.alphaNumeric {  }
         model.value = "x1"
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -209,16 +198,16 @@ class AlphaNumericValidationTest {
         val model = form + ModelFactory.alphaNumeric {  }
         model.value = "x&"
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class NumericValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -226,7 +215,7 @@ class NumericValidationTest {
         val model = form + ModelFactory.numeric {  }
         model.value = "23"
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -234,16 +223,16 @@ class NumericValidationTest {
         val model = form + ModelFactory.numeric {  }
         model.value = "x"
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class CreditCardValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -251,7 +240,7 @@ class CreditCardValidationTest {
         val model = form + ModelFactory.creditCard {  }
         model.value = "378734493671000"
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -259,7 +248,7 @@ class CreditCardValidationTest {
         val model = form + ModelFactory.creditCard {  }
         model.value = "123"
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
@@ -315,11 +304,11 @@ class CreditCardValidationTest {
 //}
 
 class PrefixValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -327,7 +316,7 @@ class PrefixValidationTest {
         val model = form + ModelFactory.prefix("x") {  }
         model.value = "x"
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -335,16 +324,16 @@ class PrefixValidationTest {
         val model = form + ModelFactory.prefix("x") {  }
         model.value = "y"
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class SuffixValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -352,7 +341,7 @@ class SuffixValidationTest {
         val model = form + ModelFactory.suffix("x") {  }
         model.value = "ex"
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -360,16 +349,16 @@ class SuffixValidationTest {
         val model = form + ModelFactory.suffix("x") {  }
         model.value = "yy"
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class LongTextRangeValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -377,7 +366,7 @@ class LongTextRangeValidationTest {
         val model = form + ModelFactory.longRange(1, 5) {  }
         model.value = 2
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -385,16 +374,16 @@ class LongTextRangeValidationTest {
         val model = form + ModelFactory.longRange(1, 5) {  }
         model.value = 7
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class LengthRangeValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -402,7 +391,7 @@ class LengthRangeValidationTest {
         val model = form + ModelFactory.lengthRange(1, 5) {  }
         model.value = "xyz"
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -410,16 +399,16 @@ class LengthRangeValidationTest {
         val model = form + ModelFactory.lengthRange(1, 5) {  }
         model.value = "xyxxyxxyx"
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class FloatRangeValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -427,7 +416,7 @@ class FloatRangeValidationTest {
         val model = form + ModelFactory.floatRange(1f, 5f) {  }
         model.value = 1f
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -435,16 +424,16 @@ class FloatRangeValidationTest {
         val model = form + ModelFactory.floatRange(1f, 5f) {  }
         model.value = 7f
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class DoubleRangeValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -452,7 +441,7 @@ class DoubleRangeValidationTest {
         val model = form + ModelFactory.doubleRange(1.0, 5.0) {  }
         model.value = 2.0
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -460,16 +449,16 @@ class DoubleRangeValidationTest {
         val model = form + ModelFactory.doubleRange(1.0, 5.0) {  }
         model.value = 7.0
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class LongRangeValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -477,7 +466,7 @@ class LongRangeValidationTest {
         val model = form + ModelFactory.longRange(1, 5) {  }
         model.value = 1
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -485,16 +474,16 @@ class LongRangeValidationTest {
         val model = form + ModelFactory.longRange(1, 5) {  }
         model.value = 7
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class IntRangeValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -502,7 +491,7 @@ class IntRangeValidationTest {
         val model = form + ModelFactory.intRange(1, 5) {  }
         model.value = 2
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -510,16 +499,16 @@ class IntRangeValidationTest {
         val model = form + ModelFactory.intRange(1, 5) {  }
         model.value = 8
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class CharRangeValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -527,7 +516,7 @@ class CharRangeValidationTest {
         val model = form + ModelFactory.charRange('a', 'c') {  }
         model.value = 'b'
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -535,16 +524,16 @@ class CharRangeValidationTest {
         val model = form + ModelFactory.charRange('a', 'c') {  }
         model.value = 'x'
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class ShortRangeValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -552,7 +541,7 @@ class ShortRangeValidationTest {
         val model = form + ModelFactory.shortRange(1, 5) {  }
         model.value = 1
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -560,16 +549,16 @@ class ShortRangeValidationTest {
         val model = form + ModelFactory.shortRange(1, 5) {  }
         model.value = 8
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class ByteValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -577,7 +566,7 @@ class ByteValidationTest {
         val model = form + ModelFactory.byteRange(1, 5) {  }
         model.value = 1
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -585,16 +574,16 @@ class ByteValidationTest {
         val model = form + ModelFactory.byteRange(1, 5) {  }
         model.value = 7
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }
 
 class BooleanValidationTest {
-    private lateinit var form: FormValidation
+    private lateinit var form: Form
 
     @Before
     fun setup() {
-        form = FormValidation.create {}
+        form = Form.create {}
     }
 
     @Test
@@ -602,7 +591,7 @@ class BooleanValidationTest {
         val model = form + ModelFactory.boolean(true) {  }
         model.value = true
         assert(model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 
     @Test
@@ -610,6 +599,6 @@ class BooleanValidationTest {
         val model = form + ModelFactory.boolean(true) {  }
         model.value = false
         assert(!model.isValid)
-        assert(!form.isEmpty())
+        assert(!form.isEmpty)
     }
 }

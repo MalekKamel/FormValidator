@@ -5,12 +5,12 @@ package com.sha.formvalidator.compose
  * The base form validator that all validators must extend.
  */
 open class ComposeValidator {
-    private var fields: List<ValidatableModel<*>> = emptyList()
+    internal var models: List<ValidatableModel<*>> = emptyList()
     val isValid: Boolean
         get() {
-            if(fields.isEmpty()) return false
+            if(models.isEmpty()) return false
             var isValid = true
-            fields.forEach {
+            models.forEach {
                 val fieldValid = it.isValid
                 isValid = fieldValid && isValid
                 it.validate()
@@ -20,15 +20,15 @@ open class ComposeValidator {
     /**
      * create an instance with list of fields to be validated.
      */
-    constructor(models: FormValidation) {
-        this.fields = models.list
+    constructor(form: Form) {
+        this.models = form.list
     }
 
     /**
      * create an instance with list of fields to be validated.
      */
-    constructor(fields: List<ValidatableModel<*>>) {
-        this.fields = fields
+    constructor(models: List<ValidatableModel<*>>) {
+        this.models = models
     }
 
     /**
@@ -36,7 +36,7 @@ open class ComposeValidator {
      * validated.
      */
     @SafeVarargs
-    constructor(vararg fields: ValidatableModel<*>) {
-        this.fields = fields.asList()
+    constructor(vararg models: ValidatableModel<*>) {
+        this.models = models.asList()
     }
 }

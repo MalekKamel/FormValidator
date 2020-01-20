@@ -26,55 +26,55 @@ fun ComposeForm() {
 
 
     // Declare FormValidation to validate all fields using FormValidation.isValid
-    val form  = FormValidation.create {}
+    val form  = Form.create {}
 
     // Declare a new field validation and add it to FormValidation
-    val country = form + ModelFactory.mandatory {
+    val country = form + mandatory {
         errorMessage = "Country Required!"
         validateOnChange = true
         onValidate = { print("country valid = $it")}
     }
 
-    val email = form + ModelFactory.email {
+    val email = form + email {
         errorMessageRes = R.string.error_email_address_not_valid
         isMandatory = false
     }
 
-    val phone = form + ModelFactory.phone {
+    val phone = form + phone {
         errorMessageRes = R.string.error_phone_not_valid
     }
 
-    val emailOrPhone = form + ModelFactory.anyValid(listOf(email, phone)) {
+    val emailOrPhone = form + anyValid(listOf(email, phone)) {
         errorMessageRes = R.string.error_email_address_not_valid
     }
 
-    val password = form + ModelFactory.mandatory()
+    val password = form + mandatory()
 
-    val confirmPassword = ModelFactory.mandatory()
+    val confirmPassword = mandatory()
             .matches(password,"Passwords don't match!")
             .addTo(form)
 
-    val checkBox = ModelFactory.boolean(true) {
+    val checkBox = boolean(true) {
         tag = FormTag.CHECKBOX.value
         validateOnChange = true
         errorMessage = "You must accept terms & conditions"
         form + this
     }
 
-    val switch = ModelFactory.boolean(true) {
+    val switch = boolean(true) {
         validateOnChange = true
         errorMessage = "You must receive notifications :)"
         shouldIgnore = { form.modelByTag(FormTag.CHECKBOX.value)!!.status == ModelStatus.INVALID }
         form + this
     }
 
-    val radioGroup = ModelFactory.mandatory {
+    val radioGroup = mandatory {
         errorMessage = "Select method!"
         validateOnChange = true
         form + this
     }
 
-    val slider = ModelFactory.floatRange(0.5f, 0.9f) {
+    val slider = floatRange(0.5f, 0.9f) {
         errorMessage = "Please select within 0.5 - 0.9!"
         validateOnChange = true
         form + this

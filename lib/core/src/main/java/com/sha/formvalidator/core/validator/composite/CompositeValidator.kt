@@ -12,7 +12,6 @@ import com.sha.formvalidator.core.validator.Validator
  */
 abstract class CompositeValidator<V> : AbsValidator<V> {
     var validators: MutableList<Validator<V>> = mutableListOf()
-    var isSingleField = false
 
     constructor(vararg validators: Validator<V>): super() {
         this.validators = validators.toMutableList()
@@ -22,12 +21,12 @@ abstract class CompositeValidator<V> : AbsValidator<V> {
         this.validators = validators.toMutableList()
     }
 
-    fun enqueue(validator: Validator<V>) {
+    operator fun plus(validator: Validator<V>) {
         validators.add(validator)
     }
 
-    operator fun plus(validator: Validator<V>) {
-        enqueue(validator)
+    operator fun minus(validator: Validator<V>) {
+        validators.remove(validator)
     }
 
     override var value: V? = null
