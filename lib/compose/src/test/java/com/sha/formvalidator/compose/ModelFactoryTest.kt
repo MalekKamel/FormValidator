@@ -12,19 +12,17 @@ class MandatoryValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.mandatory {  }
+    fun `should be valid`() {
+        val model = form + mandatory()
         model.value = "x"
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.mandatory {  }
+    fun `should be invalid`() {
+        val model = form + mandatory()
         model.value = ""
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
@@ -61,19 +59,17 @@ class OptionalValidationTest {
     }
 
     @Test
-    fun `should be valid if true and added to compositeValidation`() {
-        val model = form + ModelFactory.optional {  }
+    fun `should be valid if true`() {
+        val model = form + optional()
         model.value = "x"
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be valid if false and added to compositeValidation`() {
-        val model = form + ModelFactory.optional {  }
+    fun `should be valid if false`() {
+        val model = form + optional()
         model.value = ""
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -86,19 +82,17 @@ class PersonNameValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.personName {  }
+    fun `should be valid`() {
+        val model = form + personName()
         model.value = "Shaban"
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.personName {  }
+    fun `should be invalid`() {
+        val model = form + personName()
         model.value = "sha21"
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -111,19 +105,17 @@ class PersonFullNameValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.personFullName {  }
+    fun `should be valid`() {
+        val model = form + personFullName()
         model.value = "Shaban Kamel"
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.personFullName {  }
+    fun `should be invalid`() {
+        val model = form + personFullName()
         model.value = "dd33"
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -136,19 +128,17 @@ class DomainValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.domain {  }
+    fun `should be valid`() {
+        val model = form + domain()
         model.value = "google.com"
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.domain {  }
+    fun `should be invalid`() {
+        val model = form + domain()
         model.value = "x"
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -161,19 +151,17 @@ class AlphaValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.alpha {  }
+    fun `should be valid`() {
+        val model = form + alpha()
         model.value = "xyz"
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.alpha {  }
+    fun `should be invalid`() {
+        val model = form + alpha()
         model.value = "11_-"
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -186,19 +174,17 @@ class AlphaNumericValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.alphaNumeric {  }
+    fun `should be valid`() {
+        val model = form + alphaNumeric()
         model.value = "x1"
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.alphaNumeric {  }
+    fun `should be invalid`() {
+        val model = form + alphaNumeric()
         model.value = "x&"
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -211,19 +197,17 @@ class NumericValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.numeric {  }
+    fun `should be valid`() {
+        val model = form + numeric()
         model.value = "23"
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.numeric {  }
+    fun `should be invalid`() {
+        val model = form + numeric()
         model.value = "x"
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -236,72 +220,65 @@ class CreditCardValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.creditCard {  }
+    fun `should be valid`() {
+        val model = form + creditCard()
         model.value = "378734493671000"
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.creditCard {  }
+    fun `should be invalid`() {
+        val model = form + creditCard()
         model.value = "123"
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
+class AllValidationTest {
+    private lateinit var form: Form
 
-//class OrValidationTest {
-//    private lateinit var compositeValidation: CompositeValidation<Validatable>
-//
-//    @Before
-//    fun setup() {
-//        compositeValidation = CompositeValidation.create {}
-//    }
-//
-//    @Test
-//    fun `should be valid and added to compositeValidation`() {
-//        val model = Validation.(compositeValidation) {  }
-//        model.value = "x"
-//        assert(model.isValid)
-//        assert(!compositeValidation.isEmpty())
-//    }
-//
-//    @Test
-//    fun `should be invalid and added to compositeValidation`() {
-//        val model = Validation.(compositeValidation) {  }
-//        model.value = ""
-//        assert(!model.isValid)
-//        assert(!compositeValidation.isEmpty())
-//    }
-//}
+    @Before
+    fun setup() {
+        form = Form.create {}
+    }
 
-//class AndValidationTest {
-//    private lateinit var compositeValidation: CompositeValidation<Validatable>
-//
-//    @Before
-//    fun setup() {
-//        compositeValidation = CompositeValidation.create {}
-//    }
-//
-//    @Test
-//    fun `should be valid and added to compositeValidation`() {
-//        val model = Validation.(compositeValidation) {  }
-//        model.value = "x"
-//        assert(model.isValid)
-//        assert(!compositeValidation.isEmpty())
-//    }
-//
-//    @Test
-//    fun `should be invalid and added to compositeValidation`() {
-//        val model = Validation.(compositeValidation) {  }
-//        model.value = ""
-//        assert(!model.isValid)
-//        assert(!compositeValidation.isEmpty())
-//    }
-//}
+    @Test
+    fun `should be valid`() {
+        val model = form + all(prefix("p"), suffix("s"))
+        model.value = "plus"
+        assert(model.isValid)
+    }
+
+    @Test
+    fun `should be invalid`() {
+        val model = form + all(prefix("p"), suffix("s"))
+        model.value = "x"
+        assert(!model.isValid)
+    }
+}
+
+class AnyValidationTest {
+    private lateinit var form: Form
+
+    @Before
+    fun setup() {
+        form = Form.create {}
+    }
+
+    @Test
+    fun `should be valid`() {
+        val model = form + any(prefix("p"), suffix("s"))
+        model.value = "plus2"
+        assert(model.isValid)
+    }
+
+    @Test
+    fun `should be invalid`() {
+        val model = form + any(prefix("p"), suffix("s"))
+        model.value = "x"
+        assert(!model.isValid)
+    }
+}
 
 class PrefixValidationTest {
     private lateinit var form: Form
@@ -312,19 +289,24 @@ class PrefixValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.prefix("x") {  }
+    fun `should be valid`() {
+        val model = form + prefix("x")
         model.value = "x"
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.prefix("x") {  }
+    fun `should be valid ignoreCase = true`() {
+        val model = form + prefix("x", true)
+        model.value = "X"
+        assert(model.isValid)
+    }
+
+    @Test
+    fun `should be invalid`() {
+        val model = form + prefix("x")
         model.value = "y"
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -337,19 +319,24 @@ class SuffixValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.suffix("x") {  }
+    fun `should be valid`() {
+        val model = form + suffix("x")
         model.value = "ex"
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.suffix("x") {  }
+    fun `should be valid ignoreCase = true`() {
+        val model = form + suffix("x", true)
+        model.value = "eX"
+        assert(model.isValid)
+    }
+
+    @Test
+    fun `should be invalid`() {
+        val model = form + suffix("x")
         model.value = "yy"
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -362,44 +349,17 @@ class LongTextRangeValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.longRange(1, 5) {  }
-        model.value = 2
+    fun `should be valid`() {
+        val model = form + textLength(1, 5)
+        model.value = "ee"
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.longRange(1, 5) {  }
-        model.value = 7
+    fun `should be invalid`() {
+        val model = form + textLength(1, 5)
+        model.value = "eeeeeeee"
         assert(!model.isValid)
-        assert(!form.isEmpty)
-    }
-}
-
-class LengthRangeValidationTest {
-    private lateinit var form: Form
-
-    @Before
-    fun setup() {
-        form = Form.create {}
-    }
-
-    @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.lengthRange(1, 5) {  }
-        model.value = "xyz"
-        assert(model.isValid)
-        assert(!form.isEmpty)
-    }
-
-    @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.lengthRange(1, 5) {  }
-        model.value = "xyxxyxxyx"
-        assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -412,19 +372,17 @@ class FloatRangeValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.floatRange(1f, 5f) {  }
+    fun `should be valid`() {
+        val model = form + floatRange(1f, 5f)
         model.value = 1f
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.floatRange(1f, 5f) {  }
+    fun `should be invalid`() {
+        val model = form + floatRange(1f, 5f)
         model.value = 7f
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -437,19 +395,17 @@ class DoubleRangeValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.doubleRange(1.0, 5.0) {  }
+    fun `should be valid`() {
+        val model = form + doubleRange(1.0, 5.0)
         model.value = 2.0
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.doubleRange(1.0, 5.0) {  }
+    fun `should be invalid`() {
+        val model = form + doubleRange(1.0, 5.0)
         model.value = 7.0
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -462,19 +418,17 @@ class LongRangeValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.longRange(1, 5) {  }
+    fun `should be valid`() {
+        val model = form + longRange(1, 5)
         model.value = 1
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.longRange(1, 5) {  }
+    fun `should be invalid`() {
+        val model = form + longRange(1, 5)
         model.value = 7
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -487,19 +441,17 @@ class IntRangeValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.intRange(1, 5) {  }
+    fun `should be valid`() {
+        val model = form + intRange(1, 5)
         model.value = 2
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.intRange(1, 5) {  }
+    fun `should be invalid`() {
+        val model = form + intRange(1, 5)
         model.value = 8
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -512,19 +464,17 @@ class CharRangeValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.charRange('a', 'c') {  }
+    fun `should be valid`() {
+        val model = form + charRange('a', 'c')
         model.value = 'b'
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.charRange('a', 'c') {  }
+    fun `should be invalid`() {
+        val model = form + charRange('a', 'c')
         model.value = 'x'
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -537,19 +487,17 @@ class ShortRangeValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.shortRange(1, 5) {  }
+    fun `should be valid`() {
+        val model = form + shortRange(1, 5)
         model.value = 1
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.shortRange(1, 5) {  }
+    fun `should be invalid`() {
+        val model = form + shortRange(1, 5)
         model.value = 8
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -562,19 +510,17 @@ class ByteValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.byteRange(1, 5) {  }
+    fun `should be valid`() {
+        val model = form + byteRange(1, 5)
         model.value = 1
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.byteRange(1, 5) {  }
+    fun `should be invalid`() {
+        val model = form + byteRange(1, 5)
         model.value = 7
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }
 
@@ -587,18 +533,16 @@ class BooleanValidationTest {
     }
 
     @Test
-    fun `should be valid and added to compositeValidation`() {
-        val model = form + ModelFactory.boolean(true) {  }
+    fun `should be valid`() {
+        val model = form + boolean(true)
         model.value = true
         assert(model.isValid)
-        assert(!form.isEmpty)
     }
 
     @Test
-    fun `should be invalid and added to compositeValidation`() {
-        val model = form + ModelFactory.boolean(true) {  }
+    fun `should be invalid`() {
+        val model = form + boolean(true)
         model.value = false
         assert(!model.isValid)
-        assert(!form.isEmpty)
     }
 }

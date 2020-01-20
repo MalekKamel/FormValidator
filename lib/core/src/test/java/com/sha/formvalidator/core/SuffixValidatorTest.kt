@@ -14,13 +14,20 @@ class SuffixValidatorTest {
     }
 
     @Test
-    fun validate_valid() {
+    fun `should be valid`() {
         validator.value = "XXsuffix"
         assert(validator.isValid)
     }
 
     @Test
-    fun validate_invalid() {
+    fun `should be valid if ignoreCase = true`() {
+        validator = SuffixValidator("suffix", true)
+        validator.value = "XXsuffiX"
+        assert(validator.isValid)
+    }
+
+    @Test
+    fun `should be invalid`() {
         validator.value = "11"
         assert(!validator.isValid)
     }

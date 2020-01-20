@@ -26,11 +26,10 @@ enum class FormTag(val value: String) {
 @Composable
 fun ComposeForm() {
 
-
     // Declare FormValidation to validate all fields using FormValidation.isValid
     val form  = Form.create {}
 
-    // Declare a new field validation and add it to FormValidation
+    // Declare a new field validation and add it to Form
     val country = form + mandatory {
         errorMessage = "Country Required!"
         validateOnChange = true
@@ -46,7 +45,7 @@ fun ComposeForm() {
         errorMessageRes = R.string.error_phone_not_valid
     }
 
-    val emailOrPhone = form + anyValid(listOf(email, phone)) {
+    val emailOrPhone = form + any(email, phone) {
         errorMessageRes = R.string.error_email_address_not_valid
     }
 

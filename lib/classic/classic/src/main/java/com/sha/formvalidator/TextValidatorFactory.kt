@@ -69,7 +69,7 @@ object TextValidatorFactory {
                         attrInfo.maxNumber
                 ).apply { ErrorGenerator.create(context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.minNumber, attrInfo.maxNumber)) }
 
-                WrapValidator(validator) { it?.toLong() }
+                WrapValidator(validator) { it?.length?.toLong() }
             }
             TextViewValidationType.FLOAT_NUMERIC_RANGE -> {
                 val validator = FloatRangeValidator(
@@ -77,7 +77,7 @@ object TextValidatorFactory {
                         attrInfo.floatMaxNumber
                 ).apply { ErrorGenerator.create(context.getString(R.string.error_only_numeric_digits_range_allowed, attrInfo.floatMinNumber, attrInfo.floatMaxNumber)) }
 
-                WrapValidator(validator) { it?.toFloat() }
+                WrapValidator(validator) { it?.length?.toFloat() }
             }
             else -> DummyValidator()
         }

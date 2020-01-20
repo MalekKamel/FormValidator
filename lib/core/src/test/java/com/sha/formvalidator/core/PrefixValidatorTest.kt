@@ -1,6 +1,7 @@
 package com.sha.formvalidator.core
 
 import com.sha.formvalidator.core.validator.PrefixValidator
+import com.sha.formvalidator.core.validator.SuffixValidator
 import com.sha.formvalidator.core.validator.TextValidator
 import org.junit.Before
 import org.junit.Test
@@ -14,13 +15,20 @@ class PrefixValidatorTest {
     }
 
     @Test
-    fun validate_valid() {
+    fun `should be valid`() {
         validator.value = "prefixXX"
         assert(validator.isValid)
     }
 
     @Test
-    fun validate_invalid() {
+    fun `should be valid if ignoreCase = true`() {
+        validator = PrefixValidator("prefix", true)
+        validator.value = "PrefixXX"
+        assert(validator.isValid)
+    }
+
+    @Test
+    fun `should be invalid`() {
         validator.value = "11"
         assert(!validator.isValid)
     }

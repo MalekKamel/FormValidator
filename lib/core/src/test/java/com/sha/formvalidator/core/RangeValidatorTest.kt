@@ -4,27 +4,6 @@ import com.sha.formvalidator.core.validator.*
 import org.junit.Before
 import org.junit.Test
 
-class LengthRangeValidatorTest {
-    lateinit var validator: Validator<String>
-
-    @Before
-    fun setup() {
-        validator = LengthRangeTextValidator(1, 5)
-    }
-
-    @Test
-    fun validate_valid() {
-        validator.value = "1"
-        assert(validator.isValid)
-    }
-
-    @Test
-    fun validate_invalid() {
-        validator.value = "123456"
-        assert(!validator.isValid)
-    }
-}
-
 class WrapValidatorTest {
     lateinit var validator: Validator<String>
 

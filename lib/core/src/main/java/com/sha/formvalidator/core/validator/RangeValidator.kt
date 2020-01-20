@@ -5,16 +5,6 @@ import com.sha.formvalidator.core.DefaultErrors
 /**
  * A validator that returns true only if the text is within the given range.
  */
-class LengthRangeTextValidator(
-        private val min: Long,
-        private val max: Long
-) : TextValidator() {
-    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.rangeError)
-
-    override fun validate(): Boolean {
-        return if (value != null) value!!.length in min..max else false
-    }
-}
 
 class DoubleRangeValidator(
         private val min: Double,

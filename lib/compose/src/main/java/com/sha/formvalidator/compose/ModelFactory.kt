@@ -66,46 +66,41 @@ object ModelFactory {
             block: (ValidatableModel<String>.() -> Unit)? = null
     ): ValidatableModel<String> = makeModel(PatternValidator(pattern), block)
 
-    fun <V> anyValid(
+    fun <V> any(
             models: List<ValidatableModel<V>>,
             block: (ValidatableModel<V>.() -> Unit)? = null
     ): ValidatableModel<V> = makeModel(AnyValidator(models.map { it.validator }), block)
 
-    fun <V> allValid(
+    fun <V> all(
             models: List<ValidatableModel<V>>,
             block: (ValidatableModel<V>.() -> Unit)? = null
     ): ValidatableModel<V> = makeModel(AllValidator(models.map { it.validator }), block)
 
     fun prefix(
             prefix: String,
+            ignoreCase: Boolean = false,
             block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(PrefixValidator(prefix), block)
+    ): ValidatableModel<String> = makeModel(PrefixValidator(prefix, ignoreCase), block)
 
     fun suffix(
             suffix: String,
+            ignoreCase: Boolean = false,
             block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(SuffixValidator(suffix), block)
+    ): ValidatableModel<String> = makeModel(SuffixValidator(suffix, ignoreCase), block)
 
     fun date(
             format: String,
             block: (ValidatableModel<String>.() -> Unit)? = null
     ): ValidatableModel<String> = makeModel(DateValidator(format), block)
 
-    fun longTextRange(
+    fun textLength(
             min: Long,
             max: Long,
             block: (ValidatableModel<String>.() -> Unit)? = null
     ): ValidatableModel<String> = makeModel(
-            WrapValidator(LongRangeValidator(min, max)) { it?.toLong() },
+            WrapValidator(LongRangeValidator(min, max)) { it?.length?.toLong() },
             block
     )
-
-    fun lengthRange(
-            min: Long,
-            max: Long,
-
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(LengthRangeTextValidator(min, max), block)
 
     fun floatRange(
             min: Float,
@@ -232,42 +227,38 @@ fun pattern(
         block: (ValidatableModel<String>.() -> Unit)? = null
 ): ValidatableModel<String> = ModelFactory.pattern(pattern, block)
 
-fun <V> anyValid(
-        models: List<ValidatableModel<V>>,
+fun <V> any(
+        vararg models: ValidatableModel<V>,
         block: (ValidatableModel<V>.() -> Unit)? = null
-): ValidatableModel<V> = ModelFactory.anyValid(models, block)
+): ValidatableModel<V> = ModelFactory.any(models.asList(), block)
 
-fun <V> allValid(
-        models: List<ValidatableModel<V>>,
+fun <V> all(
+        vararg models: ValidatableModel<V>,
         block: (ValidatableModel<V>.() -> Unit)? = null
-): ValidatableModel<V> = ModelFactory.allValid(models, block)
+): ValidatableModel<V> = ModelFactory.all(models.asList(), block)
 
 fun prefix(
         prefix: String,
+        ignoreCase: Boolean = false,
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.prefix(prefix, block)
+): ValidatableModel<String> = ModelFactory.prefix(prefix, ignoreCase, block)
 
 fun suffix(
         suffix: String,
+        ignoreCase: Boolean = false,
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.suffix(suffix, block)
+): ValidatableModel<String> = ModelFactory.suffix(suffix, ignoreCase, block)
 
 fun date(
         format: String,
         block: (ValidatableModel<String>.() -> Unit)? = null
 ): ValidatableModel<String> = ModelFactory.date(format, block)
 
-fun longTextRange(
+fun textLength(
         min: Long,
         max: Long,
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.longTextRange(min, max, block)
-
-fun lengthRange(
-        min: Long,
-        max: Long,
-        block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.lengthRange(min, max, block)
+): ValidatableModel<String> = ModelFactory.textLength(min, max, block)
 
 fun floatRange(
         min: Float,

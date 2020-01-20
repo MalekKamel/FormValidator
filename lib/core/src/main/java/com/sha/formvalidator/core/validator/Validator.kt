@@ -6,6 +6,12 @@ abstract class AbsValidator<V>: Validator<V> {
     override var onError: MutableList<((String) -> Unit)?> = mutableListOf()
 //    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator()
 
+    override var errorMessage: String = ""
+        get() = errorGenerator.generate()
+        set(value) {
+            field = value
+            errorGenerator.error = { value }
+        }
     fun addOnValidateListener(listener: ((Boolean) -> Unit)?): AbsValidator<V> {
         onValidate.add(listener)
         return this
@@ -28,7 +34,7 @@ interface Validator<V>: ValidatorType {
 
 interface ValidatorType {
     fun validate(): Boolean
-//    var errorMessage: String
+    var errorMessage: String
     var onValidate: MutableList<((Boolean) -> Unit)?>
     var onError: MutableList<((String) -> Unit)?>
     val isValid: Boolean

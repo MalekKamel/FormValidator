@@ -2,11 +2,12 @@ package com.sha.formvalidator.core
 
 import com.sha.formvalidator.core.validator.MandatoryValidator
 import com.sha.formvalidator.core.validator.TextValidator
+import com.sha.formvalidator.core.validator.Validator
 import org.junit.Before
 import org.junit.Test
 
 class MandatoryValidatorTest {
-    lateinit var validator: TextValidator
+    lateinit var validator: Validator<String>
 
     @Before
     fun setup() {
