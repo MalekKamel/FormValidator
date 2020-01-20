@@ -30,13 +30,13 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
         set(value) {
             field = value
             validator.value = value
-            validate(false)
+            validate(ValidationSource.LIBRARY)
         }
     override var ignoreInitialValidation: Boolean = true
     override var errorMessage: String = ""
 
     override var validateOnChange: Boolean = false
-    override var overrideValidateOnChangeOnce: Boolean = false
+    override var validationSource: ValidationSource = ValidationSource.LIBRARY
     override var recompose: () -> Unit = {}
     override var errorMessageRes: Int = -1
         set(value) {
@@ -59,10 +59,10 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
 
     override var status: ModelStatus = ModelStatus.INVALID
 
-    override fun validate(overrideValidateOnChangeOnce: Boolean): Boolean {
+    override fun validate(validationSource: ValidationSource): Boolean {
         if (isIgnored) return true
+        this.validationSource = validationSource
 
-        if (overrideValidateOnChangeOnce) this.overrideValidateOnChangeOnce = true
         // tmpError is only used when calling showError(), we should remove it here
         // to show the error provided with errorText
         tmpError = ""
@@ -78,7 +78,6 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
     }
 
     override fun showError(error: String) {
-        overrideValidateOnChangeOnce = true
         tmpError = error
         recompose()
     }
@@ -124,6 +123,8 @@ interface ValidatableModel<V>: Validatable {
     var shouldIgnore: (() -> Boolean)?
 
     fun createError(): String? {
+        if (status == ModelStatus.VALID) return null
+
         if (isIgnored) return null
         if (shouldIgnore?.invoke() == true) return null
 
@@ -131,13 +132,18 @@ interface ValidatableModel<V>: Validatable {
             ignoreInitialValidation = false
             return null
         }
-        val canValidate = overrideValidateOnChangeOnce || validateOnChange
-        overrideValidateOnChangeOnce = false
 
-        if (canValidate && status == ModelStatus.INVALID)
-            return if(tmpError.isNotEmpty()) tmpError else errorMessage
+        val canShowError = when(validationSource) {
+            // user invoked this validation, so we should show error.
+            ValidationSource.USER -> true
+            // This validation is invoked from the library (when the value changes), we
+            // should show error if it's allowed to validate on change only
+            ValidationSource.LIBRARY -> validateOnChange
+        }
 
-        return null
+        if (!canShowError) return null
+
+        return if(tmpError.isNotEmpty()) tmpError else errorMessage
     }
 
     fun matches(
@@ -165,20 +171,19 @@ interface Validatable: Recomposable {
     var errorMessage: String
     var errorMessageRes: Int
     val isValid: Boolean
-        get() = validate(true)
+        get() = validate()
     var ignoreInitialValidation: Boolean
     var validateOnChange: Boolean
-    var overrideValidateOnChangeOnce: Boolean
     var onValidate: ((Boolean) -> Unit)?
     var isMandatory: Boolean
-
+    var validationSource: ValidationSource
     /**
      * This value is only used when calling showError(), and it's removed
      * in the first call of isValid after showError() is called.
      */
     var tmpError: String
 
-    fun validate(overrideValidateOnChangeOnce: Boolean = true): Boolean
+    fun validate(validationSource: ValidationSource = ValidationSource.USER): Boolean
     fun showError(error: String)
 }
 
@@ -188,4 +193,8 @@ interface Recomposable {
 
 enum class ModelStatus {
     VALID, INVALID
+}
+
+enum class ValidationSource {
+    USER, LIBRARY
 }
