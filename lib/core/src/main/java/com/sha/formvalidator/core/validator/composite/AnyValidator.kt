@@ -1,6 +1,8 @@
 package com.sha.formvalidator.core.validator.composite
 
 import com.sha.formvalidator.core.DefaultErrors
+import com.sha.formvalidator.core.validator.ErrorGenerator
+import com.sha.formvalidator.core.validator.ErrorGeneratorInterface
 import com.sha.formvalidator.core.validator.Validator
 
 /**
@@ -10,7 +12,7 @@ import com.sha.formvalidator.core.validator.Validator
  *
  */
 class AnyValidator<V> : CompositeValidator<V> {
-    override var errorMessage: String = DefaultErrors.orError
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.orError)
 
     constructor(vararg validators: Validator<V>): super(*validators)
     constructor(validators: List<Validator<V>>): super(validators)

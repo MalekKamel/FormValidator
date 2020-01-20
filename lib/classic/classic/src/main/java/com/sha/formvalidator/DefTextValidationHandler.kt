@@ -121,14 +121,15 @@ class DefTextValidationHandler : TextValidationHandler {
     }
 
     override fun showError() {
-        if (mValidator.errorMessage.isEmpty()) return
+        val e = mValidator.errorGenerator.generate()
+        if (e.isEmpty()) return
 
         if (hasTextInputLayout()) {
-            textInputLayout()?.error = mValidator.errorMessage
+            textInputLayout()?.error = e
             return
         }
 
-        editText.error = mValidator.errorMessage
+        editText.error = e
     }
 
     private fun hasTextInputLayout(): Boolean {

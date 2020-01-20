@@ -5,6 +5,6 @@ package com.sha.formvalidator.core.validator
  *
  */
 class DummyValidator : TextValidator() {
-    override var errorMessage: String = ""
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create("")
     override fun validate(): Boolean  = true
 }

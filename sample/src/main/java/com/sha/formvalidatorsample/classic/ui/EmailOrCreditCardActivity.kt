@@ -10,6 +10,7 @@ import android.widget.Toast
 
 import com.sha.formvalidator.ValidatorFactory
 import com.sha.formvalidator.core.validator.CreditCardValidator
+import com.sha.formvalidator.core.validator.ErrorGenerator
 import com.sha.formvalidator.core.validator.pattern.EmailValidator
 import com.sha.formvalidator.widget.FormEditText
 import com.sha.formvalidatorsample.R
@@ -36,7 +37,7 @@ class EmailOrCreditCardActivity : Activity() {
                 ValidatorFactory.anyValid(
                         CreditCardValidator(),
                         EmailValidator()
-                ).apply { errorMessage = "This is neither a creditcard or an email" }
+                ).apply { ErrorGenerator.create("This is neither a creditcard or an email") }
         )
     }
 

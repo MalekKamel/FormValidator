@@ -7,6 +7,6 @@ import com.sha.formvalidator.core.DefaultErrors
  *
  */
 class SuffixValidator(private val suffix: String) : TextValidator() {
-    override var errorMessage: String = DefaultErrors.suffixError
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.suffixError)
     override fun validate(): Boolean = value?.endsWith(suffix) == true
 }

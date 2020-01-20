@@ -9,7 +9,7 @@ class LengthRangeTextValidator(
         private val min: Long,
         private val max: Long
 ) : TextValidator() {
-    override var errorMessage: String = DefaultErrors.rangeError
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.rangeError)
 
     override fun validate(): Boolean {
         return if (value != null) value!!.length in min..max else false
@@ -22,7 +22,7 @@ class DoubleRangeValidator(
 ): AbsValidator<Double>() {
     override var value: Double? = null
     override fun validate() = if(value != null) { value!! in min..max } else false
-    override var errorMessage: String = DefaultErrors.rangeError
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.rangeError)
 }
 
 class FloatRangeValidator(
@@ -31,7 +31,7 @@ class FloatRangeValidator(
 ): AbsValidator<Float>() {
     override var value: Float? = null
     override fun validate() = if(value != null) { value!! in min..max } else false
-    override var errorMessage: String = DefaultErrors.rangeError
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.rangeError)
 }
 
 class LongRangeValidator(
@@ -40,7 +40,7 @@ class LongRangeValidator(
 ): AbsValidator<Long>() {
     override var value: Long? = null
     override fun validate() = value in min..max
-    override var errorMessage: String = DefaultErrors.rangeError
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.rangeError)
 }
 
 class IntRangeValidator(
@@ -49,7 +49,7 @@ class IntRangeValidator(
 ): AbsValidator<Int>() {
     override var value: Int? = null
     override fun validate() = value in min..max
-    override var errorMessage: String = DefaultErrors.rangeError
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.rangeError)
 }
 
 class CharRangeValidator(
@@ -58,7 +58,7 @@ class CharRangeValidator(
 ): AbsValidator<Char>() {
     override var value: Char? = null
     override fun validate() = value in min..max
-    override var errorMessage: String = DefaultErrors.rangeError
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.rangeError)
 }
 
 class ShortRangeValidator(
@@ -67,7 +67,7 @@ class ShortRangeValidator(
 ): AbsValidator<Short>() {
     override var value: Short? = null
     override fun validate() = if(value != null) { value!! in min..max } else false
-    override var errorMessage: String = DefaultErrors.rangeError
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.rangeError)
 }
 
 class ByteRangeValidator(
@@ -76,5 +76,5 @@ class ByteRangeValidator(
 ): AbsValidator<Byte>() {
     override var value: Byte? = null
     override fun validate() = if(value != null) { value!! in min..max } else false
-    override var errorMessage: String = DefaultErrors.rangeError
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.rangeError)
 }

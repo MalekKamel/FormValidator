@@ -1,6 +1,8 @@
 package com.sha.formvalidator.core.validator.pattern
 
 import com.sha.formvalidator.core.DefaultErrors
+import com.sha.formvalidator.core.validator.ErrorGenerator
+import com.sha.formvalidator.core.validator.ErrorGeneratorInterface
 import com.sha.formvalidator.core.validator.TextValidator
 
 import java.util.regex.Pattern
@@ -20,7 +22,7 @@ import java.util.regex.Pattern
  */
 open class PatternValidator(private val pattern: Pattern) : TextValidator() {
 
-    override var errorMessage: String = DefaultErrors.patternError
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.patternError)
     constructor(regex: String) : this(Pattern.compile(regex))
 
     override fun validate(): Boolean {

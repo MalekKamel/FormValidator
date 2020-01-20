@@ -8,7 +8,7 @@ import com.sha.formvalidator.core.DefaultErrors
  */
 class MandatoryValidator<V> : AbsValidator<V>() {
     override var value: V? = null
-    override var errorMessage: String = DefaultErrors.mandatoryError
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.mandatoryError)
     override fun validate(): Boolean {
         if (value is String) return (value as String).trim().isNotEmpty()
         return value != null

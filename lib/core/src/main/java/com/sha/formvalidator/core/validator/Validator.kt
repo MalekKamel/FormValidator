@@ -4,6 +4,7 @@ abstract class AbsValidator<V>: Validator<V> {
     override var value: V? = null
     override var onValidate: MutableList<((Boolean) -> Unit)?> = mutableListOf()
     override var onError: MutableList<((String) -> Unit)?> = mutableListOf()
+//    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator()
 
     fun addOnValidateListener(listener: ((Boolean) -> Unit)?): AbsValidator<V> {
         onValidate.add(listener)
@@ -27,7 +28,7 @@ interface Validator<V>: ValidatorType {
 
 interface ValidatorType {
     fun validate(): Boolean
-    var errorMessage: String
+//    var errorMessage: String
     var onValidate: MutableList<((Boolean) -> Unit)?>
     var onError: MutableList<((String) -> Unit)?>
     val isValid: Boolean
@@ -35,7 +36,31 @@ interface ValidatorType {
             val valid = validate()
             onValidate.forEach { it?.invoke(valid) }
             if (!valid)
-                onError.forEach { it?.invoke(errorMessage) }
+                onError.forEach { it?.invoke(errorGenerator.generate()) }
             return valid
         }
+    var errorGenerator: ErrorGeneratorInterface
+}
+
+class ErrorGenerator: ErrorGeneratorInterface {
+    override var error: () -> String = { "" }
+
+    override fun generate(): String {
+        return error()
+    }
+    
+    companion object {
+        fun create(e: () -> String): ErrorGenerator {
+            return ErrorGenerator().apply { error = e }
+        }
+
+        fun create(e: String): ErrorGenerator {
+            return ErrorGenerator().apply { error = { e } }
+        }
+    }
+}
+
+interface ErrorGeneratorInterface {
+    var error: () -> String
+    fun generate(): String
 }

@@ -3,6 +3,8 @@ package com.sha.formvalidator.compose
 import androidx.compose.ambient
 import androidx.compose.unaryPlus
 import androidx.ui.core.ContextAmbient
+import com.sha.formvalidator.core.validator.ErrorGenerator
+import com.sha.formvalidator.core.validator.ErrorGeneratorInterface
 import com.sha.formvalidator.core.validator.Validator
 import com.sha.formvalidator.core.validator.ValueMatchValidator
 import com.sha.formvalidator.core.validator.composite.AllValidator
@@ -59,6 +61,10 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
 
     override var status: ModelStatus = ModelStatus.INVALID
 
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create {
+        if (errorMessage.isNotEmpty()) errorMessage else validator.errorGenerator.generate()
+    }
+
     override fun validate(validationSource: ValidationSource): Boolean {
         if (isIgnored) return true
         this.validationSource = validationSource
@@ -108,8 +114,12 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
             }
         }
 
-        // each model should have this validator
-        allModels.forEach { it.addValidator(matchValidator) }
+        allModels.forEach {
+            // each model should have this validator
+            it.addValidator(matchValidator)
+            // validate on change to reflect the error immediately
+            it.validateOnChange = true
+        }
         return this
     }
 }
@@ -143,7 +153,7 @@ interface ValidatableModel<V>: Validatable {
 
         if (!canShowError) return null
 
-        return if(tmpError.isNotEmpty()) tmpError else errorMessage
+        return if(tmpError.isNotEmpty()) tmpError else errorGenerator.generate()
     }
 
     fun matches(
@@ -167,8 +177,10 @@ interface ValidatableModel<V>: Validatable {
 }
 
 interface Validatable: Recomposable {
-
+    var errorGenerator: ErrorGeneratorInterface
     var errorMessage: String
+        get() = errorGenerator.generate()
+        set(value) { errorGenerator.error = { value } }
     var errorMessageRes: Int
     val isValid: Boolean
         get() = validate()

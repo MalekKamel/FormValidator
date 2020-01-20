@@ -7,6 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 
 import com.sha.formvalidator.ValidatorFactory
+import com.sha.formvalidator.core.validator.ErrorGenerator
 import com.sha.formvalidator.widget.FormEditText
 import com.sha.formvalidatorsample.R
 
@@ -30,7 +31,7 @@ class PasswordValidatorActivity : Activity() {
         etPassword.addValidator(ValidatorFactory.passwordMatch(
                 etPassword.text.toString(),
                 etConfirmPassword.text.toString()
-        ).apply { errorMessage = "Passwords don't match!" })
+        ).apply { ErrorGenerator.create("Passwords don't match!") })
     }
 
     fun onClickValidate(v: View) {

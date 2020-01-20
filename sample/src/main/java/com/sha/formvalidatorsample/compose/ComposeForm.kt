@@ -48,9 +48,9 @@ fun ComposeForm() {
         errorMessageRes = R.string.error_email_address_not_valid
     }
 
-    val password = form + ModelFactory.mandatory { validateOnChange = true }
+    val password = form + ModelFactory.mandatory { validateOnChange = false }
 
-    val confirmPassword = ModelFactory.mandatory { validateOnChange = true }
+    val confirmPassword = ModelFactory.mandatory { validateOnChange = false }
             .matches(password,"Passwords don't match!")
             .addTo(form)
 

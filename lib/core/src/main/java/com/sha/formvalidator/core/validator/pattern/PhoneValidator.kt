@@ -2,6 +2,8 @@ package com.sha.formvalidator.core.validator.pattern
 
 import android.util.Patterns
 import com.sha.formvalidator.core.DefaultErrors
+import com.sha.formvalidator.core.validator.ErrorGenerator
+import com.sha.formvalidator.core.validator.ErrorGeneratorInterface
 
 /**
  * It validates phone numbers.
@@ -12,5 +14,6 @@ import com.sha.formvalidator.core.DefaultErrors
 // (<digits>)<sdd>*
 class PhoneValidator
     : PatternValidator(Patterns.PHONE) {
-    override var errorMessage: String = DefaultErrors.phoneError
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.phoneError)
+
 }

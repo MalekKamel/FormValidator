@@ -1,5 +1,7 @@
 package com.sha.formvalidator.core.validator.composite
 
+import com.sha.formvalidator.core.validator.ErrorGenerator
+import com.sha.formvalidator.core.validator.ErrorGeneratorInterface
 import com.sha.formvalidator.core.validator.Validator
 
 /**
@@ -8,20 +10,23 @@ import com.sha.formvalidator.core.validator.Validator
  *
  */
 class AllValidator<V>: CompositeValidator<V> {
-    override var errorMessage: String = ""
 
     constructor(vararg validators: Validator<V>): super(*validators)
     constructor(validators: List<Validator<V>>): super(validators)
 
+    var failingValidator: Validator<V>? = null
+
     override fun validate(): Boolean {
-       val anyFails = validators.firstOrNull { !it.isValid }
-        anyFails?.let {
-            // show the first failing validator error message
-            this.errorMessage = it.errorMessage
+        failingValidator = validators.firstOrNull { !it.isValid }
+        failingValidator?.let {
             return false
         }
-        this.errorMessage = ""
         return true
+    }
+
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create {
+        // show the first failing validator error message
+        failingValidator?.errorGenerator?.generate() ?: ""
     }
 
 }
