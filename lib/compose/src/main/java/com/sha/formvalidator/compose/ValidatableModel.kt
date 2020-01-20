@@ -179,8 +179,6 @@ interface ValidatableModel<V>: Validatable {
 interface Validatable: Recomposable {
     var errorGenerator: ErrorGeneratorInterface
     var errorMessage: String
-        get() = errorGenerator.generate()
-        set(value) { errorGenerator.error = { value } }
     var errorMessageRes: Int
     val isValid: Boolean
         get() = validate()

@@ -48,9 +48,9 @@ fun ComposeForm() {
         errorMessageRes = R.string.error_email_address_not_valid
     }
 
-    val password = form + ModelFactory.mandatory { validateOnChange = false }
+    val password = form + ModelFactory.mandatory()
 
-    val confirmPassword = ModelFactory.mandatory { validateOnChange = false }
+    val confirmPassword = ModelFactory.mandatory()
             .matches(password,"Passwords don't match!")
             .addTo(form)
 
@@ -62,9 +62,9 @@ fun ComposeForm() {
     }
 
     val switch = ModelFactory.boolean(true) {
-        validateOnChange = false
+        validateOnChange = true
         errorMessage = "You must receive notifications :)"
-        shouldIgnore = { !form.modelByTag(FormTag.CHECKBOX.value)!!.isValid }
+        shouldIgnore = { form.modelByTag(FormTag.CHECKBOX.value)!!.status == ModelStatus.INVALID }
         form + this
     }
 
