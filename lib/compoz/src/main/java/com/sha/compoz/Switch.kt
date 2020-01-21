@@ -14,14 +14,14 @@ import androidx.ui.material.surface.Surface
 import androidx.ui.text.TextStyle
 import androidx.ui.tooling.preview.Preview
 import com.sha.compoz.model.TextArgs
-import com.sha.compoz.model.ContainerArgs
+import com.sha.compoz.model.Dimens
 
 @Composable
 fun Switch(
         checked: Boolean,
         text: String = "",
         textArgs: TextArgs = TextArgs(),
-        switchArgs: ContainerArgs = ContainerArgs(),
+        switchDimens: Dimens = Dimens(),
         modifier: Modifier = Modifier.None,
         error: String? = null,
         errorTextArgs: TextArgs = TextArgs(style = TextStyle(color = Color.Red, fontSize = 18.sp)),
@@ -30,8 +30,8 @@ fun Switch(
     Column {
         Clickable(onClick = { onCheckedChange?.invoke(!checked) }) {
                 Row(arrangement = Arrangement.Center) {
-                    Padding(padding = switchArgs.padding) {
-                        Container(modifier = modifier wraps Size(switchArgs.width, switchArgs.height) wraps Gravity.Center) {
+                    Padding(padding = switchDimens.padding) {
+                        Container(modifier = modifier wraps Size(switchDimens.width, switchDimens.height) wraps Gravity.Center) {
                             Switch(
                                     checked = checked,
                                     onCheckedChange = onCheckedChange

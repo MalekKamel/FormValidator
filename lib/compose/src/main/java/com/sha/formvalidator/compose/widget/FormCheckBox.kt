@@ -12,7 +12,7 @@ import androidx.ui.text.TextStyle
 import androidx.ui.tooling.preview.Preview
 import com.sha.compoz.CheckBox
 import com.sha.compoz.model.TextArgs
-import com.sha.compoz.model.ContainerArgs
+import com.sha.compoz.model.Dimens
 import com.sha.formvalidator.compose.ValidatableModel
 import com.sha.formvalidator.compose.boolean
 
@@ -22,7 +22,7 @@ fun <T: ValidatableModel<Boolean>> FormCheckBox(
         text: String = "",
         textArgs: TextArgs = TextArgs(),
         errorTextArgs: TextArgs = TextArgs(style = TextStyle(color = Color.Red, fontSize = 18.sp)),
-        checkBoxArgs: ContainerArgs = ContainerArgs(width = 25.dp, height = 25.dp),
+        checkBoxDimens: Dimens = Dimens(width = 25.dp, height = 25.dp),
         modifier: Modifier = Modifier.None,
         onCheckedChange: ((Boolean) -> Unit)? = null
 ) {
@@ -35,7 +35,7 @@ fun <T: ValidatableModel<Boolean>> FormCheckBox(
                     text = text,
                     checked = model.value ?: false,
                     textArgs = textArgs,
-                    checkBoxArgs = checkBoxArgs,
+                    checkBoxDimens = checkBoxDimens,
                     modifier = modifier,
                     error = model.createError(),
                     errorTextArgs = errorTextArgs,
