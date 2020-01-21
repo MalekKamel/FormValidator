@@ -14,7 +14,7 @@ import androidx.ui.material.surface.Surface
 import androidx.ui.text.TextStyle
 import androidx.ui.tooling.preview.Preview
 import com.sha.compoz.model.TextArgs
-import com.sha.compoz.model.VectorArgs
+import com.sha.compoz.model.ContainerArgs
 
 @Composable
 fun CheckBox(
@@ -24,14 +24,14 @@ fun CheckBox(
         error: String? = null,
         errorTextArgs: TextArgs = TextArgs(style = TextStyle(color = Color.Red, fontSize = 18.sp)),
         onCheckedChange: ((Boolean) -> Unit)? = null,
-        vectorArgs: VectorArgs = VectorArgs(width = 25.dp, height = 25.dp),
+        checkBoxArgs: ContainerArgs = ContainerArgs(width = 25.dp, height = 25.dp),
         modifier: Modifier = Modifier.None
 ) {
     Column {
         Clickable(onClick = { onCheckedChange?.invoke(!checked) }) {
                 Row(arrangement = Arrangement.Center) {
-                    Padding(padding = vectorArgs.padding) {
-                        Container(modifier = modifier wraps Size(vectorArgs.width, vectorArgs.height) wraps Gravity.Center) {
+                    Padding(padding = checkBoxArgs.padding) {
+                        Container(modifier = modifier wraps Size(checkBoxArgs.width, checkBoxArgs.height) wraps Gravity.Center) {
                             Checkbox(
                                     checked = checked,
                                     onCheckedChange = onCheckedChange

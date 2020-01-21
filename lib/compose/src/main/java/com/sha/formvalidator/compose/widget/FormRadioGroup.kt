@@ -7,12 +7,13 @@ import androidx.compose.unaryPlus
 import androidx.ui.core.dp
 import androidx.ui.core.sp
 import androidx.ui.graphics.Color
+import androidx.ui.layout.EdgeInsets
 import androidx.ui.material.surface.Surface
 import androidx.ui.text.TextStyle
 import androidx.ui.tooling.preview.Preview
 import com.sha.compoz.RadioGroup
 import com.sha.compoz.model.TextArgs
-import com.sha.compoz.model.VectorArgs
+import com.sha.compoz.model.ContainerArgs
 import com.sha.formvalidator.compose.ValidatableModel
 import com.sha.formvalidator.compose.email
 
@@ -22,7 +23,7 @@ fun <T: ValidatableModel<String>> FormRadioGroup(
         options: List<String>,
         selectedOption: String?,
         onSelectedChange: (String) -> Unit,
-        vectorArgs: VectorArgs = VectorArgs(width = 25.dp, height = 25.dp),
+        radioGroupPadding: EdgeInsets = EdgeInsets(right = 8.dp),
         errorTextArgs: TextArgs = TextArgs(style = TextStyle(color = Color.Red, fontSize = 18.sp))
 ) {
     Recompose { recompose ->
@@ -37,7 +38,7 @@ fun <T: ValidatableModel<String>> FormRadioGroup(
                         model.value = it
                         onSelectedChange(it)
                     },
-                    vectorArgs = vectorArgs,
+                    radioGroupPadding = radioGroupPadding,
                     error = model.createError(),
                     errorTextArgs = errorTextArgs
             )

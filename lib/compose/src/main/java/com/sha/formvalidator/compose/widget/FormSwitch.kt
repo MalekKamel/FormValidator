@@ -13,7 +13,7 @@ import androidx.ui.text.TextStyle
 import androidx.ui.tooling.preview.Preview
 import com.sha.compoz.Switch
 import com.sha.compoz.model.TextArgs
-import com.sha.compoz.model.VectorArgs
+import com.sha.compoz.model.ContainerArgs
 import com.sha.formvalidator.compose.ValidatableModel
 import com.sha.formvalidator.compose.boolean
 
@@ -23,7 +23,7 @@ fun <T: ValidatableModel<Boolean>> FormSwitch(
         text: String = "",
         textArgs: TextArgs = TextArgs(),
         errorTextArgs: TextArgs = TextArgs(style = TextStyle(color = Color.Red, fontSize = 18.sp)),
-        vectorArgs: VectorArgs = VectorArgs(),
+        switchArgs: ContainerArgs = ContainerArgs(),
         modifier: Modifier = Modifier.None,
         onSelected: ((Boolean) -> Unit)? = null
 ) {
@@ -36,7 +36,7 @@ fun <T: ValidatableModel<Boolean>> FormSwitch(
                     checked = model.value ?: false,
                     text = text,
                     textArgs = textArgs,
-                    vectorArgs = vectorArgs,
+                    switchArgs = switchArgs,
                     modifier = modifier,
                     error = model.createError(),
                     errorTextArgs = errorTextArgs,

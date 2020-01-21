@@ -1,7 +1,14 @@
-<com.sha.formvalidator.widget.FormEditText xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/et"
+<com.google.android.material.textfield.TextInputLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:hint="@string/hint_ip_address"
-    app:validationType="ipAddress" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.sha.formvalidator.widget.FormEditText
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_ip_address"
+        app:validationType="ipAddress" />
+
+</com.google.android.material.textfield.TextInputLayout>
