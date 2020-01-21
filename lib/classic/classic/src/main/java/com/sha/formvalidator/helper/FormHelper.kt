@@ -1,7 +1,8 @@
-package com.sha.formvalidator
+package com.sha.formvalidator.helper
 
 import android.view.View
 import android.view.ViewGroup
+import com.sha.formvalidator.Validatable
 import com.sha.formvalidator.model.FormOptions
 import com.sha.formvalidator.model.IgnoreField
 
@@ -9,7 +10,7 @@ import com.sha.formvalidator.model.IgnoreField
  * Helps collecting all the fields that implement [Validatable] interface
  * and applies options.
  */
-open class FormHelper {
+class FormHelper {
 
     /**
      * Collects fields that implement [Validatable] interface

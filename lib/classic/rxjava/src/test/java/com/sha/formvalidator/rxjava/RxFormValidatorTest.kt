@@ -4,7 +4,7 @@ import org.junit.Test
 class RxFormValidatorTest {
 
     @Test
-    fun isValid_allValid() {
+    fun `should be valid if all valid`() {
         val validator = RxFormValidator(
                 FakeValidValidator(),
                 FakeValidValidator(),
@@ -17,7 +17,7 @@ class RxFormValidatorTest {
     }
 
     @Test
-    fun isValid_someInValid() {
+    fun `should be invalid if some invalid`() {
         val validator = RxFormValidator(
                 FakeValidValidator(),
                 FakeInvalidValidator(),
@@ -31,7 +31,7 @@ class RxFormValidatorTest {
     }
 
     @Test
-    fun isValid_allInValid() {
+    fun `should be invalid if all invalid`() {
         val validator = RxFormValidator(
                 FakeInvalidValidator(),
                 FakeInvalidValidator(),
@@ -45,7 +45,7 @@ class RxFormValidatorTest {
     }
 
     @Test
-    fun isValid_empty() {
+    fun `should be invalid if no validators`() {
         val validator = RxFormValidator<com.sha.formvalidator.Validatable>()
         validator.validate()
                 .test()

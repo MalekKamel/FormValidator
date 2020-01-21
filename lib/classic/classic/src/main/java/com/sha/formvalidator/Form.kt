@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.sha.formvalidator.core.R
+import com.sha.formvalidator.helper.FormHelper
 import com.sha.formvalidator.model.FormOptions
 
 /**

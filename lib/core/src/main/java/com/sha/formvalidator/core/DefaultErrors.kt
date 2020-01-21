@@ -13,7 +13,7 @@ object DefaultErrors {
     var alphaError = "Invalid!"
     var alphaNumericError = "Invalid!"
     var orError = "Invalid!"
-    var valueMatchError = "Values don't match!"
+    var matchError = "Values don't match!"
     var prefixError = "Invalid Prefix!"
     var suffixError = "Invalid Suffix!"
     var numericError = "Invalid Number!"

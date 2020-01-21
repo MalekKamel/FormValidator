@@ -1,9 +1,5 @@
 package com.sha.formvalidator.compose
 
-
-/**
- * The base form validator that all validators must extend.
- */
 open class ComposeValidator {
     internal var models: List<ValidatableModel<*>> = emptyList()
     val isValid: Boolean

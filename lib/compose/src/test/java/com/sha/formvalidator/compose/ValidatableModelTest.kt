@@ -176,4 +176,28 @@ class ValidatableModelTest {
         assert(form.modelByTag("tag") != null)
     }
 
+    @Test
+    fun `test showError`() {
+        val model = FakeValidation.create()
+        model.ignoreInitialValidation = false
+
+        model.showError("error")
+        // will be empty after calling isValid
+        assert(model.tmpError == "error")
+
+        assert(!model.isValid)
+        // should be true, and be false after calling createErrorText()
+        assert(model.tmpError == null)
+        // must be called to recompose the view
+        assert(model.isRecomposeInvoked)
+
+        model.value = "x"
+
+        model.createError()
+
+        // valid as we assigned value x
+        assert(model.isValid)
+        assert(model.tmpError == null)
+    }
+
 }

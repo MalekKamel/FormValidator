@@ -7,10 +7,9 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
-import com.sha.formvalidator.ValidatorFactory
-import com.sha.formvalidator.core.validator.IntRangeValidator
-import com.sha.formvalidator.core.validator.PrefixValidator
-import com.sha.formvalidator.core.validator.WrapValidator
+import com.sha.formvalidator.all
+import com.sha.formvalidator.prefix
+import com.sha.formvalidator.textLength
 import com.sha.formvalidator.widget.FormEditText
 import com.sha.formvalidatorsample.R
 
@@ -22,22 +21,12 @@ class PrefixAndRangeValidatorActivity : Activity() {
         setupUi()
 
         //Interesting stuff starts here
-        val fdt = findViewById<FormEditText>(R.id.et)
+        val et = findViewById<FormEditText>(R.id.et)
 
-        fdt.addValidators {
-            allValid(
-                    PrefixValidator("d")
-                            .apply { errorMessage = "Must start with d." },
-                    WrapValidator<Int, String>(IntRangeValidator(1, 5)) { it?.length }
-                            .apply { errorMessage = "Must be of length 1-5." })
-        }
-
-        // OR add using ValidatorFactory (appropriate for Java)
-        fdt.addValidator(
-                ValidatorFactory.allValid(
-                        PrefixValidator("d").apply { errorMessage = "Must start with d." },
-                        WrapValidator<Int, String>(IntRangeValidator(1, 5)) { it?.length }
-                                .apply { errorMessage = "Must be of length 1-5." }))
+        et + all(
+                prefix("d") { errorMessage = "Must start with d." },
+                textLength(1, 5) { errorMessage = "Must be of length 1-5." }
+        )
     }
 
     private fun setupUi() {

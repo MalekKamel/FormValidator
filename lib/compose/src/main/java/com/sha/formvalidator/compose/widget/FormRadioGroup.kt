@@ -15,6 +15,7 @@ import com.sha.compoz.model.TextArgs
 import com.sha.compoz.model.VectorArgs
 import com.sha.formvalidator.compose.ModelFactory
 import com.sha.formvalidator.compose.ValidatableModel
+import com.sha.formvalidator.compose.email
 
 @Composable
 fun <T: ValidatableModel<String>> FormRadioGroup(
@@ -52,7 +53,7 @@ private fun FormRadioGroupPreview() {
         val radioOptions = listOf("Calls", "Missed", "Friends")
         val (selectedOption, onOptionSelected) = +state { radioOptions[0] }
         FormRadioGroup(
-                model = ModelFactory.email(),
+                model = email(),
                 options = radioOptions,
                 selectedOption = selectedOption,
                 onSelectedChange = onOptionSelected

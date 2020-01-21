@@ -34,36 +34,27 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
             validator.value = value
             validate(ValidationSource.LIBRARY)
         }
-    override var ignoreInitialValidation: Boolean = true
-    override var errorMessage: String = ""
-
-    override var validateOnChange: Boolean = false
-    override var validationSource: ValidationSource = ValidationSource.LIBRARY
-    override var recompose: () -> Unit = {}
     override var errorMessageRes: Int = -1
         set(value) {
             field = value
             val context = +ambient(ContextAmbient)
             errorMessage = context.getString(value)
         }
-
-    override var tmpError: String? = null
-
-    override var onValidate: ((Boolean) -> Unit)? = null
-
-    override var isMandatory: Boolean = true
-
-    override var isIgnored: Boolean = false
-
-    override var tag: String? = null
-
-    override var shouldIgnore: (() -> Boolean)? = null
-
-    override var status: ModelStatus = ModelStatus.INVALID
-
     override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create {
         if (errorMessage.isNotEmpty()) errorMessage else validator.errorGenerator.generate()
     }
+    override var ignoreInitialValidation: Boolean = true
+    override var errorMessage: String = ""
+    override var validateOnChange: Boolean = false
+    override var validationSource: ValidationSource = ValidationSource.LIBRARY
+    override var recompose: () -> Unit = {}
+    override var tmpError: String? = null
+    override var onValidate: ((Boolean) -> Unit)? = null
+    override var isMandatory: Boolean = true
+    override var isIgnored: Boolean = false
+    override var tag: String? = null
+    override var shouldIgnore: (() -> Boolean)? = null
+    override var status: ModelStatus = ModelStatus.INVALID
 
     override fun validate(validationSource: ValidationSource): Boolean {
         if (isIgnored) return true

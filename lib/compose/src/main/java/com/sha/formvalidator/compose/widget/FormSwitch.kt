@@ -14,8 +14,8 @@ import androidx.ui.tooling.preview.Preview
 import com.sha.compoz.Switch
 import com.sha.compoz.model.TextArgs
 import com.sha.compoz.model.VectorArgs
-import com.sha.formvalidator.compose.ModelFactory
 import com.sha.formvalidator.compose.ValidatableModel
+import com.sha.formvalidator.compose.boolean
 
 @Composable
 fun <T: ValidatableModel<Boolean>> FormSwitch(
@@ -65,7 +65,7 @@ fun ToggleButtonPreviewOn() {
 private fun ToggleButtonPreviewTemplate(selected: Boolean) {
     Surface {
         FormSwitch(
-                model = ModelFactory.boolean(true),
+                model = boolean(selected),
                 text = "Toggle Button",
                 modifier = Spacing(32.dp)
         )

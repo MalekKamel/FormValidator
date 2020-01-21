@@ -15,6 +15,7 @@ import com.sha.compoz.Slider
 import com.sha.compoz.model.TextArgs
 import com.sha.formvalidator.compose.ModelFactory
 import com.sha.formvalidator.compose.ValidatableModel
+import com.sha.formvalidator.compose.floatRange
 
 @Composable
 fun <T: ValidatableModel<Float>> FormSlider(
@@ -52,6 +53,6 @@ fun <T: ValidatableModel<Float>> FormSlider(
 @Composable
 private fun FormSeekBarPreview() {
     Surface {
-        FormSlider(model = ModelFactory.floatRange(0.1f, 0.5f), position = SliderPosition())
+        FormSlider(model = floatRange(0.1f, 0.5f), position = SliderPosition())
     }
 }

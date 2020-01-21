@@ -6,15 +6,16 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import com.sha.formvalidator.DefTextValidationHandler
 import com.sha.formvalidator.TextValidationHandler
+import com.sha.formvalidator.TextViewValidatable
 import com.sha.formvalidator.Validatable
-import com.sha.formvalidator.core.validator.Validator
-import com.sha.formvalidator.model.CompositeValidatorInfo
 
 /**
  * An implementation of [Validatable] for [AppCompatEditText].
  */
-open class FormEditText : AppCompatEditText, Validatable {
-    lateinit var validationHandler: TextValidationHandler
+open class FormEditText : AppCompatEditText, TextViewValidatable {
+    override lateinit var validationHandler: TextValidationHandler
+    override val string: String
+        get() = text.toString()
 
     constructor(context: Context) : super(context) { setupDefaultValidator(null, context) }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setupDefaultValidator(attrs, context) }
@@ -30,29 +31,6 @@ open class FormEditText : AppCompatEditText, Validatable {
         }
         validationHandler = DefTextValidationHandler(this, attrs, context)
     }
-
-    /**
-     * Add a validator to this FormEditText. The validator will be added in the
-     * queue of the current validators.
-     *
-     * @param validator object
-     */
-    fun addValidator(validator: Validator<String>) {
-        this.validationHandler.addValidator(validator)
-    }
-
-    fun addValidators(block: CompositeValidatorInfo<String>.() -> Unit) {
-        CompositeValidatorInfo<String>().apply { block() }
-                .validators
-                .map { validationHandler.addValidator(it) }
-    }
-
-    /**
-     * validate field
-     *
-     * @return true if valid.
-     */
-    override fun validate() = validationHandler.validate()
 
     override fun getBackground(): Drawable? {
         val background = super.getBackground()

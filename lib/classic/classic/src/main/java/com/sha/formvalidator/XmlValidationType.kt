@@ -1,6 +1,6 @@
 package com.sha.formvalidator
 
-enum class TextViewValidationType constructor(var value: Int) {
+enum class XmlValidationType constructor(var value: Int) {
     REGEX(0),
     NUMERIC(1),
     ALPHA(2),
@@ -17,11 +17,11 @@ enum class TextViewValidationType constructor(var value: Int) {
     DATE(13),
     NUMERIC_RANGE(14),
     FLOAT_NUMERIC_RANGE(15),
-    NOT_DETECTABLE(2000);
+    UNKNOWN(2000);
 
     companion object {
-        fun fromValue(value: Int): TextViewValidationType {
-           return values().firstOrNull { it.value == value } ?: NOT_DETECTABLE
+        fun fromValue(value: Int): XmlValidationType {
+           return values().firstOrNull { it.value == value } ?: UNKNOWN
         }
     }
 }

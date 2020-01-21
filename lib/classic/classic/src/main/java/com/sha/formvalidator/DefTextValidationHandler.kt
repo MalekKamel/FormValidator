@@ -39,7 +39,7 @@ class DefTextValidationHandler : TextValidationHandler {
     }
 
     private fun setupDynamically(editText: EditText, context: Context) {
-        attrInfo.validationType = TextViewValidationType.NOT_EMPTY
+        attrInfo.validationType = XmlValidationType.NOT_EMPTY
         this.editText = editText
         setupValidator(context)
         setupChangeListener()
@@ -62,8 +62,8 @@ class DefTextValidationHandler : TextValidationHandler {
         attrInfo.required = typedArray.getBoolean(R.styleable.FormEditText_required, true)
         attrInfo.validateOnChange = typedArray.getBoolean(R.styleable.FormEditText_validateOnChange, false)
 
-        val validationTypeValue = typedArray.getInt(R.styleable.FormEditText_validationType, TextViewValidationType.NOT_DETECTABLE.value)
-        attrInfo.validationType = TextViewValidationType.fromValue(validationTypeValue)
+        val validationTypeValue = typedArray.getInt(R.styleable.FormEditText_validationType, XmlValidationType.UNKNOWN.value)
+        attrInfo.validationType = XmlValidationType.fromValue(validationTypeValue)
 
         attrInfo.errorMessage = typedArray.getString(R.styleable.FormEditText_errorMessage) ?: ""
         attrInfo.customValidationType = typedArray.getString(R.styleable.FormEditText_customValidationType) ?: ""
@@ -72,12 +72,12 @@ class DefTextValidationHandler : TextValidationHandler {
         attrInfo.dateFormat = typedArray.getString(R.styleable.FormEditText_dateFormat) ?: ""
 
         when (attrInfo.validationType) {
-            TextViewValidationType.NUMERIC_RANGE -> {
+            XmlValidationType.NUMERIC_RANGE -> {
                 attrInfo.minNumber = typedArray.getInt(R.styleable.FormEditText_minNumber, Integer.MIN_VALUE).toLong()
                 attrInfo.maxNumber = typedArray.getInt(R.styleable.FormEditText_maxNumber, Integer.MAX_VALUE).toLong()
             }
 
-            TextViewValidationType.FLOAT_NUMERIC_RANGE -> {
+            XmlValidationType.FLOAT_NUMERIC_RANGE -> {
                 attrInfo.floatMinNumber = typedArray.getFloat(R.styleable.FormEditText_floatMinNumber, Float.MIN_VALUE)
                 attrInfo.floatMaxNumber = typedArray.getFloat(R.styleable.FormEditText_floatMaxNumber, Float.MAX_VALUE)
             }
@@ -105,7 +105,7 @@ class DefTextValidationHandler : TextValidationHandler {
 
     override fun setupValidator(context: Context) {
         mValidator = AllValidator()
-        val validator = TextValidatorFactory.validator(attrInfo, context)
+        val validator = XmlValidatorFactory.make(attrInfo, context)
         validator.value = editText.text.toString()
         addValidator(validator)
     }

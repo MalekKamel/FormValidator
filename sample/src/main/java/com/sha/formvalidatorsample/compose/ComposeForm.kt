@@ -45,7 +45,7 @@ fun ComposeForm() {
         errorMessageRes = R.string.error_phone_not_valid
     }
 
-    val emailOrPhone = form + any(email, phone) {
+    val emailOrPhone = form + any(email , phone) {
         errorMessageRes = R.string.error_email_address_not_valid
     }
 

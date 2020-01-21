@@ -8,7 +8,8 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 
-import com.sha.formvalidator.ValidatorFactory
+import com.sha.formvalidator.Validators
+import com.sha.formvalidator.any
 import com.sha.formvalidator.core.validator.CreditCardValidator
 import com.sha.formvalidator.core.validator.ErrorGenerator
 import com.sha.formvalidator.core.validator.pattern.EmailValidator
@@ -31,14 +32,11 @@ class EmailOrCreditCardActivity : Activity() {
 
         //Interesting stuff starts here
 
-        val fdt = findViewById<FormEditText>(R.id.et)
+        val et = findViewById<FormEditText>(R.id.et)
 
-        fdt.addValidator(
-                ValidatorFactory.anyValid(
-                        CreditCardValidator(),
-                        EmailValidator()
-                ).apply { ErrorGenerator.create("This is neither a creditcard or an email") }
-        )
+        et + any(CreditCardValidator(), EmailValidator()) {
+            errorMessage = "This is neither a credit card or an email"
+        }
     }
 
     fun onClickValidate(v: View) {

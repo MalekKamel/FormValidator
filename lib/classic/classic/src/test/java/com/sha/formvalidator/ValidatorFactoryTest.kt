@@ -1,4 +1,4 @@
-package com.sha.formvalidator.compose
+package com.sha.formvalidator
 
 import org.junit.Test
 

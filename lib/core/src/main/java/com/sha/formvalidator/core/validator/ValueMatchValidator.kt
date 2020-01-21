@@ -8,7 +8,7 @@ import com.sha.formvalidator.core.DefaultErrors
  */
 class ValueMatchValidator<V>(private val values: () -> List<V?>) : AbsValidator<V>() {
     override var value: V? = null
-    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.valueMatchError)
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.matchError)
 
     override fun validate(): Boolean {
         val values = values()

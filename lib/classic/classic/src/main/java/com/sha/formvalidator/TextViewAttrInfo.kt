@@ -8,7 +8,7 @@ class TextViewAttrInfo {
     var errorMessage: String = ""
     var required = true
     var validateOnChange = false
-    var validationType: TextViewValidationType? = null
+    var validationType: XmlValidationType? = null
     var customValidationType: String = ""
 
     var regex: String = ""

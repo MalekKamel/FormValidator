@@ -5,15 +5,17 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import com.sha.formvalidator.DefTextValidationHandler
 import com.sha.formvalidator.TextValidationHandler
+import com.sha.formvalidator.TextViewValidatable
 import com.sha.formvalidator.Validatable
-import com.sha.formvalidator.core.validator.TextValidator
-import com.sha.formvalidator.model.CompositeValidatorInfo
 
 /**
  * An implementation of [Validatable] for [AppCompatAutoCompleteTextView].
  */
-open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable {
-    lateinit var validationHandler: TextValidationHandler
+open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, TextViewValidatable {
+    override lateinit var validationHandler: TextValidationHandler
+    override val string: String
+        get() = text.toString()
+
     constructor(context: Context) : super(context) { setupDefaultValidator(null) }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setupDefaultValidator(attrs) }
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
@@ -28,32 +30,4 @@ open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, Validatable
         }
         validationHandler = DefTextValidationHandler(this, attrs, context)
     }
-
-    /**
-     * Add a validator to this AutoCompleteTextView. The validator will be added in the
-     * queue of the current validators.
-     *
-     * @param validator object
-     */
-    fun addValidator(validator: TextValidator) {
-        this.validationHandler.addValidator(validator)
-    }
-
-    fun addValidators(block: CompositeValidatorInfo<String>.() -> Unit) {
-        CompositeValidatorInfo<String>().apply { block() }
-                .validators
-                .map { validationHandler.addValidator(it) }
-    }
-
-    /**
-     * Calling *validate()* will cause the AutoCompleteTextView to go through
-     * customValidators and call [com.sha.formvalidator.core.textview.validator.TextValidator.isValid]
-     *
-     * @return true if the validity passes false otherwise.
-     */
-    override fun validate(): Boolean {
-        return validationHandler.validate()
-    }
-
-
 }

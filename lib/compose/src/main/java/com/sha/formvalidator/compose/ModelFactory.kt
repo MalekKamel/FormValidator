@@ -7,149 +7,7 @@ import com.sha.formvalidator.core.validator.pattern.*
 import java.util.regex.Pattern
 
 object ModelFactory {
-
-    fun mandatory(
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(MandatoryValidator(), block)
-
-    fun optional(
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(DummyValidator(), block)
-
-    fun webUrl(
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(WebUrlValidator(), block)
-
-    fun phone(
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(PhoneValidator(), block)
-
-    fun personName(
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(PersonNameValidator(), block)
-
-    fun personFullName(
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(PersonFullNameValidator(), block)
-
-    fun ipAddress(
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(IpAddressValidator(), block)
-
-    fun email(
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(EmailValidator(), block)
-
-    fun domain(
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(DomainValidator(), block)
-
-    fun alpha(
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(AlphaValidator(), block)
-
-    fun alphaNumeric(
-
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(AlphaNumericValidator(), block)
-
-    fun numeric(
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(NumericValidator(), block)
-
-    fun creditCard(
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(CreditCardValidator(), block)
-
-    fun pattern(
-            pattern: Pattern,
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(PatternValidator(pattern), block)
-
-    fun <V> any(
-            models: List<ValidatableModel<V>>,
-            block: (ValidatableModel<V>.() -> Unit)? = null
-    ): ValidatableModel<V> = makeModel(AnyValidator(models.map { it.validator }), block)
-
-    fun <V> all(
-            models: List<ValidatableModel<V>>,
-            block: (ValidatableModel<V>.() -> Unit)? = null
-    ): ValidatableModel<V> = makeModel(AllValidator(models.map { it.validator }), block)
-
-    fun prefix(
-            prefix: String,
-            ignoreCase: Boolean = false,
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(PrefixValidator(prefix, ignoreCase), block)
-
-    fun suffix(
-            suffix: String,
-            ignoreCase: Boolean = false,
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(SuffixValidator(suffix, ignoreCase), block)
-
-    fun date(
-            format: String,
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(DateValidator(format), block)
-
-    fun textLength(
-            min: Long,
-            max: Long,
-            block: (ValidatableModel<String>.() -> Unit)? = null
-    ): ValidatableModel<String> = makeModel(
-            WrapValidator(LongRangeValidator(min, max)) { it?.length?.toLong() },
-            block
-    )
-
-    fun floatRange(
-            min: Float,
-            max: Float,
-            block: (ValidatableModel<Float>.() -> Unit)? = null
-    ): ValidatableModel<Float> = makeModel(FloatRangeValidator(min, max), block)
-
-    fun doubleRange(
-            min: Double,
-            max: Double,
-            block: (ValidatableModel<Double>.() -> Unit)? = null
-    ): ValidatableModel<Double> = makeModel(DoubleRangeValidator(min, max), block)
-
-    fun longRange(
-            min: Long,
-            max: Long,
-            block: (ValidatableModel<Long>.() -> Unit)? = null
-    ): ValidatableModel<Long> = makeModel(LongRangeValidator(min, max), block)
-
-    fun intRange(
-            min: Int,
-            max: Int,
-            block: (ValidatableModel<Int>.() -> Unit)? = null
-    ): ValidatableModel<Int> = makeModel(IntRangeValidator(min, max), block)
-
-    fun charRange(
-            min: Char,
-            max: Char,
-            block: (ValidatableModel<Char>.() -> Unit)? = null
-    ): ValidatableModel<Char> = makeModel(CharRangeValidator(min, max), block)
-
-    fun shortRange(
-            min: Short,
-            max: Short,
-            block: (ValidatableModel<Short>.() -> Unit)? = null
-    ): ValidatableModel<Short> = makeModel(ShortRangeValidator(min, max), block)
-
-    fun byteRange(
-            min: Byte,
-            max: Byte,
-            block: (ValidatableModel<Byte>.() -> Unit)? = null
-    ): ValidatableModel<Byte> = makeModel(ByteRangeValidator(min, max), block)
-
-    fun boolean(
-            validation: Boolean,
-            block: (ValidatableModel<Boolean>.() -> Unit)? = null
-    ): ValidatableModel<Boolean> = makeModel(BooleanValidator { validation }, block)
-
-    fun <V> makeModel(
+    fun <V> make(
             validator: Validator<V>,
             block: (ValidationModel<V>.() -> Unit)? = null
     ): ValidationModel<V> {
@@ -169,140 +27,152 @@ object ModelFactory {
     }
 }
 
+fun <V> make(
+        validator: Validator<V>,
+        block: (ValidationModel<V>.() -> Unit)? = null
+): ValidationModel<V> = ModelFactory.make(validator, block)
+
 fun mandatory(
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.mandatory(block)
+): ValidatableModel<String> = make(MandatoryValidator(), block)
 
 fun optional(
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.optional(block)
+): ValidatableModel<String> = make(DummyValidator(), block)
 
 fun webUrl(
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.webUrl(block)
+): ValidatableModel<String> = make(WebUrlValidator(), block)
 
 fun phone(
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.phone(block)
+): ValidatableModel<String> = make(PhoneValidator(), block)
 
 fun personName(
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.personName(block)
+): ValidatableModel<String> = make(PersonNameValidator(), block)
 
 fun personFullName(
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.personFullName(block)
+): ValidatableModel<String> = make(PersonFullNameValidator(), block)
 
 fun ipAddress(
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.ipAddress(block)
+): ValidatableModel<String> = make(IpAddressValidator(), block)
 
 fun email(
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.email(block)
+): ValidatableModel<String> = make(EmailValidator(), block)
 
 fun domain(
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.domain(block)
+): ValidatableModel<String> = make(DomainValidator(), block)
 
 fun alpha(
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.alpha(block)
+): ValidatableModel<String> = make(AlphaValidator(), block)
 
 fun alphaNumeric(
-
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.alphaNumeric(block)
+): ValidatableModel<String> = make(AlphaNumericValidator(), block)
 
 fun numeric(
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.numeric(block)
+): ValidatableModel<String> = make(NumericValidator(), block)
 
 fun creditCard(
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.creditCard(block)
+): ValidatableModel<String> = make(CreditCardValidator(), block)
 
 fun pattern(
         pattern: Pattern,
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.pattern(pattern, block)
+): ValidatableModel<String> = make(PatternValidator(pattern), block)
+
+fun pattern(
+        pattern: String,
+        block: (ValidatableModel<String>.() -> Unit)? = null
+): ValidatableModel<String> = make(PatternValidator(pattern), block)
 
 fun <V> any(
         vararg models: ValidatableModel<V>,
         block: (ValidatableModel<V>.() -> Unit)? = null
-): ValidatableModel<V> = ModelFactory.any(models.asList(), block)
+): ValidatableModel<V> = make(AnyValidator(models.map { it.validator }), block)
 
 fun <V> all(
         vararg models: ValidatableModel<V>,
         block: (ValidatableModel<V>.() -> Unit)? = null
-): ValidatableModel<V> = ModelFactory.all(models.asList(), block)
+): ValidatableModel<V> = make(AllValidator(models.map { it.validator }), block)
 
 fun prefix(
         prefix: String,
         ignoreCase: Boolean = false,
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.prefix(prefix, ignoreCase, block)
+): ValidatableModel<String> = make(PrefixValidator(prefix, ignoreCase), block)
 
 fun suffix(
         suffix: String,
         ignoreCase: Boolean = false,
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.suffix(suffix, ignoreCase, block)
+): ValidatableModel<String> = make(SuffixValidator(suffix, ignoreCase), block)
 
 fun date(
         format: String,
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.date(format, block)
+): ValidatableModel<String> = make(DateValidator(format), block)
 
 fun textLength(
         min: Long,
         max: Long,
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = ModelFactory.textLength(min, max, block)
+): ValidatableModel<String> = make(
+        WrapValidator(LongRangeValidator(min, max)) { it?.length?.toLong() },
+        block
+)
 
 fun floatRange(
         min: Float,
         max: Float,
         block: (ValidatableModel<Float>.() -> Unit)? = null
-): ValidatableModel<Float> = ModelFactory.floatRange(min, max, block)
+): ValidatableModel<Float> = make(FloatRangeValidator(min, max), block)
 
 fun doubleRange(
         min: Double,
         max: Double,
         block: (ValidatableModel<Double>.() -> Unit)? = null
-): ValidatableModel<Double> = ModelFactory.doubleRange(min, max, block)
+): ValidatableModel<Double> = make(DoubleRangeValidator(min, max), block)
 
 fun longRange(
         min: Long,
         max: Long,
         block: (ValidatableModel<Long>.() -> Unit)? = null
-): ValidatableModel<Long> = ModelFactory.longRange(min, max, block)
+): ValidatableModel<Long> = make(LongRangeValidator(min, max), block)
 
 fun intRange(
         min: Int,
         max: Int,
         block: (ValidatableModel<Int>.() -> Unit)? = null
-): ValidatableModel<Int> = ModelFactory.intRange(min, max, block)
+): ValidatableModel<Int> = make(IntRangeValidator(min, max), block)
 
 fun charRange(
         min: Char,
         max: Char,
         block: (ValidatableModel<Char>.() -> Unit)? = null
-): ValidatableModel<Char> = ModelFactory.charRange(min, max, block)
+): ValidatableModel<Char> = make(CharRangeValidator(min, max), block)
 
 fun shortRange(
         min: Short,
         max: Short,
         block: (ValidatableModel<Short>.() -> Unit)? = null
-): ValidatableModel<Short> = ModelFactory.shortRange(min, max, block)
+): ValidatableModel<Short> = make(ShortRangeValidator(min, max), block)
 
 fun byteRange(
         min: Byte,
         max: Byte,
         block: (ValidatableModel<Byte>.() -> Unit)? = null
-): ValidatableModel<Byte> = ModelFactory.byteRange(min, max, block)
+): ValidatableModel<Byte> = make(ByteRangeValidator(min, max), block)
 
 fun boolean(
         validation: Boolean,
         block: (ValidatableModel<Boolean>.() -> Unit)? = null
-): ValidatableModel<Boolean> = ModelFactory.boolean(validation, block)
+): ValidatableModel<Boolean> = make(BooleanValidator { validation }, block)
