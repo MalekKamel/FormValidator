@@ -13,7 +13,6 @@ import androidx.ui.tooling.preview.Preview
 import com.sha.compoz.RadioGroup
 import com.sha.compoz.model.TextArgs
 import com.sha.compoz.model.VectorArgs
-import com.sha.formvalidator.compose.ModelFactory
 import com.sha.formvalidator.compose.ValidatableModel
 import com.sha.formvalidator.compose.email
 

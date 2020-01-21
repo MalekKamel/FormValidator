@@ -20,7 +20,7 @@ class DefTextValidationHandler : TextValidationHandler {
      * The custom validators set using
      */
     private lateinit var mValidator: CompositeValidator<String>
-    lateinit var editText: EditText
+    private lateinit var editText: EditText
 
     private val attrInfo = TextViewAttrInfo()
 

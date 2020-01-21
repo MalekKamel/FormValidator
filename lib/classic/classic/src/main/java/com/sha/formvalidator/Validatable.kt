@@ -25,8 +25,7 @@ interface TextViewValidatable: Validatable {
     override fun validate() = validationHandler.validate()
 
     fun matches(other: TextView, error: String = DefaultErrors.matchError) {
-        this + ValueMatchValidator { listOf(string, other.text.toString()) }
-                .apply { errorMessage = error }
+        matches(listOf(other), error)
     }
 
     fun matches(others: List<TextView>, error: String = DefaultErrors.matchError) {

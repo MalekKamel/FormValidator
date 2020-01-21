@@ -1,7 +1,6 @@
 package com.sha.formvalidator.core
 
 import com.sha.formvalidator.core.validator.PrefixValidator
-import com.sha.formvalidator.core.validator.SuffixValidator
 import com.sha.formvalidator.core.validator.TextValidator
 import org.junit.Before
 import org.junit.Test
