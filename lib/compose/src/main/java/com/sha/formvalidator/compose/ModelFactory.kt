@@ -32,9 +32,9 @@ fun <V> make(
         block: (ValidationModel<V>.() -> Unit)? = null
 ): ValidationModel<V> = ModelFactory.make(validator, block)
 
-fun mandatory(
-        block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = make(MandatoryValidator(), block)
+fun <V> mandatory(
+        block: (ValidatableModel<V>.() -> Unit)? = null
+): ValidatableModel<V> = make(MandatoryValidator(), block)
 
 fun optional(
         block: (ValidatableModel<String>.() -> Unit)? = null

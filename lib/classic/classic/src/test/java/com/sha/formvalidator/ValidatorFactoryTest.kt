@@ -389,3 +389,20 @@ class ConditionValidationTest {
         assert(!model.isValid)
     }
 }
+
+class BooleanValidationTest {
+
+    @Test
+    fun `should be valid`() {
+        val model = boolean(true)
+        model.value = true
+        assert(model.isValid)
+    }
+
+    @Test
+    fun `should be invalid`() {
+        val model = boolean(true)
+        model.value = false
+        assert(!model.isValid)
+    }
+}

@@ -6,13 +6,13 @@ class ComposeValidatorTest {
 
     @Test
     fun `constructor(List), should work correctly`() {
-        val composeValidator = ComposeValidator(listOf(mandatory(), mandatory()))
+        val composeValidator = ComposeValidator(listOf(mandatory<String>(), mandatory()))
         assert(composeValidator.models.size == 2)
     }
 
     @Test
     fun `constructor(vararg), should work correctly`() {
-        val composeValidator = ComposeValidator(mandatory(), mandatory())
+        val composeValidator = ComposeValidator(mandatory<String>(), mandatory<String>())
         assert(composeValidator.models.size == 2)
     }
 

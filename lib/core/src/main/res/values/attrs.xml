@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="FormEditText">
+    <declare-styleable name="FormValidator">
         <attr name="validationType">
             <enum name="regex" value="0" />
             <enum name="numeric" value="1" />
@@ -21,6 +21,8 @@
             <enum name="floatRange" value="15" />
             <enum name="intRange" value="16" />
             <enum name="optional" value="17" />
+            <enum name="checked" value="18" />
+            <enum name="unchecked" value="19" />
         </attr>
 
         <attr name="errorMessage" format="string" />

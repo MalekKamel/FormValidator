@@ -19,6 +19,8 @@ enum class XmlValidationType constructor(var value: Int) {
     FLOAT_RANGE(15),
     INT_RANGE(16),
     OPTIONAL(17),
+    CHECKED(18),
+    UNCHECKED(19),
     UNKNOWN(2000);
 
     companion object {

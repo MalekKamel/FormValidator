@@ -36,7 +36,7 @@ fun ComposeForm() {
     }
 
     // Declare a new field validation and add it to Form
-    val country = form + mandatory {
+    val country = form + mandatory<String> {
         errorMessage = "Country Required!"
         validateOnChange = true
         onValidate = { print("country valid = $it")}
@@ -55,9 +55,9 @@ fun ComposeForm() {
         errorMessageRes = R.string.error_email_address_not_valid
     }
 
-    val password = form + mandatory()
+    val password = form + mandatory<String>()
 
-    val confirmPassword = mandatory()
+    val confirmPassword = mandatory<String>()
             .matches(password,"Passwords don't match!")
             .addTo(form)
 
@@ -75,7 +75,7 @@ fun ComposeForm() {
         form + this
     }
 
-    val radioGroup = mandatory {
+    val radioGroup = mandatory<String> {
         errorMessage = "Select method!"
         validateOnChange = true
         form + this

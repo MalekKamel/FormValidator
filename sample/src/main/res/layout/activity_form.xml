@@ -72,12 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="true"
-            app:checkBoxValidation="checked"/>
-        <com.sha.formvalidator.widget.FormCheckBox
-            android:text="I accept terms &amp; conditions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:checkBoxValidation="checked"/>
+            app:validationType="checked"/>
 
         <Space
             android:layout_width="match_parent"

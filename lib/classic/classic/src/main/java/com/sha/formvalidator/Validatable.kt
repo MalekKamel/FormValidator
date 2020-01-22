@@ -1,9 +1,9 @@
 package com.sha.formvalidator
 
-import android.widget.TextView
 import com.sha.formvalidator.core.DefaultErrors
 import com.sha.formvalidator.core.validator.Validator
 import com.sha.formvalidator.core.validator.ValueMatchValidator
+import com.sha.formvalidator.handler.ValidationHandlerInterface
 
 /**
  * The interface that every field must implement to be validated
@@ -13,9 +13,9 @@ interface Validatable {
     fun validate(): Boolean
 }
 
-interface TextViewValidatable: Validatable {
-    var validationHandler: TextValidationHandler
-    val string: String
+interface ValidatableWidget<V>: Validatable {
+    var validationHandler: ValidationHandlerInterface<V>
+    val value: V
 
     /**
      * validate field
@@ -24,13 +24,13 @@ interface TextViewValidatable: Validatable {
      */
     override fun validate() = validationHandler.validate()
 
-    fun matches(other: TextView, error: String = DefaultErrors.matchError) {
+    fun matches(other: ValidatableWidget<V>, error: String = DefaultErrors.matchError) {
         matches(listOf(other), error)
     }
 
-    fun matches(others: List<TextView>, error: String = DefaultErrors.matchError) {
+    fun matches(others: List<ValidatableWidget<V>>, error: String = DefaultErrors.matchError) {
         this + ValueMatchValidator {
-            others.map { it.text.toString() }.toMutableList().apply { add(string) }
+            others.map { it.value }
         }.apply { errorMessage = error }
     }
 
@@ -40,11 +40,11 @@ interface TextViewValidatable: Validatable {
      *
      * @param validator object
      */
-    fun addValidator(validator: Validator<String>) {
+    fun addValidator(validator: Validator<V>) {
         this.validationHandler.addValidator(validator)
     }
 
-    operator fun plus(validator: Validator<String>) {
+    operator fun plus(validator: Validator<V>) {
         validationHandler.addValidator(validator)
     }
 }

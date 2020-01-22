@@ -125,9 +125,9 @@ class ValidatableModelTest {
     @Test
     fun `matches(), should be invalid if validators have different values`() {
         val e = "Passwords don't match!"
-        val v1 = mandatory()
-        val v2 = mandatory()
-        val v3 = mandatory().matches(listOf(v1, v2), e)
+        val v1 = mandatory<String>()
+        val v2 = mandatory<String>()
+        val v3 = mandatory<String>().matches(listOf(v1, v2), e)
 
         v1.ignoreInitialValidation = false
         v2.ignoreInitialValidation = false

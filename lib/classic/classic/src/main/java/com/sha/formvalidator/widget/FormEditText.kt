@@ -4,17 +4,17 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
-import com.sha.formvalidator.DefTextValidationHandler
-import com.sha.formvalidator.TextValidationHandler
-import com.sha.formvalidator.TextViewValidatable
+import com.sha.formvalidator.handler.TextViewValidationHandler
+import com.sha.formvalidator.handler.ValidationHandlerInterface
+import com.sha.formvalidator.ValidatableWidget
 import com.sha.formvalidator.Validatable
 
 /**
  * An implementation of [Validatable] for [AppCompatEditText].
  */
-open class FormEditText : AppCompatEditText, TextViewValidatable {
-    override lateinit var validationHandler: TextValidationHandler
-    override val string: String
+open class FormEditText : AppCompatEditText, ValidatableWidget<String> {
+    override lateinit var validationHandler: ValidationHandlerInterface<String>
+    override val value: String
         get() = text.toString()
 
     constructor(context: Context) : super(context) { setupDefaultValidator(null, context) }
@@ -24,12 +24,7 @@ open class FormEditText : AppCompatEditText, TextViewValidatable {
     }
 
     private fun setupDefaultValidator(attrs: AttributeSet?, context: Context) {
-        if (attrs == null) {
-            //support dynamic new FormEditText(context)
-            validationHandler = DefTextValidationHandler(this, context)
-            return
-        }
-        validationHandler = DefTextValidationHandler(this, attrs, context)
+        validationHandler = TextViewValidationHandler(this, attrs)
     }
 
     override fun getBackground(): Drawable? {

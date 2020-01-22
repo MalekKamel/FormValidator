@@ -2,6 +2,7 @@ package com.sha.formvalidator
 
 import android.content.Context
 import com.sha.formvalidator.core.validator.Validator
+import com.sha.formvalidator.handler.ValidationHandlerInterface
 import org.junit.Before
 import org.junit.Test
 
@@ -34,8 +35,8 @@ class TextViewValidatableTest {
     }
 }
 
-class TextViewValidatableImpl: TextViewValidatable {
-    override var validationHandler: TextValidationHandler = TextValidationHandlerImpl()
+class TextViewValidatableImpl: ValidatableWidget {
+    override var validationHandler: ValidationHandlerInterface = TextValidationHandlerImpl()
     val addValidatorInvoked: Boolean
         get() = (validationHandler as TextValidationHandlerImpl).addValidatorInvoked
 
@@ -48,7 +49,7 @@ class TextViewValidatableImpl: TextViewValidatable {
         get() = "text"
 }
 
-class TextValidationHandlerImpl : TextValidationHandler {
+class TextValidationHandlerImpl : ValidationHandlerInterface {
     var isValid: Boolean = false
     var addValidatorInvoked: Boolean = false
 

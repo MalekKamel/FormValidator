@@ -1,14 +1,15 @@
-package com.sha.formvalidator
+package com.sha.formvalidator.factory
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.text.TextUtils
+import com.sha.formvalidator.*
 import com.sha.formvalidator.core.validator.DummyValidator
 import com.sha.formvalidator.core.validator.Validator
 
-object XmlValidatorFactory {
+object TextAttrValidatorFactory: AttrValidatorFactory<String> {
 
-    fun make(attrInfo: TextViewAttrInfo, context: Context): Validator<String> {
+    override fun make(attrInfo: AttrInfo, context: Context): Validator<String> {
         val validator = when (attrInfo.validationType) {
             XmlValidationType.UNKNOWN -> {
                 if (attrInfo.customValidationType.isNotEmpty())
@@ -25,7 +26,7 @@ object XmlValidatorFactory {
         else validator
     }
 
-    private fun customValidator(attrInfo: TextViewAttrInfo, context: Context): Validator<String> {
+    private fun customValidator(attrInfo: AttrInfo, context: Context): Validator<String> {
         val opt = TextViewValidators.customValidators.firstOrNull {
             it.customValidationType(context) == attrInfo.customValidationType
         }
@@ -34,7 +35,7 @@ object XmlValidatorFactory {
     }
 
     @SuppressLint("StringFormatMatches")
-    private fun predefinedValidator(attrInfo: TextViewAttrInfo): Validator<String> {
+    private fun predefinedValidator(attrInfo: AttrInfo): Validator<String> {
         return when (attrInfo.validationType) {
             XmlValidationType.OPTIONAL -> optional()
             XmlValidationType.MANDATORY -> mandatory()
@@ -54,8 +55,9 @@ object XmlValidatorFactory {
             XmlValidationType.TEXT_LENGTH -> textLength(attrInfo.min.toLong(), attrInfo.max.toLong())
             XmlValidationType.INT_RANGE -> wrap(intRange(attrInfo.min, attrInfo.max)) { it?.toInt() }
             XmlValidationType.FLOAT_RANGE -> wrap(floatRange(attrInfo.floatMin, attrInfo.floatMax)) { it?.toFloat() }
-            XmlValidationType.UNKNOWN, null -> DummyValidator()
+            XmlValidationType.CHECKED -> wrap(boolean(true)) { it == "checked" }
+            XmlValidationType.UNCHECKED -> wrap(boolean(false)) { it == "unchecked" }
+            XmlValidationType.UNKNOWN -> DummyValidator()
         }
     }
-
 }

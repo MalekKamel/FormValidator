@@ -13,15 +13,15 @@ object Validators {
 
     @JvmOverloads
     @JvmStatic
-    fun mandatory(
-            block: (Validator<String>.() -> Unit)? = null
-    ): Validator<String> = make(MandatoryValidator(), block)
+    fun <V> mandatory(
+            block: (Validator<V>.() -> Unit)? = null
+    ): Validator<V> = make(MandatoryValidator(), block)
 
     @JvmOverloads
     @JvmStatic
-    fun optional(
-            block: (Validator<String>.() -> Unit)? = null
-    ): Validator<String> = make(DummyValidator(), block)
+    fun <V> optional(
+            block: (Validator<V>.() -> Unit)? = null
+    ): Validator<V> = make(DummyValidator(), block)
 
     @JvmOverloads
     @JvmStatic
@@ -214,9 +214,16 @@ object Validators {
             block: (Validator<Boolean>.() -> Unit)? = null
     ): Validator<Boolean> = make(BooleanValidator(condition), block)
 
+    @JvmOverloads
     @JvmStatic
-    fun <IN, OUT> wrap(validator: Validator<OUT>, convertValue: (IN?) -> OUT?)
-            = make(WrapValidator<IN, OUT>(validator,convertValue))
+    fun boolean(
+            validation: Boolean,
+            block: (Validator<Boolean>.() -> Unit)? = null
+    ): Validator<Boolean> = make(BooleanValidator { validation }, block)
+
+    @JvmStatic
+    fun <FROM, TO> wrap(validator: Validator<FROM>, convertValue: (TO?) -> FROM?)
+            = make(WrapValidator<FROM, TO>(validator, convertValue))
 
     @JvmOverloads
     @JvmStatic
@@ -229,12 +236,12 @@ object Validators {
     }
 }
 
-fun mandatory(
-        block: (Validator<String>.() -> Unit)? = null
+fun <V> mandatory(
+        block: (Validator<V>.() -> Unit)? = null
 ) = Validators.mandatory(block)
 
-fun optional(
-        block: (Validator<String>.() -> Unit)? = null
+fun <V> optional(
+        block: (Validator<V>.() -> Unit)? = null
 ) = Validators.optional(block)
 
 fun webUrl(
@@ -324,8 +331,8 @@ fun textLength(
         block: (Validator<String>.() -> Unit)? = null
 ) = Validators.textLength(min, max, block)
 
-fun <IN, OUT> wrap(validator: Validator<OUT>, convertValue: (IN?) -> OUT?)
-        = Validators.wrap<IN, OUT>(validator, convertValue)
+fun <FROM, TO> wrap(validator: Validator<FROM>, convertValue: (TO?) -> FROM?)
+        = Validators.wrap<FROM, TO>(validator, convertValue)
 
 fun floatRange(
         min: Float,
@@ -373,3 +380,8 @@ fun condition(
         condition: () -> Boolean,
         block: (Validator<Boolean>.() -> Unit)? = null
 ): Validator<Boolean> = Validators.condition(condition, block)
+
+fun boolean(
+        validation: Boolean,
+        block: (Validator<Boolean>.() -> Unit)? = null
+): Validator<Boolean> = Validators.boolean(validation, block)

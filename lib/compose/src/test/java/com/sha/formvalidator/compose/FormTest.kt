@@ -34,7 +34,7 @@ class FormTest {
 
     @Test
     fun `removeByTag(), should work correctly`() {
-        val m = form + mandatory { tag = "tag"}
+        val m = form + mandatory<String> { tag = "tag"}
         assert(form.size == 1)
 
         val removed = form.removeByTag(m.tag!!)
@@ -44,15 +44,15 @@ class FormTest {
     @Test
     fun `add(), should work correctly`() {
         assert(form.isEmpty)
-        form.add(mandatory())
+        form.add(mandatory<String>())
         assert(!form.isEmpty)
     }
 
     @Test
     fun `remove(), should work correctly`() {
-        val m1 = mandatory()
-        val m2 = mandatory()
-        val m3 = mandatory()
+        val m1 = mandatory<String>()
+        val m2 = mandatory<String>()
+        val m3 = mandatory<String>()
         form.add(m1, m2, m3)
         assert(form.size == 3)
 
@@ -65,13 +65,13 @@ class FormTest {
 
     @Test
     fun `plus(), should work correctly`() {
-        form + mandatory()
+        form + mandatory<String>()
         assert(form.size == 1)
     }
 
     @Test
     fun `minus(), should work correctly`() {
-        val m = form +  mandatory()
+        val m = form +  mandatory<String>()
         assert(form.size == 1)
 
         form - m

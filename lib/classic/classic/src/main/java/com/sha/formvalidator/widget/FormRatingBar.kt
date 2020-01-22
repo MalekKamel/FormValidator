@@ -1,21 +1,20 @@
 package com.sha.formvalidator.widget
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatRatingBar
-import androidx.core.content.ContextCompat
 import com.sha.formvalidator.Validatable
-import com.sha.formvalidator.core.R
-import com.sha.formvalidator.model.RequiredValidation
+import com.sha.formvalidator.ValidatableWidget
+import com.sha.formvalidator.handler.RatingBarValidationHandler
+import com.sha.formvalidator.handler.ValidationHandlerInterface
 
 /**
  * An implementation of [Validatable] for [AppCompatRatingBar].
  */
-open class FormRatingBar: AppCompatRatingBar, Validatable {
-    private var validation: RequiredValidation = RequiredValidation.REQUIRED
-    private var originalColor: Int = -1
+open class FormRatingBar: AppCompatRatingBar, ValidatableWidget<Float> {
+    override lateinit var validationHandler: ValidationHandlerInterface<Float>
+    override val value: Float
+        get() = rating
 
     constructor(context: Context) : super(context) { setup(null) }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup(attrs) }
@@ -24,34 +23,15 @@ open class FormRatingBar: AppCompatRatingBar, Validatable {
     }
 
     private fun setup(attrs: AttributeSet?) {
-        originalColor = (background as? ColorDrawable)?.color ?: Color.TRANSPARENT
-
-        // the view is added programmatically
-        if (attrs == null) return
-
-        context.obtainStyledAttributes(attrs, R.styleable.FormRatingBar).run {
-            val attr = getInt(R.styleable.FormRatingBar_ratingBarValidation,
-                    RequiredValidation.REQUIRED.value)
-            recycle()
-            validation = RequiredValidation.fromValue(attr)
-        }
+        validationHandler = RatingBarValidationHandler(this, attrs)
+        // to initialize change listener. Nothing is needed here as the implementation is in the function
+        setOnRatingBarChangeListener { _, _, _ ->  }
     }
 
-    private fun isValid(): Boolean = rating > 0
-    
-    private fun validationColor(isValid: Boolean): Int {
-       return if(isValid) originalColor else ContextCompat.getColor(context, R.color.red_light)
-    }
-
-    override fun validate(): Boolean {
-        return when(validation) {
-            RequiredValidation.REQUIRED -> {
-                val isValid = isValid()
-                setBackgroundColor(validationColor(isValid))
-                isValid
-            }
-
-            RequiredValidation.NOT_REQUIRED -> { true }
+    override fun setOnRatingBarChangeListener(listener: OnRatingBarChangeListener) {
+        super.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+            validationHandler.onValueChanged(rating)
+            listener.onRatingChanged(ratingBar, rating, fromUser)
         }
     }
 }
