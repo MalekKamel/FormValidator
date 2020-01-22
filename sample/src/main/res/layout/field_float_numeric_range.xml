@@ -8,8 +8,8 @@
         android:id="@+id/et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:validationType="floatNumericRange"
-        app:floatMinNumber="0.1"
-        app:floatMaxNumber="1.0"/>
+        app:validationType="floatRange"
+        app:floatMin="0.1"
+        app:floatMax="1.0"/>
 
 </com.google.android.material.textfield.TextInputLayout>

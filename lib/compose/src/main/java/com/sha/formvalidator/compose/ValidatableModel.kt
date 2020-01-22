@@ -9,7 +9,7 @@ import com.sha.formvalidator.core.validator.Validator
 import com.sha.formvalidator.core.validator.ValueMatchValidator
 import com.sha.formvalidator.core.validator.composite.AllValidator
 
-class ValidationModel<V>(validator: AllValidator<V>): AbsValidationModel<V>() {
+class ValidationModel<V>(validator: AllValidator<V>): AbsValidatableModel<V>() {
     override val validator: AllValidator<V> by lazy { validator }
 
     companion object {
@@ -27,7 +27,7 @@ class ValidationModel<V>(validator: AllValidator<V>): AbsValidationModel<V>() {
     }
 }
 
-abstract class AbsValidationModel<V>: ValidatableModel<V> {
+abstract class AbsValidatableModel<V>: ValidatableModel<V> {
     override var value: V? = null
         set(value) {
             field = value
@@ -90,7 +90,7 @@ abstract class AbsValidationModel<V>: ValidatableModel<V> {
             models: List<ValidatableModel<V>>,
             errorMessage: String
     ): ValidatableModel<V> {
-        val allModels = models.toMutableList().apply { add(0, this@AbsValidationModel) }
+        val allModels = models.toMutableList().apply { add(0, this@AbsValidatableModel) }
         val matchValidator = ValueMatchValidator {
             // when return directly it returns List<ValidatableModel<V>, don't know why!
             val values = allModels.map { it.value }

@@ -18,8 +18,8 @@ class ComposeValidatorTest {
 
     @Test
     fun `isValid, should invoke validator#isValid`() {
-        val m1 = FakeValidation.create()
-        val m2 = FakeValidation.create()
+        val m1 = FakeValidatable.create()
+        val m2 = FakeValidatable.create()
         val composeValidator = ComposeValidator(m1, m2)
 
         composeValidator.isValid

@@ -6,12 +6,12 @@ import org.junit.Test
 
 class ValidatableModelTest {
 
-    private lateinit var model: FakeValidation
+    private lateinit var model: FakeValidatable
     private val error: String = "error"
 
     @Before
     fun setup() {
-        model = FakeValidation.create {
+        model = FakeValidatable.create {
             errorMessage = error
             ignoreInitialValidation = false
             validateOnChange = true
@@ -178,7 +178,7 @@ class ValidatableModelTest {
 
     @Test
     fun `test showError`() {
-        val model = FakeValidation.create()
+        val model = FakeValidatable.create()
         model.ignoreInitialValidation = false
 
         model.showError("error")

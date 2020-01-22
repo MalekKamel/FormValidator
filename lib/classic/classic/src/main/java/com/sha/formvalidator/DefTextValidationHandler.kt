@@ -39,7 +39,7 @@ class DefTextValidationHandler : TextValidationHandler {
     }
 
     private fun setupDynamically(editText: EditText, context: Context) {
-        attrInfo.validationType = XmlValidationType.NOT_EMPTY
+        attrInfo.validationType = XmlValidationType.MANDATORY
         this.editText = editText
         setupValidator(context)
         setupChangeListener()
@@ -68,20 +68,19 @@ class DefTextValidationHandler : TextValidationHandler {
         attrInfo.errorMessage = typedArray.getString(R.styleable.FormEditText_errorMessage) ?: ""
         attrInfo.customValidationType = typedArray.getString(R.styleable.FormEditText_customValidationType) ?: ""
         attrInfo.regex = typedArray.getString(R.styleable.FormEditText_regex) ?: ""
-        attrInfo.emptyErrorMessage = typedArray.getString(R.styleable.FormEditText_requiredErrorMessage) ?: ""
         attrInfo.dateFormat = typedArray.getString(R.styleable.FormEditText_dateFormat) ?: ""
 
         when (attrInfo.validationType) {
-            XmlValidationType.NUMERIC_RANGE -> {
-                attrInfo.minNumber = typedArray.getInt(R.styleable.FormEditText_minNumber, Integer.MIN_VALUE).toLong()
-                attrInfo.maxNumber = typedArray.getInt(R.styleable.FormEditText_maxNumber, Integer.MAX_VALUE).toLong()
+            XmlValidationType.INT_RANGE, XmlValidationType.TEXT_LENGTH -> {
+                attrInfo.min = typedArray.getInt(R.styleable.FormEditText_min, Integer.MIN_VALUE)
+                attrInfo.max = typedArray.getInt(R.styleable.FormEditText_max, Integer.MAX_VALUE)
             }
 
-            XmlValidationType.FLOAT_NUMERIC_RANGE -> {
-                attrInfo.floatMinNumber = typedArray.getFloat(R.styleable.FormEditText_floatMinNumber, Float.MIN_VALUE)
-                attrInfo.floatMaxNumber = typedArray.getFloat(R.styleable.FormEditText_floatMaxNumber, Float.MAX_VALUE)
+            XmlValidationType.FLOAT_RANGE -> {
+                attrInfo.floatMin = typedArray.getFloat(R.styleable.FormEditText_floatMin, Float.MIN_VALUE)
+                attrInfo.floatMax = typedArray.getFloat(R.styleable.FormEditText_floatMax, Float.MAX_VALUE)
             }
-            else -> {}
+            else-> {}
         }
 
         typedArray.recycle()

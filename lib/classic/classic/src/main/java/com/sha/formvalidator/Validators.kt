@@ -148,7 +148,7 @@ object Validators {
             max: Long,
             block: (Validator<String>.() -> Unit)? = null
     ): Validator<String> = make(
-            WrapValidator(LongRangeValidator(min, max)) { it?.length?.toLong() },
+            wrap(LongRangeValidator(min, max)) { it?.length?.toLong() },
             block
     )
 
@@ -208,12 +208,15 @@ object Validators {
             block: (Validator<Byte>.() -> Unit)? = null
     ): Validator<Byte> = make(ByteRangeValidator(min, max), block)
 
-    @JvmOverloads
     @JvmStatic
-    fun boolean(
-            validation: Boolean,
+    fun condition(
+            condition: () -> Boolean,
             block: (Validator<Boolean>.() -> Unit)? = null
-    ): Validator<Boolean> = make(BooleanValidator { validation }, block)
+    ): Validator<Boolean> = make(BooleanValidator(condition), block)
+
+    @JvmStatic
+    fun <IN, OUT> wrap(validator: Validator<OUT>, convertValue: (IN?) -> OUT?)
+            = make(WrapValidator<IN, OUT>(validator,convertValue))
 
     @JvmOverloads
     @JvmStatic
@@ -319,8 +322,10 @@ fun textLength(
         min: Long,
         max: Long,
         block: (Validator<String>.() -> Unit)? = null
-) = Validators.textLength(min, max, block
-)
+) = Validators.textLength(min, max, block)
+
+fun <IN, OUT> wrap(validator: Validator<OUT>, convertValue: (IN?) -> OUT?)
+        = Validators.wrap<IN, OUT>(validator, convertValue)
 
 fun floatRange(
         min: Float,
@@ -364,7 +369,7 @@ fun byteRange(
         block: (Validator<Byte>.() -> Unit)? = null
 ): Validator<Byte> = Validators.byteRange(min, max, block)
 
-fun boolean(
-        validation: Boolean,
+fun condition(
+        condition: () -> Boolean,
         block: (Validator<Boolean>.() -> Unit)? = null
-): Validator<Boolean> = Validators.boolean(validation, block)
+): Validator<Boolean> = Validators.condition(condition, block)

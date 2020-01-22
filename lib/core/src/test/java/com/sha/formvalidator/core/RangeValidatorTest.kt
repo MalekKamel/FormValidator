@@ -17,13 +17,13 @@ class WrapValidatorTest {
     }
 
     @Test
-    fun validate_valid() {
+    fun `should be valid`() {
         validator.value = "1"
         assert(validator.isValid)
     }
 
     @Test
-    fun validate_invalid() {
+    fun `should be invalid`() {
         validator.value = "6"
         assert(!validator.isValid)
     }

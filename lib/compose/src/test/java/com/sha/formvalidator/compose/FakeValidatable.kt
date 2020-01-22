@@ -3,7 +3,7 @@ package com.sha.formvalidator.compose
 import com.sha.formvalidator.core.validator.MandatoryValidator
 import com.sha.formvalidator.core.validator.composite.AllValidator
 
-class FakeValidation(validator: AllValidator<String>): AbsValidationModel<String>() {
+class FakeValidatable(validator: AllValidator<String>): AbsValidatableModel<String>() {
     var isRecomposeInvoked = false
     var isValidInvoked = false
     override var recompose: () -> Unit = { isRecomposeInvoked = true }
@@ -17,8 +17,8 @@ class FakeValidation(validator: AllValidator<String>): AbsValidationModel<String
         }
 
     companion object {
-        fun create(block: (FakeValidation.() -> Unit)? = null): FakeValidation {
-            return FakeValidation(AllValidator(MandatoryValidator())).apply { block?.invoke(this) }
+        fun create(block: (FakeValidatable.() -> Unit)? = null): FakeValidatable {
+            return FakeValidatable(AllValidator(MandatoryValidator())).apply { block?.invoke(this) }
         }
     }
 }

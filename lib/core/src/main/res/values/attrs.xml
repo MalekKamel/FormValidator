@@ -17,12 +17,13 @@
             <enum name="personName" value="11" />
             <enum name="personFullName" value="12" />
             <enum name="date" value="13" />
-            <enum name="numericRange" value="14" />
-            <enum name="floatNumericRange" value="15" />
+            <enum name="textLength" value="14" />
+            <enum name="floatRange" value="15" />
+            <enum name="intRange" value="16" />
+            <enum name="optional" value="17" />
         </attr>
 
         <attr name="errorMessage" format="string" />
-        <attr name="requiredErrorMessage" format="string" />
 
         <attr name="customValidationType" format="string" />
         <attr name="regex" format="string" />
@@ -30,11 +31,11 @@
         <attr name="required" format="boolean" />
         <attr name="validateOnChange" format="boolean" />
 
-        <attr name="minNumber" format="integer" />
-        <attr name="maxNumber" format="integer" />
+        <attr name="min" format="integer" />
+        <attr name="max" format="integer" />
 
-        <attr name="floatMinNumber" format="float" />
-        <attr name="floatMaxNumber" format="float" />
+        <attr name="floatMin" format="float" />
+        <attr name="floatMax" format="float" />
 
     </declare-styleable>
 

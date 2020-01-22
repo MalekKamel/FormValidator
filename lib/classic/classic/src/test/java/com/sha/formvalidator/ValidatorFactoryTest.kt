@@ -373,18 +373,18 @@ class ByteValidationTest {
     }
 }
 
-class BooleanValidationTest {
+class ConditionValidationTest {
 
     @Test
     fun `should be valid`() {
-        val model = boolean(true)
+        val model = condition({ true })
         model.value = true
         assert(model.isValid)
     }
 
     @Test
     fun `should be invalid`() {
-        val model = boolean(true)
+        val model = condition({ true })
         model.value = false
         assert(!model.isValid)
     }

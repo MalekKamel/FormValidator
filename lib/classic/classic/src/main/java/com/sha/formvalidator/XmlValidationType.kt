@@ -11,12 +11,14 @@ enum class XmlValidationType constructor(var value: Int) {
     DOMAIN_NAME(7),
     IP_ADDRESS(8),
     WEB_URL(9),
-    NOT_EMPTY(10),
+    MANDATORY(10),
     PERSON_NAME(11),
     PERSON_FULL_NAME(12),
     DATE(13),
-    NUMERIC_RANGE(14),
-    FLOAT_NUMERIC_RANGE(15),
+    TEXT_LENGTH(14),
+    FLOAT_RANGE(15),
+    INT_RANGE(16),
+    OPTIONAL(17),
     UNKNOWN(2000);
 
     companion object {

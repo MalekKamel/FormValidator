@@ -1,9 +1,5 @@
 package com.sha.formvalidator
 
-import android.content.Context
-import android.text.TextUtils
-import com.sha.formvalidator.core.DefaultErrors
-
 class TextViewAttrInfo {
     var errorMessage: String = ""
     var required = true
@@ -14,16 +10,9 @@ class TextViewAttrInfo {
     var regex: String = ""
     var dateFormat: String = ""
 
-    var emptyErrorMessage: String = ""
+    var min: Int = 0
+    var max: Int = 0
 
-    var minNumber: Long = 0
-    var maxNumber: Long = 0
-
-    var floatMinNumber: Float = 0f
-    var floatMaxNumber: Float = 0f
-
-    fun emptyErrorMessage(context: Context): String {
-        return if (!TextUtils.isEmpty(emptyErrorMessage))
-            emptyErrorMessage else DefaultErrors.mandatoryError
-    }
+    var floatMin: Float = 0f
+    var floatMax: Float = 0f
 }

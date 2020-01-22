@@ -13,8 +13,8 @@ class FormTest {
 
     @Test
     fun `isValid, should invoke validator#isValid`() {
-        val m1 = FakeValidation.create().addTo(form) as FakeValidation
-        val m2 = FakeValidation.create().addTo(form) as FakeValidation
+        val m1 = FakeValidatable.create().addTo(form) as FakeValidatable
+        val m2 = FakeValidatable.create().addTo(form) as FakeValidatable
 
         form.isValid
 
@@ -24,8 +24,8 @@ class FormTest {
 
     @Test
     fun `modelByTag(), should work correctly`() {
-        form + FakeValidation.create { tag = "m1" }
-        form + FakeValidation.create { tag = "m2" }
+        form + FakeValidatable.create { tag = "m1" }
+        form + FakeValidatable.create { tag = "m2" }
 
         assert(form.modelByTag("m1") != null)
         assert(form.modelByTag("m2") != null)

@@ -176,3 +176,8 @@ fun boolean(
         validation: Boolean,
         block: (ValidatableModel<Boolean>.() -> Unit)? = null
 ): ValidatableModel<Boolean> = make(BooleanValidator { validation }, block)
+
+fun condition(
+        condition: () -> Boolean,
+        block: (ValidatableModel<Boolean>.() -> Unit)? = null
+): ValidatableModel<Boolean> = make(BooleanValidator(condition), block)

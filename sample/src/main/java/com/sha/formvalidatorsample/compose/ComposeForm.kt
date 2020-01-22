@@ -27,7 +27,13 @@ enum class FormTag(val value: String) {
 fun ComposeForm() {
 
     // Declare FormValidation to validate all fields using FormValidation.isValid
-    val form  = Form.create {}
+    val form  = Form.create {
+       this + condition({
+           // here you can add any condition that the form depends on
+           // if return true, the form will be valid, otherwise will be invalid.
+           true
+       })
+    }
 
     // Declare a new field validation and add it to Form
     val country = form + mandatory {

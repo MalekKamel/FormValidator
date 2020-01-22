@@ -10,6 +10,7 @@ import com.sha.formvalidator.model.IgnoreField
 import com.sha.formvalidatorsample.R
 
 class FormActivity : Activity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_form)

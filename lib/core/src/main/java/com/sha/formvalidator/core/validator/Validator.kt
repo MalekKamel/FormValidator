@@ -4,7 +4,6 @@ abstract class AbsValidator<V>: Validator<V> {
     override var value: V? = null
     override var onValidate: MutableList<((Boolean) -> Unit)?> = mutableListOf()
     override var onError: MutableList<((String) -> Unit)?> = mutableListOf()
-//    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator()
 
     override var errorMessage: String = ""
         get() = errorGenerator.generate()
