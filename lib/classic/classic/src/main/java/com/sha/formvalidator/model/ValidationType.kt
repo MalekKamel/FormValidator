@@ -1,6 +1,6 @@
-package com.sha.formvalidator
+package com.sha.formvalidator.model
 
-enum class XmlValidationType constructor(var value: Int) {
+enum class ValidationType constructor(var value: Int) {
     REGEX(0),
     NUMERIC(1),
     ALPHA(2),
@@ -24,7 +24,7 @@ enum class XmlValidationType constructor(var value: Int) {
     UNKNOWN(2000);
 
     companion object {
-        fun fromValue(value: Int): XmlValidationType {
+        fun fromValue(value: Int): ValidationType {
            return values().firstOrNull { it.value == value } ?: UNKNOWN
         }
     }

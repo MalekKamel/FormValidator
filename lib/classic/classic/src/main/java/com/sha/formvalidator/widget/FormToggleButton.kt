@@ -1,19 +1,20 @@
 package com.sha.formvalidator.widget
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatToggleButton
 import com.sha.formvalidator.Validatable
-import com.sha.formvalidator.core.R
-import com.sha.formvalidator.model.OnOffValidation
+import com.sha.formvalidator.ValidatableWidget
+import com.sha.formvalidator.handler.CompoundButtonValidationHandler
+import com.sha.formvalidator.handler.ValidationHandlerInterface
 
 /**
  * An implementation of [Validatable] for [AppCompatToggleButton]
  */
-open class FormToggleButton: AppCompatToggleButton, Validatable {
-    private var validation: OnOffValidation = OnOffValidation.ON
-    private var originalColor: Int = -1
+open class FormToggleButton: AppCompatToggleButton, ValidatableWidget<Boolean> {
+    override lateinit var validationHandler: ValidationHandlerInterface<Boolean>
+    override val value: Boolean
+        get() = isChecked
 
     constructor(context: Context) : super(context) { setup(null) }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup(attrs) }
@@ -22,30 +23,6 @@ open class FormToggleButton: AppCompatToggleButton, Validatable {
     }
 
     private fun setup(attrs: AttributeSet?) {
-        originalColor = currentTextColor
-
-        // the view is added programmatically
-        if (attrs == null) return
-
-        context.obtainStyledAttributes(attrs, R.styleable.FormToggleButton).run {
-            val attr = getInt(R.styleable.FormToggleButton_toggleButtonValidation, OnOffValidation.ON.value)
-            recycle()
-            validation = OnOffValidation.fromValue(attr)
-        }
+        validationHandler = CompoundButtonValidationHandler(this, attrs)
     }
-
-    override fun validate(): Boolean {
-        return when(validation) {
-            OnOffValidation.ON -> {
-                setTextColor(if(isChecked) originalColor else Color.RED)
-                isChecked
-            }
-
-            OnOffValidation.OFF -> {
-                setTextColor(if(isChecked) Color.RED  else originalColor)
-                !isChecked
-            }
-        }
-    }
-
 }

@@ -1,10 +1,10 @@
-package com.sha.formvalidator
+package com.sha.formvalidator.model
 
 class AttrInfo {
     var errorMessage: String = ""
     var required = true
     var validateOnChange = false
-    var validationType: XmlValidationType = XmlValidationType.MANDATORY
+    var validationType: ValidationType = ValidationType.MANDATORY
     var customValidationType: String = ""
 
     var regex: String = ""

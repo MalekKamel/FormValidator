@@ -2,8 +2,8 @@ package com.sha.formvalidator.handler
 
 import android.content.Context
 import android.util.AttributeSet
-import com.sha.formvalidator.AttrInfo
-import com.sha.formvalidator.XmlValidationType
+import com.sha.formvalidator.model.AttrInfo
+import com.sha.formvalidator.model.ValidationType
 import com.sha.formvalidator.core.R
 
 import com.sha.formvalidator.core.validator.Validator
@@ -46,8 +46,8 @@ interface ValidationHandlerInterface<V> {
         attrInfo.required = typedArray.getBoolean(R.styleable.FormValidator_required, true)
         attrInfo.validateOnChange = typedArray.getBoolean(R.styleable.FormValidator_validateOnChange, false)
 
-        val validationTypeValue = typedArray.getInt(R.styleable.FormValidator_validationType, XmlValidationType.UNKNOWN.value)
-        attrInfo.validationType = XmlValidationType.fromValue(validationTypeValue)
+        val validationTypeValue = typedArray.getInt(R.styleable.FormValidator_validationType, ValidationType.UNKNOWN.value)
+        attrInfo.validationType = ValidationType.fromValue(validationTypeValue)
 
         attrInfo.errorMessage = typedArray.getString(R.styleable.FormValidator_errorMessage) ?: ""
         attrInfo.customValidationType = typedArray.getString(R.styleable.FormValidator_customValidationType) ?: ""
@@ -55,12 +55,12 @@ interface ValidationHandlerInterface<V> {
         attrInfo.dateFormat = typedArray.getString(R.styleable.FormValidator_dateFormat) ?: ""
 
         when (attrInfo.validationType) {
-            XmlValidationType.INT_RANGE, XmlValidationType.TEXT_LENGTH -> {
+            ValidationType.INT_RANGE, ValidationType.TEXT_LENGTH -> {
                 attrInfo.min = typedArray.getInt(R.styleable.FormValidator_min, Integer.MIN_VALUE)
                 attrInfo.max = typedArray.getInt(R.styleable.FormValidator_max, Integer.MAX_VALUE)
             }
 
-            XmlValidationType.FLOAT_RANGE -> {
+            ValidationType.FLOAT_RANGE -> {
                 attrInfo.floatMin = typedArray.getFloat(R.styleable.FormValidator_floatMin, Float.MIN_VALUE)
                 attrInfo.floatMax = typedArray.getFloat(R.styleable.FormValidator_floatMax, Float.MAX_VALUE)
             }

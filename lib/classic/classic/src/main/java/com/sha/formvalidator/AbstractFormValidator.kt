@@ -7,7 +7,7 @@ import com.sha.formvalidator.model.FormOptions
 /**
  * The base form validator that all validators must extend.
  */
-open class AbstractFormValidator<T : Validatable> {
+abstract class AbstractFormValidator<T : Validatable> {
     private var options: FormOptions = FormOptions.defaultOptions()
     private var fields: List<T> = emptyList()
     val isValid: Boolean

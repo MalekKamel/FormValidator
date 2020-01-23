@@ -331,9 +331,6 @@ fun textLength(
         block: (Validator<String>.() -> Unit)? = null
 ) = Validators.textLength(min, max, block)
 
-fun <FROM, TO> wrap(validator: Validator<FROM>, convertValue: (TO?) -> FROM?)
-        = Validators.wrap<FROM, TO>(validator, convertValue)
-
 fun floatRange(
         min: Float,
         max: Float,
@@ -385,3 +382,6 @@ fun boolean(
         validation: Boolean,
         block: (Validator<Boolean>.() -> Unit)? = null
 ): Validator<Boolean> = Validators.boolean(validation, block)
+
+fun <FROM, TO> wrap(validator: Validator<FROM>, convertValue: (TO?) -> FROM?)
+        = Validators.wrap<FROM, TO>(validator, convertValue)
