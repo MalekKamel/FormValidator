@@ -17,7 +17,6 @@ android {
 dependencies {
     implementation project(Lib.compose)
     implementation project(Lib.classic)
-    implementation project(Lib.rxJava)
 
     implementation Deps.androidx_appCompat
     implementation Deps.android_material

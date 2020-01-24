@@ -71,6 +71,7 @@
     <string name="float_numeric_range">The numeric field allows only numbers.</string>
     <string name="password_description">Password must match.</string>
     <string name="passwords_match">Passwords Match</string>
+    <string name="please_select_country">Please select a country.</string>
 
     <string-array name="country_array">
         <item>Select Country</item>

@@ -2,8 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <com.sha.formvalidator.Form
         android:id="@+id/form"
@@ -15,14 +14,19 @@
         app:ignoreHiddenFields="true"
         >
 
-        <com.sha.formvalidatorsample.classic.ui.CountrySpinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:countrySpinnerValidation="required"
-            android:entries="@array/country_array"
-            android:visibility="gone"
-            tools:visibility="visible"
-            />
+        <com.sha.formvalidator.FormErrorLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.sha.formvalidator.widget.FormSpinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/country_array"
+                app:errorMessage="@string/please_select_country"
+                app:validationType="required"
+                />
+
+        </com.sha.formvalidator.FormErrorLayout>
 
         <Space
             android:layout_width="match_parent"
@@ -67,54 +71,89 @@
             android:layout_width="match_parent"
             android:layout_height="15dp" />
 
-        <com.sha.formvalidator.widget.FormCheckBox
-            android:text="I accept terms &amp; conditions"
+        <com.sha.formvalidator.FormErrorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            app:validationType="checked"/>
+            android:layout_height="wrap_content">
+
+            <com.sha.formvalidator.widget.FormCheckBox
+                android:text="I accept terms &amp; conditions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                app:validationType="checked"/>
+
+        </com.sha.formvalidator.FormErrorLayout>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="15dp" />
 
-        <com.sha.formvalidator.widget.FormToggleButton
+        <com.sha.formvalidator.FormErrorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:toggleButtonValidation="on"/>
+            android:layout_height="wrap_content">
+
+            <com.sha.formvalidator.widget.FormToggleButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:validationType="checked"/>
+
+        </com.sha.formvalidator.FormErrorLayout>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="15dp" />
 
-        <com.sha.formvalidator.widget.FormSwitch
-            android:text="Switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="5dp"
-            app:switchValidation="on"/>
+        <com.sha.formvalidator.FormErrorLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.sha.formvalidator.widget.FormSwitch
+                android:text="Switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                app:validationType="checked"
+                />
+
+        </com.sha.formvalidator.FormErrorLayout>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="15dp" />
 
-        <com.sha.formvalidator.widget.FormRatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            style="?android:attr/ratingBarStyle"
-            android:stepSize="1"
-            app:ratingBarValidation="required"
-            android:layout_gravity="center"/>
+        <com.sha.formvalidator.FormErrorLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.sha.formvalidator.widget.FormRatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                style="?android:attr/ratingBarStyle"
+                android:stepSize="1"
+                app:validationType="required"
+                android:layout_gravity="center"/>
+
+        </com.sha.formvalidator.FormErrorLayout>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="15dp" />
 
-        <com.sha.formvalidator.widget.FormSeekBar
+        <com.sha.formvalidator.FormErrorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:seekBarValidation="required"/>
+            android:layout_height="wrap_content">
+
+            <com.sha.formvalidator.widget.FormSeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:validationType="intRange"
+                app:minInt="5"
+                app:maxInt="10"
+                android:max="10"
+                />
+
+        </com.sha.formvalidator.FormErrorLayout>
 
         <Space
             android:layout_width="match_parent"
