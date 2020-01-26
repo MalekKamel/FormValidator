@@ -35,9 +35,6 @@ object DefaultErrors {
     var alphaNumeric = "Invalid!"
 
     @JvmStatic
-    var anyValidation = "Invalid!"
-
-    @JvmStatic
     var match = "Values don't match!"
 
     @JvmStatic
@@ -57,6 +54,9 @@ object DefaultErrors {
 
     @JvmStatic
     var creditCard = "Invalid Credit Card!"
+
+    @JvmStatic
+    var anyValidation = "Invalid!"
 
     @JvmStatic
     var booleanValidation = "Invalid!"
