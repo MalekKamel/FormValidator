@@ -8,10 +8,11 @@ import org.junit.Test
 
 class InverseValidatorTest {
     lateinit var validator: Validator<String>
+    lateinit var creditValidator: CreditCardValidator
 
     @Before
     fun setup() {
-       val creditValidator = CreditCardValidator()
+        creditValidator = CreditCardValidator()
         validator = InverseValidator(creditValidator)
     }
 
@@ -25,5 +26,12 @@ class InverseValidatorTest {
     fun validate_invalid() {
         validator.value = "378734493671000"
         assert(!validator.isValid)
+    }
+
+    @Test
+    fun `error message should be the message of the passed validator`() {
+        validator.errorMessage = "errorMessage"
+        assert(validator.errorMessage == "errorMessage")
+        assert(creditValidator.errorMessage == "errorMessage")
     }
 }
