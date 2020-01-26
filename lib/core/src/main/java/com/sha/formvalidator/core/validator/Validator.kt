@@ -49,10 +49,7 @@ interface ValidatorType {
 
 class ErrorGenerator: ErrorGeneratorInterface {
     override var error: () -> String = { "" }
-
-    override fun generate(): String {
-        return error()
-    }
+    override fun generate() = error()
     
     companion object {
         fun create(e: () -> String): ErrorGenerator {
