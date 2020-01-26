@@ -7,7 +7,7 @@ import com.sha.formvalidator.core.DefaultErrors
  * This validator takes care of validating the edittext. The input will be valid only if the number is a valid credit card.
  *
  */
-class CreditCardValidator : TextValidator() {
+class CreditCardValidator : AbsValidator<String>() {
     override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.creditCard)
 
     override fun validate(): Boolean {

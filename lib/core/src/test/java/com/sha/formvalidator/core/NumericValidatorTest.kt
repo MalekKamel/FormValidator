@@ -1,12 +1,12 @@
 package com.sha.formvalidator.core
 
 import com.sha.formvalidator.core.validator.NumericValidator
-import com.sha.formvalidator.core.validator.TextValidator
+import com.sha.formvalidator.core.validator.Validator
 import org.junit.Before
 import org.junit.Test
 
 class NumericValidatorTest {
-    lateinit var validator: TextValidator
+    lateinit var validator: Validator<String>
 
     @Before
     fun setup() {

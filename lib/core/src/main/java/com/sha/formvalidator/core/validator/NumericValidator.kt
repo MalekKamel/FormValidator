@@ -6,7 +6,7 @@ import com.sha.formvalidator.core.DefaultErrors
  * A validator that returns true only if the input field contains only numbers.
  *
  */
-class NumericValidator : TextValidator() {
+class NumericValidator : AbsValidator<String>() {
     override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.numeric)
 
     override fun validate(): Boolean {

@@ -7,7 +7,7 @@ import java.util.*
  * A validator that returns true only if the input field contains only numbers.
  *
  */
-class PrefixValidator(private var prefix: String, private val ignoreCase: Boolean = false) : TextValidator() {
+class PrefixValidator(private var prefix: String, private val ignoreCase: Boolean = false) : AbsValidator<String>() {
     override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.prefix)
     override fun validate(): Boolean {
         if (ignoreCase) {

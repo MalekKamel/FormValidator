@@ -1,10 +1,9 @@
 package com.sha.formvalidator.core.validator.pattern
 
 import com.sha.formvalidator.core.DefaultErrors
+import com.sha.formvalidator.core.validator.AbsValidator
 import com.sha.formvalidator.core.validator.ErrorGenerator
 import com.sha.formvalidator.core.validator.ErrorGeneratorInterface
-import com.sha.formvalidator.core.validator.TextValidator
-
 import java.util.regex.Pattern
 
 /**
@@ -20,7 +19,7 @@ import java.util.regex.Pattern
  *
  * @see WebUrlValidator
  */
-open class PatternValidator(private val pattern: Pattern) : TextValidator() {
+open class PatternValidator(private val pattern: Pattern) : AbsValidator<String>() {
 
     override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.pattern)
     constructor(regex: String) : this(Pattern.compile(regex))

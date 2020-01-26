@@ -1,12 +1,12 @@
 package com.sha.formvalidator.core.pattern
 
-import com.sha.formvalidator.core.validator.TextValidator
+import com.sha.formvalidator.core.validator.Validator
 import com.sha.formvalidator.core.validator.pattern.DomainValidator
 import org.junit.Before
 import org.junit.Test
 
 class DomainValidatorTest {
-    lateinit var validator: TextValidator
+    lateinit var validator: Validator<String>
 
     @Before
     fun setup() {

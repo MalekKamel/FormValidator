@@ -5,16 +5,11 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.widget.EditText
 import com.google.android.material.textfield.TextInputLayout
-import com.sha.formvalidator.model.AttrInfo
-
-import com.sha.formvalidator.core.validator.TextValidator
 import com.sha.formvalidator.core.validator.composite.AllValidator
 import com.sha.formvalidator.factory.AttrValidatorFactory
 import com.sha.formvalidator.factory.TextAttrValidatorFactory
+import com.sha.formvalidator.model.AttrInfo
 
-/**
- * Default implementation of an [TextValidator]
- */
 class TextViewValidationHandler(
         override val view: EditText,
         attrs: AttributeSet?
