@@ -32,7 +32,6 @@
 
         <attr name="errorMessage" format="string" />
 
-        <attr name="customValidationType" format="string" />
         <attr name="regex" format="string" />
         <attr name="dateFormat" format="string" />
         <attr name="required" format="boolean" />
@@ -49,7 +48,6 @@
     <declare-styleable name="FormEditText">
         <attr name="validationType"/>
         <attr name="errorMessage"/>
-        <attr name="customValidationType"/>
         <attr name="regex"/>
         <attr name="dateFormat"/>
         <attr name="required"/>
@@ -63,7 +61,6 @@
     <declare-styleable name="FormAutoCompleteTextView">
         <attr name="validationType"/>
         <attr name="errorMessage"/>
-        <attr name="customValidationType"/>
         <attr name="regex"/>
         <attr name="dateFormat"/>
         <attr name="required"/>

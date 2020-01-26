@@ -10,10 +10,6 @@ internal object FieldInfo {
 
     var items = listOf(
             FieldItem(
-                    "Alpha With TextInputLayout",
-                    R.layout.field_alpha_textinputlayout,
-                    R.string.description_alpha),
-            FieldItem(
                     "Alpha",
                     R.layout.field_alpha,
                     R.string.description_alpha),
@@ -38,7 +34,7 @@ internal object FieldInfo {
                     R.layout.field_numeric,
                     R.string.description_numeric),
             FieldItem(
-                    "Float Numeric Range",
+                    "Float Range",
                     R.layout.field_float_numeric_range,
                     R.string.float_numeric_range),
             FieldItem(
@@ -46,7 +42,7 @@ internal object FieldInfo {
                     R.layout.field_email,
                     R.string.description_email),
             FieldItem(
-                    "Credit Card Number",
+                    "Credit Card",
                     R.layout.field_creditcard,
                     R.string.description_credit_card),
             FieldItem(
@@ -70,21 +66,13 @@ internal object FieldInfo {
                     R.layout.field_regex,
                     R.string.description_regex),
             FieldItem(
-                    "Custom Messages",
-                    R.layout.field_phone_custommessages,
-                    R.string.description_phone_custom_messages),
-            FieldItem(
-                    "Allow Empty",
-                    R.layout.field_allowempty,
+                    "Optional",
+                    R.layout.field_optional,
                     R.string.description_allow_empty),
-            FieldItem(
-                    "Custom validation type",
-                    R.layout.field_custom_validation_type,
-                    R.string.custom_validation_type_description),
-            FieldItem("Email OR CreditCard", EmailOrCreditCardActivity::class.java),
-            FieldItem("Suffix AND Range", PrefixAndRangeValidatorActivity::class.java),
+            FieldItem("Email Or Credit", EmailOrCreditCardActivity::class.java),
+            FieldItem("Suffix And Range", PrefixAndRangeValidatorActivity::class.java),
             FieldItem("Password matching", PasswordValidatorActivity::class.java),
-            FieldItem("AutoComplete TextView", AutoCompleteTextViewActivity::class.java)
+            FieldItem("AutoComplete", AutoCompleteTextViewActivity::class.java)
     )
 
 }

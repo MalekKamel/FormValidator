@@ -54,12 +54,10 @@ interface ValidationHandlerInterface<V> {
         attrInfo.validationType = ValidationType.fromValue(validationTypeValue)
 
         attrInfo.errorMessage = typedArray.getString(R.styleable.FormValidator_errorMessage) ?: ""
-        attrInfo.customValidationType = typedArray.getString(R.styleable.FormValidator_customValidationType) ?: ""
         attrInfo.regex = typedArray.getString(R.styleable.FormValidator_regex) ?: ""
         attrInfo.dateFormat = typedArray.getString(R.styleable.FormValidator_dateFormat) ?: ""
 
-        attrInfo.min = typedArray.getInt(R.styleable.
-                FormValidator_minInt, Integer.MIN_VALUE)
+        attrInfo.min = typedArray.getInt(R.styleable.FormValidator_minInt, Integer.MIN_VALUE)
         attrInfo.max = typedArray.getInt(R.styleable.FormValidator_maxInt, Integer.MAX_VALUE)
 
         attrInfo.floatMin = typedArray.getFloat(R.styleable.FormValidator_minFloat, Float.MIN_VALUE)

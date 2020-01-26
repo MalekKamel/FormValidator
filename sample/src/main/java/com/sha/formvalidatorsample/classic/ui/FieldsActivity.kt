@@ -3,6 +3,7 @@ package com.sha.formvalidatorsample.classic.ui
 import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -21,7 +22,7 @@ class FieldsActivity : AppCompatActivity() {
 
     private fun setupList() {
         val rv = findViewById<RecyclerView>(R.id.rv)
-        rv.layoutManager = LinearLayoutManager(this)
+        rv.layoutManager = GridLayoutManager(this, 2)
         rv.adapter = RecyclerAdapter()
     }
 
