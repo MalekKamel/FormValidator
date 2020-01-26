@@ -1,6 +1,5 @@
 package com.sha.formvalidator
 
-import android.content.Context
 import android.view.View
 import com.sha.formvalidator.core.validator.Validator
 import com.sha.formvalidator.core.validator.composite.AllValidator
@@ -11,36 +10,37 @@ import org.junit.Before
 import org.junit.Test
 
 class TextViewValidatableTest {
-    lateinit var textViewValidatable: TextViewValidatableImpl
+    private lateinit var validatableWidget: ValidatableWidgetImpl
+
     @Before
     fun setup() {
-        textViewValidatable = TextViewValidatableImpl()
+        validatableWidget = ValidatableWidgetImpl()
     }
 
     @Test
     fun `validate(), should return correct value from TextValidationHandler`() {
-        textViewValidatable.isValid = true
-        assert(textViewValidatable.validate())
+        validatableWidget.isValid = true
+        assert(validatableWidget.validate())
 
-        textViewValidatable.isValid = false
-        assert(!textViewValidatable.validate())
+        validatableWidget.isValid = false
+        assert(!validatableWidget.validate())
     }
 
     @Test
     fun `addValidator(), should invoke TextValidationHandler#addValidator`() {
-        textViewValidatable.addValidator(mandatory())
-        assert(textViewValidatable.addValidatorInvoked)
+        validatableWidget.addValidator(mandatory())
+        assert(validatableWidget.addValidatorInvoked)
     }
 
     @Test
     fun `plus(), should invoke TextValidationHandler#addValidator`() {
-        textViewValidatable + mandatory()
-        assert(textViewValidatable.addValidatorInvoked)
+        validatableWidget + mandatory()
+        assert(validatableWidget.addValidatorInvoked)
     }
 }
 
-class TextViewValidatableImpl: ValidatableWidget {
-    override var validationHandler: ValidationHandlerInterface = TextValidationHandlerImpl()
+class ValidatableWidgetImpl: ValidatableWidget<String> {
+    override var validationHandler: ValidationHandlerInterface<String> = TextValidationHandlerImpl()
     val addValidatorInvoked: Boolean
         get() = (validationHandler as TextValidationHandlerImpl).addValidatorInvoked
 
@@ -49,8 +49,7 @@ class TextViewValidatableImpl: ValidatableWidget {
             field = value
             (validationHandler as TextValidationHandlerImpl).isValid = value
         }
-    override val string: String
-        get() = "text"
+    override val value: String? = "text"
 }
 
 class TextValidationHandlerImpl : ValidationHandlerInterface<String> {

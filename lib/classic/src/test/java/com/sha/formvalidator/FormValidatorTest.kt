@@ -7,35 +7,38 @@ class FormValidatorTest {
     @Test
     fun isValid_allValid() {
         val validator = FormValidator(
-                FakeValidValidator(),
-                FakeValidValidator(),
-                FakeValidValidator())
+                listOf(FakeValidValidator(),
+                        FakeValidValidator(),
+                        FakeValidValidator())
+        )
         assert(validator.isValid)
     }
 
     @Test
     fun isValid_someInValid() {
         val validator = FormValidator(
-                FakeValidValidator(),
-                FakeInvalidValidator(),
-                FakeInvalidValidator(),
-                FakeValidValidator())
+                listOf(FakeValidValidator(),
+                        FakeInvalidValidator(),
+                        FakeInvalidValidator(),
+                        FakeValidValidator())
+        )
         assert(!validator.isValid)
     }
 
     @Test
     fun isValid_allInValid() {
         val validator = FormValidator(
-                FakeInvalidValidator(),
-                FakeInvalidValidator(),
-                FakeInvalidValidator(),
-                FakeInvalidValidator())
+                listOf(FakeInvalidValidator(),
+                        FakeInvalidValidator(),
+                        FakeInvalidValidator(),
+                        FakeInvalidValidator())
+        )
         assert(!validator.isValid)
     }
 
     @Test
     fun isValid_empty() {
-        val validator = FormValidator<Validatable>()
+        val validator = FormValidator(emptyList())
         assert(!validator.isValid)
     }
 

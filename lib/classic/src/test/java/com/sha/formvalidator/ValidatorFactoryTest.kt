@@ -6,14 +6,14 @@ class MandatoryValidationTest {
 
     @Test
     fun `should be valid`() {
-        val model = mandatory()
+        val model = mandatory<String>()
         model.value = "x"
         assert(model.isValid)
     }
 
     @Test
     fun `should be invalid`() {
-        val model = mandatory()
+        val model = mandatory<String>()
         model.value = ""
         assert(!model.isValid)
     }
@@ -23,14 +23,14 @@ class OptionalValidationTest {
 
     @Test
     fun `should be valid if true`() {
-        val model = optional()
+        val model = optional<String>()
         model.value = "x"
         assert(model.isValid)
     }
 
     @Test
     fun `should be valid if false`() {
-        val model = optional()
+        val model = optional<String>()
         model.value = ""
         assert(model.isValid)
     }
