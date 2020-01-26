@@ -1,6 +1,5 @@
 package com.sha.formvalidator
 
-import android.view.View
 import com.sha.formvalidator.core.DefaultErrors
 import com.sha.formvalidator.core.validator.Validator
 import com.sha.formvalidator.core.validator.ValueMatchValidator
@@ -25,11 +24,11 @@ interface ValidatableWidget<V>: Validatable {
      */
     override fun validate() = validationHandler.validate()
 
-    fun matches(other: ValidatableWidget<V>, error: String = DefaultErrors.matchError) {
+    fun matches(other: ValidatableWidget<V>, error: String = DefaultErrors.match) {
         matches(listOf(other), error)
     }
 
-    fun matches(others: List<ValidatableWidget<V>>, error: String = DefaultErrors.matchError) {
+    fun matches(others: List<ValidatableWidget<V>>, error: String = DefaultErrors.match) {
         this + ValueMatchValidator {
             others.map { it.value }
         }.apply { errorMessage = error }

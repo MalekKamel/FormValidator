@@ -8,7 +8,7 @@ import java.util.*
  *
  */
 class SuffixValidator(private var suffix: String, private val ignoreCase: Boolean = false) : TextValidator() {
-    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.suffixError)
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.suffix)
     override fun validate(): Boolean {
         if (ignoreCase) {
             value = value?.toLowerCase(Locale.ROOT)

@@ -14,6 +14,6 @@ import com.sha.formvalidator.core.validator.ErrorGeneratorInterface
 // (<digits>)<sdd>*
 class PhoneValidator
     : PatternValidator(Patterns.PHONE) {
-    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.phoneError)
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.phone)
 
 }

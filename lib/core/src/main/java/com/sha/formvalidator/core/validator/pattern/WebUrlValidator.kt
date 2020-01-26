@@ -11,5 +11,5 @@ import com.sha.formvalidator.core.validator.ErrorGeneratorInterface
  *
  */
 class WebUrlValidator : PatternValidator(Patterns.WEB_URL) {
-    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.webUrlError)
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.webUrl)
 }

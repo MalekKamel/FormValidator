@@ -6,5 +6,5 @@ import com.sha.formvalidator.core.validator.ErrorGenerator
 import com.sha.formvalidator.core.validator.ErrorGeneratorInterface
 
 class DomainValidator() : PatternValidator(PatternsCompat.DOMAIN_NAME) {
-    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.domainError)
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.domain)
 }

@@ -7,7 +7,7 @@ import com.sha.formvalidator.core.DefaultErrors
  *
  */
 class NumericValidator : TextValidator() {
-    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.numericError)
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.numeric)
 
     override fun validate(): Boolean {
         return if(value?.isEmpty() == true) false else isDigitsOnly(value!!)

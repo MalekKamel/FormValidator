@@ -8,7 +8,7 @@ import java.util.*
  *
  */
 class PrefixValidator(private var prefix: String, private val ignoreCase: Boolean = false) : TextValidator() {
-    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.prefixError)
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.prefix)
     override fun validate(): Boolean {
         if (ignoreCase) {
             value = value?.toLowerCase(Locale.ROOT)

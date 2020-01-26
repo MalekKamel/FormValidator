@@ -12,7 +12,7 @@ import com.sha.formvalidator.core.validator.Validator
  *
  */
 class AnyValidator<V> : CompositeValidator<V> {
-    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.orError)
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.anyValidation)
 
     constructor(vararg validators: Validator<V>): super(*validators)
     constructor(validators: List<Validator<V>>): super(validators)

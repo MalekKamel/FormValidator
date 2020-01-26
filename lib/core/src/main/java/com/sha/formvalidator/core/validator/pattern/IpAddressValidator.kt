@@ -10,5 +10,5 @@ import com.sha.formvalidator.core.validator.ErrorGeneratorInterface
  *
  */
 class IpAddressValidator : PatternValidator(Patterns.IP_ADDRESS) {
-    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.ipAddressError)
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.ipAddress)
 }

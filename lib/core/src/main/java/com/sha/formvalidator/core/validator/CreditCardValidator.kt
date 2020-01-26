@@ -8,7 +8,7 @@ import com.sha.formvalidator.core.DefaultErrors
  *
  */
 class CreditCardValidator : TextValidator() {
-    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.creditCardError)
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.creditCard)
 
     override fun validate(): Boolean {
         return try {

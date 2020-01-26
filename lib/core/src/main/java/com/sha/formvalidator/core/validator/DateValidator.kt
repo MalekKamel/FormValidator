@@ -9,7 +9,7 @@ import java.util.*
 
 
 class DateValidator(format: String) : TextValidator() {
-    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.dateError)
+    override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.date)
     private val formats: Array<String> = if (format.isNotEmpty())
         format.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
     else
