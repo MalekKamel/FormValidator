@@ -2,18 +2,17 @@ package com.sha.formvalidator.widget
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import androidx.appcompat.widget.AppCompatToggleButton
 import com.sha.formvalidator.Validatable
 import com.sha.formvalidator.ValidatableWidget
 import com.sha.formvalidator.handler.CompoundButtonValidationHandler
-import com.sha.formvalidator.handler.ValidationHandlerInterface
+import com.sha.formvalidator.handler.ValidationHandler
 
 /**
  * An implementation of [Validatable] for [AppCompatToggleButton]
  */
 open class FormToggleButton: AppCompatToggleButton, ValidatableWidget<Boolean> {
-    override lateinit var validationHandler: ValidationHandlerInterface<Boolean>
+    override lateinit var validationHandler: ValidationHandler<Boolean>
     override val value: Boolean?
         get() = isChecked
 

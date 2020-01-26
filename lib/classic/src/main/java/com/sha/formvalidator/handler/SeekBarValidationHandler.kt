@@ -13,7 +13,7 @@ import com.sha.formvalidator.factory.IntAttrValidatorFactory
 class SeekBarValidationHandler(
         override val view: SeekBar,
         attrs: AttributeSet?
-) : ValidationHandlerInterface<Int> {
+) : AbsValidationHandler<Int>() {
     override lateinit var validator: AllValidator<Int>
     override var attrValidatorFactory: AttrValidatorFactory<Int> = IntAttrValidatorFactory
     override val value: Int

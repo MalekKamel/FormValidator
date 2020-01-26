@@ -22,7 +22,7 @@ object Validators {
     @JvmStatic
     fun <V> optional(
             block: (Validator<V>.() -> Unit)? = null
-    ): Validator<V> = make(DummyValidator(), block)
+    ): Validator<V> = make(InverseValidator(mandatory()), block)
 
     @JvmOverloads
     @JvmStatic

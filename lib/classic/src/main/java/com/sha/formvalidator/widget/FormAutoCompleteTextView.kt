@@ -3,10 +3,9 @@ package com.sha.formvalidator.widget
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.view.View
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import com.sha.formvalidator.handler.TextViewValidationHandler
-import com.sha.formvalidator.handler.ValidationHandlerInterface
+import com.sha.formvalidator.handler.ValidationHandler
 import com.sha.formvalidator.ValidatableWidget
 import com.sha.formvalidator.Validatable
 
@@ -14,7 +13,7 @@ import com.sha.formvalidator.Validatable
  * An implementation of [Validatable] for [AppCompatAutoCompleteTextView].
  */
 open class FormAutoCompleteTextView : AppCompatAutoCompleteTextView, ValidatableWidget<String> {
-    override lateinit var validationHandler: ValidationHandlerInterface<String>
+    override lateinit var validationHandler: ValidationHandler<String>
     override val value: String?
         get() = text.toString()
 

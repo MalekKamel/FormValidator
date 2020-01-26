@@ -1,22 +1,20 @@
-package com.sha.formvalidator.core
+package com.sha.formvalidator.core.composite
 
 import com.sha.formvalidator.core.validator.CreditCardValidator
 import com.sha.formvalidator.core.validator.PrefixValidator
-import com.sha.formvalidator.core.validator.composite.AllValidator
+import com.sha.formvalidator.core.validator.composite.AnyValidator
 import com.sha.formvalidator.core.validator.composite.CompositeValidator
 import org.junit.Before
 import org.junit.Test
 
-class AllValidatorTest {
+class AnyValidatorTest {
     lateinit var validator: CompositeValidator<String>
 
     @Before
     fun setup() {
-       val creditValidator = CreditCardValidator().apply { errorMessage = "Invalid Card!" }
-        val prefixValidator = PrefixValidator("3787").apply { errorMessage = "Invalid Prefix!" }
-        validator = AllValidator(
-                creditValidator,
-                prefixValidator)
+       val creditValidator = CreditCardValidator()
+       val prefixValidator = PrefixValidator("3787")
+        validator = AnyValidator(creditValidator, prefixValidator).apply { errorMessage = "Invalid!" }
     }
 
     @Test
@@ -28,14 +26,21 @@ class AllValidatorTest {
     @Test
     fun validate_firstInvalid() {
         validator.value = "37873449367100099"
-        assert(!validator.isValid)
-        assert(validator.errorMessage == "Invalid Card!")
+        assert(validator.isValid)
+        assert(validator.errorMessage == "Invalid!")
     }
 
     @Test
     fun validate_secondInvalid() {
         validator.value = "6331101999990016"
+        assert(validator.isValid)
+        assert(validator.errorMessage == "Invalid!")
+    }
+
+    @Test
+    fun validate_allInvalid() {
+        validator.value = "63311019999900168"
         assert(!validator.isValid)
-        assert(validator.errorMessage == "Invalid Prefix!")
+        assert(validator.errorMessage == "Invalid!")
     }
 }

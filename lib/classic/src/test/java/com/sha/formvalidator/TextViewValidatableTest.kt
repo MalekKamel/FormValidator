@@ -5,7 +5,8 @@ import com.sha.formvalidator.core.validator.Validator
 import com.sha.formvalidator.core.validator.composite.AllValidator
 import com.sha.formvalidator.factory.AttrValidatorFactory
 import com.sha.formvalidator.factory.TextAttrValidatorFactory
-import com.sha.formvalidator.handler.ValidationHandlerInterface
+import com.sha.formvalidator.handler.AbsValidationHandler
+import com.sha.formvalidator.handler.ValidationHandler
 import org.junit.Before
 import org.junit.Test
 
@@ -40,7 +41,7 @@ class TextViewValidatableTest {
 }
 
 class ValidatableWidgetImpl: ValidatableWidget<String> {
-    override var validationHandler: ValidationHandlerInterface<String> = TextValidationHandlerImpl()
+    override var validationHandler: ValidationHandler<String> = TextValidationHandlerImpl()
     val addValidatorInvoked: Boolean
         get() = (validationHandler as TextValidationHandlerImpl).addValidatorInvoked
 
@@ -52,16 +53,13 @@ class ValidatableWidgetImpl: ValidatableWidget<String> {
     override val value: String? = "text"
 }
 
-class TextValidationHandlerImpl : ValidationHandlerInterface<String> {
+class TextValidationHandlerImpl : AbsValidationHandler<String>() {
     var isValid: Boolean = false
     var addValidatorInvoked: Boolean = false
     override lateinit var view: View
 
     override fun addValidator(validator: Validator<String>) { addValidatorInvoked = true }
-
-
     override fun validate() = isValid
-
     override fun showError(e: String?) {}
     override var validator: AllValidator<String> = AllValidator(mandatory())
     override var attrValidatorFactory: AttrValidatorFactory<String> = TextAttrValidatorFactory

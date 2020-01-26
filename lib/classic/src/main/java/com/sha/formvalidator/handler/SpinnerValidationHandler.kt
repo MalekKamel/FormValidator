@@ -13,8 +13,7 @@ import com.sha.formvalidator.factory.SpinnerAttrValidatorFactory
 class SpinnerValidationHandler(
         override val view: Spinner,
         attrs: AttributeSet?
-) : ValidationHandlerInterface<String> {
-    override lateinit var validator: AllValidator<String>
+) : AbsValidationHandler<String>() {
     override var attrValidatorFactory: AttrValidatorFactory<String> = SpinnerAttrValidatorFactory(view)
     override val value: String
         get() = view.selectedItem?.toString() ?: ""

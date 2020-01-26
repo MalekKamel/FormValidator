@@ -3,7 +3,7 @@ package com.sha.formvalidator
 import com.sha.formvalidator.core.DefaultErrors
 import com.sha.formvalidator.core.validator.Validator
 import com.sha.formvalidator.core.validator.ValueMatchValidator
-import com.sha.formvalidator.handler.ValidationHandlerInterface
+import com.sha.formvalidator.handler.ValidationHandler
 
 /**
  * The interface that every field must implement to be validated
@@ -14,7 +14,7 @@ interface Validatable {
 }
 
 interface ValidatableWidget<V>: Validatable {
-    var validationHandler: ValidationHandlerInterface<V>
+    var validationHandler: ValidationHandler<V>
     val value: V?
 
     /**

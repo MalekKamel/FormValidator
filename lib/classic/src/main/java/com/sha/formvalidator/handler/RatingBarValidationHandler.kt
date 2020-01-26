@@ -13,7 +13,7 @@ import com.sha.formvalidator.factory.FloatAttrValidatorFactory
 class RatingBarValidationHandler(
         override val view: RatingBar,
         attrs: AttributeSet?
-) : ValidationHandlerInterface<Float> {
+) : AbsValidationHandler<Float>() {
     override lateinit var validator: AllValidator<Float>
     override var attrValidatorFactory: AttrValidatorFactory<Float> = FloatAttrValidatorFactory
     override val value: Float

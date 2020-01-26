@@ -2,6 +2,7 @@ package com.sha.formvalidator.core.validator.composite
 
 import com.sha.formvalidator.core.validator.ErrorGenerator
 import com.sha.formvalidator.core.validator.ErrorGeneratorInterface
+import com.sha.formvalidator.core.validator.MandatoryValidator
 import com.sha.formvalidator.core.validator.Validator
 
 /**
@@ -9,25 +10,23 @@ import com.sha.formvalidator.core.validator.Validator
  * Note: the message that will be shown is the one of the first failing validator
  *
  */
-open class AllValidator<V>: CompositeValidator<V> {
+class OptionalValidator<V>: AllValidator<V> {
 
     constructor(vararg validators: Validator<V>): super(*validators)
     constructor(validators: List<Validator<V>>): super(validators)
 
-    var failingValidator: Validator<V>? = null
+    private val mandatoryValidator = MandatoryValidator<V>()
 
     override fun validate(): Boolean {
-        failingValidator = validators.firstOrNull { !it.isValid }
-        failingValidator?.let {
-            return false
-        }
-        return true
+        mandatoryValidator.value = value
+        // if there's no value, it will be valid as it's optional
+        if(!mandatoryValidator.isValid) return true
+        // there's a value! it will be valid only if all other validators are valid.
+        return super.validate()
     }
 
     override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create {
         // show the first failing validator error message
         failingValidator?.errorGenerator?.generate() ?: ""
     }
-
 }
-

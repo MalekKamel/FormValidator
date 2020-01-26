@@ -11,7 +11,7 @@ import com.sha.formvalidator.core.validator.Validator
  * Note: the message that will be shown is the one passed to the Constructor
  *
  */
-class AnyValidator<V> : CompositeValidator<V> {
+open class AnyValidator<V> : CompositeValidator<V> {
     override var errorGenerator: ErrorGeneratorInterface = ErrorGenerator.create(DefaultErrors.anyValidation)
 
     constructor(vararg validators: Validator<V>): super(*validators)

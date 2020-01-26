@@ -13,8 +13,7 @@ import com.sha.formvalidator.model.AttrInfo
 class TextViewValidationHandler(
         override val view: EditText,
         attrs: AttributeSet?
-) : ValidationHandlerInterface<String> {
-    override lateinit var validator: AllValidator<String>
+) : AbsValidationHandler<String>() {
     override var attrValidatorFactory: AttrValidatorFactory<String> = TextAttrValidatorFactory
     override val value: String
         get() = view.text.toString()

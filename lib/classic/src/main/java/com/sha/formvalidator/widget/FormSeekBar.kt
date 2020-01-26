@@ -2,19 +2,18 @@ package com.sha.formvalidator.widget
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatSeekBar
 import com.sha.formvalidator.Validatable
 import com.sha.formvalidator.ValidatableWidget
 import com.sha.formvalidator.handler.SeekBarValidationHandler
-import com.sha.formvalidator.handler.ValidationHandlerInterface
+import com.sha.formvalidator.handler.ValidationHandler
 
 /**
  * An implementation of [Validatable] for [AppCompatSeekBar].
  */
 open class FormSeekBar: AppCompatSeekBar, ValidatableWidget<Int> {
-    override lateinit var validationHandler: ValidationHandlerInterface<Int>
+    override lateinit var validationHandler: ValidationHandler<Int>
     override val value: Int?
         get() = progress
 

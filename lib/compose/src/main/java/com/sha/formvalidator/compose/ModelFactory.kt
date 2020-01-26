@@ -18,7 +18,10 @@ object ModelFactory {
         // no need to add another MandatoryValidator
         if (validator is MandatoryValidator) return model
         // it's optional
-        if (!model.isMandatory) return model
+        if (!model.isMandatory){
+            model.validator.validators.add(0, InverseValidator(MandatoryValidator()))
+            return model
+        }
 
         // add MandatoryValidator
         model.validator.validators.add(0, MandatoryValidator())

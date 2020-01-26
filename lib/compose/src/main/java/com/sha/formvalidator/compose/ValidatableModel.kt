@@ -8,6 +8,7 @@ import com.sha.formvalidator.core.validator.ErrorGeneratorInterface
 import com.sha.formvalidator.core.validator.Validator
 import com.sha.formvalidator.core.validator.ValueMatchValidator
 import com.sha.formvalidator.core.validator.composite.AllValidator
+import com.sha.formvalidator.core.validator.composite.CompositeValidator
 
 class ValidationModel<V>(validator: AllValidator<V>): AbsValidatableModel<V>() {
     override val validator: AllValidator<V> by lazy { validator }

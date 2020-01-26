@@ -2,18 +2,17 @@ package com.sha.formvalidator.widget
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import androidx.appcompat.widget.AppCompatRatingBar
 import com.sha.formvalidator.Validatable
 import com.sha.formvalidator.ValidatableWidget
 import com.sha.formvalidator.handler.RatingBarValidationHandler
-import com.sha.formvalidator.handler.ValidationHandlerInterface
+import com.sha.formvalidator.handler.ValidationHandler
 
 /**
  * An implementation of [Validatable] for [AppCompatRatingBar].
  */
 open class FormRatingBar: AppCompatRatingBar, ValidatableWidget<Float> {
-    override lateinit var validationHandler: ValidationHandlerInterface<Float>
+    override lateinit var validationHandler: ValidationHandler<Float>
     override val value: Float?
         get() = rating
 

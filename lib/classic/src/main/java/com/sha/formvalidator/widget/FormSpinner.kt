@@ -8,7 +8,7 @@ import androidx.appcompat.widget.AppCompatSpinner
 import com.sha.formvalidator.Validatable
 import com.sha.formvalidator.ValidatableWidget
 import com.sha.formvalidator.handler.SpinnerValidationHandler
-import com.sha.formvalidator.handler.ValidationHandlerInterface
+import com.sha.formvalidator.handler.ValidationHandler
 
 
 /**
@@ -17,7 +17,7 @@ import com.sha.formvalidator.handler.ValidationHandlerInterface
  * and put your validation logic inside validate() function
  */
 class FormSpinner: AppCompatSpinner, ValidatableWidget<String> {
-    override lateinit var validationHandler: ValidationHandlerInterface<String>
+    override lateinit var validationHandler: ValidationHandler<String>
     override val value: String?
         get() = selectedItem?.toString()
 
