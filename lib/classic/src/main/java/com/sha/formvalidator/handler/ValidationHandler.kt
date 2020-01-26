@@ -9,6 +9,7 @@ import com.sha.formvalidator.core.validator.InverseValidator
 import com.sha.formvalidator.core.validator.MandatoryValidator
 import com.sha.formvalidator.core.validator.Validator
 import com.sha.formvalidator.core.validator.composite.AllValidator
+import com.sha.formvalidator.core.validator.composite.OptionalValidator
 import com.sha.formvalidator.factory.AttrValidatorFactory
 import com.sha.formvalidator.mandatory
 import com.sha.formvalidator.model.AttrInfo
@@ -34,7 +35,7 @@ interface ValidationHandler<V> {
         }
 
         val attrInfo = createAttrInfo(attrs, context)
-        createValidator(context)
+        createValidator()
         setupValidator(attrInfo, context)
         return attrInfo
     }
@@ -66,17 +67,11 @@ interface ValidationHandler<V> {
         return attrInfo
     }
 
-    private fun createValidator(context: Context) {
-        validator = AllValidator()
-
-        if (attrInfo?.required == true) {
-            val alreadyAddedMandatory = validator.validators.any { it is MandatoryValidator }
-            if (!alreadyAddedMandatory) addValidator(0, mandatory())
-        }
-        else addValidator(0, InverseValidator(mandatory()))
+    private fun createValidator() {
+        validator = if(attrInfo == null || attrInfo!!.required) AllValidator() else OptionalValidator()
 
         attrInfo?.run {
-            validator + attrValidatorFactory.make(this, context)
+            validator + attrValidatorFactory.make(this, view.context)
             if (errorMessage.isNotEmpty()) validator.errorMessage = this.errorMessage
         }
 
@@ -96,8 +91,6 @@ interface ValidationHandler<V> {
     /**
      * Add a validator to this FormEditText. The validator will be added in the
      * queue of the current validators.
-     *
-     * @param validator
      */
     fun addValidator(index: Int, other: Validator<V>) = validator.validators.add(index, other)
 
@@ -108,14 +101,6 @@ interface ValidationHandler<V> {
      * @return true if the validity passes false otherwise.
      */
     fun validate(): Boolean {
-
-        attrInfo?.run {
-            if (!required) {
-                
-            }
-        }
-
-
         val isValid = validator.isValid
 
         val error = if (isValid) null else validator.errorGenerator.generate()
