@@ -93,7 +93,6 @@ interface ValidationHandlerInterface<V> {
      * Calling *validate()* will cause the EditText to go through
      * customValidators and call [.Validator.isValid]
      *
-     * @param showError determines if this call should show the UI error.
      * @return true if the validity passes false otherwise.
      */
     fun validate(): Boolean {
