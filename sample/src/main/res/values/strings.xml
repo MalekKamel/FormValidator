@@ -10,10 +10,8 @@
     <string name="description_person_name">This field will check for valid person name OR surname</string>
     <string name="description_person_full_name">This field will check for valid person name AND surname</string>
 
-    <string name="hint_date"><![CDATA[2013-07-11 or 11:23]]></string>
     <string name="description_date">This field will check date/datetime</string>
 
-    <string name="hint_date_custom"><![CDATA[2013-07-11]]></string>
     <string name="description_date_custom">This field will check yyyy-MM-dd</string>
 
     <string name="hint_email">me@andreabaccega.com</string>
@@ -38,36 +36,18 @@
 
     <string name="description_phone_custom_messages">This is a regular phone check ( like the previous one ).\nThe only difference is that here we\'ve a custom message for the empty case and the invalid case. Try it out!</string>
     <string name="custom_test_error_phone">Custom test error message!</string>
-    <string name="custom_empty_error_phone">Custom empty error message!</string>
 
     <string name="description_allow_empty">This fields validates a phone when the user enters something. If the user doesn\'t enter any data the EditText will validate!</string>
 
-    <string name="hint_regex">aa</string>
     <string name="custom_error_regex">This field only validates with 2 or more "a"</string>
     <string name="description_regex">The field validates only if the field content matches the regex given in the xml. The current regex is: /^[a]{2,}$/\nNote that the regex is case sensitive so that the field won\'t validate if you enter "AA"</string>
 
-    <string name="error_programmatic">You should enter \'wow\' here</string>
-    <string name="description_programmatic">The current check is performed by a programmatically added validator. Check out the source code.</string>
-    <string name="programmatic_title">Programmatically added validator</string>
     <string name="custom_validation_type_description">Validator in this field is defined as \n \n "app:customValidationType="@string/custom_validator_number_one" \n \nand the validator class is NumberOneCustomValidator.</string>
 
     <string name="email_or_credit_title">Email OR Credit</string>
     <string name="hint_email_or_credit">your email or credit card number</string>
     <string name="description_email_or_credit">The previous field will validate only if it is not empty and one of the following is true:\n- it is a valid email address.\n- it is a valid credit card</string>
 
-    <string name="full_name">Full Name</string>
-    <string name="full_name_hint">eg Sha Ka</string>
-    <string name="address_label">Address</string>
-    <string name="address_hint">House number, Street, Suburb, Postcode</string>
-    <string name="phone_number_label">Phone number</string>
-    <string name="phone_number_hint">Your phone number</string>
-    <string name="email_hint">email@address.com</string>
-    <string name="email_label">Email</string>
-    <string name="invalid_phone_no_message">The entered phone number is invalid</string>
-    <string name="invalid_full_name_message">Full name is invalid (must be at least 2 space separated names)</string>
-    <string name="required_phone_no_message">A contact number is required</string>
-    <string name="required_full_name_message">A full name is required</string>
-    <string name="invalid_email_message">Provided e-mail address is invalid</string>
     <string name="float_numeric_range">The numeric field allows only numbers.</string>
     <string name="password_description">Password must match.</string>
     <string name="passwords_match">Passwords Match</string>
@@ -84,5 +64,7 @@
         <item>New Zealand</item>
         <item>India</item>
     </string-array>
+
+    <string name="invalid_email_address">Invalid Email address!</string>
 
 </resources>

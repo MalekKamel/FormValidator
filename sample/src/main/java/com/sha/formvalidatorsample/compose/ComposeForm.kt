@@ -43,16 +43,16 @@ fun ComposeForm() {
     }
 
     val email = form + email {
-        errorMessageRes = R.string.error_email_address_not_valid
+        errorMessageRes = R.string.invalid_email_address
         isMandatory = false
     }
 
     val phone = form + phone {
-        errorMessageRes = R.string.error_phone_not_valid
+        errorMessage = "Invalid phone!"
     }
 
     val emailOrPhone = form + any(email , phone) {
-        errorMessageRes = R.string.error_email_address_not_valid
+        errorMessage = "invalid email or phone"
     }
 
     val password = form + mandatory<String>()
