@@ -3,6 +3,7 @@ package com.sha.formvalidator
 import com.sha.formvalidator.core.validator.*
 import com.sha.formvalidator.core.validator.composite.AllValidator
 import com.sha.formvalidator.core.validator.composite.AnyValidator
+import com.sha.formvalidator.core.validator.composite.OptionalValidator
 import com.sha.formvalidator.core.validator.pattern.*
 import java.util.regex.Pattern
 
@@ -22,7 +23,7 @@ object Validators {
     @JvmStatic
     fun <V> optional(
             block: (Validator<V>.() -> Unit)? = null
-    ): Validator<V> = make(InverseValidator(mandatory()), block)
+    ): Validator<V> = make(OptionalValidator(), block)
 
     @JvmOverloads
     @JvmStatic
@@ -232,7 +233,6 @@ object Validators {
             validator: Validator<V>,
             block: (Validator<V>.() -> Unit)? = null
     ): Validator<V> {
-        
         return validator.apply { block?.invoke(this) }
     }
 }

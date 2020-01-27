@@ -3,6 +3,7 @@ package com.sha.formvalidator.compose
 import com.sha.formvalidator.core.validator.*
 import com.sha.formvalidator.core.validator.composite.AllValidator
 import com.sha.formvalidator.core.validator.composite.AnyValidator
+import com.sha.formvalidator.core.validator.composite.OptionalValidator
 import com.sha.formvalidator.core.validator.pattern.*
 import java.util.regex.Pattern
 
@@ -27,7 +28,7 @@ fun <V> mandatory(
 
 fun optional(
         block: (ValidatableModel<String>.() -> Unit)? = null
-): ValidatableModel<String> = make(DummyValidator(), block)
+): ValidatableModel<String> = make(OptionalValidator(), block)
 
 fun webUrl(
         block: (ValidatableModel<String>.() -> Unit)? = null
