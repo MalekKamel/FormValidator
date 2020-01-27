@@ -2,6 +2,13 @@ package com.sha.formvalidator.compose
 
 import org.junit.Test
 
+class ModelFactoryTest {
+    @Test
+    fun `should be valid`() {
+
+    }
+}
+
 class MandatoryValidationTest {
 
     @Test

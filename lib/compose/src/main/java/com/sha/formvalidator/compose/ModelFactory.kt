@@ -11,22 +11,7 @@ object ModelFactory {
             validator: Validator<V>,
             block: (ValidationModel<V>.() -> Unit)? = null
     ): ValidationModel<V> {
-        val model = ValidationModel.create(validator, block)
-
-        // DummyValidator means it's optional
-        if (validator is DummyValidator) return model
-        // no need to add another MandatoryValidator
-        if (validator is MandatoryValidator) return model
-        // it's optional
-        if (!model.isMandatory){
-            model.validator.validators.add(0, InverseValidator(MandatoryValidator()))
-            return model
-        }
-
-        // add MandatoryValidator
-        model.validator.validators.add(0, MandatoryValidator())
-
-        return model
+        return ValidationModel.create(validator, block)
     }
 }
 

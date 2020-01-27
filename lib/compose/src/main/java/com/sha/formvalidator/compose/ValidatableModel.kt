@@ -8,10 +8,17 @@ import com.sha.formvalidator.core.validator.ErrorGeneratorInterface
 import com.sha.formvalidator.core.validator.Validator
 import com.sha.formvalidator.core.validator.ValueMatchValidator
 import com.sha.formvalidator.core.validator.composite.AllValidator
-import com.sha.formvalidator.core.validator.composite.CompositeValidator
+import com.sha.formvalidator.core.validator.composite.OptionalValidator
 
 class ValidationModel<V>(validator: AllValidator<V>): AbsValidatableModel<V>() {
-    override val validator: AllValidator<V> by lazy { validator }
+    override val validator: AllValidator<V> by lazy {
+        // it's mandatory
+        if (!isOptional) return@lazy validator
+        // no need to add another OptionalValidator
+        if (validator is OptionalValidator) return@lazy validator
+        // it's optional
+        return@lazy OptionalValidator(validator.validators)
+    }
 
     companion object {
         fun <V> create(validator: AllValidator<V>, block: (ValidationModel<V>.() -> Unit)? = null): ValidationModel<V> {
@@ -51,7 +58,7 @@ abstract class AbsValidatableModel<V>: ValidatableModel<V> {
     override var recompose: () -> Unit = {}
     override var tmpError: String? = null
     override var onValidate: ((Boolean) -> Unit)? = null
-    override var isMandatory: Boolean = true
+    override var isOptional: Boolean = false
     override var isIgnored: Boolean = false
     override var tag: String? = null
     override var shouldIgnore: (() -> Boolean)? = null
@@ -193,7 +200,7 @@ interface Validatable: Recomposable {
     var ignoreInitialValidation: Boolean
     var validateOnChange: Boolean
     var onValidate: ((Boolean) -> Unit)?
-    var isMandatory: Boolean
+    var isOptional: Boolean
     var validationSource: ValidationSource
     /**
      * This value is only used when calling showError(), and it's removed

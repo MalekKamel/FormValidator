@@ -1,6 +1,8 @@
 package com.sha.formvalidator.compose
 
+import com.sha.formvalidator.core.validator.IntRangeValidator
 import com.sha.formvalidator.core.validator.MandatoryValidator
+import com.sha.formvalidator.core.validator.pattern.EmailValidator
 import org.junit.Before
 import org.junit.Test
 
@@ -27,7 +29,7 @@ class ValidatableModelTest {
     }
 
     @Test
-    fun `isValid, should be false`() {
+    fun `isValid should be false`() {
         assert(!model.isValid)
         assert(model.status == ModelStatus.INVALID)
 
@@ -41,8 +43,24 @@ class ValidatableModelTest {
     }
 
     @Test
-    fun `validate(), should invoke recompose`() {
+    fun `isValid should be true if isOptional = true & no value`() {
+        val model: ValidationModel<String> = ValidationModel.create(MandatoryValidator())
+        model.isOptional = false
 
+        model.value = null
+        assert(model.isValid)
+
+        model.value = ""
+        assert(model.isValid)
+    }
+
+    @Test
+    fun `isValid should be false if isOptional = true & there's value & validators invalid`() {
+        val model: ValidationModel<Int> = ValidationModel.create(IntRangeValidator(1, 5))
+        model.isOptional = true
+
+        model.value = 6
+        assert(!model.isValid)
     }
 
     @Test
