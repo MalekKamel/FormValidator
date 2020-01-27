@@ -64,14 +64,14 @@ class ValidatableModelTest {
     }
 
     @Test
-    fun `createError(), error should be null if invalid and ignoreInitialValidation = true`() {
+    fun `createError() error should be null if invalid and ignoreInitialValidation = true`() {
         model.value = ""
         model.ignoreInitialValidation = true
         assert(model.createError() == null)
     }
 
     @Test
-    fun `createError(), error should be null if isIgnored is true`() {
+    fun `createError() error should be null if isIgnored is true`() {
         model.isIgnored = true
         // if valid, the error must be null
         model.value = "value"
@@ -83,7 +83,7 @@ class ValidatableModelTest {
     }
 
     @Test
-    fun `createError(), error should be null if shouldIgnore returns true`() {
+    fun `createError() error should be null if shouldIgnore returns true`() {
         model.shouldIgnore = { true }
         // if valid, the error must be null
         model.value = "value"
@@ -95,7 +95,7 @@ class ValidatableModelTest {
     }
 
     @Test
-    fun `createError(), error shouldn't be null when ValidationSource = USER`() {
+    fun `createError() error shouldn't be null when ValidationSource = USER`() {
         model.value = ""
         model.validationSource = ValidationSource.USER
 
@@ -106,7 +106,7 @@ class ValidatableModelTest {
     }
 
     @Test
-    fun `createError(), error should be null when ValidationSource = LIBRARY & validateOnChange = false`() {
+    fun `createError() error should be null when ValidationSource = LIBRARY & validateOnChange = false`() {
         model.value = ""
         model.validationSource = ValidationSource.LIBRARY
 
@@ -118,14 +118,14 @@ class ValidatableModelTest {
     }
 
     @Test
-    fun `createError(), error should be tmpError`() {
+    fun `createError() error should be tmpError`() {
         model.value = ""
         model.tmpError = "tmp"
         assert(model.createError() == "tmp")
     }
 
     @Test
-    fun `matches(), should be valid if validators have the same value`() {
+    fun `matches() should be valid if validators have the same value`() {
         val e = "Passwords don't match!"
         val v1 = boolean(true)
         val v2 = boolean(true)
@@ -141,7 +141,7 @@ class ValidatableModelTest {
     }
 
     @Test
-    fun `matches(), should be invalid if validators have different values`() {
+    fun `matches() should be invalid if validators have different values`() {
         val e = "Passwords don't match!"
         val v1 = mandatory<String>()
         val v2 = mandatory<String>()
@@ -163,7 +163,7 @@ class ValidatableModelTest {
     }
 
     @Test
-    fun `addValidator(), removeValidator(), should work correctly`() {
+    fun `addValidator() removeValidator(), should work correctly`() {
         assert(model.validator.validators.size == 1)
 
         val validator = MandatoryValidator<String>()
@@ -186,7 +186,7 @@ class ValidatableModelTest {
     }
 
     @Test
-    fun `addTo(), should work correctly`() {
+    fun `addTo() should work correctly`() {
         val form  = Form.create {}
         model.tag = "tag"
         model.addTo(form)
