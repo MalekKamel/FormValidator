@@ -34,7 +34,7 @@ interface ValidationHandler<V> {
             return null
         }
 
-        val attrInfo = createAttrInfo(attrs, context)
+        attrInfo = createAttrInfo(attrs, context)
         createValidator()
         setupValidator(attrInfo, context)
         return attrInfo
@@ -42,26 +42,26 @@ interface ValidationHandler<V> {
 
     fun createAttrInfo(attrs: AttributeSet?, context: Context): AttrInfo? {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.FormValidator)
-        attrInfo = AttrInfo()
+        val attrInfo = AttrInfo()
 
-        attrInfo!!.required = typedArray.getBoolean(R.styleable.FormValidator_required, true)
-        attrInfo!!.validateOnChange = typedArray.getBoolean(R.styleable.FormValidator_validateOnChange, false)
+        attrInfo.required = typedArray.getBoolean(R.styleable.FormValidator_required, true)
+        attrInfo.validateOnChange = typedArray.getBoolean(R.styleable.FormValidator_validateOnChange, false)
 
         val validationTypeValue = typedArray.getInt(R.styleable.FormValidator_validationType, ValidationType.UNKNOWN.value)
-        attrInfo!!.validationType = ValidationType.fromValue(validationTypeValue)
+        attrInfo.validationType = ValidationType.fromValue(validationTypeValue)
 
-        attrInfo!!.errorMessage = typedArray.getString(R.styleable.FormValidator_errorMessage) ?: ""
-        attrInfo!!.regex = typedArray.getString(R.styleable.FormValidator_regex) ?: ""
-        attrInfo!!.dateFormat = typedArray.getString(R.styleable.FormValidator_dateFormat) ?: ""
+        attrInfo.errorMessage = typedArray.getString(R.styleable.FormValidator_errorMessage) ?: ""
+        attrInfo.regex = typedArray.getString(R.styleable.FormValidator_regex) ?: ""
+        attrInfo.dateFormat = typedArray.getString(R.styleable.FormValidator_dateFormat) ?: ""
 
-        attrInfo!!.min = typedArray.getInt(R.styleable.FormValidator_minInt, Integer.MIN_VALUE)
-        attrInfo!!.max = typedArray.getInt(R.styleable.FormValidator_maxInt, Integer.MAX_VALUE)
+        attrInfo.min = typedArray.getInt(R.styleable.FormValidator_minInt, Integer.MIN_VALUE)
+        attrInfo.max = typedArray.getInt(R.styleable.FormValidator_maxInt, Integer.MAX_VALUE)
 
-        attrInfo!!.floatMin = typedArray.getFloat(R.styleable.FormValidator_minFloat, Float.MIN_VALUE)
-        attrInfo!!.floatMax = typedArray.getFloat(R.styleable.FormValidator_maxFloat, Float.MAX_VALUE)
+        attrInfo.floatMin = typedArray.getFloat(R.styleable.FormValidator_minFloat, Float.MIN_VALUE)
+        attrInfo.floatMax = typedArray.getFloat(R.styleable.FormValidator_maxFloat, Float.MAX_VALUE)
 
         val invalidIf = typedArray.getInt(R.styleable.FormValidator_invalidIf, InvalidIf.UNKNOWN.value)
-        attrInfo!!.invalidIf = InvalidIf.fromValue(invalidIf)
+        attrInfo.invalidIf = InvalidIf.fromValue(invalidIf)
 
         typedArray.recycle()
         return attrInfo

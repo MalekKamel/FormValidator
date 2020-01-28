@@ -27,7 +27,7 @@ class OptionalValidatorTest {
 
     @Test
     fun `should be valid if there's value and all validators valid`() {
-        validator.value = "value"
+        validator.value = "378734493671000"
         assert(validator.isValid)
     }
 

@@ -45,7 +45,7 @@ class ValidatableModelTest {
     @Test
     fun `isValid should be true if isOptional = true & no value`() {
         val model: ValidationModel<String> = ValidationModel.create(MandatoryValidator())
-        model.isOptional = false
+        model.isOptional = true
 
         model.value = null
         assert(model.isValid)
