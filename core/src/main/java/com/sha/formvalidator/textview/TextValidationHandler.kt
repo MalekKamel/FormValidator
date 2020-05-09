@@ -34,4 +34,6 @@ interface TextValidationHandler {
 
     fun showError()
 
+    fun hideError()
+
 }
