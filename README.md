@@ -1,6 +1,6 @@
 <p align="center"><a href="https://github.com/ShabanKamell/FormValidator"><img src="https://github.com/ShabanKamell/FormValidator/blob/master/blob/logo.png?raw=true" alt="Gray shape shifter" height="200"/></a></p>
 <h1 align="center">FormValidator</h1>
-<p align="center">The world's easiest, most clean Android form validation.</p>
+<p align="center">The easiest, most clean Android form validation.</p>
 
 <p align="center">
 	<a href="https://jitpack.io/#ShabanKamell/FormValidator"> <img src="https://jitpack.io/v/ShabanKamell/FormValidator.svg" height="20"/></a>
