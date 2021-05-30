@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "applicationId": "com.sha.formvalidator.test",
+  "variantType": "ANDROID_TEST",
+  "elements": [
+    {
+      "outputType": {
+        "type": "PROCESSED_RES"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": 1,
+        "versionName": "1.0.0",
+        "outputFile": "classic-debug-androidTest.apk",
+        "fullName": "debugAndroidTest",
+        "baseName": "debug-androidTest",
+        "dirName": ""
+      },
+      "path": "resources-debugAndroidTest.ap_",
+      "properties": {}
+    }
+  ]
+}

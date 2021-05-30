@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "applicationId": "com.sha.formvalidator.compose.test",
+  "variantType": "UNIT_TEST",
+  "elements": [
+    {
+      "outputType": {
+        "type": "PROCESSED_RES"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": 1,
+        "versionName": "1.0.0",
+        "outputFile": "compose-debug-test.apk",
+        "fullName": "debugUnitTest",
+        "baseName": "debug-test",
+        "dirName": ""
+      },
+      "path": "resources-debugUnitTest.ap_",
+      "properties": {}
+    }
+  ]
+}

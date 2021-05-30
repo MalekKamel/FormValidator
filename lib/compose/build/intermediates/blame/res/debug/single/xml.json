@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/yahia/Desktop/android/projects/me/lib/FormValidator/lib/compose/build/intermediates/res/merged/debug/xml/standalone_badge_gravity_top_start.xml",
+        "source": "/Users/yahia/.gradle/caches/transforms-2/files-2.1/a811dc26340a49d02a6aa9454753977e/material-1.2.0-alpha02/res/xml/standalone_badge_gravity_top_start.xml"
+    },
+    {
+        "merged": "/Users/yahia/Desktop/android/projects/me/lib/FormValidator/lib/compose/build/intermediates/res/merged/debug/xml/standalone_badge_gravity_bottom_start.xml",
+        "source": "/Users/yahia/.gradle/caches/transforms-2/files-2.1/a811dc26340a49d02a6aa9454753977e/material-1.2.0-alpha02/res/xml/standalone_badge_gravity_bottom_start.xml"
+    },
+    {
+        "merged": "/Users/yahia/Desktop/android/projects/me/lib/FormValidator/lib/compose/build/intermediates/res/merged/debug/xml/standalone_badge_offset.xml",
+        "source": "/Users/yahia/.gradle/caches/transforms-2/files-2.1/a811dc26340a49d02a6aa9454753977e/material-1.2.0-alpha02/res/xml/standalone_badge_offset.xml"
+    },
+    {
+        "merged": "/Users/yahia/Desktop/android/projects/me/lib/FormValidator/lib/compose/build/intermediates/res/merged/debug/xml/standalone_badge.xml",
+        "source": "/Users/yahia/.gradle/caches/transforms-2/files-2.1/a811dc26340a49d02a6aa9454753977e/material-1.2.0-alpha02/res/xml/standalone_badge.xml"
+    },
+    {
+        "merged": "/Users/yahia/Desktop/android/projects/me/lib/FormValidator/lib/compose/build/intermediates/res/merged/debug/xml/standalone_badge_gravity_bottom_end.xml",
+        "source": "/Users/yahia/.gradle/caches/transforms-2/files-2.1/a811dc26340a49d02a6aa9454753977e/material-1.2.0-alpha02/res/xml/standalone_badge_gravity_bottom_end.xml"
+    },
+    {
+        "merged": "/Users/yahia/Desktop/android/projects/me/lib/FormValidator/lib/compose/build/intermediates/res/merged/debug/xml/settings.xml",
+        "source": "/Users/yahia/Desktop/android/projects/me/lib/FormValidator/lib/core/build/intermediates/packaged_res/debug/xml/settings.xml"
+    }
+]

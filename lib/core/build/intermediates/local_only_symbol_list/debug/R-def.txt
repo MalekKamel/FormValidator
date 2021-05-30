@@ -1,0 +1,6 @@
+R_DEF: Internal format may change without notice
+local
+anim double_cycle_interpolator
+anim shake_error
+color red_light
+xml settings

@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/yahia/Desktop/android/projects/me/lib/FormValidator/lib/compose/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/yahia/.gradle/caches/transforms-2/files-2.1/b5184676f95a9bf6a50c59174714d8f7/core-1.1.0/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/yahia/Desktop/android/projects/me/lib/FormValidator/lib/compose/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/Users/yahia/.gradle/caches/transforms-2/files-2.1/b5184676f95a9bf6a50c59174714d8f7/core-1.1.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/yahia/Desktop/android/projects/me/lib/FormValidator/lib/compose/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/yahia/.gradle/caches/transforms-2/files-2.1/b5184676f95a9bf6a50c59174714d8f7/core-1.1.0/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/yahia/Desktop/android/projects/me/lib/FormValidator/lib/compose/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/yahia/.gradle/caches/transforms-2/files-2.1/b5184676f95a9bf6a50c59174714d8f7/core-1.1.0/res/layout-v21/notification_template_custom_big.xml"
+    }
+]

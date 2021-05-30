@@ -1,0 +1,2 @@
+com/sha/formvalidator/BuildConfig.java
+ com.sha.formvalidator.BuildConfig
