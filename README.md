@@ -12,8 +12,21 @@ Every time you create a form, you need to declare fields and write code for for 
 
 <img src="https://github.com/ShabanKamell/FormValidator/blob/master/blob/master/raw/diagragm.png" height="600">
 
-```xml
+# Table of contents
 
+- [Usage](#usage)
+- [Installation](#installation)
+- [Widgets](#widgets)
+  - [TextView Widgets](#textview-widgets)
+  - [Other Widgets](#other-widgets)
+- [Validatable interface](#validatable-interface)
+- [Form Layout](#form-layout)
+- [TextView Validation](#textview-validation)
+- [Credit](#credit)
+- [License](#-license)
+
+# Usage
+```xml
 <com.sha.formvalidator.Form >
     <com.sha.formvalidator.widget.FormEditText 
     	app:validationType="email"
