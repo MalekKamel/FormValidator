@@ -1,5 +1,10 @@
+<p align="center"><a href="https://github.com/ShabanKamell/FormValidator"><img src="https://github.com/ShabanKamell/FormValidator/blob/master/blob/logo.png?raw=true" alt="Gray shape shifter" height="200"/></a></p>
+<h1 align="center">FormValidator</h1>
+<p align="center">The world's easiest, most clean Android form validation.</p>
 
-# FormValidator for Android
+<p align="center">
+	<a href="https://jitpack.io/#ShabanKamell/FormValidator"> <img src="https://jitpack.io/v/ShabanKamell/FormValidator.svg" height="20"/></a>
+</p><br/><br/>
 
 A declarative Form Validation for Android, simple, clean, and customizable.
 
@@ -7,29 +12,53 @@ Every time you create a form, you need to declare fields and write code for for 
 
 <img src="https://github.com/ShabanKamell/FormValidator/blob/master/blob/master/raw/diagragm.png" height="600">
 
-```kotlin
+```xml
 
-<com.sha.formvalidator.Form ... >
+<com.sha.formvalidator.Form >
     <com.sha.formvalidator.widget.FormEditText 
     	app:validationType="email"
-    ... />
+     />
     
     <com.sha.formvalidator.widget.FormCheckBox 
     	app:checkBoxValidation="checked"
-    ... />
+     />
     
     <com.sha.formvalidator.widget.FormToggleButton 
     	app:toggleButtonValidation="on"
-    ... />
+     />
     
     <com.sha.formvalidator.widget.FormSwitch 
     	app:switchValidation="on"
-    ... />
+     />
 </com.sha.formvalidator.Form>
+```
 
-// validate
+To trigger validation:
+
+```kotlin
 val isFormValid = findViewById<Form>(R.id.form).validate()
+```
 
+In case you don't need `Form`, you can use `FormEditText` just like any regular field and you can trigger validation using:
+
+```kotlin
+val isValid = emailFormEditText.validate()
+``` 
+
+#### Note
+You can nest the fields inside `Form` layout layout in any levels you need:
+
+```xml
+<com.sha.formvalidator.Form>
+  
+    <LinearLayout>
+         <RelativeLayout>
+                 <com.sha.formvalidator.widget.FormEditText 
+                	app:validationType="email"
+                  />
+          </RelativeLayout>
+    </LinearLayout>
+</com.sha.formvalidator.Form>
 ```
 
 ## Installation
