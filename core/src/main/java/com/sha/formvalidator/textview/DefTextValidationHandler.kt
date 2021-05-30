@@ -96,6 +96,9 @@ class DefTextValidationHandler : TextValidationHandler {
     override fun validate(showError: Boolean): Boolean {
         val isValid = mValidator.isValid(editText.text.toString())
         if (!isValid && showError) showError()
+        else if(isValid && showError){
+            hideError()
+        }
         return isValid
     }
 
@@ -108,6 +111,15 @@ class DefTextValidationHandler : TextValidationHandler {
         }
 
         editText.error = mValidator.errorMessage
+    }
+
+    override fun hideError() {
+        if (hasTextInputLayout()) {
+            textInputLayout().error = null
+            return
+        }
+
+        editText.error = null
     }
 
     private fun hasTextInputLayout(): Boolean {
