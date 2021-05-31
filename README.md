@@ -4,6 +4,7 @@
 
 <p align="center">
 	<a href="https://jitpack.io/#ShabanKamell/FormValidator"> <img src="https://jitpack.io/v/ShabanKamell/FormValidator.svg" height="20"/></a>
+<a href="https://twitter.com/intent/tweet?text=FormValidator,%20a%20declarative%20form%20validation%20for%20Android,%20simple,%20clean,%20and%20customizable.&url=https://github.com/ShabanKamell/FormValidator&hashtags=android,kotlin,java,library,developers"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" height="20"/></a>
 </p><br/><br/>
 
 A declarative Form Validation for Android, simple, clean, and customizable.
