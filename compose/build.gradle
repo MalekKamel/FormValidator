@@ -1,0 +1,16 @@
+apply plugin: Plugins.androidLibrary
+apply from: "$rootDir/${GradleName.common}"
+apply plugin: Plugins.kotlinAndroid
+apply plugin: Plugins.kotlinAndroidExtensions
+
+dependencies {
+    api project(path: ':core')
+
+    api Deps.compose.layout
+    api Deps.compose.material
+    api Deps.compose.materialIconsExtended
+    api Deps.compose.tooling
+    api Deps.compose.runtime
+    api Deps.compose.runtimeLivedata
+    api Deps.compose.constraintCompose
+}

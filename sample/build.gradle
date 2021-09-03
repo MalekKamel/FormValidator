@@ -7,8 +7,7 @@ dependencies {
     implementation project(Lib.core)
     implementation project(Lib.rxJava)
 
-    implementation Deps.androidx_appCompat
-    implementation Deps.android_material
-    implementation Deps.androidx_core_ktx
-    implementation Deps.multidex
+    implementation Deps.androidX.appCompat
+    implementation Deps.androidX.material
+    implementation Deps.androidX.core_ktx
 }

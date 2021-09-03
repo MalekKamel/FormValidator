@@ -1,4 +1,4 @@
 object Lib {
     const val core = ":core"
-    const val rxJava = ":rxjava"
+    const val rxJava = ":compose"
 }

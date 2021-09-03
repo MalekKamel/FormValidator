@@ -4,7 +4,6 @@ object Versions {
     const val androidx_junit = "1.1.1"
     const val androidx_espressoCore = "3.2.0"
 
-    const val mockito_core = "3.0.0"
     const val hamcrest_all = "1.3"
     const val androidx_core_testing = "2.1.0"
     const val kotlinx_coroutine_test = "1.3.0"
@@ -16,26 +15,46 @@ object Versions {
     const val androidx_test_ext_junit_ktx = "1.1.2-alpha02"
     const val androidx_test_rules = "1.3.0-alpha02"
     const val mockito_kotlin = "2.2.0"
-    const val modelMapper = "0.1.0"
-    const val androidx_appCompat = "1.1.0"
-    const val android_material = "1.2.0-alpha02"
-    const val rxJava = "2.2.15"
-    const val androidx_core_ktx = "1.1.0"
-    const val multidex = "2.0.1"
-    const val androidx_preference = "1.1.0"
 }
 
 object Deps {
-    const val androidx_appCompat = "androidx.appcompat:appcompat:${Versions.androidx_appCompat}"
-    const val android_material = "com.google.android.material:material:${Versions.android_material}"
-    const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
-    const val androidx_core_ktx = "androidx.core:core-ktx:${Versions.androidx_core_ktx}"
-    const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
-    const val androidx_preference = "androidx.preference:preference:${Versions.androidx_preference}"
+    val compose = ComposeLibs
+    val androidX = AndroidXLibs
+
+    object AndroidXLibs {
+        const val androidx_appCompat = "1.3.1"
+        const val android_material = "1.4.0"
+        const val androidx_core_ktx = "1.6.0"
+        const val androidx_preference = "1.1.1"
+
+        const val appCompat = "androidx.appcompat:appcompat:${androidx_appCompat}"
+        const val material = "com.google.android.material:material:${android_material}"
+        const val core_ktx = "androidx.core:core-ktx:${androidx_core_ktx}"
+        const val preference = "androidx.preference:preference:${androidx_preference}"
+    }
+
+    object ComposeLibs {
+        const val version = "1.0.1"
+        const val constraintComposeVersion = "1.0.0-beta02"
+
+        const val foundation = "androidx.compose.foundation:foundation:$version"
+        const val layout = "androidx.compose.foundation:foundation-layout:$version"
+        const val material = "androidx.compose.material:material:$version"
+        const val materialIconsExtended =
+            "androidx.compose.material:material-icons-extended:$version"
+        const val runtime = "androidx.compose.runtime:runtime:$version"
+        const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:$version"
+        const val tooling = "androidx.compose.ui:ui-tooling:$version"
+        const val test = "androidx.compose.test:test-core:$version"
+        const val uiTest = "androidx.compose.ui:ui-test:$version"
+        const val constraintCompose =
+            "androidx.constraintlayout:constraintlayout-compose:$constraintComposeVersion"
+
+    }
+
 }
 
 object TestDeps {
-
     const val androidx_espressoCore = "androidx.test.espresso:espresso-core:${Versions.androidx_espressoCore}"
     const val junit = "junit:junit:${Versions.test_junit}"
     const val androidx_junit = "androidx.test.ext:junit:${Versions.androidx_junit}"
@@ -54,5 +73,4 @@ object TestDeps {
     const val androidx_test_rules = "androidx.test:rules:${Versions.androidx_test_rules}"
     const val androidx_core_testing = "androidx.arch.core:core-testing:${Versions.androidx_core_testing}"
     // </editor-fold>
-
 }
