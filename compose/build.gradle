@@ -3,6 +3,22 @@ apply from: "$rootDir/${GradleName.common}"
 apply plugin: Plugins.kotlinAndroid
 apply plugin: Plugins.kotlinAndroidExtensions
 
+android {
+    buildFeatures {
+        compose true
+
+        // Disable unused AGP features
+        buildConfig false
+        aidl false
+        renderScript false
+        resValues false
+        shaders false
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion Deps.compose.version
+    }
+}
 dependencies {
     api project(path: ':core')
 
